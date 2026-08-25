@@ -1,9 +1,9 @@
 {
   "run_id": "2026-08-25",
   "schema": "3 nuits / 4 jours — depart dimanche 30/08/2026, retour mercredi 02/09/2026 (repli lundi 31/08 → jeudi 03/09 si pas de vol direct le dimanche)",
-  "fx_usd_ils": 3.65,
+  "fx_usd_ils": 3.05,
   "marge": 0.85,
-  "genere_le": "2026-08-25T18:06:55+00:00",
+  "genere_le": "2026-08-25T18:13:23+00:00",
   "destinations": [
     {
       "cle_site": "חלקידה",
@@ -18,9 +18,9 @@
       "statut": "ok",
       "note": "vol Israir aller / Blue Bird retour, 0 escale",
       "hotel_usd_pp": 377.84,
-      "prix_ils": 2300,
+      "prix_ils": 1920,
       "prix_publie_ils": 2255,
-      "ecart": 0.02,
+      "ecart": -0.1486,
       "a_confirmer": false
     },
     {
@@ -36,10 +36,10 @@
       "statut": "ok",
       "note": "vol Blue Bird A/R, 0 escale",
       "hotel_usd_pp": 340.68,
-      "prix_ils": 3020,
+      "prix_ils": 2520,
       "prix_publie_ils": 2290,
-      "ecart": 0.3188,
-      "a_confirmer": true
+      "ecart": 0.1004,
+      "a_confirmer": false
     },
     {
       "cle_site": "בודפשט",
@@ -54,7 +54,7 @@
       "statut": "ok",
       "note": "nom Booking retourne = 'Hotel & Residence, Palace Quarter' alors que la reference dit 'Hotel & Apartments' — a confirmer par Jacques",
       "hotel_usd_pp": 250.14,
-      "prix_ils": 2080,
+      "prix_ils": 1740,
       "prix_publie_ils": null,
       "ecart": null,
       "a_confirmer": false
@@ -72,10 +72,10 @@
       "statut": "ok",
       "note": "vol Blue Bird A/R, 0 escale",
       "hotel_usd_pp": 128.62,
-      "prix_ils": 2270,
+      "prix_ils": 1900,
       "prix_publie_ils": 2240,
-      "ecart": 0.0134,
-      "a_confirmer": false
+      "ecart": -0.1518,
+      "a_confirmer": true
     },
     {
       "cle_site": "פראג",
@@ -90,9 +90,9 @@
       "statut": "ok",
       "note": "hotel a 675 $/nuit pour 2 en pic d'aout — c'est lui qui fait exploser le package, pas le vol",
       "hotel_usd_pp": 1013.19,
-      "prix_ils": 6300,
+      "prix_ils": 5270,
       "prix_publie_ils": 2945,
-      "ecart": 1.1392,
+      "ecart": 0.7895,
       "a_confirmer": true
     },
     {
@@ -108,10 +108,10 @@
       "statut": "ok",
       "note": "aucun vol direct le dimanche 30/08 — repli lundi applique, hotel re-interroge sur les memes dates decalees",
       "hotel_usd_pp": 285.99,
-      "prix_ils": 3550,
+      "prix_ils": 2970,
       "prix_publie_ils": 2880,
-      "ecart": 0.2326,
-      "a_confirmer": true
+      "ecart": 0.0312,
+      "a_confirmer": false
     },
     {
       "cle_site": "פפוס - WellClub",

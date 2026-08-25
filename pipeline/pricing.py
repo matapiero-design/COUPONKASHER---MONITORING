@@ -22,7 +22,11 @@ RACINE = Path(__file__).resolve().parent.parent
 # --- Parametres metier -------------------------------------------------------
 # Le taux et la marge sont la propriete de Jacques : ne jamais les changer sans
 # demande explicite de sa part (regle reprise du skill dashboard-suivi-prix).
-TAUX_USD_ILS = 3.65   # 1 USD = 3.65 ILS, taux fixe du business (PAS le taux du jour)
+TAUX_USD_ILS = 3.05   # 1 USD = 3.05 ILS, taux fixe du business (PAS le taux du jour).
+                      # Confirme par Jacques le 25/08/2026. C'est LE taux de reference :
+                      # le 3.65 qui figure encore dans le skill dashboard-suivi-prix est
+                      # perime (il datait d'un dollar beaucoup plus fort) et c'est lui qui
+                      # explique que les prix publies sur le site soient trop hauts.
 MARGE = 0.85          # 15 % de marge integree : prix / 0.85
 SEUIL_ECART = 0.15    # au-dela, l'ecart vs le prix publie doit etre confirme
 
