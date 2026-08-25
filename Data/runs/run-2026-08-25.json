@@ -1,7 +1,7 @@
 {
   "run_id": "2026-08-25",
   "motif": "premier run package vol+hotel — validation de bout en bout du branchement Kiwi.com + Booking.com",
-  "schema": "3 nuits / 4 jours — depart dimanche 30/08/2026, retour mercredi 02/09/2026 (repli lundi 31/08 → jeudi 03/09 si pas de vol direct le dimanche)",
+  "schema": "3 nuits / 4 jours, depart dimanche -> retour mercredi (repli lundi -> jeudi si pas de direct le dimanche). S1 = 30/08 -> 02/09/2026, S2 = 06/09 -> 09/09/2026.",
   "sources": {
     "vol": "Kiwi.com MCP — TLV, aller/retour, 1 adulte, USD, max_sector_stopovers=0",
     "hotel": "Booking.com MCP — hotel_names (nom exact) + destination, 2 adultes, 1 chambre, 3 nuits, USD"
@@ -16,7 +16,8 @@
       "hotel_total_usd": 755.68,
       "hotel_trouve": "Brown Beach Chalkida Resort, a member of Brown Hotels",
       "statut": "ok",
-      "note": "vol Israir aller / Blue Bird retour, 0 escale"
+      "note": "vol Israir aller / Blue Bird retour, 0 escale",
+      "semaine": "S1"
     },
     {
       "cle_site": "וינה",
@@ -27,7 +28,8 @@
       "hotel_total_usd": 681.36,
       "hotel_trouve": "Vayalen Boutique Hotel",
       "statut": "ok",
-      "note": "vol Blue Bird A/R, 0 escale"
+      "note": "vol Blue Bird A/R, 0 escale",
+      "semaine": "S1"
     },
     {
       "cle_site": "בודפשט",
@@ -38,7 +40,8 @@
       "hotel_total_usd": 500.28,
       "hotel_trouve": "Silver Crown Hotel & Residence, Palace Quarter",
       "statut": "ok",
-      "note": "nom Booking retourne = 'Hotel & Residence, Palace Quarter' alors que la reference dit 'Hotel & Apartments' — a confirmer par Jacques"
+      "note": "nom Booking retourne = 'Hotel & Residence, Palace Quarter' alors que la reference dit 'Hotel & Apartments' — a confirmer par Jacques",
+      "semaine": "S1"
     },
     {
       "cle_site": "אמסטרדם",
@@ -49,7 +52,8 @@
       "hotel_total_usd": 257.24,
       "hotel_trouve": "ibis budget Amsterdam City South",
       "statut": "ok",
-      "note": "vol Blue Bird A/R, 0 escale"
+      "note": "vol Blue Bird A/R, 0 escale",
+      "semaine": "S1"
     },
     {
       "cle_site": "פראג",
@@ -60,7 +64,8 @@
       "hotel_total_usd": 2026.38,
       "hotel_trouve": "Kosher Hotel King David Prague",
       "statut": "ok",
-      "note": "hotel a 675 $/nuit pour 2 en pic d'aout — c'est lui qui fait exploser le package, pas le vol"
+      "note": "hotel a 675 $/nuit pour 2 en pic d'aout — c'est lui qui fait exploser le package, pas le vol",
+      "semaine": "S1"
     },
     {
       "cle_site": "טביליסי",
@@ -71,7 +76,8 @@
       "hotel_total_usd": 571.98,
       "hotel_trouve": "Cron Palace kosher Tbilisi Hotel",
       "statut": "ok",
-      "note": "aucun vol direct le dimanche 30/08 — repli lundi applique, hotel re-interroge sur les memes dates decalees"
+      "note": "aucun vol direct le dimanche 30/08 — repli lundi applique, hotel re-interroge sur les memes dates decalees",
+      "semaine": "S1"
     },
     {
       "cle_site": "פפוס - WellClub",
@@ -81,7 +87,8 @@
       "vol_usd": 166,
       "hotel_total_usd": null,
       "statut": "gap hotel",
-      "note": "Booking: WellClub Resort complet sur ces dates (hotel_names_no_availability). Vol OK a 166 $ — c'est l'hotel qui bloque"
+      "note": "Booking: WellClub Resort complet sur ces dates (hotel_names_no_availability). Vol OK a 166 $ — c'est l'hotel qui bloque",
+      "semaine": "S1"
     },
     {
       "cle_site": "לונדון",
@@ -92,7 +99,8 @@
       "hotel_total_usd": 370.04,
       "hotel_trouve": "Croft Court Hotel",
       "statut": "ok",
-      "note": "Arkia TLV-STN A/R, 0 escale. Kiwi ne renvoie AUCUN direct sur LHR : les directs TLV-Londres passent par Stansted, Luton et Gatwick. Interroger la ville et non LHR, sinon faux gap. Croft Court est a Golders Green, donc STN/LTN conviennent"
+      "note": "Arkia TLV-STN A/R, 0 escale. Kiwi ne renvoie AUCUN direct sur LHR : les directs TLV-Londres passent par Stansted, Luton et Gatwick. Interroger la ville et non LHR, sinon faux gap. Croft Court est a Golders Green, donc STN/LTN conviennent",
+      "semaine": "S1"
     },
     {
       "cle_site": "מונטנגרו",
@@ -103,7 +111,8 @@
       "hotel_total_usd": 1119.94,
       "hotel_trouve": "Hotel Harmonia by Dukley",
       "statut": "ok",
-      "note": "Israir TLV-TIV A/R, 0 escale. Le direct est sur Tivat, pas Podgorica (TGD)"
+      "note": "Israir TLV-TIV A/R, 0 escale. Le direct est sur Tivat, pas Podgorica (TGD)",
+      "semaine": "S1"
     },
     {
       "cle_site": "ונציה",
@@ -114,7 +123,8 @@
       "hotel_total_usd": 853.1,
       "hotel_trouve": "Rimon Place Kosher",
       "statut": "certification a trancher",
-      "note": "El Al A/R 0 escale, hotel dispo. Prix NON publie : statut cacherout contradictoire entre le master portfolio (Tier 3) et la reference promo (mehadrin)"
+      "note": "El Al A/R 0 escale, hotel dispo. Prix NON publie : statut cacherout contradictoire entre le master portfolio (Tier 3) et la reference promo (mehadrin)",
+      "semaine": "S1"
     },
     {
       "cle_site": "פפוס - Brown Hills",
@@ -125,7 +135,8 @@
       "hotel_total_usd": 1618.07,
       "hotel_trouve": "Paphos Hills Resort & Spa by Brown Hotels",
       "statut": "ok",
-      "note": "hotel a 270 $/nuit pour 2 en pic d'aout"
+      "note": "hotel a 270 $/nuit pour 2 en pic d'aout",
+      "semaine": "S1"
     },
     {
       "cle_site": "פפוס - Greek Village",
@@ -135,7 +146,8 @@
       "vol_usd": 166,
       "hotel_total_usd": null,
       "statut": "gap hotel",
-      "note": "Booking: aucune disponibilite sur ces dates (hotel_names_no_availability)"
+      "note": "Booking: aucune disponibilite sur ces dates (hotel_names_no_availability)",
+      "semaine": "S1"
     },
     {
       "cle_site": "רומא",
@@ -145,7 +157,44 @@
       "vol_usd": 359,
       "hotel_total_usd": null,
       "statut": "gap hotel",
-      "note": "Wizz Air A/R 0 escale. NEMAN Maison est hors Booking.com : prix hotel a fournir par Jacques"
+      "note": "Wizz Air A/R 0 escale. NEMAN Maison est hors Booking.com : prix hotel a fournir par Jacques",
+      "semaine": "S1"
+    },
+    {
+      "cle_site": "פראג",
+      "semaine": "S2",
+      "depart": "2026-09-06",
+      "retour": "2026-09-09",
+      "jour_depart": "dimanche",
+      "vol_usd": 359,
+      "hotel_total_usd": 1100.1,
+      "hotel_trouve": "Kosher Hotel King David Prague",
+      "statut": "ok",
+      "note": "TUS Airways A/R 0 escale. Hotel a 1100 $ contre 2026 $ une semaine plus tot : le +79 % de S1 etait bien le pic d'aout, pas un prix structurel"
+    },
+    {
+      "cle_site": "פפוס - WellClub",
+      "semaine": "S2",
+      "depart": "2026-09-06",
+      "retour": "2026-09-09",
+      "jour_depart": "dimanche",
+      "vol_usd": 171,
+      "hotel_total_usd": 769.0,
+      "hotel_trouve": "WellClub Resort - Suites & Wellness",
+      "statut": "ok",
+      "note": "l'hotel complet en S1 est disponible en S2"
+    },
+    {
+      "cle_site": "פפוס - Greek Village",
+      "semaine": "S2",
+      "depart": "2026-09-06",
+      "retour": "2026-09-09",
+      "jour_depart": "dimanche",
+      "vol_usd": 171,
+      "hotel_total_usd": null,
+      "statut": "faux match Booking",
+      "note": "PIEGE : Booking repond 'Filerimos Village Hotel' a Ialyssos, en GRECE (Rhodes) — un autre hotel, un autre pays. Ne jamais retenir un resultat dont le nom ne correspond pas"
     }
-  ]
+  ],
+  "alerte_calendrier": "Roch Hachana 5787 : du vendredi 11/09 au soir au dimanche 13/09 au soir. Le depart dominical de S3 (13/09) tombe donc en plein Yom Tov — inutilisable. Repli lundi 14/09 -> jeudi 17/09. Yom Kippour et Souccot saturent ensuite tout le mois : forte demande israelienne a prevoir sur S3-S6."
 }

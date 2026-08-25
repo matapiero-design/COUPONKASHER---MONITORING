@@ -52,6 +52,7 @@ def construire(run, destinations, publies):
         dest = index[cle]
         ligne = {
             "cle_site": cle,
+            "semaine": entree.get("semaine", "S1"),
             "ville": dest["ville"],
             "iata": dest["iata"],
             "hotel": entree.get("hotel_trouve") or dest.get("booking_name") or dest.get("hotel", "—"),
@@ -61,6 +62,8 @@ def construire(run, destinations, publies):
             "vol_usd": entree.get("vol_usd"),
             "hotel_total_usd": entree.get("hotel_total_usd"),
             "statut": entree.get("statut", "ok"),
+            # Une cacherout non tranchee interdit la publication, quel que soit l'ecart.
+            "cacherout_bloquee": bool(dest.get("certification")),
             "note": entree.get("note", ""),
         }
         if ligne["hotel_total_usd"] is not None:
@@ -75,22 +78,34 @@ def construire(run, destinations, publies):
             ligne["prix_ils"] = None
             ligne["statut"] = ligne["statut"] if ligne["statut"] != "ok" else "incomplet"
 
-        publie = (publies.get("prices") or {}).get(cle, {}).get("price_ils")
-        ligne["prix_publie_ils"] = publie
-        if publie and ligne["prix_ils"]:
-            ligne["ecart"] = round((ligne["prix_ils"] - publie) / publie, 4)
-            ligne["a_confirmer"] = abs(ligne["ecart"]) > SEUIL_ECART
-        else:
-            ligne["ecart"] = None
-            ligne["a_confirmer"] = False
+        ligne["prix_publie_ils"] = (publies.get("prices") or {}).get(cle, {}).get("price_ils")
         lignes.append(ligne)
+
+    # Le site affiche un prix "à partir de" : la référence d'une destination est donc son
+    # meilleur prix sur la fenêtre, pas celui d'une semaine en particulier.
+    meilleurs = {}
+    for l in lignes:
+        if l["prix_ils"] is not None:
+            actuel = meilleurs.get(l["cle_site"])
+            if actuel is None or l["prix_ils"] < actuel:
+                meilleurs[l["cle_site"]] = l["prix_ils"]
+    for l in lignes:
+        l["meilleur_ils"] = meilleurs.get(l["cle_site"])
+        publie, meilleur = l["prix_publie_ils"], l["meilleur_ils"]
+        if publie and meilleur:
+            l["ecart"] = round((meilleur - publie) / publie, 4)
+            l["a_confirmer"] = abs(l["ecart"]) > SEUIL_ECART
+        else:
+            l["ecart"] = None
+            l["a_confirmer"] = False
     return lignes
 
 
 def rendre_markdown(run, lignes):
-    def cellule(valeur, suffixe="", vide="—"):
-        return f"{valeur}{suffixe}" if valeur is not None else vide
+    def cel(v, vide="—"):
+        return vide if v is None else v
 
+    semaines = sorted({l["semaine"] for l in lignes})
     out = [
         "# Prix package séjour casher — CouponKasher",
         "",
@@ -102,35 +117,65 @@ def rendre_markdown(run, lignes):
         f"- **Taux appliqué** : 1 USD = {TAUX_USD_ILS} ILS · marge {int((1 - MARGE) * 100)} %"
         f" · formule `(vol + hôtel/pers) ÷ {MARGE} × {TAUX_USD_ILS}`",
         f"- **Généré le** : {datetime.now(timezone.utc):%Y-%m-%d %H:%M} UTC",
-        "",
-        "## Prix calculés (par personne, base 2 adultes en chambre double)",
-        "",
-        "| Destination | Hôtel | Départ | Vol A/R $ | Hôtel 3 nuits /pers $ | Package ₪ | Publié ₪ | Écart | Statut |",
-        "|---|---|---|---|---|---|---|---|---|",
     ]
-    for l in sorted(lignes, key=lambda x: (x["prix_ils"] is None, x["prix_ils"] or 0)):
+    if run.get("alerte_calendrier"):
+        out += ["", f"> **Calendrier** — {run['alerte_calendrier']}"]
+
+    # Vue de publication : le site affiche "à partir de", donc le meilleur prix de la fenêtre.
+    out += [
+        "",
+        "## À publier — meilleur prix par destination",
+        "",
+        "| Destination | Meilleur ₪ | Semaine | Publié ₪ | Écart | Décision |",
+        "|---|---|---|---|---|---|",
+    ]
+    vus = set()
+    for l in sorted(lignes, key=lambda x: (x["meilleur_ils"] is None, x["meilleur_ils"] or 0)):
+        if l["cle_site"] in vus or l["meilleur_ils"] is None:
+            continue
+        vus.add(l["cle_site"])
+        semaine = next(x["semaine"] for x in lignes if x["cle_site"] == l["cle_site"]
+                       and x["prix_ils"] == l["meilleur_ils"])
         ecart = f"{l['ecart'] * 100:+.0f} %" if l["ecart"] is not None else "—"
-        statut = l["statut"]
-        if l["a_confirmer"]:
-            statut = f"⚠️ à confirmer — {statut}"
-        if l["note"]:
-            statut = f"{statut} · {l['note']}"
-        out.append(
-            f"| {l['ville']} ({l['iata']}) | {l['hotel']} | {cellule(l['depart'])} "
-            f"{('· ' + l['jour_depart']) if l['jour_depart'] else ''} | {cellule(l['vol_usd'])} | "
-            f"{cellule(l['hotel_usd_pp'])} | {cellule(l['prix_ils'])} | "
-            f"{cellule(l['prix_publie_ils'])} | {ecart} | {statut} |"
-        )
+        if l["cacherout_bloquee"]:
+            decision = "⛔ cacherout à trancher — ne pas publier"
+        elif l["a_confirmer"]:
+            decision = "⚠️ hors seuil — arbitrage Jacques"
+        elif l["prix_publie_ils"] is None:
+            decision = "pas de prix affiché sur le site"
+        else:
+            decision = "publiable"
+        out.append(f"| {l['ville']} ({l['iata']}) | {l['meilleur_ils']} | {semaine} | "
+                   f"{cel(l['prix_publie_ils'])} | {ecart} | {decision} |")
+
+    for sem in semaines:
+        out += [
+            "",
+            f"## Détail {sem}",
+            "",
+            "| Destination | Hôtel | Départ | Vol A/R $ | Hôtel 3 nuits /pers $ | Package ₪ | Statut |",
+            "|---|---|---|---|---|---|---|",
+        ]
+        for l in sorted((x for x in lignes if x["semaine"] == sem),
+                        key=lambda x: (x["prix_ils"] is None, x["prix_ils"] or 0)):
+            jour = f" · {l['jour_depart']}" if l["jour_depart"] else ""
+            statut = l["statut"] + (f" · {l['note']}" if l["note"] else "")
+            out.append(f"| {l['ville']} ({l['iata']}) | {l['hotel']} | {cel(l['depart'])}{jour} | "
+                       f"{cel(l['vol_usd'])} | {cel(l['hotel_usd_pp'])} | {cel(l['prix_ils'])} | {statut} |")
+
     out += [
         "",
         "## Lecture",
         "",
         f"- Un écart supérieur à {int(SEUIL_ECART * 100)} % vs le prix publié sur couponkasher.co.il "
         "n'est **jamais** publié automatiquement : il doit être confirmé par Jacques.",
+        "- Le site affiche un prix « à partir de » (החל ב-) : la valeur publiable est donc le meilleur "
+        "prix de la destination sur la fenêtre, toutes semaines confondues.",
         "- Un vol est retenu uniquement s'il est **direct** (0 escale) et hors samedi. "
         "Pas de vol direct le dimanche → repli sur le lundi, signalé dans la colonne Départ.",
-        "- Le prix hôtel vient de Booking.com par **nom d'hôtel exact** : si le nom retourné "
-        "diffère du partenaire attendu, la ligne est marquée à confirmer.",
+        "- Le prix hôtel vient de Booking.com par **nom d'hôtel exact**. Si le nom retourné diffère du "
+        "partenaire attendu, la ligne est écartée — le connecteur peut répondre par un hôtel homonyme "
+        "situé dans un autre pays.",
         "",
     ]
     return "\n".join(out)
@@ -163,11 +208,14 @@ def main():
         rendre_markdown(run, lignes), encoding="utf-8"
     )
 
-    a_confirmer = [l["ville"] for l in lignes if l["a_confirmer"]]
+    a_confirmer = [l["ville"] for l in lignes if l["a_confirmer"] and not l["cacherout_bloquee"]]
+    bloquees = sorted({l["ville"] for l in lignes if l["cacherout_bloquee"]})
     incomplets = [l["ville"] for l in lignes if l["prix_ils"] is None]
     print(f"{len(lignes)} destinations traitées.")
     if incomplets:
         print("Incomplètes (gap vol ou hôtel) : " + ", ".join(incomplets))
+    if bloquees:
+        print("Cacherout à trancher, publication bloquée : " + ", ".join(bloquees))
     if a_confirmer:
         print(f"Écart > {int(SEUIL_ECART * 100)} % vs le site — à confirmer : " + ", ".join(a_confirmer))
 
