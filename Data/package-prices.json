@@ -3,7 +3,7 @@
   "schema": "3 nuits / 4 jours — depart dimanche 30/08/2026, retour mercredi 02/09/2026 (repli lundi 31/08 → jeudi 03/09 si pas de vol direct le dimanche)",
   "fx_usd_ils": 3.05,
   "marge": 0.85,
-  "genere_le": "2026-08-25T18:13:23+00:00",
+  "genere_le": "2026-08-25T18:28:53+00:00",
   "destinations": [
     {
       "cle_site": "חלקידה",
@@ -19,8 +19,8 @@
       "note": "vol Israir aller / Blue Bird retour, 0 escale",
       "hotel_usd_pp": 377.84,
       "prix_ils": 1920,
-      "prix_publie_ils": 2255,
-      "ecart": -0.1486,
+      "prix_publie_ils": 1920,
+      "ecart": 0.0,
       "a_confirmer": false
     },
     {
@@ -37,8 +37,8 @@
       "note": "vol Blue Bird A/R, 0 escale",
       "hotel_usd_pp": 340.68,
       "prix_ils": 2520,
-      "prix_publie_ils": 2290,
-      "ecart": 0.1004,
+      "prix_publie_ils": 2520,
+      "ecart": 0.0,
       "a_confirmer": false
     },
     {
@@ -109,8 +109,8 @@
       "note": "aucun vol direct le dimanche 30/08 — repli lundi applique, hotel re-interroge sur les memes dates decalees",
       "hotel_usd_pp": 285.99,
       "prix_ils": 2970,
-      "prix_publie_ils": 2880,
-      "ecart": 0.0312,
+      "prix_publie_ils": 2970,
+      "ecart": 0.0,
       "a_confirmer": false
     },
     {

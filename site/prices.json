@@ -1,47 +1,63 @@
 {
-  "_comment": "Prix PUBLIES sur couponkasher.co.il. index.html lit ce fichier au chargement et remplace les prix ecrits en dur. Initialise avec les valeurs exactes de la v78 : deployer la v79 avec ce fichier ne change donc rien a l'affichage. Toute modification ici est une decision de publication de Jacques, jamais un effet de bord du run quotidien.",
+  "_comment": "Prix PUBLIES sur couponkasher.co.il. index.html lit ce fichier au chargement et remplace les prix ecrits en dur. statut=run-<date> : prix issu d'un run verifie au taux 3.05. statut=legacy-3.65 : prix herite de l'ancien taux, encore trop haut d'environ 16 %, a rafraichir des qu'un run couvre la destination. Toute modification ici est une decision de publication de Jacques, jamais un effet de bord du run quotidien.",
   "updated_at": "2026-08-25",
   "currency": "ILS",
   "basis": "prix par personne, 4 ימים / 3 לילות",
   "prices": {
-    "אמסטרדם": {
-      "price_ils": 2240
-    },
     "חלקידה": {
-      "price_ils": 2255
+      "price_ils": 1920,
+      "statut": "run-2026-08-25",
+      "taux": 3.05
     },
-    "וינה": {
-      "price_ils": 2290
+    "אמסטרדם": {
+      "price_ils": 2240,
+      "statut": "legacy-3.65"
     },
     "פפוס - Greek Village": {
-      "price_ils": 2355
+      "price_ils": 2355,
+      "statut": "legacy-3.65"
+    },
+    "וינה": {
+      "price_ils": 2520,
+      "statut": "run-2026-08-25",
+      "taux": 3.05
     },
     "פפוס - WellClub": {
-      "price_ils": 2790
-    },
-    "טביליסי": {
-      "price_ils": 2880
+      "price_ils": 2790,
+      "statut": "legacy-3.65"
     },
     "פראג": {
-      "price_ils": 2945
+      "price_ils": 2945,
+      "statut": "legacy-3.65"
     },
     "פפוס - Brown Hills": {
-      "price_ils": 2965
+      "price_ils": 2965,
+      "statut": "legacy-3.65"
+    },
+    "טביליסי": {
+      "price_ils": 2970,
+      "statut": "run-2026-08-25",
+      "taux": 3.05
     },
     "רומא": {
-      "price_ils": 3290
+      "price_ils": 3290,
+      "statut": "legacy-3.65"
     },
     "מונטנגרו": {
-      "price_ils": 3665
+      "price_ils": 3665,
+      "statut": "legacy-3.65"
     },
     "ונציה": {
-      "price_ils": 3675
+      "price_ils": 3675,
+      "statut": "legacy-3.65"
     },
     "פריז": {
-      "price_ils": 3715
+      "price_ils": 3715,
+      "statut": "legacy-3.65"
     },
     "לונדון": {
-      "price_ils": 3885
+      "price_ils": 3885,
+      "statut": "legacy-3.65"
     }
   }
 }
