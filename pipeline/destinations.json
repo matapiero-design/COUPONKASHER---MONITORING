@@ -73,6 +73,45 @@
       "mention_cacherout": "כשר",
       "kiwi_flyTo": "London",
       "note_vol": "Kiwi ne renvoie aucun direct sur LHR : interroger la ville (flyTo='London'). Les directs TLV-Londres sont sur STN, LTN et LGW."
+    },
+    {
+      "cle_site": "מונטנגרו",
+      "ville": "Budva",
+      "iata": "TIV",
+      "kiwi_flyTo": "Montenegro",
+      "booking_name": "Harmonia by Dukley",
+      "booking_city": "Budva, Montenegro",
+      "mention_cacherout": "גלאט כשר · חלק בית יוסף · חלב ישראל",
+      "note_vol": "Le direct TLV-Montenegro est sur TIV (Tivat), pas TGD (Podgorica) comme indique jusqu'ici. Israir."
+    },
+    {
+      "cle_site": "ונציה",
+      "ville": "Venise",
+      "iata": "VCE",
+      "kiwi_flyTo": "VCE",
+      "booking_name": "Rimon Place",
+      "booking_city": "Venice, Italy",
+      "mention_cacherout": "כשר מהדרין · חלב ישראל · בישול ישראל",
+      "certification": "CONTESTEE — le skill dashboard signale Rimon Place en Tier 3/non certifie dans MASTER_PORTFOLIO V14, la reference promo le donne mehadrin. Ne pas publier de prix tant que Jacques n'a pas tranche."
+    },
+    {
+      "cle_site": "פפוס - Brown Hills",
+      "ville": "Paphos",
+      "iata": "PFO",
+      "kiwi_flyTo": "PFO",
+      "booking_name": "Brown Hills",
+      "booking_city": "Paphos, Cyprus",
+      "mention_cacherout": "כשר בשרי וחלבי — רבנות קפריסין",
+      "note_hotel": "Booking resout en 'Paphos Hills Resort & Spa by Brown Hotels' — a confirmer."
+    },
+    {
+      "cle_site": "פפוס - Greek Village",
+      "ville": "Paphos",
+      "iata": "PFO",
+      "kiwi_flyTo": "PFO",
+      "booking_name": "Greek Village Hotel",
+      "booking_city": "Paphos, Cyprus",
+      "mention_cacherout": "כשר בשרי וחלבי — רבנות קפריסין"
     }
   ],
   "hors_booking": [
@@ -81,25 +120,28 @@
       "ville": "Rome",
       "iata": "FCO",
       "hotel": "NEMAN Maison",
-      "note": "introuvable via le connecteur Booking.com — prix hotel a saisir manuellement"
+      "note": "introuvable via le connecteur Booking.com — prix hotel a saisir manuellement",
+      "kiwi_flyTo": "FCO"
     },
     {
       "cle_site": "מרבייה",
       "ville": "Marbella",
       "iata": "AGP",
       "hotel": "Marvella Hotel",
-      "note": "hors Booking + pas de vol direct structurel"
+      "note": "hors Booking + pas de vol direct structurel",
+      "kiwi_flyTo": "AGP"
     },
     {
       "cle_site": "ברלין",
       "ville": "Berlin",
       "iata": "BER",
       "hotel": "King David Garden",
-      "note": "hors Booking + certification non confirmee — ne pas vendre"
+      "note": "hors Booking + certification non confirmee — ne pas vendre",
+      "kiwi_flyTo": "BER"
     }
   ],
   "exclues": {
-    "פריז": "Aida Opera — pas Mehadrin, supervision eclatee",
+    "פריז": "Aida Opera — pas Mehadrin, supervision eclatee. ATTENTION : la destination est pourtant affichee et tarifee sur le site (3 715 ILS). A trancher.",
     "Cracovie": "aucune certification ecrite",
     "Milan": "aucun hotel casher certifie"
   }

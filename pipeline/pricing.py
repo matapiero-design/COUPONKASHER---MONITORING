@@ -42,7 +42,10 @@ def charger(chemin):
 
 
 def construire(run, destinations, publies):
-    index = {d["cle_site"]: d for d in destinations["groupe_a"]}
+    # Les destinations hors Booking ont quand meme un vol a chiffrer.
+    index = {d["cle_site"]: d
+             for liste in ("groupe_a", "hors_booking")
+             for d in destinations.get(liste, [])}
     lignes = []
     for entree in run["destinations"]:
         cle = entree["cle_site"]
@@ -51,7 +54,7 @@ def construire(run, destinations, publies):
             "cle_site": cle,
             "ville": dest["ville"],
             "iata": dest["iata"],
-            "hotel": entree.get("hotel_trouve") or dest["booking_name"],
+            "hotel": entree.get("hotel_trouve") or dest.get("booking_name") or dest.get("hotel", "—"),
             "depart": entree.get("depart"),
             "retour": entree.get("retour"),
             "jour_depart": entree.get("jour_depart"),

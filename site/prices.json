@@ -53,10 +53,6 @@
       "statut": "run-2026-08-25",
       "taux": 3.05
     },
-    "מונטנגרו": {
-      "price_ils": 3665,
-      "statut": "legacy-3.65"
-    },
     "ונציה": {
       "price_ils": 3675,
       "statut": "legacy-3.65"
@@ -64,6 +60,11 @@
     "פריז": {
       "price_ils": 3715,
       "statut": "legacy-3.65"
+    },
+    "מונטנגרו": {
+      "price_ils": 3850,
+      "statut": "run-2026-08-25",
+      "taux": 3.05
     }
   }
 }
