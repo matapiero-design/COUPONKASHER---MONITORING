@@ -28,7 +28,11 @@ manuellement, c'est toi qui l'exécutes chaque matin.
      Pas de vol direct le dimanche → repli lundi → jeudi, et l'hôtel doit être ré-interrogé
      sur les dates décalées (jamais un hôtel sur des dates différentes du vol).
    - S1-S3 systématiquement tous les jours ; S4-S8 uniquement si on est dimanche
-   - Vol : Kiwi.com, TLV → destination, 1 adulte, USD, max_sector_stopovers=0 (0 escale strict)
+   - Vol : Kiwi.com, flyFrom=TLV, flyTo = le champ kiwi_flyTo de pipeline/destinations.json
+     (le code IATA en général, mais le nom de ville quand l'aéroport principal n'a aucun
+     direct — cas de Londres), 1 adulte, USD, max_sector_stopovers=0 (0 escale strict).
+     Zéro résultat sur un code IATA ne veut pas dire zéro vol direct : réinterroge la ville
+     avant de déclarer un gap.
    - Hôtel : Booking.com, hotel_names = le nom exact de pipeline/destinations.json + destination
      = la ville de contexte, 2 adultes, 1 chambre, 3 nuits, USD. Le prix retourné est le TOTAL
      du séjour pour 2 adultes : le prix par personne, c'est ce total ÷ 2.

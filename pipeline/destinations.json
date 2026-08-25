@@ -1,5 +1,5 @@
 {
-  "_comment": "Source unique des O&D CouponKasher pour l'automatisation des tarifs. cle_site = la cle hebraique utilisee par openFicheByCity() dans index.html ET par site/prices.json. booking_name/booking_city = ce qu'on envoie a Booking.com (hotel_names + destination).",
+  "_comment": "Source unique des O&D CouponKasher pour l'automatisation des tarifs. cle_site = la cle hebraique utilisee par openFicheByCity() dans index.html ET par site/prices.json. booking_name/booking_city = ce qu'on envoie a Booking.com (hotel_names + destination). kiwi_flyTo = ce qu'on envoie a Kiwi en flyTo : le code IATA par defaut, mais le nom de ville quand l'aeroport principal n'a pas de direct.",
   "groupe_a": [
     {
       "cle_site": "פראג",
@@ -7,7 +7,8 @@
       "iata": "PRG",
       "booking_name": "King David",
       "booking_city": "Prague, Czechia",
-      "mention_cacherout": "כשר מהדרין"
+      "mention_cacherout": "כשר מהדרין",
+      "kiwi_flyTo": "PRG"
     },
     {
       "cle_site": "וינה",
@@ -15,7 +16,8 @@
       "iata": "VIE",
       "booking_name": "Vayalen",
       "booking_city": "Vienna, Austria",
-      "mention_cacherout": "כשר מהדרין"
+      "mention_cacherout": "כשר מהדרין",
+      "kiwi_flyTo": "VIE"
     },
     {
       "cle_site": "אמסטרדם",
@@ -23,7 +25,8 @@
       "iata": "AMS",
       "booking_name": "ibis budget Amsterdam City South",
       "booking_city": "Amsterdam, Netherlands",
-      "mention_cacherout": "ארוחת בוקר כשרה למהדרין בפיקוח הרבנות (NIK)"
+      "mention_cacherout": "ארוחת בוקר כשרה למהדרין בפיקוח הרבנות (NIK)",
+      "kiwi_flyTo": "AMS"
     },
     {
       "cle_site": "פפוס - WellClub",
@@ -31,7 +34,8 @@
       "iata": "PFO",
       "booking_name": "WellClub Resort - Suites & Wellness",
       "booking_city": "Paphos, Cyprus",
-      "mention_cacherout": "כשר בשרי וחלבי — רבנות קפריסין"
+      "mention_cacherout": "כשר בשרי וחלבי — רבנות קפריסין",
+      "kiwi_flyTo": "PFO"
     },
     {
       "cle_site": "חלקידה",
@@ -39,7 +43,8 @@
       "iata": "ATH",
       "booking_name": "Brown Beach",
       "booking_city": "Chalkida, Greece",
-      "mention_cacherout": "כשר — בפיקוח הרב ידידיה כהן"
+      "mention_cacherout": "כשר — בפיקוח הרב ידידיה כהן",
+      "kiwi_flyTo": "ATH"
     },
     {
       "cle_site": "בודפשט",
@@ -47,7 +52,8 @@
       "iata": "BUD",
       "booking_name": "Silver Crown",
       "booking_city": "Budapest, Hungary",
-      "mention_cacherout": "ארוחת הבוקר אינה כשרה · ליד מסעדות כשרות"
+      "mention_cacherout": "ארוחת הבוקר אינה כשרה · ליד מסעדות כשרות",
+      "kiwi_flyTo": "BUD"
     },
     {
       "cle_site": "טביליסי",
@@ -55,21 +61,42 @@
       "iata": "TBS",
       "booking_name": "Cron Palace",
       "booking_city": "Tbilisi, Georgia",
-      "mention_cacherout": "כשר"
+      "mention_cacherout": "כשר",
+      "kiwi_flyTo": "TBS"
     },
     {
       "cle_site": "לונדון",
       "ville": "Londres",
-      "iata": "LHR",
+      "iata": "LON",
       "booking_name": "Croft Court",
       "booking_city": "London, United Kingdom",
-      "mention_cacherout": "כשר"
+      "mention_cacherout": "כשר",
+      "kiwi_flyTo": "London",
+      "note_vol": "Kiwi ne renvoie aucun direct sur LHR : interroger la ville (flyTo='London'). Les directs TLV-Londres sont sur STN, LTN et LGW."
     }
   ],
   "hors_booking": [
-    { "cle_site": "רומא", "ville": "Rome", "iata": "FCO", "hotel": "NEMAN Maison", "note": "introuvable via le connecteur Booking.com — prix hotel a saisir manuellement" },
-    { "cle_site": "מרבייה", "ville": "Marbella", "iata": "AGP", "hotel": "Marvella Hotel", "note": "hors Booking + pas de vol direct structurel" },
-    { "cle_site": "ברלין", "ville": "Berlin", "iata": "BER", "hotel": "King David Garden", "note": "hors Booking + certification non confirmee — ne pas vendre" }
+    {
+      "cle_site": "רומא",
+      "ville": "Rome",
+      "iata": "FCO",
+      "hotel": "NEMAN Maison",
+      "note": "introuvable via le connecteur Booking.com — prix hotel a saisir manuellement"
+    },
+    {
+      "cle_site": "מרבייה",
+      "ville": "Marbella",
+      "iata": "AGP",
+      "hotel": "Marvella Hotel",
+      "note": "hors Booking + pas de vol direct structurel"
+    },
+    {
+      "cle_site": "ברלין",
+      "ville": "Berlin",
+      "iata": "BER",
+      "hotel": "King David Garden",
+      "note": "hors Booking + certification non confirmee — ne pas vendre"
+    }
   ],
   "exclues": {
     "פריז": "Aida Opera — pas Mehadrin, supervision eclatee",

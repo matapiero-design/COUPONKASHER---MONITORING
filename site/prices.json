@@ -4,6 +4,11 @@
   "currency": "ILS",
   "basis": "prix par personne, 4 ימים / 3 לילות",
   "prices": {
+    "בודפשט": {
+      "price_ils": 1740,
+      "statut": "run-2026-08-25",
+      "taux": 3.05
+    },
     "חלקידה": {
       "price_ils": 1920,
       "statut": "run-2026-08-25",
@@ -43,6 +48,11 @@
       "price_ils": 3290,
       "statut": "legacy-3.65"
     },
+    "לונדון": {
+      "price_ils": 3630,
+      "statut": "run-2026-08-25",
+      "taux": 3.05
+    },
     "מונטנגרו": {
       "price_ils": 3665,
       "statut": "legacy-3.65"
@@ -53,10 +63,6 @@
     },
     "פריז": {
       "price_ils": 3715,
-      "statut": "legacy-3.65"
-    },
-    "לונדון": {
-      "price_ils": 3885,
       "statut": "legacy-3.65"
     }
   }

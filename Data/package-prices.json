@@ -3,7 +3,7 @@
   "schema": "3 nuits / 4 jours — depart dimanche 30/08/2026, retour mercredi 02/09/2026 (repli lundi 31/08 → jeudi 03/09 si pas de vol direct le dimanche)",
   "fx_usd_ils": 3.05,
   "marge": 0.85,
-  "genere_le": "2026-08-25T18:28:53+00:00",
+  "genere_le": "2026-08-25T18:37:26+00:00",
   "destinations": [
     {
       "cle_site": "חלקידה",
@@ -55,8 +55,8 @@
       "note": "nom Booking retourne = 'Hotel & Residence, Palace Quarter' alors que la reference dit 'Hotel & Apartments' — a confirmer par Jacques",
       "hotel_usd_pp": 250.14,
       "prix_ils": 1740,
-      "prix_publie_ils": null,
-      "ecart": null,
+      "prix_publie_ils": 1740,
+      "ecart": 0.0,
       "a_confirmer": false
     },
     {
@@ -134,19 +134,19 @@
     {
       "cle_site": "לונדון",
       "ville": "Londres",
-      "iata": "LHR",
+      "iata": "LON",
       "hotel": "Croft Court Hotel",
-      "depart": null,
-      "retour": null,
-      "jour_depart": null,
-      "vol_usd": null,
+      "depart": "2026-08-30",
+      "retour": "2026-09-02",
+      "jour_depart": "dimanche",
+      "vol_usd": 829,
       "hotel_total_usd": 370.04,
-      "statut": "gap vol",
-      "note": "Kiwi renvoie 0 vol direct TLV-LHR le dimanche ET le lundi, alors que El Al/BA operent la ligne en direct — probable trou de couverture Kiwi sur LHR, pas une absence reelle de vol direct. A investiguer avant de conclure",
+      "statut": "ok",
+      "note": "Arkia TLV-STN A/R, 0 escale. Kiwi ne renvoie AUCUN direct sur LHR : les directs TLV-Londres passent par Stansted, Luton et Gatwick. Interroger la ville et non LHR, sinon faux gap. Croft Court est a Golders Green, donc STN/LTN conviennent",
       "hotel_usd_pp": 185.02,
-      "prix_ils": null,
-      "prix_publie_ils": 3885,
-      "ecart": null,
+      "prix_ils": 3630,
+      "prix_publie_ils": 3630,
+      "ecart": 0.0,
       "a_confirmer": false
     }
   ]
