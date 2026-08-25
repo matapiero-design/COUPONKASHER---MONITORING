@@ -1,0 +1,47 @@
+{
+  "_comment": "Prix PUBLIES sur couponkasher.co.il. index.html lit ce fichier au chargement et remplace les prix ecrits en dur. Initialise avec les valeurs exactes de la v78 : deployer la v79 avec ce fichier ne change donc rien a l'affichage. Toute modification ici est une decision de publication de Jacques, jamais un effet de bord du run quotidien.",
+  "updated_at": "2026-08-25",
+  "currency": "ILS",
+  "basis": "prix par personne, 4 ימים / 3 לילות",
+  "prices": {
+    "אמסטרדם": {
+      "price_ils": 2240
+    },
+    "חלקידה": {
+      "price_ils": 2255
+    },
+    "וינה": {
+      "price_ils": 2290
+    },
+    "פפוס - Greek Village": {
+      "price_ils": 2355
+    },
+    "פפוס - WellClub": {
+      "price_ils": 2790
+    },
+    "טביליסי": {
+      "price_ils": 2880
+    },
+    "פראג": {
+      "price_ils": 2945
+    },
+    "פפוס - Brown Hills": {
+      "price_ils": 2965
+    },
+    "רומא": {
+      "price_ils": 3290
+    },
+    "מונטנגרו": {
+      "price_ils": 3665
+    },
+    "ונציה": {
+      "price_ils": 3675
+    },
+    "פריז": {
+      "price_ils": 3715
+    },
+    "לונדון": {
+      "price_ils": 3885
+    }
+  }
+}
