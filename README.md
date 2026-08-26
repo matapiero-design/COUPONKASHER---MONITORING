@@ -31,6 +31,8 @@ Le run quotidien ne touche jamais à `site/`. Il calcule, compare aux prix publi
 - `site/index.html` — la page du site, dont les prix sont lus depuis `prices.json`.
 - `site/prices.json` — **les prix effectivement publiés**. Un seul endroit à modifier pour changer
   un tarif affiché.
+- `pipeline/export_xlsx.py` — produit `Data/CouponKasher_grille_S1-S8.xlsx`, le classeur consultable
+  (grille, relevés bruts, paramètres, prix en ligne, calendrier). À relancer après chaque run.
 
 ## Formule
 
