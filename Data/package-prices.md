@@ -6,7 +6,7 @@ Ne pas éditer à la main — le prochain run écrase ce fichier.
 - **Run** : 2026-08-25 (premier run package vol+hotel — validation de bout en bout du branchement Kiwi.com + Booking.com)
 - **Schéma** : 3 nuits / 4 jours, depart dimanche -> retour mercredi (repli lundi -> jeudi si pas de direct le dimanche). Fenetre S1-S8 : S1 30/08, S2 06/09, S3 13/09, S4 20/09, S5 27/09, S6 04/10, S7 11/10, S8 18/10.
 - **Taux appliqué** : 1 USD = 3.05 ILS · marge 15 % · formule `(vol + hôtel/pers) ÷ 0.85 × 3.05`
-- **Généré le** : 2026-08-26 04:24 UTC
+- **Généré le** : 2026-08-26 14:11 UTC
 
 > **Calendrier** — Roch Hachana 5787 : vendredi 11/09 au soir -> dimanche 13/09 au soir. Le depart dominical de S3 (13/09) tombe en plein Yom Tov : repli lundi 14/09. Yom Kippour : dimanche 20/09 au soir -> lundi 21/09 au soir. Le depart de S4 tombe a l'entree de Kippour et le lundi est Kippour lui-meme : S4 est inexploitable, ni dimanche ni lundi. Souccot : 25/09 au soir -> 02/10 au soir, Sim'hat Torah en Israel jusqu'au 03/10 au soir. S5 (27/09) est en 'hol hamoed : vendable mais en pic de demande israelienne. S6 a S8 (04/10, 11/10, 18/10) sont le creux post-fetes — c'est la que les prix s'effondrent.
 
@@ -18,6 +18,7 @@ Ne pas éditer à la main — le prochain run écrase ce fichier.
 | Budapest (BUD) | 1390 | S8 | 1390 | +0 % | publiable |
 | Naples (NAP) | 1450 | S7 | — | — | ⛔ cacherout à trancher — ne pas publier |
 | Kinneret (—) | 1540 | S8 | — | — | ⛔ cacherout à trancher — ne pas publier |
+| Mitzpé Ramon (—) | 1580 | S10 | — | — | ⛔ cacherout à trancher — ne pas publier |
 | Paphos (PFO) | 1590 | S8 | 1590 | +0 % | publiable |
 | Nahariya (—) | 1600 | S8 | — | — | ⛔ cacherout à trancher — ne pas publier |
 | Hadera (—) | 1660 | S8 | — | — | ⛔ cacherout à trancher — ne pas publier |
@@ -62,6 +63,12 @@ Ne pas éditer à la main — le prochain run écrase ce fichier.
 | Vérone (VRN) | — | — | — | — | — | aucun vol direct · zero resultat sur VRN et zero en interrogeant la ville, sur les huit semaines. Aucun hotel identifie par ailleurs |
 | Marbella (AGP) | Marvella Hotel | — | — | — | — | aucun vol direct · zero resultat sur AGP et sur Malaga, sur les huit semaines. Le 'pas de direct structurel' de la reference est confirme |
 | Lublin (WAW/LUZ) | Hotel Ilan (reference promo) / Hotel Olive (site) — DIVERGENCE a trancher | — | — | — | — | aucun vol direct · aucun direct TLV-Lublin. Divergence a trancher entre Hotel Ilan (reference promo) et Hotel Olive (site) |
+
+## Détail S10
+
+| Destination | Hôtel | Départ | Vol A/R $ | Hôtel 3 nuits /pers $ | Package ₪ | Statut |
+|---|---|---|---|---|---|---|
+| Mitzpé Ramon (—) | Jacob Mitzpe Ramon | 2026-11-01 · dimanche | — | 1350.01 | 1580 | cacherout non documentee · prix Booking en ILS pour 2 adultes, 3 nuits. Sejour domestique : aucun vol. Aucune disponibilite en S8 (18/10) : releve reporte au 01/11, hors fenetre S1-S8. Fiche Booking servie sous l'ancien slug adama-by-tzukim, adresse et nom affiche conformes (4 Har Boker St, Mitzpe Ramon). Badges du site : מדבר |
 
 ## Détail S2
 
@@ -134,8 +141,7 @@ Ne pas éditer à la main — le prochain run écrase ce fichier.
 | Rome (FCO) | NEMAN Maison | 2026-10-18 · dimanche | 132 | — | — | gap hotel · vol Wizz a 132 $ contre 359 $ en S1 — le vol le moins cher de tout le portfolio. Hotel NEMAN toujours hors Booking |
 | Paphos (PFO) | Brown Hills | 2026-10-18 · dimanche | 151 | — | — | gap hotel · hotel complet alors que le vol est au plus bas |
 | Amsterdam (AMS) | ibis budget Amsterdam City South | 2026-10-18 · dimanche | — | 133.91 | — | gap vol · hotel au plus bas (268 $) mais aucun vol direct sous 600 $ : S1 reste le meilleur |
-| Mitzpé Ramon (—) | Jacob Mitzpe Ramon | 2026-10-18 · dimanche | — | — | — | gap hotel · aucune disponibilite Booking sur les dates testees (18/10 et, pour Eilat, 30/08 egalement) |
-| Eilat (—) | Jacob Eilat | 2026-10-18 · dimanche | — | — | — | gap hotel · aucune disponibilite Booking sur les dates testees (18/10 et, pour Eilat, 30/08 egalement) |
+| Eilat (—) | Jacob Eilat | 2026-10-18 · dimanche | — | — | — | gap hotel · aucune disponibilite Booking sur les quatre fenetres testees : 30/08, 18/10, 01/11, 08/11 et 15/11. Le connecteur ne resout que le nom « Jacob Eilat » ; ni « Jacob Hotel Eilat » ni « Jacob Club Eilat » ne matchent. A verifier en direct aupres de la chaine. |
 
 ## Lecture
 

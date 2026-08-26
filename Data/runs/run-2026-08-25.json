@@ -712,14 +712,15 @@
     },
     {
       "cle_site": "מצפה רמון - Jacob",
-      "semaine": "S8",
-      "depart": "2026-10-18",
-      "retour": "2026-10-21",
+      "semaine": "S10",
+      "depart": "2026-11-01",
+      "retour": "2026-11-04",
       "jour_depart": "dimanche",
       "vol_usd": null,
-      "hotel_total_usd": null,
-      "statut": "gap hotel",
-      "note": "aucune disponibilite Booking sur les dates testees (18/10 et, pour Eilat, 30/08 egalement)"
+      "hotel_total_usd": 2700.01,
+      "statut": "cacherout non documentee",
+      "note": "prix Booking en ILS pour 2 adultes, 3 nuits. Sejour domestique : aucun vol. Aucune disponibilite en S8 (18/10) : releve reporte au 01/11, hors fenetre S1-S8. Fiche Booking servie sous l'ancien slug adama-by-tzukim, adresse et nom affiche conformes (4 Har Boker St, Mitzpe Ramon). Badges du site : מדבר",
+      "hotel_trouve": "Jacob Mitzpe Ramon"
     },
     {
       "cle_site": "אילת - Jacob",
@@ -730,7 +731,7 @@
       "vol_usd": null,
       "hotel_total_usd": null,
       "statut": "gap hotel",
-      "note": "aucune disponibilite Booking sur les dates testees (18/10 et, pour Eilat, 30/08 egalement)"
+      "note": "aucune disponibilite Booking sur les quatre fenetres testees : 30/08, 18/10, 01/11, 08/11 et 15/11. Le connecteur ne resout que le nom « Jacob Eilat » ; ni « Jacob Hotel Eilat » ni « Jacob Club Eilat » ne matchent. A verifier en direct aupres de la chaine."
     }
   ],
   "alerte_calendrier": "Roch Hachana 5787 : vendredi 11/09 au soir -> dimanche 13/09 au soir. Le depart dominical de S3 (13/09) tombe en plein Yom Tov : repli lundi 14/09. Yom Kippour : dimanche 20/09 au soir -> lundi 21/09 au soir. Le depart de S4 tombe a l'entree de Kippour et le lundi est Kippour lui-meme : S4 est inexploitable, ni dimanche ni lundi. Souccot : 25/09 au soir -> 02/10 au soir, Sim'hat Torah en Israel jusqu'au 03/10 au soir. S5 (27/09) est en 'hol hamoed : vendable mais en pic de demande israelienne. S6 a S8 (04/10, 11/10, 18/10) sont le creux post-fetes — c'est la que les prix s'effondrent."
