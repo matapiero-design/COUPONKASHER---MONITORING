@@ -1,244 +1,1136 @@
 {
   "date": "2026-08-26",
-  "mode": "blanc",
+  "mode": "reel",
   "traites": [
     {
-      "id": "19f9f8f9ba453c4c",
+      "threadId": "19f9f8f9ba453c4c",
       "expediteur": "kayak@msg.kayak.com",
-      "date": "2026-07-26",
+      "sujet": "Hotels perfect for the whole family. 🧒",
       "regle": "marketing-voyage",
       "etage": "archive"
     },
     {
-      "id": "19f9f0278ba6fc2c",
-      "expediteur": "elal@ma.elalmatmid.com",
-      "date": "2026-07-26",
-      "regle": "marketing-voyage",
-      "etage": "archive"
-    },
-    {
-      "id": "19f9ee8be6f5121a",
+      "threadId": "19f9ee8be6f5121a",
       "expediteur": "travel@kiwi.com",
-      "date": "2026-07-26",
+      "sujet": "Bring your flight price down by $23",
       "regle": "marketing-voyage",
       "etage": "archive"
     },
     {
-      "id": "19f9d507f451e92f",
+      "threadId": "19f9d507f451e92f",
       "expediteur": "marketing@ma.elal-mail.com",
-      "date": "2026-07-26",
+      "sujet": "מחיר מיוחד לסוכני הנסיעות לרגל תערוכת WTM 2026 בלונדון",
       "regle": "marketing-voyage",
       "etage": "archive"
     },
     {
-      "id": "19f95887092b5814",
+      "threadId": "19f95887092b5814",
       "expediteur": "kayak@msg.kayak.com",
-      "date": "2026-07-24",
+      "sujet": "Save up to 35% on Myrtle Beach, North Carolina stays",
       "regle": "marketing-voyage",
       "etage": "archive"
     },
     {
-      "id": "19e6d602f87713a4",
-      "expediteur": "marketing@ma.elal-mail.com",
-      "date": "2026-05-28",
+      "threadId": "19f939519ae962c8",
+      "expediteur": "contact@newsletter.lacompagnie.com",
+      "sujet": "Une nouvelle signature du voyage.",
       "regle": "marketing-voyage",
-      "etage": "corbeille"
+      "etage": "archive"
     },
     {
-      "id": "19e2547b73e64df1",
-      "expediteur": "marketing@ma.elal-mail.com",
-      "date": "2026-05-14",
+      "threadId": "19f90ed2b61a55bb",
+      "expediteur": "kayak@msg.kayak.com",
+      "sujet": "End-of-summer trips for less. 🚗",
       "regle": "marketing-voyage",
-      "etage": "corbeille"
+      "etage": "archive"
     },
     {
-      "id": "19e1b9efef7e0e67",
-      "expediteur": "marketing@ma.elal-mail.com",
-      "date": "2026-05-12",
+      "threadId": "19f8a5fa2a384f76",
+      "expediteur": "kayak@msg.kayak.com",
+      "sujet": "Don't miss Delta's Beyond The Summer Event Deals.",
       "regle": "marketing-voyage",
-      "etage": "corbeille"
+      "etage": "archive"
     },
     {
-      "id": "19e026ccd395b874",
-      "expediteur": "marketing@ma.elal-mail.com",
-      "date": "2026-05-07",
+      "threadId": "19f85a6d04e0be37",
+      "expediteur": "kayak@msg.kayak.com",
+      "sujet": "Get your group trip out of the group chat.",
       "regle": "marketing-voyage",
-      "etage": "corbeille"
+      "etage": "archive"
     },
     {
-      "id": "19dedf0c87bf685b",
-      "expediteur": "marketing@ma.elal-mail.com",
-      "date": "2026-05-03",
+      "threadId": "19f80e68ae0d7dfb",
+      "expediteur": "info@kiwi.com",
+      "sujet": "Welcome to Kiwi.com, tapiero! Get started with your new account",
       "regle": "marketing-voyage",
-      "etage": "corbeille"
+      "etage": "archive"
     },
     {
-      "id": "198ea8ff371cb762",
-      "expediteur": "marketing@ma.elal-mail.com",
-      "date": "2025-08-27",
-      "sujet": "Get Upgraded on your EL AL flight! Advertisement",
+      "threadId": "19f80d778fec7e58",
+      "expediteur": "matmid@ma.elal-airlines.com",
+      "sujet": "מוריס, בודקים לפני שטסים – מגוון מלונות במחירים משתלמים! פרסומת",
       "regle": "marketing-voyage",
-      "etage": "corbeille"
+      "etage": "archive"
     },
     {
-      "id": "19542feea2240ebf",
+      "threadId": "19f80850b6de1892",
+      "expediteur": "marketing@ma.elal-mail.com",
+      "sujet": "עדכון בנושא דמי השינוי והביטול בכרטיסי אל על וסאן דור",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f804db219e9187",
+      "expediteur": "kayak@msg.kayak.com",
+      "sujet": "Summer flights under $250. Picked for you. 🍏",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f7fdce9ba72e87",
+      "expediteur": "michael@mail.ottotheagent.com",
+      "sujet": "Have Otto plan and book your next business trip",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f7b593534aea52",
+      "expediteur": "kayak@msg.kayak.com",
+      "sujet": "Rooms with room if plans change.",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f6c458a6bf30e8",
+      "expediteur": "kayak@msg.kayak.com",
+      "sujet": "4 ⭐ stays for under $350.",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f6c11c4c1f37ea",
+      "expediteur": "marketing@ma.elal-mail.com",
+      "sujet": "מידע מפורט בנושא עדכון דמי שינוי וביטול",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f6bcef36b550f3",
+      "expediteur": "matmid@ma.elal-airlines.com",
+      "sujet": "טיסות לחורף עד $299 ✈️ בקיץ הזה סוגרים חופשה!",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f6b9cfcfe8418f",
+      "expediteur": "marketing@ma.elal-mail.com",
+      "sujet": "עדכון חוזר השהיית טיסות אל על לדובאי עד ליום 31 באוקטובר 2026",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f6660adb458ddb",
+      "expediteur": "kayak@msg.kayak.com",
+      "sujet": "$799 Peru w/ Machu Picchu in 7 nights incl. flight.",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f6613eb22b21aa",
+      "expediteur": "info@alps2alps.com",
+      "sujet": "This heat won't last. Ski season will. 10% off. ⛷",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f65b9304019b31",
+      "expediteur": "marketing@ma.elal-mail.com",
+      "sujet": "החל מיום 21.07.2026 יעודכנו דמי השינוי והביטול בכרטיסי הטיסה של אל על וסאן דור",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f6540ad34283e2",
+      "expediteur": "marketing@ma.elal-mail.com",
+      "sujet": "השהיית טיסות אל על לדובאי עד ליום 23 באוקטובר 2026",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f625d47e4b6e0c",
+      "expediteur": "kayak@msg.kayak.com",
+      "sujet": "The Top 100 Hotel Restaurants in America 🛎️",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f5d8d7bf5b1948",
+      "expediteur": "kayak@msg.kayak.com",
+      "sujet": "Last-minute flights under $300. 🌴",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f5c36901aac365",
+      "expediteur": "marketing@ma.elal-mail.com",
+      "sujet": "חידוד הנחיות בנושא גביית מיסים עבור תינוקות היושבים במושב (INS)",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f5758ed33fbcc7",
+      "expediteur": "kayak@msg.kayak.com",
+      "sujet": "Top-searched cities. Secret hotel deals. 🕵",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f5734dc3161a9b",
+      "expediteur": "marketing@ma.elal-mail.com",
+      "sujet": "הרחבת אפשרויות השילוב בין אירופה לצפון אמריקה בטיסות אל על",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f55b7d18b19af9",
+      "expediteur": "matmid@ma.elal-airlines.com",
+      "sujet": "מוריס, EL AL Travel יותר זול מבוקינג. פרסומת",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f516e0444141e5",
+      "expediteur": "kayak@msg.kayak.com",
+      "sujet": "$3098 & up, Portugal: 11-night vacation w/air",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f4c57d90aa06ee",
+      "expediteur": "michael@mail.ottotheagent.com",
+      "sujet": "Try searching flights and hotels with Otto",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f4ab2837bce515",
+      "expediteur": "noreply@info.nhow-hotels.com",
+      "sujet": "Préparez votre séjour à Marseille",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f48b1d4eca7b30",
+      "expediteur": "kayak@msg.kayak.com",
+      "sujet": "5-star escapes near you. ⭐️",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f4606a7c86ff5f",
+      "expediteur": "contact@newsletter.lacompagnie.com",
+      "sujet": "Plus qu'un siège Business…",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f45abc0a3cfb4f",
+      "expediteur": "marketing@ma.elal-mail.com",
+      "sujet": "FLYSTORE AGENT-FLASH SALE המוצרים הכי שווים בנקודות בלבד, רק היום ל- 12 שעות",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f3d7a64d69678d",
+      "expediteur": "kayak@msg.kayak.com",
+      "sujet": "Eurotrips under $600. 🕺",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f3d758f1d7399f",
+      "expediteur": "info@alps2alps.com",
+      "sujet": "Too hot to function. Too early to ski. Not too early to book.⛷",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f3ce4caa64737d",
+      "expediteur": "michael@mail.ottotheagent.com",
+      "sujet": "Otto can work smarter for you. Just one quick step.",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f3ce260726d946",
+      "expediteur": "michael@mail.ottotheagent.com",
+      "sujet": "Try searching flights and hotels with Otto",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f332aaef3890f7",
+      "expediteur": "kayak@msg.kayak.com",
+      "sujet": "Stay for <$200. Park for free.",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f2e5ae2b3e751c",
+      "expediteur": "michael@mail.ottotheagent.com",
+      "sujet": "Thanks for signing up for Otto",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f28c075cfe11eb",
+      "expediteur": "contact@newsletter.lacompagnie.com",
+      "sujet": "Votre été mérite New York.",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f2487ac55bc8d0",
+      "expediteur": "kayak@msg.kayak.com",
+      "sujet": "Last-minute deals for the 4th. 🇺🇸",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f1eb34553b3e6b",
+      "expediteur": "kayak@msg.kayak.com",
+      "sujet": "$999 Egypt 7-night 5-star tour w/ Nile & flights.",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f1d24b6641d2ef",
+      "expediteur": "matmid@ma.elal-airlines.com",
+      "sujet": "מוריס, מלונות מזמינים ב- EL AL Travel. פרסומת",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f199ade8dc06f0",
+      "expediteur": "kayak@msg.kayak.com",
+      "sujet": "Save on your next escorted tour with Gate 1 Travel.",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f18aa43e8849c7",
       "expediteur": "elal@ma.elalmatmid.com",
-      "date": "2025-02-26",
-      "sujet": "כרטיס הטיסה שלך לונציה כמעט אצלך, חבל לפספס! פרסומת",
+      "sujet": "מוריס, מצטרפים עכשיו לכרטיס FLY CARD של אל על וישראכרט",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f17e6ea3367e9a",
+      "expediteur": "elal@ma.elalmatmid.com",
+      "sujet": "מוריס, עדכון בדבר הארכת תוכנית היהלומים במועדון הנוסע המתמיד",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f144382052c998",
+      "expediteur": "kayak@msg.kayak.com",
+      "sujet": "These stays are *chef's kiss*.",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f0f1f1445c0ccc",
+      "expediteur": "kayak@msg.kayak.com",
+      "sujet": "Top Euro cities. Totally cancelable hotels.",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19fa291064afd4e5",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19fa229b5893adf1",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f92b77fcebc8a4",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f8f7c4761ce177",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f8e34c2f0a3a60",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f8a2a8930123cb",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f8006fcbe04d84",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f7fc5c08a0c476",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f7fa7526f5aecc",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f7f9974c9a7802",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f6eeac044f9184",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f65ec8396f9400",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f5f2c17a89ca65",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f5bce101465289",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f5529cd351b82b",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f5483af9dd7198",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f40c9abe66ad47",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f405f585db2a77",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f3cf1ce16bb2b7",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f2734c48214ace",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f1ce26a294158c",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f1327af1302532",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f11f9bee5c54f4",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f02f4f151ffdb1",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f0286908ef0f22",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19efcff3b8a9d60c",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19ef9c3671e113a6",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19eefb42764a37a4",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19eeefc521baa26a",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19ee97ee51700049",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19ed5f9b74eb6012",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19ed5b58ebc04c74",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19ecfa5904fcabfa",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19ec693d4e0a4389",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19ea227f7334c70b",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19e9e87304dd7eb5",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19e87ec8fa57616b",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19e6399e5429b605",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19e5f1c6e56f6f97",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19e590859a6a2b04",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19e1c390aed9befa",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19decf029650fcf1",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19de3056962883a9",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19dddacbf72ead2b",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19dd8a3b2138d60a",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19dd44a5dc66aeb3",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19dcf87e5af1ad0b",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19dceeed514ea5eb",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19e2547b73e64df1",
       "regle": "marketing-voyage",
       "etage": "corbeille"
     },
     {
-      "id": "19fa291064afd4e5",
-      "expediteur": "tickchak@tickmail.co.il",
-      "date": "2026-07-27",
-      "regle": "marketing-grande-conso",
-      "etage": "archive"
+      "threadId": "19e1b9efef7e0e67",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
     },
     {
-      "id": "19fa229b5893adf1",
-      "expediteur": "no-reply@mail.yad2.co.il",
-      "date": "2026-07-27",
-      "regle": "marketing-grande-conso",
-      "etage": "archive"
+      "threadId": "19e026ccd395b874",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
     },
     {
-      "id": "19f92b77fcebc8a4",
-      "expediteur": "no-reply@mail.yad2.co.il",
-      "date": "2026-07-24",
-      "regle": "marketing-grande-conso",
-      "etage": "archive"
+      "threadId": "19dedf0c87bf685b",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
     },
     {
-      "id": "19f8f7c4761ce177",
-      "expediteur": "sarah@2236142.brevosend.com",
-      "date": "2026-07-23",
-      "regle": "marketing-grande-conso",
-      "etage": "archive"
+      "threadId": "19ddd2e8f3762c29",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
     },
     {
-      "id": "19f8e34c2f0a3a60",
-      "expediteur": "interspace@intervision.co.il",
-      "date": "2026-07-23",
-      "regle": "marketing-grande-conso",
-      "etage": "archive"
+      "threadId": "19dd90bbacb14d8c",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
     },
     {
-      "id": "19e6399e5429b605",
-      "expediteur": "no-reply@mail.yad2.co.il",
-      "date": "2026-05-26",
+      "threadId": "19dd4f62ebbe2371",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19dca28e6a978a9a",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19dc90cd9afdf33c",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19dba6fd7c659f54",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19dba36ade54bad7",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19db97829b45e7b0",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19da6a8142ef76e5",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19da68124c763ab4",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19da4f39f2195c3c",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19d95f42a0a40c4d",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19d91456a1ff750f",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19d82a8d121aa4d2",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19d7cba25f1b466f",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19d73e5e78897f42",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19d716689f68faea",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19d715d702a7e501",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19d6e5eeb52dd449",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19d64869824857ce",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19d631f5740470f5",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19d59bff5dc12536",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19d44eb5c1373075",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19d4313e702aa472",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19d3dc84696043d9",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19d3af1cad1890c4",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19d2e978c7136980",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19d25e15608921b4",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19d256c396fb9bfc",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19d219beae04bbff",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19d213f5669779c0",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19d1b506f67c1f64",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19d1611d78d894c5",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19d06a99a1cefb18",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19d02f76281f579d",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19cfbb32c2c41a08",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19cf675943e00e2c",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19cf1d1ff2aa3857",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19ce7b575fa5ba98",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19ce789685f4d274",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19ce2a0af98216ff",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19ce2057fcb91ea1",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19ce1a36c4a4f1a0",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19e6399e5429b605",
       "regle": "marketing-grande-conso",
       "etage": "corbeille"
     },
     {
-      "id": "19f9ad8df3b6fd17",
-      "expediteur": "google-noreply@google.com",
-      "date": "2026-07-25",
-      "regle": "notifications-produit",
-      "etage": "archive"
-    },
-    {
-      "id": "19f9a86965d96b40",
-      "expediteur": "connect@cdata.com",
-      "date": "2026-07-25",
-      "regle": "notifications-produit",
-      "etage": "archive"
-    },
-    {
-      "id": "19f839c2f382c3a9",
-      "expediteur": "noreply@traveler.md",
-      "date": "2026-07-21",
-      "regle": "notifications-produit",
-      "etage": "archive"
-    },
-    {
-      "id": "19f82f2c8462a7e4",
-      "expediteur": "analytics-noreply@google.com",
-      "date": "2026-07-21",
-      "regle": "notifications-produit",
-      "etage": "archive"
-    },
-    {
-      "id": "19f80c6b875a4484",
-      "expediteur": "connect@cdata.com",
-      "date": "2026-07-20",
-      "regle": "notifications-produit",
-      "etage": "archive"
-    },
-    {
-      "id": "19e65fa272546ce9",
-      "expediteur": "google-noreply@google.com",
-      "date": "2026-05-26",
-      "regle": "notifications-produit",
+      "threadId": "19e5f1c6e56f6f97",
+      "regle": "marketing-grande-conso",
       "etage": "corbeille"
     },
     {
-      "id": "19f907378ab4569a",
-      "expediteur": "beismedrash@themir.org.il",
-      "date": "2026-07-23",
+      "threadId": "19e590859a6a2b04",
+      "regle": "marketing-grande-conso",
+      "etage": "corbeille"
+    },
+    {
+      "threadId": "19f907378ab4569a",
       "regle": "listes-religieuses",
       "etage": "archive"
     },
     {
-      "id": "1992bcc731149a5a",
-      "expediteur": "mail@tehilimyahad.com",
-      "date": "2025-09-09",
+      "threadId": "19f6b9fb06ac789c",
       "regle": "listes-religieuses",
       "etage": "archive"
     },
     {
-      "id": "19f9fb200bad4181",
-      "expediteur": "leah@gokosher.com",
-      "date": "2026-07-26",
+      "threadId": "19f47584df2878ad",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f22fb1b169764a",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19eff6db7164f160",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19edac8c1f6379fe",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19eb7191e7e4c47e",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19e935a3a86122cf",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19e6ecadcc7c341f",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19ddee0587f3b1dc",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19dba8a05794a88e",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19d9512a472e2120",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19d71e350bd18a2a",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19d5cfc56e60f7fa",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19d444893c9487aa",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19d0ad905cbdfaa7",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19ce32333ed8433f",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19cd8a03dd13bd21",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19cbe0e805f45da5",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19c70eb2e145bc9d",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19c70e3b80bc1e4b",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19c4dd7f0d703674",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19c2efa217f95d9a",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19c0537b0639a073",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19be12711121d45e",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19bbcfd66ffb54f3",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19bb7983d890b08f",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19b9934d50072453",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19b55b62bc47da60",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19b319c40f7187f6",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19b0d8f3f11e7138",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19ac5995d7b6e090",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19a9c0e330e68422",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19a7c2fa5ecce1d7",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19a59c027a23febd",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19a3940844c031fa",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "199edf8cb40a03c1",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "199b486bef77bfe5",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "199856a7d7200d5b",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "1995e25ebb928048",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19938f3965b97778",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "199342162927d2e3",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "1992bcc731149a5a",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "198f0ccbbac68024",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "198d07e01844ff55",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "198cbd9a16c9da36",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "198cb2f5b8a72389",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "198c6f2c4999752b",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "198c3de1b5d37f0d",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "198bed513b0b0172",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "threadId": "19f9fb200bad4181",
       "regle": "veille-concurrence",
       "etage": "archive"
     }
   ],
   "ecartes": [
     {
-      "id": "19c98e5865d093a8",
+      "threadId": "19f9f0278ba6fc2c",
       "expediteur": "elal@ma.elalmatmid.com",
-      "date": "2026-02-26",
-      "sujet": "מוריס, מצטרפים ומקבלים כרטיס טיסה מתנה! פרסומת",
+      "sujet": "מוריס, עדיין אין לך FLY CARD? מצטרפים עכשיו ומקבלים כרטיס טיסה מתנה! פרסומת",
       "regle": "marketing-voyage",
-      "etage": "corbeille",
+      "etage": "archive",
       "motif": "mot-cle sujet : כרטיס טיסה"
     },
     {
-      "id": "19bfb1bdfbaaf448",
-      "expediteur": "elal@ma.elalmatmid.com",
-      "date": "2026-01-26",
-      "sujet": "מוריס, כרטיס טיסה עליכם, ראש שקט עלינו! פרסומת",
-      "regle": "marketing-voyage",
-      "etage": "corbeille",
-      "motif": "mot-cle sujet : כרטיס טיסה"
+      "threadId": "19f66724c79b1d0e",
+      "expediteur": "bezeq_mail@bezeq.co.il",
+      "sujet": "חשבונית בזק — ecartes par protection mot-cle sujet",
+      "regle": "marketing-grande-conso",
+      "etage": "archive",
+      "motif": "mot-cle sujet : חשבונית"
     },
     {
-      "id": "19ae8e06be39b405",
-      "expediteur": "marketing@ma.elal-mail.com",
-      "date": "2025-12-04",
-      "sujet": "מזמינים היום כרטיס טיסה למגוון יעדים ומקבל 10,000 נקודות מתנה!",
-      "regle": "marketing-voyage",
-      "etage": "corbeille",
-      "motif": "mot-cle sujet : כרטיס טיסה"
+      "threadId": "19ec9c57931ecfb9",
+      "expediteur": "bezeq_mail@bezeq.co.il",
+      "sujet": "חשבונית בזק — ecartes par protection mot-cle sujet",
+      "regle": "marketing-grande-conso",
+      "etage": "archive",
+      "motif": "mot-cle sujet : חשבונית"
     },
     {
-      "id": "195cdcf08a3ec90b",
-      "expediteur": "marketing@ma.elal-mail.com",
-      "date": "2025-03-25",
-      "sujet": "עדכון מדיניות ההזמנות באל על - Booking Policy",
-      "regle": "marketing-voyage",
-      "etage": "corbeille",
-      "motif": "mot-cle sujet : booking"
-    },
-    {
-      "id": "19cfc5bb075e2be9",
-      "expediteur": "contact@alloj.com",
-      "date": "2026-03-17",
-      "sujet": "TENTEZ DE REMPORTER UNE ROLEX ! Jouez et prenez votre ticket",
+      "threadId": "19d919e4a9c9b056",
+      "expediteur": "bezeq_mail@bezeq.co.il",
+      "sujet": "חשבונית בזק — ecartes par protection mot-cle sujet",
       "regle": "marketing-grande-conso",
       "etage": "corbeille",
-      "motif": "mot-cle sujet : ticket"
+      "motif": "mot-cle sujet : חשבונית"
+    },
+    {
+      "threadId": "19d01cf2e42d1b36",
+      "expediteur": "bezeq_mail@bezeq.co.il",
+      "sujet": "חשבונית בזק — ecartes par protection mot-cle sujet",
+      "regle": "marketing-grande-conso",
+      "etage": "corbeille",
+      "motif": "mot-cle sujet : חשבונית"
     }
   ],
   "anomalies": []
