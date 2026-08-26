@@ -61,6 +61,33 @@ Publier un nouveau tarif = modifier `site/prices.json`, puis déposer `index.htm
 sur Netlify (projet `spiffy-swan-239d90`) par drag-and-drop. Le déploiement reste manuel : aucun
 connecteur Netlify n'est configuré à ce jour.
 
+## État de la grille au 25/08/2026
+
+10 des 13 destinations tarifées sur le site sont à jour au taux 3.05, chiffrées en live
+(vol Kiwi.com + hôtel Booking.com) sur la fenêtre S1 (30/08 → 02/09) et S2 (06/09 → 09/09).
+
+Trois restent en attente d'une décision qui n'appartient pas au pipeline :
+
+| Destination | Blocage | Ce qu'il faut |
+|---|---|---|
+| Venise | cacherout contradictoire — Tier 3 au master portfolio, mehadrin à la référence promo | trancher le statut de Rimon Place |
+| Rome | NEMAN Maison absent de Booking.com | le tarif 3 nuits, de la main de Jacques |
+| Paris | Aida Opera est en liste d'exclusion mais reste affiché et vendable sur le site | retirer la carte ou changer d'hôtel |
+
+Même chose pour Paphos Greek Village, qui garde son prix hérité : le connecteur Booking répond un
+hôtel de Rhodes sur ce nom, son tarif doit donc venir de Jacques.
+
+## Pièges rencontrés, et pourquoi ils sont dans le code
+
+- **Un code IATA sans résultat n'est pas un gap.** Kiwi ne renvoie aucun direct sur LHR ni sur TGD,
+  alors que les lignes existent sur STN/LTN/LGW et sur TIV. D'où le champ `kiwi_flyTo`.
+- **Un nom d'hôtel peut résoudre vers un autre pays.** « Greek Village Hotel » à Paphos renvoie
+  « Filerimos Village Hotel » à Rhodes. Le nom retourné se vérifie toujours.
+- **Le pic d'août fausse tout.** Prague et Paphos Brown Hills passaient le seuil de 15 % sur la
+  seule semaine du 30/08, et rentraient dans les clous une semaine plus tard. D'où le raisonnement
+  en « meilleur prix de la fenêtre », qui correspond au « החל ב- » affiché.
+- **Une cacherout non tranchée bloque la publication**, quel que soit l'écart.
+
 ## Logique métier
 
 Les règles (destinations, contrainte Shabbat, exclusion des vols à escale, exclusion du samedi,
@@ -78,3 +105,8 @@ cadence S1-S3 / S4-S8, certification casher Tier 1) sont définies dans le skill
   estimation.
 - **25/08/2026 — séparation calculer / publier.** Le run quotidien écrit dans `Data/` et jamais
   dans `site/`.
+- **25/08/2026 — publication de la grille.** Budapest, Chalkida, Vienne, Tbilissi, Prague, Londres,
+  Monténégro, Paphos WellClub, Paphos Brown Hills et Amsterdam publiés au taux 3.05. Deux écarts
+  au-delà du seuil publiés sur instruction explicite de Jacques : Paphos WellClub (-29 %, l'hôtel
+  complet fin août se libère en S2) et Amsterdam (-15 %, pur effet de taux — à 3.65 les mêmes coûts
+  donnaient exactement le prix affiché).

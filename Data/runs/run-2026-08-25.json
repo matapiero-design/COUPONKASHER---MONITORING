@@ -206,6 +206,18 @@
       "hotel_trouve": "Paphos Hills Resort & Spa by Brown Hotels",
       "statut": "ok",
       "note": "1230 $ contre 1618 $ en S1 — meme effet de pic d'aout que Prague"
+    },
+    {
+      "cle_site": "אמסטרדם",
+      "semaine": "S2",
+      "depart": "2026-09-06",
+      "retour": "2026-09-09",
+      "jour_depart": "dimanche",
+      "vol_usd": null,
+      "hotel_total_usd": 273.65,
+      "hotel_trouve": "ibis budget Amsterdam City South",
+      "statut": "gap vol",
+      "note": "aucun direct TLV-AMS sous 450 $ en S2 (401 $ en S1) et hotel plus cher (274 $ contre 257 $) : S1 reste le meilleur prix de la fenetre pour cette destination"
     }
   ],
   "alerte_calendrier": "Roch Hachana 5787 : du vendredi 11/09 au soir au dimanche 13/09 au soir. Le depart dominical de S3 (13/09) tombe donc en plein Yom Tov — inutilisable. Repli lundi 14/09 -> jeudi 17/09. Yom Kippour et Souccot saturent ensuite tout le mois : forte demande israelienne a prevoir sur S3-S6."

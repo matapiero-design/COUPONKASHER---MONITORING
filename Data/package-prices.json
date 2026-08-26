@@ -3,7 +3,7 @@
   "schema": "3 nuits / 4 jours, depart dimanche -> retour mercredi (repli lundi -> jeudi si pas de direct le dimanche). S1 = 30/08 -> 02/09/2026, S2 = 06/09 -> 09/09/2026.",
   "fx_usd_ils": 3.05,
   "marge": 0.85,
-  "genere_le": "2026-08-26T02:58:06+00:00",
+  "genere_le": "2026-08-26T03:01:19+00:00",
   "destinations": [
     {
       "cle_site": "חלקידה",
@@ -84,10 +84,10 @@
       "note": "vol Blue Bird A/R, 0 escale",
       "hotel_usd_pp": 128.62,
       "prix_ils": 1900,
-      "prix_publie_ils": 2240,
+      "prix_publie_ils": 1900,
       "meilleur_ils": 1900,
-      "ecart": -0.1518,
-      "a_confirmer": true
+      "ecart": 0.0,
+      "a_confirmer": false
     },
     {
       "cle_site": "פראג",
@@ -359,6 +359,27 @@
       "prix_ils": 2820,
       "prix_publie_ils": 2820,
       "meilleur_ils": 2820,
+      "ecart": 0.0,
+      "a_confirmer": false
+    },
+    {
+      "cle_site": "אמסטרדם",
+      "semaine": "S2",
+      "ville": "Amsterdam",
+      "iata": "AMS",
+      "hotel": "ibis budget Amsterdam City South",
+      "depart": "2026-09-06",
+      "retour": "2026-09-09",
+      "jour_depart": "dimanche",
+      "vol_usd": null,
+      "hotel_total_usd": 273.65,
+      "statut": "gap vol",
+      "cacherout_bloquee": false,
+      "note": "aucun direct TLV-AMS sous 450 $ en S2 (401 $ en S1) et hotel plus cher (274 $ contre 257 $) : S1 reste le meilleur prix de la fenetre pour cette destination",
+      "hotel_usd_pp": 136.82,
+      "prix_ils": null,
+      "prix_publie_ils": 1900,
+      "meilleur_ils": 1900,
       "ecart": 0.0,
       "a_confirmer": false
     }

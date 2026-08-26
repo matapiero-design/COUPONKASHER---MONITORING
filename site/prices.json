@@ -9,6 +9,12 @@
       "statut": "run-2026-08-25",
       "taux": 3.05
     },
+    "אמסטרדם": {
+      "price_ils": 1900,
+      "statut": "run-2026-08-25",
+      "taux": 3.05,
+      "base": "meilleur prix de la fenêtre — S1, départ 30/08/2026. La baisse de 15 % est un pur effet de taux : à 3.65 les mêmes coûts donnaient 2 274 ₪, soit le prix qui était affiché"
+    },
     "חלקידה": {
       "price_ils": 1920,
       "statut": "run-2026-08-25",
@@ -19,10 +25,6 @@
       "statut": "run-2026-08-25",
       "taux": 3.05,
       "base": "meilleur prix de la fenêtre — S2, départ 06/09/2026. Baisse de 29 % validée par Jacques (« fais les Paphos en priorité »), au-delà du seuil de 15 %"
-    },
-    "אמסטרדם": {
-      "price_ils": 2240,
-      "statut": "legacy-3.65"
     },
     "פפוס - Greek Village": {
       "price_ils": 2355,
