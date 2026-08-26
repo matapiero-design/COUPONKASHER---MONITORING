@@ -6,7 +6,7 @@ Ne pas éditer à la main — le prochain run écrase ce fichier.
 - **Run** : 2026-08-25 (premier run package vol+hotel — validation de bout en bout du branchement Kiwi.com + Booking.com)
 - **Schéma** : 3 nuits / 4 jours, depart dimanche -> retour mercredi (repli lundi -> jeudi si pas de direct le dimanche). Fenetre S1-S8 : S1 30/08, S2 06/09, S3 13/09, S4 20/09, S5 27/09, S6 04/10, S7 11/10, S8 18/10.
 - **Taux appliqué** : 1 USD = 3.05 ILS · marge 15 % · formule `(vol + hôtel/pers) ÷ 0.85 × 3.05`
-- **Généré le** : 2026-08-26 04:11 UTC
+- **Généré le** : 2026-08-26 04:24 UTC
 
 > **Calendrier** — Roch Hachana 5787 : vendredi 11/09 au soir -> dimanche 13/09 au soir. Le depart dominical de S3 (13/09) tombe en plein Yom Tov : repli lundi 14/09. Yom Kippour : dimanche 20/09 au soir -> lundi 21/09 au soir. Le depart de S4 tombe a l'entree de Kippour et le lundi est Kippour lui-meme : S4 est inexploitable, ni dimanche ni lundi. Souccot : 25/09 au soir -> 02/10 au soir, Sim'hat Torah en Israel jusqu'au 03/10 au soir. S5 (27/09) est en 'hol hamoed : vendable mais en pic de demande israelienne. S6 a S8 (04/10, 11/10, 18/10) sont le creux post-fetes — c'est la que les prix s'effondrent.
 
@@ -14,17 +14,25 @@ Ne pas éditer à la main — le prochain run écrase ce fichier.
 
 | Destination | Meilleur ₪ | Semaine | Publié ₪ | Écart | Décision |
 |---|---|---|---|---|---|
+| Tel Aviv (—) | 1160 | S8 | — | — | ⛔ cacherout à trancher — ne pas publier |
 | Budapest (BUD) | 1390 | S8 | 1390 | +0 % | publiable |
 | Naples (NAP) | 1450 | S7 | — | — | ⛔ cacherout à trancher — ne pas publier |
+| Kinneret (—) | 1540 | S8 | — | — | ⛔ cacherout à trancher — ne pas publier |
 | Paphos (PFO) | 1590 | S8 | 1590 | +0 % | publiable |
+| Nahariya (—) | 1600 | S8 | — | — | ⛔ cacherout à trancher — ne pas publier |
+| Hadera (—) | 1660 | S8 | — | — | ⛔ cacherout à trancher — ne pas publier |
 | Chalkida (ATH) | 1800 | S8 | 1800 | +0 % | publiable |
+| Modiin (—) | 1810 | S8 | — | — | ⛔ cacherout à trancher — ne pas publier |
 | Amsterdam (AMS) | 1900 | S1 | 1900 | +0 % | publiable |
+| Shavei Zion (—) | 1910 | S8 | — | — | pas de prix affiché sur le site |
+| Jérusalem (—) | 1970 | S8 | — | — | ⛔ cacherout à trancher — ne pas publier |
 | Tbilissi (TBS) | 2000 | S8 | 2000 | +0 % | publiable |
 | Paphos (PFO) | 2240 | S6 | 2240 | +0 % | publiable |
 | Vienne (VIE) | 2520 | S1 | 2520 | +0 % | publiable |
 | Budva (TIV) | 2580 | S8 | 2580 | +0 % | publiable |
 | Londres (LON) | 2660 | S6 | 2660 | +0 % | publiable |
 | Prague (PRG) | 3260 | S2 | 3260 | +0 % | publiable |
+| Neve Ativ (—) | 3500 | S8 | — | — | pas de prix affiché sur le site |
 | Venise (VCE) | 3990 | S1 | — | — | ⛔ cacherout à trancher — ne pas publier |
 
 ## Détail S1
@@ -109,15 +117,25 @@ Ne pas éditer à la main — le prochain run écrase ce fichier.
 
 | Destination | Hôtel | Départ | Vol A/R $ | Hôtel 3 nuits /pers $ | Package ₪ | Statut |
 |---|---|---|---|---|---|---|
+| Tel Aviv (—) | Jacob Shenkin Hotel | 2026-10-18 · dimanche | — | 993.27 | 1160 | cacherout non documentee · prix Booking en ILS pour 2 adultes, 3 nuits. Sejour domestique : aucun vol. Badges du site : בוטיק, מרכז העיר |
 | Budapest (BUD) | Silver Crown Hotel & Residence, Palace Quarter | 2026-10-18 · dimanche | 142 | 246.94 | 1390 | ok · vol Wizz a 142 $ contre 236 $ en S1 |
+| Kinneret (—) | Jacob Ohalo Kinneret | 2026-10-18 · dimanche | — | 1309.49 | 1540 | cacherout non documentee · prix Booking en ILS pour 2 adultes, 3 nuits. Sejour domestique : aucun vol. Badges du site : נוף לכנרת |
 | Paphos (PFO) | WellClub Resort - Suites & Wellness | 2026-10-18 · dimanche | 151 | 294.6 | 1590 | ok · MEILLEUR de la fenetre : hotel a 589 $, son plus bas |
+| Nahariya (—) | Jacob Sea Life Nahariya | 2026-10-18 · dimanche | — | 1365.01 | 1600 | cacherout non documentee · prix Booking en ILS pour 2 adultes, 3 nuits. Sejour domestique : aucun vol. Badges du site : חוף ים, ספא |
+| Hadera (—) | Jacob Resort Hadera | 2026-10-18 · dimanche | — | 1417.5 | 1660 | cacherout non documentee · prix Booking en ILS pour 2 adultes, 3 nuits. Sejour domestique : aucun vol. Badges du site : חוף ים, ספא |
 | Chalkida (ATH) | Brown Beach Chalkida Resort, a member of Brown Hotels | 2026-10-18 · dimanche | 148 | 354.99 | 1800 | ok · MEILLEUR de la fenetre : vol Wizz a 148 $ et hotel au plus bas de la fenetre |
+| Modiin (—) | Jacob Modiin | 2026-10-18 · dimanche | — | 1545.0 | 1810 | cacherout non documentee · prix Booking en ILS pour 2 adultes, 3 nuits. Sejour domestique : aucun vol. Badges du site : עסקי |
+| Shavei Zion (—) | Jacob Nea | 2026-10-18 · dimanche | — | 1631.62 | 1910 | ok · prix Booking en ILS pour 2 adultes, 3 nuits. Sejour domestique : aucun vol. Badges du site : כשר, וילות פרטיות |
+| Jérusalem (—) | Jacob Harmony | 2026-10-18 · dimanche | — | 1679.99 | 1970 | cacherout non documentee · prix Booking en ILS pour 2 adultes, 3 nuits. Sejour domestique : aucun vol. Badges du site : מלון בוטיק, נחלת שבעה |
 | Tbilissi (TBS) | Cron Palace kosher Tbilisi Hotel | 2026-10-18 · dimanche | 291 | 267.04 | 2000 | ok · vol Israir a 291 $ contre 543 $ en S1 — la destination la plus volatile du portfolio |
 | Vienne (VIE) | Vayalen Boutique Hotel | 2026-10-18 · dimanche | 426 | 287.22 | 2550 | ok · seul vol direct de la fenetre sous 500 $, mais le package reste au-dessus de S1 |
 | Budva (TIV) | Hotel Harmonia by Dukley | 2026-10-18 · dimanche | 345 | 374.59 | 2580 | ok · vol Israir 345 $ contre 515 $ en S1, et l'hotel passe de 1120 $ a 749 $ hors saison balneaire |
+| Neve Ativ (—) | Jacob Neve Ativ | 2026-10-18 · dimanche | — | 2975.01 | 3500 | ok · prix Booking en ILS pour 2 adultes, 3 nuits. Sejour domestique : aucun vol. Badges du site : כשר, ספא |
 | Rome (FCO) | NEMAN Maison | 2026-10-18 · dimanche | 132 | — | — | gap hotel · vol Wizz a 132 $ contre 359 $ en S1 — le vol le moins cher de tout le portfolio. Hotel NEMAN toujours hors Booking |
 | Paphos (PFO) | Brown Hills | 2026-10-18 · dimanche | 151 | — | — | gap hotel · hotel complet alors que le vol est au plus bas |
 | Amsterdam (AMS) | ibis budget Amsterdam City South | 2026-10-18 · dimanche | — | 133.91 | — | gap vol · hotel au plus bas (268 $) mais aucun vol direct sous 600 $ : S1 reste le meilleur |
+| Mitzpé Ramon (—) | Jacob Mitzpe Ramon | 2026-10-18 · dimanche | — | — | — | gap hotel · aucune disponibilite Booking sur les dates testees (18/10 et, pour Eilat, 30/08 egalement) |
+| Eilat (—) | Jacob Eilat | 2026-10-18 · dimanche | — | — | — | gap hotel · aucune disponibilite Booking sur les dates testees (18/10 et, pour Eilat, 30/08 egalement) |
 
 ## Lecture
 

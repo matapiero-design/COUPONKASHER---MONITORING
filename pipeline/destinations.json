@@ -1,5 +1,5 @@
 {
-  "_comment": "Source unique des O&D CouponKasher pour l'automatisation des tarifs. cle_site = la cle hebraique utilisee par openFicheByCity() dans index.html ET par site/prices.json. booking_name/booking_city = ce qu'on envoie a Booking.com (hotel_names + destination). kiwi_flyTo = ce qu'on envoie a Kiwi en flyTo : le code IATA par defaut, mais le nom de ville quand l'aeroport principal n'a pas de direct. groupe_b = destinations non vendables tant que leur cacherout n'est pas tranchee. Elles sont relevees pour information, jamais publiees.",
+  "_comment": "Source unique des O&D CouponKasher pour l'automatisation des tarifs. cle_site = la cle hebraique utilisee par openFicheByCity() dans index.html ET par site/prices.json. booking_name/booking_city = ce qu'on envoie a Booking.com (hotel_names + destination). kiwi_flyTo = ce qu'on envoie a Kiwi en flyTo : le code IATA par defaut, mais le nom de ville quand l'aeroport principal n'a pas de direct. groupe_b = destinations non vendables tant que leur cacherout n'est pas tranchee. Elles sont relevees pour information, jamais publiees. groupe_israel = sejours domestiques, sans vol : le prix se calcule sur l'hotel seul, deja libelle en ILS (devise_hotel=ILS), sans appliquer le taux de change.",
   "groupe_a": [
     {
       "cle_site": "פראג",
@@ -204,6 +204,143 @@
       "hotel": "Hotel Ilan (reference promo) / Hotel Olive (site) — DIVERGENCE a trancher",
       "certification": "cuisine casher sur commande prealable, 14 jours pour les individuels.",
       "note_vol": "aucun vol direct TLV-Lublin. Un acheminement via Varsovie serait un vol a escale ou un transfert terrestre de ~170 km : hors formule actuelle"
+    }
+  ],
+  "groupe_israel": [
+    {
+      "cle_site": "תל אביב - Jacob Shenkin",
+      "ville": "Tel Aviv",
+      "iata": "—",
+      "sans_vol": true,
+      "devise_hotel": "ILS",
+      "booking_name": "Jacob Shenkin",
+      "booking_city": "Tel Aviv, Israel",
+      "badges_site": [
+        "בוטיק",
+        "מרכז העיר"
+      ],
+      "certification": "NON DOCUMENTEE — la carte du site ne porte aucun badge כשר et aucun fichier de reference ne renseigne la cacherout de cet hotel. A verifier avant d'afficher un prix sous la marque CouponKasher."
+    },
+    {
+      "cle_site": "כנרת - Jacob Ohalo",
+      "ville": "Kinneret",
+      "iata": "—",
+      "sans_vol": true,
+      "devise_hotel": "ILS",
+      "booking_name": "Jacob Ohalo",
+      "booking_city": "Sea of Galilee, Israel",
+      "badges_site": [
+        "נוף לכנרת"
+      ],
+      "certification": "NON DOCUMENTEE — la carte du site ne porte aucun badge כשר et aucun fichier de reference ne renseigne la cacherout de cet hotel. A verifier avant d'afficher un prix sous la marque CouponKasher."
+    },
+    {
+      "cle_site": "נהריה - Jacob Sea Life",
+      "ville": "Nahariya",
+      "iata": "—",
+      "sans_vol": true,
+      "devise_hotel": "ILS",
+      "booking_name": "Jacob Sea Life",
+      "booking_city": "Nahariya, Israel",
+      "badges_site": [
+        "חוף ים",
+        "ספא"
+      ],
+      "certification": "NON DOCUMENTEE — la carte du site ne porte aucun badge כשר et aucun fichier de reference ne renseigne la cacherout de cet hotel. A verifier avant d'afficher un prix sous la marque CouponKasher."
+    },
+    {
+      "cle_site": "חדרה - Jacob Resort",
+      "ville": "Hadera",
+      "iata": "—",
+      "sans_vol": true,
+      "devise_hotel": "ILS",
+      "booking_name": "Jacob Resort Hadera",
+      "booking_city": "Hadera, Israel",
+      "badges_site": [
+        "חוף ים",
+        "ספא"
+      ],
+      "certification": "NON DOCUMENTEE — la carte du site ne porte aucun badge כשר et aucun fichier de reference ne renseigne la cacherout de cet hotel. A verifier avant d'afficher un prix sous la marque CouponKasher."
+    },
+    {
+      "cle_site": "מודיעין - Jacob",
+      "ville": "Modiin",
+      "iata": "—",
+      "sans_vol": true,
+      "devise_hotel": "ILS",
+      "booking_name": "Jacob Modiin",
+      "booking_city": "Modiin, Israel",
+      "badges_site": [
+        "עסקי"
+      ],
+      "certification": "NON DOCUMENTEE — la carte du site ne porte aucun badge כשר et aucun fichier de reference ne renseigne la cacherout de cet hotel. A verifier avant d'afficher un prix sous la marque CouponKasher."
+    },
+    {
+      "cle_site": "שבי ציון - Jacob Nea",
+      "ville": "Shavei Zion",
+      "iata": "—",
+      "sans_vol": true,
+      "devise_hotel": "ILS",
+      "booking_name": "Jacob Nea",
+      "booking_city": "Shavei Zion, Israel",
+      "badges_site": [
+        "כשר",
+        "וילות פרטיות"
+      ]
+    },
+    {
+      "cle_site": "ירושלים - Jacob Harmony",
+      "ville": "Jérusalem",
+      "iata": "—",
+      "sans_vol": true,
+      "devise_hotel": "ILS",
+      "booking_name": "Jacob Harmony",
+      "booking_city": "Jerusalem, Israel",
+      "badges_site": [
+        "מלון בוטיק",
+        "נחלת שבעה"
+      ],
+      "certification": "NON DOCUMENTEE — la carte du site ne porte aucun badge כשר et aucun fichier de reference ne renseigne la cacherout de cet hotel. A verifier avant d'afficher un prix sous la marque CouponKasher."
+    },
+    {
+      "cle_site": "רמת הגולן - Jacob Neve Ativ",
+      "ville": "Neve Ativ",
+      "iata": "—",
+      "sans_vol": true,
+      "devise_hotel": "ILS",
+      "booking_name": "Jacob Neve Ativ",
+      "booking_city": "Neve Ativ, Israel",
+      "badges_site": [
+        "כשר",
+        "ספא"
+      ]
+    },
+    {
+      "cle_site": "מצפה רמון - Jacob",
+      "ville": "Mitzpé Ramon",
+      "iata": "—",
+      "sans_vol": true,
+      "devise_hotel": "ILS",
+      "booking_name": "Jacob Mitzpe Ramon",
+      "booking_city": "Mitzpe Ramon, Israel",
+      "badges_site": [
+        "מדבר"
+      ],
+      "certification": "NON DOCUMENTEE — la carte du site ne porte aucun badge כשר et aucun fichier de reference ne renseigne la cacherout de cet hotel. A verifier avant d'afficher un prix sous la marque CouponKasher."
+    },
+    {
+      "cle_site": "אילת - Jacob",
+      "ville": "Eilat",
+      "iata": "—",
+      "sans_vol": true,
+      "devise_hotel": "ILS",
+      "booking_name": "Jacob Eilat",
+      "booking_city": "Eilat, Israel",
+      "badges_site": [
+        "ים סוף",
+        "שמש"
+      ],
+      "certification": "NON DOCUMENTEE — la carte du site ne porte aucun badge כשר et aucun fichier de reference ne renseigne la cacherout de cet hotel. A verifier avant d'afficher un prix sous la marque CouponKasher."
     }
   ]
 }

@@ -31,9 +31,21 @@ MARGE = 0.85          # 15 % de marge integree : prix / 0.85
 SEUIL_ECART = 0.15    # au-dela, l'ecart vs le prix publie doit etre confirme
 
 
-def prix_package_ils(vol_usd, hotel_usd_pp):
-    """(vol + hotel par personne) / 0.85 x 3.65, arrondi a la dizaine inferieure."""
-    brut = (vol_usd + hotel_usd_pp) / MARGE * TAUX_USD_ILS
+def prix_package_ils(vol_usd, hotel_usd_pp, devise_hotel="USD"):
+    """Prix par personne, arrondi a la dizaine inferieure.
+
+    Deux formules, et il ne faut surtout pas les confondre :
+
+      etranger  (vol + hotel/pers en $) / 0.85 x 3.05
+      Israel    (hotel/pers en ILS) / 0.85          — pas de vol, pas de conversion
+
+    Appliquer le taux a un prix deja libelle en shekels le multiplierait par
+    trois. C'est le piege principal de l'offre domestique.
+    """
+    if devise_hotel == "ILS":
+        brut = hotel_usd_pp / MARGE          # deja en ILS, aucune conversion
+    else:
+        brut = (vol_usd + hotel_usd_pp) / MARGE * TAUX_USD_ILS
     return int(math.floor(brut / 10) * 10)
 
 
@@ -44,7 +56,7 @@ def charger(chemin):
 def construire(run, destinations, publies):
     # Les destinations hors Booking ont quand meme un vol a chiffrer.
     index = {d["cle_site"]: d
-             for liste in ("groupe_a", "groupe_b", "hors_booking")
+             for liste in ("groupe_a", "groupe_b", "groupe_israel", "hors_booking")
              for d in destinations.get(liste, [])}
     lignes = []
     for entree in run["destinations"]:
@@ -72,7 +84,13 @@ def construire(run, destinations, publies):
         else:
             ligne["hotel_usd_pp"] = None
 
-        if ligne["vol_usd"] is not None and ligne["hotel_usd_pp"] is not None:
+        devise = dest.get("devise_hotel", "USD")
+        ligne["devise_hotel"] = devise
+        ligne["sans_vol"] = bool(dest.get("sans_vol"))
+        if devise == "ILS" and ligne["hotel_usd_pp"] is not None:
+            # Sejour domestique : l'hotel seul suffit, il n'y a pas de vol a attendre.
+            ligne["prix_ils"] = prix_package_ils(None, ligne["hotel_usd_pp"], "ILS")
+        elif ligne["vol_usd"] is not None and ligne["hotel_usd_pp"] is not None:
             ligne["prix_ils"] = prix_package_ils(ligne["vol_usd"], ligne["hotel_usd_pp"])
         else:
             ligne["prix_ils"] = None
