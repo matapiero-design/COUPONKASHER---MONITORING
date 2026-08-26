@@ -103,15 +103,6 @@
       "booking_city": "Paphos, Cyprus",
       "mention_cacherout": "כשר בשרי וחלבי — רבנות קפריסין",
       "note_hotel": "Booking resout en 'Paphos Hills Resort & Spa by Brown Hotels' — a confirmer."
-    },
-    {
-      "cle_site": "פפוס - Greek Village",
-      "ville": "Paphos",
-      "iata": "PFO",
-      "kiwi_flyTo": "PFO",
-      "booking_name": "Greek Village Hotel",
-      "booking_city": "Paphos, Cyprus",
-      "mention_cacherout": "כשר בשרי וחלבי — רבנות קפריסין"
     }
   ],
   "hors_booking": [
@@ -138,6 +129,14 @@
       "hotel": "King David Garden",
       "note": "hors Booking + certification non confirmee — ne pas vendre",
       "kiwi_flyTo": "BER"
+    },
+    {
+      "cle_site": "פפוס - Greek Village",
+      "ville": "Paphos",
+      "iata": "PFO",
+      "kiwi_flyTo": "PFO",
+      "hotel": "Greek Village Hotel",
+      "note": "Booking mis-resout ce nom vers 'Filerimos Village Hotel' a Rhodes (Grece), meme avec destination='Paphos, Cyprus'. Reproductible. Prix hotel a fournir par Jacques — ne jamais accepter le resultat renvoye par le connecteur sur ce nom."
     }
   ],
   "exclues": {

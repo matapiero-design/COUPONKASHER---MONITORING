@@ -14,26 +14,31 @@
       "statut": "run-2026-08-25",
       "taux": 3.05
     },
+    "פפוס - WellClub": {
+      "price_ils": 1990,
+      "statut": "run-2026-08-25",
+      "taux": 3.05,
+      "base": "meilleur prix de la fenêtre — S2, départ 06/09/2026. Baisse de 29 % validée par Jacques (« fais les Paphos en priorité »), au-delà du seuil de 15 %"
+    },
     "אמסטרדם": {
       "price_ils": 2240,
       "statut": "legacy-3.65"
     },
     "פפוס - Greek Village": {
       "price_ils": 2355,
-      "statut": "legacy-3.65"
+      "statut": "hors-connecteur",
+      "base": "prix hérité du taux 3.65 — hôtel non atteignable via Booking, tarif à fournir par Jacques"
     },
     "וינה": {
       "price_ils": 2520,
       "statut": "run-2026-08-25",
       "taux": 3.05
     },
-    "פפוס - WellClub": {
-      "price_ils": 2790,
-      "statut": "legacy-3.65"
-    },
     "פפוס - Brown Hills": {
-      "price_ils": 2965,
-      "statut": "legacy-3.65"
+      "price_ils": 2820,
+      "statut": "run-2026-08-25",
+      "taux": 3.05,
+      "base": "meilleur prix de la fenêtre — S2, départ 06/09/2026"
     },
     "טביליסי": {
       "price_ils": 2970,

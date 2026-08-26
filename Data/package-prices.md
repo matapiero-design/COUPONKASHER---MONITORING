@@ -6,7 +6,7 @@ Ne pas éditer à la main — le prochain run écrase ce fichier.
 - **Run** : 2026-08-25 (premier run package vol+hotel — validation de bout en bout du branchement Kiwi.com + Booking.com)
 - **Schéma** : 3 nuits / 4 jours, depart dimanche -> retour mercredi (repli lundi -> jeudi si pas de direct le dimanche). S1 = 30/08 -> 02/09/2026, S2 = 06/09 -> 09/09/2026.
 - **Taux appliqué** : 1 USD = 3.05 ILS · marge 15 % · formule `(vol + hôtel/pers) ÷ 0.85 × 3.05`
-- **Généré le** : 2026-08-25 18:52 UTC
+- **Généré le** : 2026-08-26 02:58 UTC
 
 > **Calendrier** — Roch Hachana 5787 : du vendredi 11/09 au soir au dimanche 13/09 au soir. Le depart dominical de S3 (13/09) tombe donc en plein Yom Tov — inutilisable. Repli lundi 14/09 -> jeudi 17/09. Yom Kippour et Souccot saturent ensuite tout le mois : forte demande israelienne a prevoir sur S3-S6.
 
@@ -17,11 +17,11 @@ Ne pas éditer à la main — le prochain run écrase ce fichier.
 | Budapest (BUD) | 1740 | S1 | 1740 | +0 % | publiable |
 | Amsterdam (AMS) | 1900 | S1 | 2240 | -15 % | ⚠️ hors seuil — arbitrage Jacques |
 | Chalkida (ATH) | 1920 | S1 | 1920 | +0 % | publiable |
-| Paphos (PFO) | 1990 | S2 | 2790 | -29 % | ⚠️ hors seuil — arbitrage Jacques |
+| Paphos (PFO) | 1990 | S2 | 1990 | +0 % | publiable |
 | Vienne (VIE) | 2520 | S1 | 2520 | +0 % | publiable |
+| Paphos (PFO) | 2820 | S2 | 2820 | +0 % | publiable |
 | Tbilissi (TBS) | 2970 | S1 | 2970 | +0 % | publiable |
 | Prague (PRG) | 3260 | S2 | 3260 | +0 % | publiable |
-| Paphos (PFO) | 3490 | S1 | 2965 | +18 % | ⚠️ hors seuil — arbitrage Jacques |
 | Londres (LON) | 3630 | S1 | 3630 | +0 % | publiable |
 | Budva (TIV) | 3850 | S1 | 3850 | +0 % | publiable |
 | Venise (VCE) | 3990 | S1 | 3675 | +9 % | ⛔ cacherout à trancher — ne pas publier |
@@ -49,8 +49,9 @@ Ne pas éditer à la main — le prochain run écrase ce fichier.
 | Destination | Hôtel | Départ | Vol A/R $ | Hôtel 3 nuits /pers $ | Package ₪ | Statut |
 |---|---|---|---|---|---|---|
 | Paphos (PFO) | WellClub Resort - Suites & Wellness | 2026-09-06 · dimanche | 171 | 384.5 | 1990 | ok · l'hotel complet en S1 est disponible en S2 |
+| Paphos (PFO) | Paphos Hills Resort & Spa by Brown Hotels | 2026-09-06 · dimanche | 171 | 615.09 | 2820 | ok · 1230 $ contre 1618 $ en S1 — meme effet de pic d'aout que Prague |
 | Prague (PRG) | Kosher Hotel King David Prague | 2026-09-06 · dimanche | 359 | 550.05 | 3260 | ok · TUS Airways A/R 0 escale. Hotel a 1100 $ contre 2026 $ une semaine plus tot : le +79 % de S1 etait bien le pic d'aout, pas un prix structurel |
-| Paphos (PFO) | Greek Village Hotel | 2026-09-06 · dimanche | 171 | — | — | faux match Booking · PIEGE : Booking repond 'Filerimos Village Hotel' a Ialyssos, en GRECE (Rhodes) — un autre hotel, un autre pays. Ne jamais retenir un resultat dont le nom ne correspond pas |
+| Paphos (PFO) | Greek Village Hotel | 2026-09-06 · dimanche | 171 | — | — | faux match Booking · PIEGE REPRODUCTIBLE : Booking repond 'Filerimos Village Hotel' a Ialyssos (Rhodes, GRECE) meme avec destination='Paphos, Cyprus' en contexte. Teste deux fois, meme reponse. L'hotel n'est pas atteignable par le connecteur : prix a fournir par Jacques |
 
 ## Lecture
 

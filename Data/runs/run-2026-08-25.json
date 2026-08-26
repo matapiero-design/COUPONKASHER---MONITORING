@@ -193,7 +193,19 @@
       "vol_usd": 171,
       "hotel_total_usd": null,
       "statut": "faux match Booking",
-      "note": "PIEGE : Booking repond 'Filerimos Village Hotel' a Ialyssos, en GRECE (Rhodes) — un autre hotel, un autre pays. Ne jamais retenir un resultat dont le nom ne correspond pas"
+      "note": "PIEGE REPRODUCTIBLE : Booking repond 'Filerimos Village Hotel' a Ialyssos (Rhodes, GRECE) meme avec destination='Paphos, Cyprus' en contexte. Teste deux fois, meme reponse. L'hotel n'est pas atteignable par le connecteur : prix a fournir par Jacques"
+    },
+    {
+      "cle_site": "פפוס - Brown Hills",
+      "semaine": "S2",
+      "depart": "2026-09-06",
+      "retour": "2026-09-09",
+      "jour_depart": "dimanche",
+      "vol_usd": 171,
+      "hotel_total_usd": 1230.18,
+      "hotel_trouve": "Paphos Hills Resort & Spa by Brown Hotels",
+      "statut": "ok",
+      "note": "1230 $ contre 1618 $ en S1 — meme effet de pic d'aout que Prague"
     }
   ],
   "alerte_calendrier": "Roch Hachana 5787 : du vendredi 11/09 au soir au dimanche 13/09 au soir. Le depart dominical de S3 (13/09) tombe donc en plein Yom Tov — inutilisable. Repli lundi 14/09 -> jeudi 17/09. Yom Kippour et Souccot saturent ensuite tout le mois : forte demande israelienne a prevoir sur S3-S6."

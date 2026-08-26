@@ -3,7 +3,7 @@
   "schema": "3 nuits / 4 jours, depart dimanche -> retour mercredi (repli lundi -> jeudi si pas de direct le dimanche). S1 = 30/08 -> 02/09/2026, S2 = 06/09 -> 09/09/2026.",
   "fx_usd_ils": 3.05,
   "marge": 0.85,
-  "genere_le": "2026-08-25T18:52:44+00:00",
+  "genere_le": "2026-08-26T02:58:06+00:00",
   "destinations": [
     {
       "cle_site": "חלקידה",
@@ -147,10 +147,10 @@
       "note": "Booking: WellClub Resort complet sur ces dates (hotel_names_no_availability). Vol OK a 166 $ — c'est l'hotel qui bloque",
       "hotel_usd_pp": null,
       "prix_ils": null,
-      "prix_publie_ils": 2790,
+      "prix_publie_ils": 1990,
       "meilleur_ils": 1990,
-      "ecart": -0.2867,
-      "a_confirmer": true
+      "ecart": 0.0,
+      "a_confirmer": false
     },
     {
       "cle_site": "לונדון",
@@ -231,10 +231,10 @@
       "note": "hotel a 270 $/nuit pour 2 en pic d'aout",
       "hotel_usd_pp": 809.03,
       "prix_ils": 3490,
-      "prix_publie_ils": 2965,
-      "meilleur_ils": 3490,
-      "ecart": 0.1771,
-      "a_confirmer": true
+      "prix_publie_ils": 2820,
+      "meilleur_ils": 2820,
+      "ecart": 0.0,
+      "a_confirmer": false
     },
     {
       "cle_site": "פפוס - Greek Village",
@@ -315,10 +315,10 @@
       "note": "l'hotel complet en S1 est disponible en S2",
       "hotel_usd_pp": 384.5,
       "prix_ils": 1990,
-      "prix_publie_ils": 2790,
+      "prix_publie_ils": 1990,
       "meilleur_ils": 1990,
-      "ecart": -0.2867,
-      "a_confirmer": true
+      "ecart": 0.0,
+      "a_confirmer": false
     },
     {
       "cle_site": "פפוס - Greek Village",
@@ -333,12 +333,33 @@
       "hotel_total_usd": null,
       "statut": "faux match Booking",
       "cacherout_bloquee": false,
-      "note": "PIEGE : Booking repond 'Filerimos Village Hotel' a Ialyssos, en GRECE (Rhodes) — un autre hotel, un autre pays. Ne jamais retenir un resultat dont le nom ne correspond pas",
+      "note": "PIEGE REPRODUCTIBLE : Booking repond 'Filerimos Village Hotel' a Ialyssos (Rhodes, GRECE) meme avec destination='Paphos, Cyprus' en contexte. Teste deux fois, meme reponse. L'hotel n'est pas atteignable par le connecteur : prix a fournir par Jacques",
       "hotel_usd_pp": null,
       "prix_ils": null,
       "prix_publie_ils": 2355,
       "meilleur_ils": null,
       "ecart": null,
+      "a_confirmer": false
+    },
+    {
+      "cle_site": "פפוס - Brown Hills",
+      "semaine": "S2",
+      "ville": "Paphos",
+      "iata": "PFO",
+      "hotel": "Paphos Hills Resort & Spa by Brown Hotels",
+      "depart": "2026-09-06",
+      "retour": "2026-09-09",
+      "jour_depart": "dimanche",
+      "vol_usd": 171,
+      "hotel_total_usd": 1230.18,
+      "statut": "ok",
+      "cacherout_bloquee": false,
+      "note": "1230 $ contre 1618 $ en S1 — meme effet de pic d'aout que Prague",
+      "hotel_usd_pp": 615.09,
+      "prix_ils": 2820,
+      "prix_publie_ils": 2820,
+      "meilleur_ils": 2820,
+      "ecart": 0.0,
       "a_confirmer": false
     }
   ]
