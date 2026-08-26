@@ -1,5 +1,5 @@
 {
-  "_comment": "Prix PUBLIES sur couponkasher.co.il. index.html lit ce fichier au chargement et remplace les prix ecrits en dur. REGLE DE PUBLICATION (decidee par Jacques le 26/08/2026) : on affiche le prix le plus bas de la fenetre glissante de 8 semaines, coherent avec le 'החל ב-' du site. Le seuil de 15 % du pipeline ne bloque plus la publication, il sert d'alerte a regarder. statut=run-<date> : prix issu d'un run verifie au taux 3.05. statut=legacy-3.65 : prix herite de l'ancien taux. statut=hors-connecteur : hotel non atteignable via Booking, tarif a fournir par Jacques. Toute modification ici reste une decision de publication de Jacques, jamais un effet de bord du run.",
+  "_comment": "Prix PUBLIES sur couponkasher.co.il. index.html lit ce fichier au chargement et remplace les prix ecrits en dur. REGLE DE PUBLICATION (decidee par Jacques le 26/08/2026) : on affiche le prix le plus bas de la fenetre glissante de 8 semaines, coherent avec le 'החל ב-' du site. Le seuil de 15 % du pipeline ne bloque plus la publication, il sert d'alerte a regarder. statut=run-<date> : prix issu d'un run verifie au taux 3.05. statut=legacy-3.65 : prix herite de l'ancien taux. statut=hors-connecteur : hotel non atteignable via Booking, tarif a fournir par Jacques. statut=en-attente : la carte affiche 'לפי בקשה' au lieu d'un prix, le temps qu'une decision soit prise (voir motif). Toute modification ici reste une decision de publication de Jacques, jamais un effet de bord du run.",
   "updated_at": "2026-08-25",
   "currency": "ILS",
   "basis": "prix par personne, 4 ימים / 3 לילות",
@@ -40,11 +40,6 @@
       "taux": 3.05,
       "base": "prix le plus bas de la fenêtre 8 semaines — S6, départ 04/10/2026 (vol 170 $, hôtel 910 $) — l'hôtel est complet en S8"
     },
-    "פפוס - Greek Village": {
-      "price_ils": 2355,
-      "statut": "hors-connecteur",
-      "base": "prix hérité du taux 3.65 — hôtel non atteignable via Booking, tarif à fournir par Jacques"
-    },
     "וינה": {
       "price_ils": 2520,
       "statut": "run-2026-08-25",
@@ -68,17 +63,33 @@
       "taux": 3.05,
       "base": "meilleur prix de la fenêtre — S2, départ 06/09/2026"
     },
+    "פפוס - Greek Village": {
+      "statut": "en-attente",
+      "label": "לפי בקשה",
+      "motif": "hôtel non atteignable par le connecteur — Booking répond un établissement de Rhodes sur ce nom",
+      "dernier_prix_affiche_ils": 2355,
+      "note": "prix gelé au taux 3.65, non republié — la carte affiche « לפי בקשה »"
+    },
     "רומא": {
-      "price_ils": 3290,
-      "statut": "legacy-3.65"
+      "statut": "en-attente",
+      "label": "לפי בקשה",
+      "motif": "NEMAN Maison hors Booking.com — tarif hôtel à fournir par Jacques (vol vérifié à 132 $)",
+      "dernier_prix_affiche_ils": 3290,
+      "note": "prix gelé au taux 3.65, non republié — la carte affiche « לפי בקשה »"
     },
     "ונציה": {
-      "price_ils": 3675,
-      "statut": "legacy-3.65"
+      "statut": "en-attente",
+      "label": "לפי בקשה",
+      "motif": "cacherout à trancher — Rimon Place est Tier 3 au master portfolio et mehadrin à la référence promo",
+      "dernier_prix_affiche_ils": 3675,
+      "note": "prix gelé au taux 3.65, non republié — la carte affiche « לפי בקשה »"
     },
     "פריז": {
-      "price_ils": 3715,
-      "statut": "legacy-3.65"
+      "statut": "en-attente",
+      "label": "לפי בקשה",
+      "motif": "Aida Opera en liste d'exclusion (pas mehadrin) — destination à retirer ou hôtel à changer",
+      "dernier_prix_affiche_ils": 3715,
+      "note": "prix gelé au taux 3.65, non republié — la carte affiche « לפי בקשה »"
     }
   }
 }

@@ -1634,8 +1634,18 @@ document.addEventListener('DOMContentLoaded', reparseTabIcons);
     if (!prix) return;
     document.querySelectorAll('[data-price-city]').forEach(function (el) {
       var fiche = prix[el.getAttribute('data-price-city')];
-      if (!fiche || typeof fiche.price_ils !== 'number') return;
-      el.textContent = '\u20AA' + fiche.price_ils.toLocaleString('en-US');
+      if (!fiche) return;
+      /* Le « החל ב- » qui precede le prix n'a pas de sens devant « לפי בקשה ». */
+      var prefixe = el.previousElementSibling;
+      if (typeof fiche.price_ils === 'number') {
+        el.textContent = '\u20AA' + fiche.price_ils.toLocaleString('en-US');
+        el.style.removeProperty('font-size');
+        if (prefixe) prefixe.style.removeProperty('display');
+      } else if (fiche.label) {
+        el.textContent = fiche.label;
+        el.style.fontSize = '15px';
+        if (prefixe) prefixe.style.display = 'none';
+      }
     });
   }
   fetch('prices.json', { cache: 'no-store' })

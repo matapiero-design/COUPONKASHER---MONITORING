@@ -68,14 +68,17 @@ connecteur Netlify n'est configuré à ce jour.
 
 Trois restent en attente d'une décision qui n'appartient pas au pipeline :
 
+Quatre destinations sont **en attente** (`statut: en-attente` dans `site/prices.json`) : leur carte
+affiche `לפי בקשה` au lieu d'un prix, plutôt que de laisser en ligne un tarif hérité du taux 3.65.
+
 | Destination | Blocage | Ce qu'il faut |
 |---|---|---|
 | Venise | cacherout contradictoire — Tier 3 au master portfolio, mehadrin à la référence promo | trancher le statut de Rimon Place |
-| Rome | NEMAN Maison absent de Booking.com | le tarif 3 nuits, de la main de Jacques |
-| Paris | Aida Opera est en liste d'exclusion mais reste affiché et vendable sur le site | retirer la carte ou changer d'hôtel |
+| Rome | NEMAN Maison absent de Booking.com (vol vérifié à 132 $) | le tarif 3 nuits, de la main de Jacques |
+| Paphos Greek Village | Booking répond un hôtel de Rhodes sur ce nom | le tarif 3 nuits, de la main de Jacques |
+| Paris | Aida Opera est en liste d'exclusion (pas mehadrin) | retirer la carte ou changer d'hôtel |
 
-Même chose pour Paphos Greek Village, qui garde son prix hérité : le connecteur Booking répond un
-hôtel de Rhodes sur ce nom, son tarif doit donc venir de Jacques.
+Le prix qu'elles affichaient est conservé dans `dernier_prix_affiche_ils`, pour mémoire.
 
 ## Pièges rencontrés, et pourquoi ils sont dans le code
 
@@ -126,3 +129,7 @@ cadence S1-S3 / S4-S8, certification casher Tier 1) sont définies dans le skill
   réel est S6-S8, avec des disponibilités hôtelières trouées — Tbilissi et le Monténégro sont
   complets en S6 et S7, Paphos Brown Hills en S8. La date du meilleur prix est donc dictée autant
   par la disponibilité que par le tarif.
+- **26/08/2026 — mise en attente de quatre destinations.** Venise, Rome, Paphos Greek Village et
+  Paris passent en `לפי בקשה`. Aucune n'avait de prix vérifiable au taux 3.05 : laisser leur ancien
+  tarif en ligne revenait à vendre à un prix faux. Paris est le cas le plus net — la destination
+  était vendable alors que son hôtel figure en liste d'exclusion cacherout.
