@@ -1,19 +1,20 @@
 {
-  "_comment": "Prix PUBLIES sur couponkasher.co.il. index.html lit ce fichier au chargement et remplace les prix ecrits en dur. statut=run-<date> : prix issu d'un run verifie au taux 3.05. statut=legacy-3.65 : prix herite de l'ancien taux, encore trop haut d'environ 16 %, a rafraichir des qu'un run couvre la destination. Toute modification ici est une decision de publication de Jacques, jamais un effet de bord du run quotidien.",
+  "_comment": "Prix PUBLIES sur couponkasher.co.il. index.html lit ce fichier au chargement et remplace les prix ecrits en dur. REGLE DE PUBLICATION (decidee par Jacques le 26/08/2026) : on affiche le prix le plus bas de la fenetre glissante de 8 semaines, coherent avec le 'החל ב-' du site. Le seuil de 15 % du pipeline ne bloque plus la publication, il sert d'alerte a regarder. statut=run-<date> : prix issu d'un run verifie au taux 3.05. statut=legacy-3.65 : prix herite de l'ancien taux. statut=hors-connecteur : hotel non atteignable via Booking, tarif a fournir par Jacques. Toute modification ici reste une decision de publication de Jacques, jamais un effet de bord du run.",
   "updated_at": "2026-08-25",
   "currency": "ILS",
   "basis": "prix par personne, 4 ימים / 3 לילות",
   "prices": {
+    "בודפשט": {
+      "price_ils": 1390,
+      "statut": "run-2026-08-25",
+      "taux": 3.05,
+      "base": "prix le plus bas de la fenêtre 8 semaines — S8, départ 18/10/2026 (vol 142 $, hôtel 494 $)"
+    },
     "פפוס - WellClub": {
       "price_ils": 1720,
       "statut": "run-2026-08-25",
       "taux": 3.05,
       "base": "meilleur prix de la fenêtre — S7, départ 11/10/2026 (vol 151 $, hôtel 658 $)"
-    },
-    "בודפשט": {
-      "price_ils": 1740,
-      "statut": "run-2026-08-25",
-      "taux": 3.05
     },
     "אמסטרדם": {
       "price_ils": 1900,
@@ -26,26 +27,39 @@
       "statut": "run-2026-08-25",
       "taux": 3.05
     },
+    "טביליסי": {
+      "price_ils": 2000,
+      "statut": "run-2026-08-25",
+      "taux": 3.05,
+      "base": "prix le plus bas de la fenêtre 8 semaines — S8, départ 18/10/2026 (vol 291 $, hôtel 534 $)"
+    },
     "פפוס - Greek Village": {
       "price_ils": 2355,
       "statut": "hors-connecteur",
       "base": "prix hérité du taux 3.65 — hôtel non atteignable via Booking, tarif à fournir par Jacques"
+    },
+    "פפוס - Brown Hills": {
+      "price_ils": 2360,
+      "statut": "run-2026-08-25",
+      "taux": 3.05,
+      "base": "prix le plus bas de la fenêtre 8 semaines — S7, départ 11/10/2026 (vol 151 $, hôtel 1 015 $)"
     },
     "וינה": {
       "price_ils": 2520,
       "statut": "run-2026-08-25",
       "taux": 3.05
     },
-    "פפוס - Brown Hills": {
-      "price_ils": 2820,
+    "מונטנגרו": {
+      "price_ils": 2580,
       "statut": "run-2026-08-25",
       "taux": 3.05,
-      "base": "meilleur prix de la fenêtre — S2, départ 06/09/2026"
+      "base": "prix le plus bas de la fenêtre 8 semaines — S8, départ 18/10/2026 (vol 345 $, hôtel 749 $)"
     },
-    "טביליסי": {
-      "price_ils": 2970,
+    "לונדון": {
+      "price_ils": 2660,
       "statut": "run-2026-08-25",
-      "taux": 3.05
+      "taux": 3.05,
+      "base": "prix le plus bas de la fenêtre 8 semaines — S6, départ 04/10/2026 (vol 437 $, hôtel 614 $) — aller Gatwick, retour Luton"
     },
     "פראג": {
       "price_ils": 3260,
@@ -57,11 +71,6 @@
       "price_ils": 3290,
       "statut": "legacy-3.65"
     },
-    "לונדון": {
-      "price_ils": 3630,
-      "statut": "run-2026-08-25",
-      "taux": 3.05
-    },
     "ונציה": {
       "price_ils": 3675,
       "statut": "legacy-3.65"
@@ -69,11 +78,6 @@
     "פריז": {
       "price_ils": 3715,
       "statut": "legacy-3.65"
-    },
-    "מונטנגרו": {
-      "price_ils": 3850,
-      "statut": "run-2026-08-25",
-      "taux": 3.05
     }
   }
 }

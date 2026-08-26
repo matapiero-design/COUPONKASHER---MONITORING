@@ -110,3 +110,11 @@ cadence S1-S3 / S4-S8, certification casher Tier 1) sont définies dans le skill
   au-delà du seuil publiés sur instruction explicite de Jacques : Paphos WellClub (-29 %, l'hôtel
   complet fin août se libère en S2) et Amsterdam (-15 %, pur effet de taux — à 3.65 les mêmes coûts
   donnaient exactement le prix affiché).
+- **26/08/2026 — règle de publication : le prix le plus bas de la fenêtre.** Décidé par Jacques.
+  Le site affiche « החל ב- », donc la valeur publiée est le minimum sur les 8 semaines glissantes,
+  quelle que soit la semaine où il tombe. Conséquence assumée : un prix affiché peut correspondre à
+  une date à deux mois, pas à la semaine prochaine. Le seuil de 15 % du pipeline ne bloque plus la
+  publication — il reste une alerte à regarder, pas un verrou.
+- **26/08/2026 — fenêtre S3-S8 balayée.** Roch Hachana retire le départ dominical de S3 (repli lundi
+  14/09) et Kippour rend S4 inexploitable, dimanche comme lundi. Le creux post-fêtes (S6-S8) fait
+  chuter Tbilissi et le Monténégro de 33 %, Londres de 27 %, Budapest de 20 %.

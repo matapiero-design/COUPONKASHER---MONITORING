@@ -6,7 +6,7 @@ Ne pas éditer à la main — le prochain run écrase ce fichier.
 - **Run** : 2026-08-25 (premier run package vol+hotel — validation de bout en bout du branchement Kiwi.com + Booking.com)
 - **Schéma** : 3 nuits / 4 jours, depart dimanche -> retour mercredi (repli lundi -> jeudi si pas de direct le dimanche). Fenetre S1-S8 : S1 30/08, S2 06/09, S3 13/09, S4 20/09, S5 27/09, S6 04/10, S7 11/10, S8 18/10.
 - **Taux appliqué** : 1 USD = 3.05 ILS · marge 15 % · formule `(vol + hôtel/pers) ÷ 0.85 × 3.05`
-- **Généré le** : 2026-08-26 03:20 UTC
+- **Généré le** : 2026-08-26 03:22 UTC
 
 > **Calendrier** — Roch Hachana 5787 : vendredi 11/09 au soir -> dimanche 13/09 au soir. Le depart dominical de S3 (13/09) tombe en plein Yom Tov : repli lundi 14/09. Yom Kippour : dimanche 20/09 au soir -> lundi 21/09 au soir. Le depart de S4 tombe a l'entree de Kippour et le lundi est Kippour lui-meme : S4 est inexploitable, ni dimanche ni lundi. Souccot : 25/09 au soir -> 02/10 au soir, Sim'hat Torah en Israel jusqu'au 03/10 au soir. S5 (27/09) est en 'hol hamoed : vendable mais en pic de demande israelienne. S6 a S8 (04/10, 11/10, 18/10) sont le creux post-fetes — c'est la que les prix s'effondrent.
 
@@ -14,15 +14,15 @@ Ne pas éditer à la main — le prochain run écrase ce fichier.
 
 | Destination | Meilleur ₪ | Semaine | Publié ₪ | Écart | Décision |
 |---|---|---|---|---|---|
-| Budapest (BUD) | 1390 | S8 | 1740 | -20 % | ⚠️ hors seuil — arbitrage Jacques |
+| Budapest (BUD) | 1390 | S8 | 1390 | +0 % | publiable |
 | Paphos (PFO) | 1720 | S7 | 1720 | +0 % | publiable |
 | Amsterdam (AMS) | 1900 | S1 | 1900 | +0 % | publiable |
 | Chalkida (ATH) | 1920 | S1 | 1920 | +0 % | publiable |
-| Tbilissi (TBS) | 2000 | S8 | 2970 | -33 % | ⚠️ hors seuil — arbitrage Jacques |
-| Paphos (PFO) | 2360 | S7 | 2820 | -16 % | ⚠️ hors seuil — arbitrage Jacques |
+| Tbilissi (TBS) | 2000 | S8 | 2000 | +0 % | publiable |
+| Paphos (PFO) | 2360 | S7 | 2360 | +0 % | publiable |
 | Vienne (VIE) | 2520 | S1 | 2520 | +0 % | publiable |
-| Budva (TIV) | 2580 | S8 | 3850 | -33 % | ⚠️ hors seuil — arbitrage Jacques |
-| Londres (LON) | 2660 | S6 | 3630 | -27 % | ⚠️ hors seuil — arbitrage Jacques |
+| Budva (TIV) | 2580 | S8 | 2580 | +0 % | publiable |
+| Londres (LON) | 2660 | S6 | 2660 | +0 % | publiable |
 | Prague (PRG) | 3260 | S2 | 3260 | +0 % | publiable |
 | Venise (VCE) | 3990 | S1 | 3675 | +9 % | ⛔ cacherout à trancher — ne pas publier |
 

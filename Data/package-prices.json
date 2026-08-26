@@ -3,7 +3,7 @@
   "schema": "3 nuits / 4 jours, depart dimanche -> retour mercredi (repli lundi -> jeudi si pas de direct le dimanche). Fenetre S1-S8 : S1 30/08, S2 06/09, S3 13/09, S4 20/09, S5 27/09, S6 04/10, S7 11/10, S8 18/10.",
   "fx_usd_ils": 3.05,
   "marge": 0.85,
-  "genere_le": "2026-08-26T03:20:06+00:00",
+  "genere_le": "2026-08-26T03:22:11+00:00",
   "destinations": [
     {
       "cle_site": "חלקידה",
@@ -63,10 +63,10 @@
       "note": "nom Booking retourne = 'Hotel & Residence, Palace Quarter' alors que la reference dit 'Hotel & Apartments' — a confirmer par Jacques",
       "hotel_usd_pp": 250.14,
       "prix_ils": 1740,
-      "prix_publie_ils": 1740,
+      "prix_publie_ils": 1390,
       "meilleur_ils": 1390,
-      "ecart": -0.2011,
-      "a_confirmer": true
+      "ecart": 0.0,
+      "a_confirmer": false
     },
     {
       "cle_site": "אמסטרדם",
@@ -126,10 +126,10 @@
       "note": "aucun vol direct le dimanche 30/08 — repli lundi applique, hotel re-interroge sur les memes dates decalees",
       "hotel_usd_pp": 285.99,
       "prix_ils": 2970,
-      "prix_publie_ils": 2970,
+      "prix_publie_ils": 2000,
       "meilleur_ils": 2000,
-      "ecart": -0.3266,
-      "a_confirmer": true
+      "ecart": 0.0,
+      "a_confirmer": false
     },
     {
       "cle_site": "פפוס - WellClub",
@@ -168,10 +168,10 @@
       "note": "Arkia TLV-STN A/R, 0 escale. Kiwi ne renvoie AUCUN direct sur LHR : les directs TLV-Londres passent par Stansted, Luton et Gatwick. Interroger la ville et non LHR, sinon faux gap. Croft Court est a Golders Green, donc STN/LTN conviennent",
       "hotel_usd_pp": 185.02,
       "prix_ils": 3630,
-      "prix_publie_ils": 3630,
+      "prix_publie_ils": 2660,
       "meilleur_ils": 2660,
-      "ecart": -0.2672,
-      "a_confirmer": true
+      "ecart": 0.0,
+      "a_confirmer": false
     },
     {
       "cle_site": "מונטנגרו",
@@ -189,10 +189,10 @@
       "note": "Israir TLV-TIV A/R, 0 escale. Le direct est sur Tivat, pas Podgorica (TGD)",
       "hotel_usd_pp": 559.97,
       "prix_ils": 3850,
-      "prix_publie_ils": 3850,
+      "prix_publie_ils": 2580,
       "meilleur_ils": 2580,
-      "ecart": -0.3299,
-      "a_confirmer": true
+      "ecart": 0.0,
+      "a_confirmer": false
     },
     {
       "cle_site": "ונציה",
@@ -231,10 +231,10 @@
       "note": "hotel a 270 $/nuit pour 2 en pic d'aout",
       "hotel_usd_pp": 809.03,
       "prix_ils": 3490,
-      "prix_publie_ils": 2820,
+      "prix_publie_ils": 2360,
       "meilleur_ils": 2360,
-      "ecart": -0.1631,
-      "a_confirmer": true
+      "ecart": 0.0,
+      "a_confirmer": false
     },
     {
       "cle_site": "פפוס - Greek Village",
@@ -357,10 +357,10 @@
       "note": "1230 $ contre 1618 $ en S1 — meme effet de pic d'aout que Prague",
       "hotel_usd_pp": 615.09,
       "prix_ils": 2820,
-      "prix_publie_ils": 2820,
+      "prix_publie_ils": 2360,
       "meilleur_ils": 2360,
-      "ecart": -0.1631,
-      "a_confirmer": true
+      "ecart": 0.0,
+      "a_confirmer": false
     },
     {
       "cle_site": "אמסטרדם",
@@ -441,10 +441,10 @@
       "note": "troisieme baisse consecutive : 1618 $ en S1, 1230 $ en S2, 1015 $ en S7",
       "hotel_usd_pp": 507.62,
       "prix_ils": 2360,
-      "prix_publie_ils": 2820,
+      "prix_publie_ils": 2360,
       "meilleur_ils": 2360,
-      "ecart": -0.1631,
-      "a_confirmer": true
+      "ecart": 0.0,
+      "a_confirmer": false
     },
     {
       "cle_site": "בודפשט",
@@ -462,10 +462,10 @@
       "note": "vol Wizz a 142 $ contre 236 $ en S1",
       "hotel_usd_pp": 246.94,
       "prix_ils": 1390,
-      "prix_publie_ils": 1740,
+      "prix_publie_ils": 1390,
       "meilleur_ils": 1390,
-      "ecart": -0.2011,
-      "a_confirmer": true
+      "ecart": 0.0,
+      "a_confirmer": false
     },
     {
       "cle_site": "טביליסי",
@@ -483,10 +483,10 @@
       "note": "vol Israir a 291 $ contre 543 $ en S1 — la destination la plus volatile du portfolio",
       "hotel_usd_pp": 267.04,
       "prix_ils": 2000,
-      "prix_publie_ils": 2970,
+      "prix_publie_ils": 2000,
       "meilleur_ils": 2000,
-      "ecart": -0.3266,
-      "a_confirmer": true
+      "ecart": 0.0,
+      "a_confirmer": false
     },
     {
       "cle_site": "לונדון",
@@ -504,10 +504,10 @@
       "note": "Wizz UK 437 $ contre 829 $ en S1. Aller sur Gatwick, retour sur Luton : deux aeroports differents, a valider avec le client",
       "hotel_usd_pp": 306.75,
       "prix_ils": 2660,
-      "prix_publie_ils": 3630,
+      "prix_publie_ils": 2660,
       "meilleur_ils": 2660,
-      "ecart": -0.2672,
-      "a_confirmer": true
+      "ecart": 0.0,
+      "a_confirmer": false
     },
     {
       "cle_site": "מונטנגרו",
@@ -525,10 +525,10 @@
       "note": "vol Israir 345 $ contre 515 $ en S1, et l'hotel passe de 1120 $ a 749 $ hors saison balneaire",
       "hotel_usd_pp": 374.59,
       "prix_ils": 2580,
-      "prix_publie_ils": 3850,
+      "prix_publie_ils": 2580,
       "meilleur_ils": 2580,
-      "ecart": -0.3299,
-      "a_confirmer": true
+      "ecart": 0.0,
+      "a_confirmer": false
     },
     {
       "cle_site": "רומא",
