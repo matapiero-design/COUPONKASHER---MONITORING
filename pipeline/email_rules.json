@@ -1,0 +1,147 @@
+{
+  "_comment": "Source unique des regles de nettoyage de la boite matapiero@gmail.com. Deux notions distinctes : 'protection' (ce qu'aucune regle ne peut jamais toucher, verifie AVANT toute action) et 'regles' (les groupes d'expediteurs a sortir de la boite). Une adresse absente des deux listes n'est jamais touchee : le defaut est de ne rien faire. Voir EMAIL_CLEANUP_PROMPT.md pour le deroule du run.",
+  "parametres": {
+    "jours_avant_archive": 30,
+    "jours_avant_corbeille": 90,
+    "plafond_threads_par_run": 200,
+    "_comment_plafond": "Un run ne traite jamais plus de 200 threads. Borne le rattrapage de l'historique (24 000 messages) sur plusieurs jours plutot qu'en un geste massif et difficile a relire.",
+    "plafond_rattrapage": 1000,
+    "_comment_rattrapage": "Plafond eleve, utilisable UNIQUEMENT sur demande explicite de Jacques, pour resorber l'historique. Le regime quotidien reste a plafond_threads_par_run. Constat du run a blanc du 26/08/2026 : chaque regle marketing pese a elle seule plus de 200 threads, donc le rattrapage complet demande plusieurs dizaines de runs a 200."
+  },
+  "protection": {
+    "_comment": "Filet de securite. Un thread qui matche UNE seule de ces conditions est ecarte, meme si son expediteur figure dans une regle. Les conditions_gmail sont ajoutees telles quelles a chaque requete.",
+    "conditions_gmail": [
+      "-is:starred",
+      "-has:userlabels",
+      "-in:sent",
+      "-in:draft"
+    ],
+    "_comment_conditions": "-in:sent protege tout thread ou Jacques a repondu : une conversation client ne part jamais, quel que soit l'expediteur initial. -has:userlabels protege les dossiers classes a la main (IRIS SHAIN, DANIEL issued tickets, Archives-Fondation-2009...).",
+    "conditions_gmail_corbeille": [
+      "-has:attachment"
+    ],
+    "_comment_corbeille": "Garde supplementaire a l'etage corbeille uniquement : une piece jointe peut etre un billet, une facture ou un contrat. L'archivage, lui, reste autorise (il ne detruit rien).",
+    "expediteurs": [
+      "system+252@aerocrs.com",
+      "noreply@doc.mail.amadeus.com",
+      "amadeus.communications@insight.mail.amadeus.com",
+      "confirmations@bookinggroup.com",
+      "matapiero@app.invoicehome.com",
+      "no-reply@vivawallet.com",
+      "clients@city-mind.com",
+      "Thankyou@partner.net.il"
+    ],
+    "domaines": [
+      "genesis-tours.com",
+      "amadeus.com",
+      "aerocrs.com",
+      "bookinggroup.com",
+      "invoicehome.com",
+      "vivawallet.com",
+      "harel-group.co.il",
+      "icc.co.il",
+      "couponkasher.co.il"
+    ],
+    "_comment_domaines": "Reservation, billetterie, facturation, banque, assurance. Tout ce qui touche a un dossier client ou a un mouvement d'argent.",
+    "mots_cles_sujet": [
+      "facture",
+      "reçu",
+      "invoice",
+      "receipt",
+      "חשבונית",
+      "קבלה",
+      "réservation",
+      "reservation",
+      "booking",
+      "confirmation",
+      "אישור הזמנה",
+      "billet",
+      "e-ticket",
+      "ticket",
+      "PNR",
+      "כרטיס טיסה",
+      "paiement",
+      "payment",
+      "virement",
+      "remboursement",
+      "refund",
+      "תשלום",
+      "contrat",
+      "contract",
+      "חוזה",
+      "passeport",
+      "passport",
+      "visa",
+      "דרכון"
+    ],
+    "_comment_mots_cles": "Verification de dernier recours, appliquee a la lecture des sujets remontes. Un sujet qui contient un de ces mots sort du lot et remonte dans le rapport en 'ecarte', jamais en 'traite'."
+  },
+  "regles": [
+    {
+      "id": "marketing-voyage",
+      "libelle": "Marketing voyage (compagnies, OTA, hôtels)",
+      "action": "archive_puis_corbeille",
+      "expediteurs": [
+        "kayak@msg.kayak.com",
+        "travel@kiwi.com",
+        "info@kiwi.com",
+        "contact@newsletter.lacompagnie.com",
+        "michael@mail.ottotheagent.com",
+        "noreply@info.nhow-hotels.com",
+        "info@alps2alps.com",
+        "elal@ma.elalmatmid.com",
+        "matmid@ma.elal-airlines.com",
+        "marketing@ma.elal-mail.com"
+      ],
+      "_comment": "Attention : ces domaines envoient AUSSI du transactionnel (une confirmation El Al, un dossier Kiwi). C'est le role des mots_cles_sujet et de -has:attachment de les retenir. Les adresses transactionnelles connues sont en protection.expediteurs."
+    },
+    {
+      "id": "marketing-grande-conso",
+      "libelle": "Marketing grand public (télécom, retail, petites annonces)",
+      "action": "archive_puis_corbeille",
+      "expediteurs": [
+        "samsung-mena@il.email.samsung.com",
+        "no-reply@mail.yad2.co.il",
+        "no-reply@yad2.co.il",
+        "tickchak@tickmail.co.il",
+        "interspace@intervision.co.il",
+        "sarah@2236142.brevosend.com",
+        "noreply.invitations@trustpilotmail.com",
+        "bezeq_mail@bezeq.co.il",
+        "contact@alloj.com"
+      ]
+    },
+    {
+      "id": "notifications-produit",
+      "libelle": "Notifications produit et onboarding SaaS",
+      "action": "archive_puis_corbeille",
+      "expediteurs": [
+        "google-noreply@google.com",
+        "analytics-noreply@google.com",
+        "google-gemini-noreply@google.com",
+        "connect@cdata.com",
+        "noreply@traveler.md"
+      ],
+      "_comment": "Bulletins d'activite et sequences de bienvenue. Aucune alerte de securite ici : les alertes Google de connexion suspecte partent d'une autre adresse (no-reply@accounts.google.com), volontairement absente de cette liste."
+    },
+    {
+      "id": "listes-religieuses",
+      "libelle": "Divrei Torah et listes de Tehilim",
+      "action": "archive_seulement",
+      "expediteurs": [
+        "mail@tehilimyahad.com",
+        "beismedrash@themir.org.il"
+      ],
+      "_comment": "Decision de Jacques du 26/08/2026 : ces deux listes sortent de la boite de reception mais ne partent JAMAIS a la corbeille. Tehilim Yahad emet plusieurs fois par jour ; le Beis Medrash de la Mir envoie des pieces jointes de 450 a 550 Ko chaque semaine."
+    },
+    {
+      "id": "veille-concurrence",
+      "libelle": "Veille concurrence — offres casher",
+      "action": "archive_seulement",
+      "expediteurs": [
+        "leah@gokosher.com"
+      ],
+      "_comment": "GoKosher vend le meme produit que CouponKasher (sejours casher, Souccot au Hilton Taghazout...). C'est de la promo, mais c'est aussi le prix du concurrent : archive pour desencombrer, jamais detruit, pour rester consultable au moment de fixer une grille."
+    }
+  ]
+}

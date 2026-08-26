@@ -1,0 +1,245 @@
+{
+  "date": "2026-08-26",
+  "mode": "blanc",
+  "traites": [
+    {
+      "id": "19f9f8f9ba453c4c",
+      "expediteur": "kayak@msg.kayak.com",
+      "date": "2026-07-26",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "id": "19f9f0278ba6fc2c",
+      "expediteur": "elal@ma.elalmatmid.com",
+      "date": "2026-07-26",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "id": "19f9ee8be6f5121a",
+      "expediteur": "travel@kiwi.com",
+      "date": "2026-07-26",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "id": "19f9d507f451e92f",
+      "expediteur": "marketing@ma.elal-mail.com",
+      "date": "2026-07-26",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "id": "19f95887092b5814",
+      "expediteur": "kayak@msg.kayak.com",
+      "date": "2026-07-24",
+      "regle": "marketing-voyage",
+      "etage": "archive"
+    },
+    {
+      "id": "19e6d602f87713a4",
+      "expediteur": "marketing@ma.elal-mail.com",
+      "date": "2026-05-28",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "id": "19e2547b73e64df1",
+      "expediteur": "marketing@ma.elal-mail.com",
+      "date": "2026-05-14",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "id": "19e1b9efef7e0e67",
+      "expediteur": "marketing@ma.elal-mail.com",
+      "date": "2026-05-12",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "id": "19e026ccd395b874",
+      "expediteur": "marketing@ma.elal-mail.com",
+      "date": "2026-05-07",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "id": "19dedf0c87bf685b",
+      "expediteur": "marketing@ma.elal-mail.com",
+      "date": "2026-05-03",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "id": "198ea8ff371cb762",
+      "expediteur": "marketing@ma.elal-mail.com",
+      "date": "2025-08-27",
+      "sujet": "Get Upgraded on your EL AL flight! Advertisement",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "id": "19542feea2240ebf",
+      "expediteur": "elal@ma.elalmatmid.com",
+      "date": "2025-02-26",
+      "sujet": "כרטיס הטיסה שלך לונציה כמעט אצלך, חבל לפספס! פרסומת",
+      "regle": "marketing-voyage",
+      "etage": "corbeille"
+    },
+    {
+      "id": "19fa291064afd4e5",
+      "expediteur": "tickchak@tickmail.co.il",
+      "date": "2026-07-27",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "id": "19fa229b5893adf1",
+      "expediteur": "no-reply@mail.yad2.co.il",
+      "date": "2026-07-27",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "id": "19f92b77fcebc8a4",
+      "expediteur": "no-reply@mail.yad2.co.il",
+      "date": "2026-07-24",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "id": "19f8f7c4761ce177",
+      "expediteur": "sarah@2236142.brevosend.com",
+      "date": "2026-07-23",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "id": "19f8e34c2f0a3a60",
+      "expediteur": "interspace@intervision.co.il",
+      "date": "2026-07-23",
+      "regle": "marketing-grande-conso",
+      "etage": "archive"
+    },
+    {
+      "id": "19e6399e5429b605",
+      "expediteur": "no-reply@mail.yad2.co.il",
+      "date": "2026-05-26",
+      "regle": "marketing-grande-conso",
+      "etage": "corbeille"
+    },
+    {
+      "id": "19f9ad8df3b6fd17",
+      "expediteur": "google-noreply@google.com",
+      "date": "2026-07-25",
+      "regle": "notifications-produit",
+      "etage": "archive"
+    },
+    {
+      "id": "19f9a86965d96b40",
+      "expediteur": "connect@cdata.com",
+      "date": "2026-07-25",
+      "regle": "notifications-produit",
+      "etage": "archive"
+    },
+    {
+      "id": "19f839c2f382c3a9",
+      "expediteur": "noreply@traveler.md",
+      "date": "2026-07-21",
+      "regle": "notifications-produit",
+      "etage": "archive"
+    },
+    {
+      "id": "19f82f2c8462a7e4",
+      "expediteur": "analytics-noreply@google.com",
+      "date": "2026-07-21",
+      "regle": "notifications-produit",
+      "etage": "archive"
+    },
+    {
+      "id": "19f80c6b875a4484",
+      "expediteur": "connect@cdata.com",
+      "date": "2026-07-20",
+      "regle": "notifications-produit",
+      "etage": "archive"
+    },
+    {
+      "id": "19e65fa272546ce9",
+      "expediteur": "google-noreply@google.com",
+      "date": "2026-05-26",
+      "regle": "notifications-produit",
+      "etage": "corbeille"
+    },
+    {
+      "id": "19f907378ab4569a",
+      "expediteur": "beismedrash@themir.org.il",
+      "date": "2026-07-23",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "id": "1992bcc731149a5a",
+      "expediteur": "mail@tehilimyahad.com",
+      "date": "2025-09-09",
+      "regle": "listes-religieuses",
+      "etage": "archive"
+    },
+    {
+      "id": "19f9fb200bad4181",
+      "expediteur": "leah@gokosher.com",
+      "date": "2026-07-26",
+      "regle": "veille-concurrence",
+      "etage": "archive"
+    }
+  ],
+  "ecartes": [
+    {
+      "id": "19c98e5865d093a8",
+      "expediteur": "elal@ma.elalmatmid.com",
+      "date": "2026-02-26",
+      "sujet": "מוריס, מצטרפים ומקבלים כרטיס טיסה מתנה! פרסומת",
+      "regle": "marketing-voyage",
+      "etage": "corbeille",
+      "motif": "mot-cle sujet : כרטיס טיסה"
+    },
+    {
+      "id": "19bfb1bdfbaaf448",
+      "expediteur": "elal@ma.elalmatmid.com",
+      "date": "2026-01-26",
+      "sujet": "מוריס, כרטיס טיסה עליכם, ראש שקט עלינו! פרסומת",
+      "regle": "marketing-voyage",
+      "etage": "corbeille",
+      "motif": "mot-cle sujet : כרטיס טיסה"
+    },
+    {
+      "id": "19ae8e06be39b405",
+      "expediteur": "marketing@ma.elal-mail.com",
+      "date": "2025-12-04",
+      "sujet": "מזמינים היום כרטיס טיסה למגוון יעדים ומקבל 10,000 נקודות מתנה!",
+      "regle": "marketing-voyage",
+      "etage": "corbeille",
+      "motif": "mot-cle sujet : כרטיס טיסה"
+    },
+    {
+      "id": "195cdcf08a3ec90b",
+      "expediteur": "marketing@ma.elal-mail.com",
+      "date": "2025-03-25",
+      "sujet": "עדכון מדיניות ההזמנות באל על - Booking Policy",
+      "regle": "marketing-voyage",
+      "etage": "corbeille",
+      "motif": "mot-cle sujet : booking"
+    },
+    {
+      "id": "19cfc5bb075e2be9",
+      "expediteur": "contact@alloj.com",
+      "date": "2026-03-17",
+      "sujet": "TENTEZ DE REMPORTER UNE ROLEX ! Jouez et prenez votre ticket",
+      "regle": "marketing-grande-conso",
+      "etage": "corbeille",
+      "motif": "mot-cle sujet : ticket"
+    }
+  ],
+  "anomalies": []
+}

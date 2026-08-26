@@ -1,8 +1,13 @@
-# CouponKasher — Automatisation des tarifs
+# CouponKasher — Automatisations
 
-Repo support de l'automatisation des prix de séjours casher CouponKasher : vol direct TLV via
-**Kiwi.com**, hôtel casher partenaire via **Booking.com**, prix package calculé, puis publié sur
-couponkasher.co.il quand Jacques le décide.
+Repo support des automatisations CouponKasher. Deux chantiers, indépendants l'un de l'autre :
+
+- **Les tarifs** — vol direct TLV via **Kiwi.com**, hôtel casher partenaire via **Booking.com**,
+  prix package calculé, puis publié sur couponkasher.co.il quand Jacques le décide.
+- **Le nettoyage de la boîte email** — voir `EMAIL_CLEANUP_PROMPT.md`.
+
+Les deux suivent la même règle : ce qui est réversible est automatique, ce qui ne l'est pas
+reste une décision de Jacques.
 
 ## Le principe : calculer ≠ publier
 
@@ -33,6 +38,14 @@ Le run quotidien ne touche jamais à `site/`. Il calcule, compare aux prix publi
   un tarif affiché.
 - `pipeline/export_xlsx.py` — produit `Data/CouponKasher_grille_S1-S8.xlsx`, le classeur consultable
   (grille, relevés bruts, paramètres, prix en ligne, calendrier). À relancer après chaque run.
+- `EMAIL_CLEANUP_PROMPT.md` — le prompt de la routine de nettoyage de la boîte, ses paramètres et
+  ce que le premier run à blanc a mesuré.
+- `pipeline/email_rules.json` — source unique des règles de nettoyage : les expéditeurs protégés
+  d'un côté, les groupes à sortir de la boîte de l'autre.
+- `pipeline/email_cleanup.py` — fabrique les requêtes Gmail et relit un relevé de run pour en
+  écarter les threads protégés. Ne touche jamais à Gmail lui-même.
+- `Data/email-runs/run-<date>.json` — le relevé brut d'un run de nettoyage.
+- `Data/email-cleanup.md` / `.json` — rapport du dernier run : traités, écartés, anomalies.
 
 ## Formule
 
@@ -93,6 +106,30 @@ Le prix qu'elles affichaient est conservé dans `dernier_prix_affiche_ils`, pour
   en « meilleur prix de la fenêtre », qui correspond au « החל ב- » affiché.
 - **Une cacherout non tranchée bloque la publication**, quel que soit l'écart.
 
+## Le nettoyage de la boîte email
+
+La boîte `matapiero@gmail.com` compte **24 183 messages en réception, dont 10 595 non lus**. La
+routine la désencombre en deux étages, sur le modèle du `calculer ≠ publier` des tarifs :
+
+| Étage | Délai | Effet | Réversible |
+|---|---|---|---|
+| **Archiver** | 30 jours | sort de la boîte, reste cherchable | oui, à tout moment |
+| **Corbeille** | 90 jours | part à la corbeille Gmail | oui, 30 jours |
+
+Rien n'est jamais supprimé définitivement, et le défaut, pour une adresse absente de
+`pipeline/email_rules.json`, est de ne rien faire.
+
+Quatre protections s'ajoutent à chaque requête et priment sur toute règle : un thread où Jacques
+a répondu (`-in:sent`), un thread suivi (`-is:starred`), un thread rangé à la main
+(`-has:userlabels`), et — à l'étage corbeille uniquement — un thread avec pièce jointe. S'y
+ajoute une liste d'expéditeurs et de domaines intouchables (Amadeus, AeroCRS, BookingGroup,
+InvoiceHome, Viva Wallet, Harel, Cal, Genesis Tours) et un filtre sur les sujets qui parlent de
+facture, de billet, de réservation ou de paiement — en français, en anglais et en hébreu.
+
+**État au 26/08/2026 : mesuré, pas appliqué.** Le run à blanc est dans
+`Data/email-runs/run-2026-08-26.json`, son rapport dans `Data/email-cleanup.md`. Aucun email n'a
+bougé, et la Routine n'est pas créée.
+
 ## Logique métier
 
 Les règles (destinations, contrainte Shabbat, exclusion des vols à escale, exclusion du samedi,
@@ -131,6 +168,11 @@ cadence S1-S3 / S4-S8, certification casher Tier 1) sont définies dans le skill
   réel est S6-S8, avec des disponibilités hôtelières trouées — Tbilissi et le Monténégro sont
   complets en S6 et S7, Paphos Brown Hills en S8. La date du meilleur prix est donc dictée autant
   par la disponibilité que par le tarif.
+- **26/08/2026 — nettoyage automatique de la boîte email.** Cadre posé par Jacques : archiver à
+  30 jours, corbeille à 90 jours, jamais de suppression définitive. Deux exceptions décidées
+  dans la foulée : les listes de Torah (Tehilim Yahad, Beis Medrash de la Mir) sont archivées
+  mais jamais détruites, et GoKosher est traité en veille concurrence plutôt qu'en marketing.
+  Premier passage à blanc, sur sa demande, avant toute action réelle.
 - **26/08/2026 — mise en attente de quatre destinations.** Venise, Rome, Paphos Greek Village et
   Paris passent en `לפי בקשה`. Aucune n'avait de prix vérifiable au taux 3.05 : laisser leur ancien
   tarif en ligne revenait à vendre à un prix faux. Paris est le cas le plus net — la destination
