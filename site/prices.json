@@ -4,6 +4,12 @@
   "currency": "ILS",
   "basis": "prix par personne, 4 ימים / 3 לילות",
   "prices": {
+    "פפוס - WellClub": {
+      "price_ils": 1720,
+      "statut": "run-2026-08-25",
+      "taux": 3.05,
+      "base": "meilleur prix de la fenêtre — S7, départ 11/10/2026 (vol 151 $, hôtel 658 $)"
+    },
     "בודפשט": {
       "price_ils": 1740,
       "statut": "run-2026-08-25",
@@ -19,12 +25,6 @@
       "price_ils": 1920,
       "statut": "run-2026-08-25",
       "taux": 3.05
-    },
-    "פפוס - WellClub": {
-      "price_ils": 1990,
-      "statut": "run-2026-08-25",
-      "taux": 3.05,
-      "base": "meilleur prix de la fenêtre — S2, départ 06/09/2026. Baisse de 29 % validée par Jacques (« fais les Paphos en priorité »), au-delà du seuil de 15 %"
     },
     "פפוס - Greek Village": {
       "price_ils": 2355,

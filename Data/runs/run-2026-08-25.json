@@ -1,7 +1,7 @@
 {
   "run_id": "2026-08-25",
   "motif": "premier run package vol+hotel — validation de bout en bout du branchement Kiwi.com + Booking.com",
-  "schema": "3 nuits / 4 jours, depart dimanche -> retour mercredi (repli lundi -> jeudi si pas de direct le dimanche). S1 = 30/08 -> 02/09/2026, S2 = 06/09 -> 09/09/2026.",
+  "schema": "3 nuits / 4 jours, depart dimanche -> retour mercredi (repli lundi -> jeudi si pas de direct le dimanche). Fenetre S1-S8 : S1 30/08, S2 06/09, S3 13/09, S4 20/09, S5 27/09, S6 04/10, S7 11/10, S8 18/10.",
   "sources": {
     "vol": "Kiwi.com MCP — TLV, aller/retour, 1 adulte, USD, max_sector_stopovers=0",
     "hotel": "Booking.com MCP — hotel_names (nom exact) + destination, 2 adultes, 1 chambre, 3 nuits, USD"
@@ -218,7 +218,135 @@
       "hotel_trouve": "ibis budget Amsterdam City South",
       "statut": "gap vol",
       "note": "aucun direct TLV-AMS sous 450 $ en S2 (401 $ en S1) et hotel plus cher (274 $ contre 257 $) : S1 reste le meilleur prix de la fenetre pour cette destination"
+    },
+    {
+      "cle_site": "חלקידה",
+      "semaine": "S6",
+      "depart": "2026-10-04",
+      "retour": "2026-10-07",
+      "jour_depart": "dimanche",
+      "vol_usd": 152,
+      "hotel_total_usd": 934.97,
+      "statut": "ok",
+      "note": "vol Israir 152 $ (le moins cher de la fenetre) mais hotel a 935 $ contre 756 $ en S1 : le package reste moins bon qu'en S1",
+      "hotel_trouve": "Brown Beach Chalkida Resort, a member of Brown Hotels"
+    },
+    {
+      "cle_site": "פפוס - WellClub",
+      "semaine": "S7",
+      "depart": "2026-10-11",
+      "retour": "2026-10-14",
+      "jour_depart": "dimanche",
+      "vol_usd": 151,
+      "hotel_total_usd": 658.51,
+      "statut": "ok",
+      "note": "vol El Al 151 $ et hotel 658 $ : meilleur package de toute la fenetre",
+      "hotel_trouve": "WellClub Resort - Suites & Wellness"
+    },
+    {
+      "cle_site": "פפוס - Brown Hills",
+      "semaine": "S7",
+      "depart": "2026-10-11",
+      "retour": "2026-10-14",
+      "jour_depart": "dimanche",
+      "vol_usd": 151,
+      "hotel_total_usd": 1015.25,
+      "statut": "ok",
+      "note": "troisieme baisse consecutive : 1618 $ en S1, 1230 $ en S2, 1015 $ en S7",
+      "hotel_trouve": "Paphos Hills Resort & Spa by Brown Hotels"
+    },
+    {
+      "cle_site": "בודפשט",
+      "semaine": "S8",
+      "depart": "2026-10-18",
+      "retour": "2026-10-21",
+      "jour_depart": "dimanche",
+      "vol_usd": 142,
+      "hotel_total_usd": 493.89,
+      "statut": "ok",
+      "note": "vol Wizz a 142 $ contre 236 $ en S1",
+      "hotel_trouve": "Silver Crown Hotel & Residence, Palace Quarter"
+    },
+    {
+      "cle_site": "טביליסי",
+      "semaine": "S8",
+      "depart": "2026-10-18",
+      "retour": "2026-10-21",
+      "jour_depart": "dimanche",
+      "vol_usd": 291,
+      "hotel_total_usd": 534.07,
+      "statut": "ok",
+      "note": "vol Israir a 291 $ contre 543 $ en S1 — la destination la plus volatile du portfolio",
+      "hotel_trouve": "Cron Palace kosher Tbilisi Hotel"
+    },
+    {
+      "cle_site": "לונדון",
+      "semaine": "S6",
+      "depart": "2026-10-04",
+      "retour": "2026-10-07",
+      "jour_depart": "dimanche",
+      "vol_usd": 437,
+      "hotel_total_usd": 613.51,
+      "statut": "ok",
+      "note": "Wizz UK 437 $ contre 829 $ en S1. Aller sur Gatwick, retour sur Luton : deux aeroports differents, a valider avec le client",
+      "hotel_trouve": "Croft Court Hotel"
+    },
+    {
+      "cle_site": "מונטנגרו",
+      "semaine": "S8",
+      "depart": "2026-10-18",
+      "retour": "2026-10-21",
+      "jour_depart": "dimanche",
+      "vol_usd": 345,
+      "hotel_total_usd": 749.18,
+      "statut": "ok",
+      "note": "vol Israir 345 $ contre 515 $ en S1, et l'hotel passe de 1120 $ a 749 $ hors saison balneaire",
+      "hotel_trouve": "Hotel Harmonia by Dukley"
+    },
+    {
+      "cle_site": "רומא",
+      "semaine": "S8",
+      "depart": "2026-10-18",
+      "retour": "2026-10-21",
+      "jour_depart": "dimanche",
+      "vol_usd": 132,
+      "hotel_total_usd": null,
+      "statut": "gap hotel",
+      "note": "vol Wizz a 132 $ contre 359 $ en S1 — le vol le moins cher de tout le portfolio. Hotel NEMAN toujours hors Booking"
+    },
+    {
+      "cle_site": "וינה",
+      "semaine": "S3-S8",
+      "depart": null,
+      "retour": null,
+      "jour_depart": null,
+      "vol_usd": null,
+      "hotel_total_usd": null,
+      "statut": "pas d'amelioration",
+      "note": "aucun vol direct sous 364 $ (le prix de S1) sur toute la fenetre S3-S8 : S1 reste le meilleur"
+    },
+    {
+      "cle_site": "אמסטרדם",
+      "semaine": "S3-S8",
+      "depart": null,
+      "retour": null,
+      "jour_depart": null,
+      "vol_usd": null,
+      "hotel_total_usd": null,
+      "statut": "pas d'amelioration",
+      "note": "aucun vol direct sous 400 $ sur toute la fenetre S3-S8 : S1 reste le meilleur"
+    },
+    {
+      "cle_site": "פראג",
+      "semaine": "S3-S8",
+      "depart": null,
+      "retour": null,
+      "jour_depart": null,
+      "vol_usd": null,
+      "hotel_total_usd": null,
+      "statut": "pas d'amelioration",
+      "note": "meilleur vol de la fenetre = 359 $ le 14/09, identique a S2 : pas d'amelioration, hotel non re-interroge"
     }
   ],
-  "alerte_calendrier": "Roch Hachana 5787 : du vendredi 11/09 au soir au dimanche 13/09 au soir. Le depart dominical de S3 (13/09) tombe donc en plein Yom Tov — inutilisable. Repli lundi 14/09 -> jeudi 17/09. Yom Kippour et Souccot saturent ensuite tout le mois : forte demande israelienne a prevoir sur S3-S6."
+  "alerte_calendrier": "Roch Hachana 5787 : vendredi 11/09 au soir -> dimanche 13/09 au soir. Le depart dominical de S3 (13/09) tombe en plein Yom Tov : repli lundi 14/09. Yom Kippour : dimanche 20/09 au soir -> lundi 21/09 au soir. Le depart de S4 tombe a l'entree de Kippour et le lundi est Kippour lui-meme : S4 est inexploitable, ni dimanche ni lundi. Souccot : 25/09 au soir -> 02/10 au soir, Sim'hat Torah en Israel jusqu'au 03/10 au soir. S5 (27/09) est en 'hol hamoed : vendable mais en pic de demande israelienne. S6 a S8 (04/10, 11/10, 18/10) sont le creux post-fetes — c'est la que les prix s'effondrent."
 }
