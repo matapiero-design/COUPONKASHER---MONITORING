@@ -1,0 +1,95 @@
+{
+  "_comment": "Prix PUBLIES sur couponkasher.co.il. index.html lit ce fichier au chargement et remplace les prix ecrits en dur. REGLE DE PUBLICATION (decidee par Jacques le 26/08/2026) : on affiche le prix le plus bas de la fenetre glissante de 8 semaines, coherent avec le 'החל ב-' du site. Le seuil de 15 % du pipeline ne bloque plus la publication, il sert d'alerte a regarder. statut=run-<date> : prix issu d'un run verifie au taux 3.05. statut=legacy-3.65 : prix herite de l'ancien taux. statut=hors-connecteur : hotel non atteignable via Booking, tarif a fournir par Jacques. statut=en-attente : la carte affiche 'לפי בקשה' au lieu d'un prix, le temps qu'une decision soit prise (voir motif). Toute modification ici reste une decision de publication de Jacques, jamais un effet de bord du run.",
+  "updated_at": "2026-08-25",
+  "currency": "ILS",
+  "basis": "prix par personne, 4 ימים / 3 לילות",
+  "prices": {
+    "בודפשט": {
+      "price_ils": 1390,
+      "statut": "run-2026-08-25",
+      "taux": 3.05,
+      "base": "prix le plus bas de la fenêtre 8 semaines — S8, départ 18/10/2026 (vol 142 $, hôtel 494 $)"
+    },
+    "פפוס - WellClub": {
+      "price_ils": 1590,
+      "statut": "run-2026-08-25",
+      "taux": 3.05,
+      "base": "prix le plus bas de la fenêtre 8 semaines — S8, départ 18/10/2026 (vol 151 $, hôtel 589 $)"
+    },
+    "חלקידה": {
+      "price_ils": 1800,
+      "statut": "run-2026-08-25",
+      "taux": 3.05,
+      "base": "prix le plus bas de la fenêtre 8 semaines — S8, départ 18/10/2026 (vol 148 $, hôtel 710 $)"
+    },
+    "אמסטרדם": {
+      "price_ils": 1900,
+      "statut": "run-2026-08-25",
+      "taux": 3.05,
+      "base": "meilleur prix de la fenêtre — S1, départ 30/08/2026. La baisse de 15 % est un pur effet de taux : à 3.65 les mêmes coûts donnaient 2 274 ₪, soit le prix qui était affiché"
+    },
+    "טביליסי": {
+      "price_ils": 2000,
+      "statut": "run-2026-08-25",
+      "taux": 3.05,
+      "base": "prix le plus bas de la fenêtre 8 semaines — S8, départ 18/10/2026 (vol 291 $, hôtel 534 $)"
+    },
+    "פפוס - Brown Hills": {
+      "price_ils": 2240,
+      "statut": "run-2026-08-25",
+      "taux": 3.05,
+      "base": "prix le plus bas de la fenêtre 8 semaines — S6, départ 04/10/2026 (vol 170 $, hôtel 910 $) — l'hôtel est complet en S8"
+    },
+    "וינה": {
+      "price_ils": 2520,
+      "statut": "run-2026-08-25",
+      "taux": 3.05
+    },
+    "מונטנגרו": {
+      "price_ils": 2580,
+      "statut": "run-2026-08-25",
+      "taux": 3.05,
+      "base": "prix le plus bas de la fenêtre 8 semaines — S8, départ 18/10/2026 (vol 345 $, hôtel 749 $)"
+    },
+    "לונדון": {
+      "price_ils": 2660,
+      "statut": "run-2026-08-25",
+      "taux": 3.05,
+      "base": "prix le plus bas de la fenêtre 8 semaines — S6, départ 04/10/2026 (vol 437 $, hôtel 614 $) — aller Gatwick, retour Luton"
+    },
+    "פראג": {
+      "price_ils": 3260,
+      "statut": "run-2026-08-25",
+      "taux": 3.05,
+      "base": "meilleur prix de la fenêtre — S2, départ 06/09/2026"
+    },
+    "פפוס - Greek Village": {
+      "statut": "en-attente",
+      "label": "לפי בקשה",
+      "motif": "hôtel non atteignable par le connecteur — Booking répond un établissement de Rhodes sur ce nom",
+      "dernier_prix_affiche_ils": 2355,
+      "note": "prix gelé au taux 3.65, non republié — la carte affiche « לפי בקשה »"
+    },
+    "רומא": {
+      "statut": "en-attente",
+      "label": "לפי בקשה",
+      "motif": "NEMAN Maison hors Booking.com — tarif hôtel à fournir par Jacques (vol vérifié à 132 $)",
+      "dernier_prix_affiche_ils": 3290,
+      "note": "prix gelé au taux 3.65, non republié — la carte affiche « לפי בקשה »"
+    },
+    "ונציה": {
+      "statut": "en-attente",
+      "label": "לפי בקשה",
+      "motif": "cacherout à trancher — Rimon Place est Tier 3 au master portfolio et mehadrin à la référence promo",
+      "dernier_prix_affiche_ils": 3675,
+      "note": "prix gelé au taux 3.65, non republié — la carte affiche « לפי בקשה »"
+    },
+    "פריז": {
+      "statut": "en-attente",
+      "label": "לפי בקשה",
+      "motif": "Aida Opera en liste d'exclusion (pas mehadrin) — destination à retirer ou hôtel à changer",
+      "dernier_prix_affiche_ils": 3715,
+      "note": "prix gelé au taux 3.65, non republié — la carte affiche « לפי בקשה »"
+    }
+  }
+}

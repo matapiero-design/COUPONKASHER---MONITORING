@@ -1,46 +1,58 @@
 # Prompt de la routine quotidienne — automatisation tarifs CouponKasher
 
 Ce fichier documente le prompt envoyé chaque jour à 6h (heure d'Israël) par la Routine planifiée
-(`create_trigger`, cron) qui automatise la vérification de prix jusqu'ici déclenchée manuellement
-par Jacques (voir skill `dashboard-suivi-prix-sejours-casher`, section "Cadence").
+qui automatise la vérification de prix jusqu'ici déclenchée manuellement par Jacques
+(voir skill `dashboard-suivi-prix-sejours-casher`, section "Cadence").
 
 C'est une session **fraîche** à chaque déclenchement (`create_new_session_on_fire=true`) : le
 prompt ci-dessous doit donc être autoporté, sans dépendre du contexte d'une conversation
 précédente.
 
+Depuis le 25/08/2026, le run ne se limite plus au vol : il produit un **prix package complet
+vol + hôtel**, l'hôtel étant désormais vérifiable par nom exact via le connecteur Booking.com.
+
 ## Prompt envoyé par la Routine
 
-```
+```text
 Tu es dans le repo matapiero-design/couponkasher---monitoring (déjà cloné dans cet environnement).
-C'est le run quotidien automatisé de vérification des tarifs vols CouponKasher — Jacques ne le
-déclenche plus manuellement, c'est toi qui l'exécutes chaque matin.
+C'est le run quotidien automatisé des tarifs CouponKasher — Jacques ne le déclenche plus
+manuellement, c'est toi qui l'exécutes chaque matin.
 
 1. git checkout main && git pull origin main
-2. Utilise le skill `dashboard-suivi-prix-sejours-casher` avec la portée par défaut :
-   - Groupe A uniquement (9-10 destinations Tier 1, voir le skill pour la liste)
-   - Vols directs uniquement (0 escale), départ dimanche par défaut (lundi si gap)
-   - S1-S3 systématiquement tous les jours
-   - S4-S8 uniquement si on est dimanche (heure d'Israël) au moment du run — sinon ignorer cette
-     section et laisser les valeurs existantes dans Data/flight-prices.md inchangées
-   - Le connecteur Kiwi.com est attaché à cette session dès le départ — s'il n'apparaît pas dans
-     les outils disponibles, ne bascule PAS silencieusement sur une recherche web générique :
-     note le problème dans le Journal des runs et arrête-toi (voir étape 5)
-3. Applique toutes les règles du skill sans exception : jamais de vol à escale même moins cher,
+2. Vérifie que les DEUX connecteurs sont disponibles dans tes outils : Kiwi.com (vol) et
+   Booking.com (hôtel). S'il en manque un, ne bascule PAS sur une recherche web générique :
+   note le problème dans le Journal des runs et arrête-toi (voir étape 7).
+3. Applique le skill dashboard-suivi-prix-sejours-casher avec la portée par défaut :
+   - Groupe A uniquement — la liste fait foi dans pipeline/destinations.json de ce repo
+   - Schéma de séjour : 3 nuits / 4 jours, départ dimanche → retour mercredi.
+     Pas de vol direct le dimanche → repli lundi → jeudi, et l'hôtel doit être ré-interrogé
+     sur les dates décalées (jamais un hôtel sur des dates différentes du vol).
+   - S1-S3 systématiquement tous les jours ; S4-S8 uniquement si on est dimanche
+   - Vol : Kiwi.com, flyFrom=TLV, flyTo = le champ kiwi_flyTo de pipeline/destinations.json
+     (le code IATA en général, mais le nom de ville quand l'aéroport principal n'a aucun
+     direct — cas de Londres), 1 adulte, USD, max_sector_stopovers=0 (0 escale strict).
+     Zéro résultat sur un code IATA ne veut pas dire zéro vol direct : réinterroge la ville
+     avant de déclarer un gap.
+   - Hôtel : Booking.com, hotel_names = le nom exact de pipeline/destinations.json + destination
+     = la ville de contexte, 2 adultes, 1 chambre, 3 nuits, USD. Le prix retourné est le TOTAL
+     du séjour pour 2 adultes : le prix par personne, c'est ce total ÷ 2.
+     Si le nom d'hôtel retourné par Booking ne correspond pas au partenaire attendu, ne
+     l'utilise pas comme prix vendable — marque la ligne "à confirmer".
+4. Applique toutes les règles du skill sans exception : jamais de vol à escale même moins cher,
    jamais de départ/retour un samedi, contrainte d'atterrissage vendredi (11h hiver / 14h été,
    bornes à vérifier chaque année), Cracovie et Milan en pause, Groupe B non traité ici.
-4. Mets à jour Data/flight-prices.md :
-   - Remplace le tableau "Groupe A (S1-S3)" avec les prix du jour
-   - Remplace le tableau "Groupe A (S4-S8)" uniquement si c'est un run dominical
-   - Ajoute une ligne au "Journal des runs" (date/heure UTC, destinations traitées, gaps/anomalies,
-     statut connecteur) — ne jamais écraser les lignes précédentes de ce journal, garder les 30
-     dernières
-   - Mets à jour les champs "Dernière mise à jour", "Portée du dernier run", "Statut connecteur
-     Kiwi.com" en haut du fichier
-5. Commit avec un message clair (ex: "Prix vols TLV — run automatisé 2026-07-28") et
+5. Écris le run brut dans Data/runs/run-<date>.json (même format que les runs précédents), puis
+   lance : python3 pipeline/pricing.py Data/runs/run-<date>.json
+   Ce script calcule le prix package, régénère Data/package-prices.md et Data/package-prices.json,
+   et signale les écarts > 15 % vs les prix actuellement publiés.
+6. Mets aussi à jour Data/flight-prices.md (tableaux vol + Journal des runs, 30 dernières lignes).
+7. Commit avec un message clair (ex: "Prix package — run automatisé 2026-08-28") et
    git push origin main directement — pas de PR pour ce run quotidien de données.
-   Si le connecteur Kiwi.com était indisponible ou qu'aucune donnée n'a pu être récupérée, ne
-   commite rien : laisse le fichier inchangé et signale le problème en fin de réponse.
-6. Termine par un résumé court : destinations traitées, gaps, anomalies de prix notables.
+   Si un connecteur était indisponible ou qu'aucune donnée n'a pu être récupérée, ne commite
+   rien : laisse les fichiers inchangés et signale le problème en fin de réponse.
+8. NE TOUCHE JAMAIS à site/prices.json ni à site/index.html. Publier un prix sur
+   couponkasher.co.il est une décision de Jacques, pas un effet de bord du run.
+9. Termine par un résumé court : destinations traitées, gaps, écarts > 15 % à confirmer.
 ```
 
 ## Paramètres de la Routine
@@ -51,23 +63,22 @@ déclenche plus manuellement, c'est toi qui l'exécutes chaque matin.
 - **Session** : fraîche à chaque déclenchement (`trig_01AC9Z8TrgTpLToieNmSJ6G4`, créée le
   28/07/2026 via l'API `create_trigger`)
 
-### ⚠️ Limitation connue : connecteur Kiwi.com non attaché
+### Blocage connu : connecteurs non attachés à la Routine
 
 L'API `create_trigger` de cette organisation **refuse le paramètre `connectors`**
 ("the connectors parameter is not available for this organization") — impossible d'attacher
-Kiwi.com par ce chemin. La session déclenchée chaque jour n'a donc **pas accès au connecteur
-Kiwi.com** tant que ce point n'est pas résolu autrement.
+Kiwi.com ni Booking.com par ce chemin. La session déclenchée chaque jour n'a donc **accès à
+aucun des deux connecteurs** tant que ce point n'est pas résolu.
 
-Conséquence : le prompt ci-dessus contient déjà le garde-fou du skill (ne jamais basculer
-silencieusement sur une recherche web générique si le connecteur manque) — la session notera donc
-le problème dans le "Journal des runs" et n'écrira aucun prix plutôt que de produire une donnée non
-fiable. Le trigger tourne donc "à vide" (sans effet indésirable) tant que le connecteur n'est pas
-résolu.
+Conséquence : le prompt ci-dessus contient le garde-fou (ne jamais basculer silencieusement sur
+une recherche web générique si un connecteur manque) — la session note le problème dans le
+Journal des runs et n'écrit aucun prix plutôt que de produire une donnée non fiable. Le trigger
+tourne donc "à vide" (sans effet indésirable) tant que les connecteurs ne sont pas résolus.
 
-**Chemin recommandé pour résoudre** : recréer cette Routine depuis l'UI claude.ai/routines
-(plutôt que par l'API `create_trigger`), qui permet d'attacher explicitement le connecteur
-Kiwi.com à la Routine — décision de Jacques le 28/07/2026. Une fois fait, désactiver ou supprimer
-le trigger `trig_01AC9Z8TrgTpLToieNmSJ6G4` créé par l'API pour éviter un doublon.
+**Chemin pour résoudre** : recréer cette Routine depuis l'UI claude.ai/routines (plutôt que par
+l'API `create_trigger`), qui permet d'attacher explicitement les connecteurs à la Routine — en
+attachant cette fois **Kiwi.com ET Booking.com**. Une fois fait, désactiver ou supprimer le
+trigger `trig_01AC9Z8TrgTpLToieNmSJ6G4` créé par l'API pour éviter un doublon.
 
 ## Historique des décisions
 
@@ -78,3 +89,9 @@ le trigger `trig_01AC9Z8TrgTpLToieNmSJ6G4` créé par l'API pour éviter un doub
   (Kiwi.com) dans cette organisation. Jacques a choisi de garder le trigger API tel quel (il ne
   produit pas de fausse donnée en l'absence du connecteur) et de recréer la Routine depuis l'UI
   claude.ai/routines pour obtenir l'accès à Kiwi.com.
+- 25/08/2026 : le run passe du **prix vol seul** au **prix package vol + hôtel**. Le connecteur
+  Booking.com accepte une recherche par `hotel_names` (nom d'hôtel exact) — c'est précisément ce
+  qui manquait à lastminute.com et qui bloquait la vérification hôtelière depuis le 8 juillet.
+  Validé de bout en bout sur 8 destinations du Groupe A le 25/08 (voir `Data/runs/run-2026-08-25.json`).
+- 25/08/2026 : séparation stricte entre **calculer** (le run, dans `Data/`) et **publier** (le site,
+  dans `site/`). Le run ne publie jamais : il signale les écarts > 15 % et Jacques tranche.

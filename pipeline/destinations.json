@@ -1,0 +1,147 @@
+{
+  "_comment": "Source unique des O&D CouponKasher pour l'automatisation des tarifs. cle_site = la cle hebraique utilisee par openFicheByCity() dans index.html ET par site/prices.json. booking_name/booking_city = ce qu'on envoie a Booking.com (hotel_names + destination). kiwi_flyTo = ce qu'on envoie a Kiwi en flyTo : le code IATA par defaut, mais le nom de ville quand l'aeroport principal n'a pas de direct.",
+  "groupe_a": [
+    {
+      "cle_site": "פראג",
+      "ville": "Prague",
+      "iata": "PRG",
+      "booking_name": "King David",
+      "booking_city": "Prague, Czechia",
+      "mention_cacherout": "כשר מהדרין",
+      "kiwi_flyTo": "PRG"
+    },
+    {
+      "cle_site": "וינה",
+      "ville": "Vienne",
+      "iata": "VIE",
+      "booking_name": "Vayalen",
+      "booking_city": "Vienna, Austria",
+      "mention_cacherout": "כשר מהדרין",
+      "kiwi_flyTo": "VIE"
+    },
+    {
+      "cle_site": "אמסטרדם",
+      "ville": "Amsterdam",
+      "iata": "AMS",
+      "booking_name": "ibis budget Amsterdam City South",
+      "booking_city": "Amsterdam, Netherlands",
+      "mention_cacherout": "ארוחת בוקר כשרה למהדרין בפיקוח הרבנות (NIK)",
+      "kiwi_flyTo": "AMS"
+    },
+    {
+      "cle_site": "פפוס - WellClub",
+      "ville": "Paphos",
+      "iata": "PFO",
+      "booking_name": "WellClub Resort - Suites & Wellness",
+      "booking_city": "Paphos, Cyprus",
+      "mention_cacherout": "כשר בשרי וחלבי — רבנות קפריסין",
+      "kiwi_flyTo": "PFO"
+    },
+    {
+      "cle_site": "חלקידה",
+      "ville": "Chalkida",
+      "iata": "ATH",
+      "booking_name": "Brown Beach",
+      "booking_city": "Chalkida, Greece",
+      "mention_cacherout": "כשר — בפיקוח הרב ידידיה כהן",
+      "kiwi_flyTo": "ATH"
+    },
+    {
+      "cle_site": "בודפשט",
+      "ville": "Budapest",
+      "iata": "BUD",
+      "booking_name": "Silver Crown",
+      "booking_city": "Budapest, Hungary",
+      "mention_cacherout": "ארוחת הבוקר אינה כשרה · ליד מסעדות כשרות",
+      "kiwi_flyTo": "BUD"
+    },
+    {
+      "cle_site": "טביליסי",
+      "ville": "Tbilissi",
+      "iata": "TBS",
+      "booking_name": "Cron Palace",
+      "booking_city": "Tbilisi, Georgia",
+      "mention_cacherout": "כשר",
+      "kiwi_flyTo": "TBS"
+    },
+    {
+      "cle_site": "לונדון",
+      "ville": "Londres",
+      "iata": "LON",
+      "booking_name": "Croft Court",
+      "booking_city": "London, United Kingdom",
+      "mention_cacherout": "כשר",
+      "kiwi_flyTo": "London",
+      "note_vol": "Kiwi ne renvoie aucun direct sur LHR : interroger la ville (flyTo='London'). Les directs TLV-Londres sont sur STN, LTN et LGW."
+    },
+    {
+      "cle_site": "מונטנגרו",
+      "ville": "Budva",
+      "iata": "TIV",
+      "kiwi_flyTo": "Montenegro",
+      "booking_name": "Harmonia by Dukley",
+      "booking_city": "Budva, Montenegro",
+      "mention_cacherout": "גלאט כשר · חלק בית יוסף · חלב ישראל",
+      "note_vol": "Le direct TLV-Montenegro est sur TIV (Tivat), pas TGD (Podgorica) comme indique jusqu'ici. Israir."
+    },
+    {
+      "cle_site": "ונציה",
+      "ville": "Venise",
+      "iata": "VCE",
+      "kiwi_flyTo": "VCE",
+      "booking_name": "Rimon Place",
+      "booking_city": "Venice, Italy",
+      "mention_cacherout": "כשר מהדרין · חלב ישראל · בישול ישראל",
+      "certification": "CONTESTEE — le skill dashboard signale Rimon Place en Tier 3/non certifie dans MASTER_PORTFOLIO V14, la reference promo le donne mehadrin. Ne pas publier de prix tant que Jacques n'a pas tranche."
+    },
+    {
+      "cle_site": "פפוס - Brown Hills",
+      "ville": "Paphos",
+      "iata": "PFO",
+      "kiwi_flyTo": "PFO",
+      "booking_name": "Brown Hills",
+      "booking_city": "Paphos, Cyprus",
+      "mention_cacherout": "כשר בשרי וחלבי — רבנות קפריסין",
+      "note_hotel": "Booking resout en 'Paphos Hills Resort & Spa by Brown Hotels' — a confirmer."
+    }
+  ],
+  "hors_booking": [
+    {
+      "cle_site": "רומא",
+      "ville": "Rome",
+      "iata": "FCO",
+      "hotel": "NEMAN Maison",
+      "note": "introuvable via le connecteur Booking.com — prix hotel a saisir manuellement",
+      "kiwi_flyTo": "FCO"
+    },
+    {
+      "cle_site": "מרבייה",
+      "ville": "Marbella",
+      "iata": "AGP",
+      "hotel": "Marvella Hotel",
+      "note": "hors Booking + pas de vol direct structurel",
+      "kiwi_flyTo": "AGP"
+    },
+    {
+      "cle_site": "ברלין",
+      "ville": "Berlin",
+      "iata": "BER",
+      "hotel": "King David Garden",
+      "note": "hors Booking + certification non confirmee — ne pas vendre",
+      "kiwi_flyTo": "BER"
+    },
+    {
+      "cle_site": "פפוס - Greek Village",
+      "ville": "Paphos",
+      "iata": "PFO",
+      "kiwi_flyTo": "PFO",
+      "hotel": "Greek Village Hotel",
+      "note": "Booking mis-resout ce nom vers 'Filerimos Village Hotel' a Rhodes (Grece), meme avec destination='Paphos, Cyprus'. Reproductible. Prix hotel a fournir par Jacques — ne jamais accepter le resultat renvoye par le connecteur sur ce nom."
+    }
+  ],
+  "exclues": {
+    "פריז": "Aida Opera — pas Mehadrin, supervision eclatee. ATTENTION : la destination est pourtant affichee et tarifee sur le site (3 715 ILS). A trancher.",
+    "Cracovie": "aucune certification ecrite",
+    "Milan": "aucun hotel casher certifie"
+  }
+}
