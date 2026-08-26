@@ -11,10 +11,16 @@
       "base": "prix le plus bas de la fenêtre 8 semaines — S8, départ 18/10/2026 (vol 142 $, hôtel 494 $)"
     },
     "פפוס - WellClub": {
-      "price_ils": 1720,
+      "price_ils": 1590,
       "statut": "run-2026-08-25",
       "taux": 3.05,
-      "base": "meilleur prix de la fenêtre — S7, départ 11/10/2026 (vol 151 $, hôtel 658 $)"
+      "base": "prix le plus bas de la fenêtre 8 semaines — S8, départ 18/10/2026 (vol 151 $, hôtel 589 $)"
+    },
+    "חלקידה": {
+      "price_ils": 1800,
+      "statut": "run-2026-08-25",
+      "taux": 3.05,
+      "base": "prix le plus bas de la fenêtre 8 semaines — S8, départ 18/10/2026 (vol 148 $, hôtel 710 $)"
     },
     "אמסטרדם": {
       "price_ils": 1900,
@@ -22,27 +28,22 @@
       "taux": 3.05,
       "base": "meilleur prix de la fenêtre — S1, départ 30/08/2026. La baisse de 15 % est un pur effet de taux : à 3.65 les mêmes coûts donnaient 2 274 ₪, soit le prix qui était affiché"
     },
-    "חלקידה": {
-      "price_ils": 1920,
-      "statut": "run-2026-08-25",
-      "taux": 3.05
-    },
     "טביליסי": {
       "price_ils": 2000,
       "statut": "run-2026-08-25",
       "taux": 3.05,
       "base": "prix le plus bas de la fenêtre 8 semaines — S8, départ 18/10/2026 (vol 291 $, hôtel 534 $)"
     },
+    "פפוס - Brown Hills": {
+      "price_ils": 2240,
+      "statut": "run-2026-08-25",
+      "taux": 3.05,
+      "base": "prix le plus bas de la fenêtre 8 semaines — S6, départ 04/10/2026 (vol 170 $, hôtel 910 $) — l'hôtel est complet en S8"
+    },
     "פפוס - Greek Village": {
       "price_ils": 2355,
       "statut": "hors-connecteur",
       "base": "prix hérité du taux 3.65 — hôtel non atteignable via Booking, tarif à fournir par Jacques"
-    },
-    "פפוס - Brown Hills": {
-      "price_ils": 2360,
-      "statut": "run-2026-08-25",
-      "taux": 3.05,
-      "base": "prix le plus bas de la fenêtre 8 semaines — S7, départ 11/10/2026 (vol 151 $, hôtel 1 015 $)"
     },
     "וינה": {
       "price_ils": 2520,

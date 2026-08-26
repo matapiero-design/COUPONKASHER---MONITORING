@@ -118,3 +118,11 @@ cadence S1-S3 / S4-S8, certification casher Tier 1) sont définies dans le skill
 - **26/08/2026 — fenêtre S3-S8 balayée.** Roch Hachana retire le départ dominical de S3 (repli lundi
   14/09) et Kippour rend S4 inexploitable, dimanche comme lundi. Le creux post-fêtes (S6-S8) fait
   chuter Tbilissi et le Monténégro de 33 %, Londres de 27 %, Budapest de 20 %.
+- **26/08/2026 — fenêtre S1-S8 fermée pour de bon.** 46 relevés. Le côté hôtelier était le point
+  faible : il n'était interrogé qu'à la date du vol le moins cher, ce qui suppose à tort que la
+  semaine du vol le moins cher est celle du séjour le moins cher. Chalkida prouvait le contraire.
+  Après balayage complet, trois minima ont bougé (Paphos WellClub, Chalkida, Paphos Brown Hills).
+  Constat structurel : 'hol hamoed Souccot (S5) est massivement **complet** côté hôtels, et le creux
+  réel est S6-S8, avec des disponibilités hôtelières trouées — Tbilissi et le Monténégro sont
+  complets en S6 et S7, Paphos Brown Hills en S8. La date du meilleur prix est donc dictée autant
+  par la disponibilité que par le tarif.
