@@ -34,6 +34,16 @@ AMUDOT = {
     "ben_zug": "בן/בת הזוג",
 }
 
+# סיווג לצורך הסיכום. חיבור אריתמטי של הכל יחד חסר משמעות — הכנסה חייבת,
+# הכנסה פטורה, ניכוי, זיכוי ומס ששולם מתנהגים אחרת לגמרי בחישוב.
+SUGIM = {
+    "hachnasa_chayevet": "הכנסות חייבות",
+    "hachnasa_pturah": "הכנסות פטורות",
+    "nikuy": "ניכויים (מקטינים את ההכנסה החייבת)",
+    "zikuy": "זיכויים (מקטינים את המס עצמו)",
+    "mas_shulam": "מס שנוכה ושולם",
+}
+
 
 def shekel(n):
     return f"{n:,.0f}"
@@ -102,7 +112,8 @@ def bne_markdown(netunim, chosmim, azharot):
         out += ["## ⛔ חוסם — לא להקליד לפני שנפתר", ""]
         out += [f"- {c}" for c in chosmim] + [""]
 
-    sach_lefi_amuda = defaultdict(float)
+    sach_lefi_sug = defaultdict(lambda: defaultdict(float))
+    lelo_sug = []
 
     for mispar, shurot in bnei_shurot(netunim).items():
         out += [f"## שלב {mispar} — {SHEMOT_SHLAVIM.get(mispar, '')}", ""]
@@ -115,18 +126,33 @@ def bne_markdown(netunim, chosmim, azharot):
             out.append(
                 f"| {s.get('prit', '—')} | {tzuga} | {kod_letzuga(s)} | {amuda} | {s.get('makor', '—')} |"
             )
-            if isinstance(sechum, (int, float)) and s.get("amuda") in AMUDOT:
-                sach_lefi_amuda[s["amuda"]] += sechum
+            if isinstance(sechum, (int, float)):
+                sug = s.get("sug")
+                if sug in SUGIM:
+                    sach_lefi_sug[sug][s.get("amuda", "—")] += sechum
+                else:
+                    lelo_sug.append(s.get("prit", "—"))
         out.append("")
 
-    if sach_lefi_amuda:
-        out += ["## סיכום סכומים לפי עמודה", "",
-                "| עמודה | סך הסכומים בגיליון (₪) |", "|--------|------------------------|"]
-        for mafteach, sach in sach_lefi_amuda.items():
-            out.append(f"| {AMUDOT[mafteach]} | {shekel(sach)} |")
+    if sach_lefi_sug:
+        out += ["## סיכום לפי סוג", "",
+                "| סוג | בן זוג רשום (₪) | בן/בת הזוג (₪) |",
+                "|-----|------------------|-----------------|"]
+        for mafteach, kotert in SUGIM.items():
+            if mafteach not in sach_lefi_sug:
+                continue
+            lefi_amuda = sach_lefi_sug[mafteach]
+            out.append(
+                f"| {kotert} | {shekel(lefi_amuda.get('ben_zug_rashum', 0))} "
+                f"| {shekel(lefi_amuda.get('ben_zug', 0))} |"
+            )
         out += ["",
-                "> הסכום כאן הוא סכום אריתמטי של כל השורות בגיליון, לא ההכנסה החייבת. "
-                "ניכויים וזיכויים מקטינים את החבות ולכן אינם מתחברים לאותו סך.", ""]
+                "> הסוגים אינם מתחברים זה לזה. הכנסה פטורה אינה נכנסת לחישוב המס, "
+                "ניכוי מקטין את ההכנסה החייבת, וזיכוי מקטין את המס עצמו — "
+                "חיבור של כולם יחד היה מספר חסר משמעות.", ""]
+
+    if lelo_sug:
+        out += ["> ⚠ שורות ללא סיווג, שלא נכללו בסיכום: " + ", ".join(lelo_sug), ""]
 
     if azharot:
         out += ["## ⚠️ לבדוק לפני ההגשה", ""]
@@ -158,12 +184,13 @@ def bne_markdown(netunim, chosmim, azharot):
 def ktov_csv(netunim, nativ):
     with open(nativ, "w", newline="", encoding="utf-8-sig") as f:
         w = csv.writer(f)
-        w.writerow(["שלב", "פריט", "סכום", "קוד שדה", "קוד אומת", "עמודה", "מסמך מקור"])
+        w.writerow(["שלב", "פריט", "סוג", "סכום", "קוד שדה", "קוד אומת", "עמודה", "מסמך מקור"])
         for mispar, shurot in bnei_shurot(netunim).items():
             for s in shurot:
                 w.writerow([
                     mispar,
                     s.get("prit", ""),
+                    SUGIM.get(s.get("sug"), ""),
                     s.get("sechum", ""),
                     s.get("kod") or "לאמת",
                     "כן" if s.get("kod_meumat") else "לא",

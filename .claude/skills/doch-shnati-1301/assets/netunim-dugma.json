@@ -1,15 +1,287 @@
 {
   "shnat_mas": 2025,
-  "tik_mas_hachnasa": "123456789",
-  "ben_zug_rashum": { "shem": "יעקב", "tz": "012345678", "maamad": "atzmai", "sug_osek": "murshe" },
-  "ben_zug": { "shem": "רות", "tz": "087654321", "maamad": "sachir" },
-  "shlavim": { "0": {"ishur": true}, "1": {"ishur": true}, "2": {"ishur": true}, "3": {"ishur": false, "hearot": "ממתין ל-106 ממעסיק שני"} },
-  "sechumim": [
-    {"shalav": 2, "prit": "הכנסה חייבת מעסק", "sechum": 184300, "kod": "150", "kod_meumat": true, "amuda": "ben_zug_rashum", "makor": "נספח א' 1320"},
-    {"shalav": 3, "prit": "משכורת — מעסיק א'", "sechum": 96420, "kod": "172", "kod_meumat": false, "amuda": "ben_zug", "makor": "טופס 106 חברת X"},
-    {"shalav": 4, "prit": "ביטוח לאומי — 52%", "sechum": 7150, "kod": null, "kod_meumat": false, "amuda": "ben_zug_rashum", "makor": "אישור ביטוח לאומי 2025"},
-    {"shalav": 6, "prit": "מקדמות ששולמו", "sechum": 21000, "kod": null, "kod_meumat": false, "amuda": "ben_zug_rashum", "makor": ""}
+  "demo": true,
+  "tik_mas_hachnasa": "556677889",
+  "ben_zug_rashum": {
+    "shem": "יעקב לוי",
+    "tz": "011223344",
+    "maamad": "atzmai",
+    "sug_osek": "לברר — נאמר 'עוסק זעיר', כנראה עוסק פטור",
+    "muasak_bnei_zug": false,
+    "ktzavaot": [
+      "קצבת זקנה מביטוח לאומי",
+      "קצבה מביטוח מנהלים — הראל"
+    ]
+  },
+  "ben_zug": {
+    "shem": "רות לוי",
+    "tz": "055667788",
+    "maamad": "sachir",
+    "misgar_maasikim": 2,
+    "ktzavaot": [
+      "קצבת זקנה מביטוח לאומי",
+      "קצבה מהראל — ביטוח מנהלים"
+    ]
+  },
+  "yeladim": [
+    {
+      "shem": "נועה",
+      "taarich_leda": "2013-05-20"
+    },
+    {
+      "shem": "איתמר",
+      "taarich_leda": "2019-11-02"
+    }
   ],
-  "chaserim": [{"mismach": "טופס 106 ממעסיק שני", "mekor": "מחלקת שכר", "shalav": 3}],
-  "dgalim": [{"shalav": 2, "noseh": "פער 6,800 ₪ מול דוחות מע\"מ", "status": "patuach"}]
+  "shlavim": {
+    "0": {
+      "ishur": true,
+      "taarich": "2026-08-26",
+      "hearot": "אושר. 2 מעסיקים לרות + פריט 'הראל' שטרם סווג."
+    },
+    "1": {
+      "ishur": true,
+      "taarich": "2026-08-26",
+      "hearot": "אושר"
+    },
+    "2": {
+      "ishur": true,
+      "taarich": "2026-08-26",
+      "hearot": "אושר. עוסק פטור, מחזור 104,500 כולל מע\"מ"
+    },
+    "3": {
+      "ishur": true,
+      "taarich": "2026-08-26",
+      "hearot": "אושר לאחר תיקון — קצבאות נפרדות לכל אחד"
+    },
+    "4": {
+      "ishur": true,
+      "taarich": "2026-08-26",
+      "hearot": "אושר"
+    },
+    "5": {
+      "ishur": true,
+      "taarich": "2026-08-26",
+      "hearot": "אושר"
+    },
+    "6": {
+      "ishur": true,
+      "taarich": "2026-08-26",
+      "hearot": "אושר — מקדמות 0, ניכוי במקור 0"
+    },
+    "7": {
+      "ishur": false,
+      "taarich": null,
+      "hearot": "אומדן הוצג, ממתין לאישור"
+    },
+    "8": {
+      "ishur": false,
+      "taarich": null,
+      "hearot": "גיליון טיוטה — לא סופי עד אישור שלב 7"
+    }
+  },
+  "sechumim": [
+    {
+      "shalav": 2,
+      "prit": "הכנסה חייבת מעסק (נספח א' 1320)",
+      "sechum": 53250,
+      "kod": "150",
+      "kod_meumat": false,
+      "amuda": "ben_zug_rashum",
+      "makor": "נספח א' 1320 — רווח נקי 44,000 + התאמות 9,250",
+      "sug": "hachnasa_chayevet"
+    },
+    {
+      "shalav": 3,
+      "prit": "קצבה חייבת — הראל (יעקב)",
+      "sechum": 96000,
+      "kod": null,
+      "kod_meumat": false,
+      "amuda": "ben_zug_rashum",
+      "makor": "טופס 106 הראל — יעקב",
+      "sug": "hachnasa_chayevet"
+    },
+    {
+      "shalav": 3,
+      "prit": "קצבת זקנה בט\"ל — פטורה (יעקב)",
+      "sechum": 26400,
+      "kod": null,
+      "kod_meumat": false,
+      "amuda": "ben_zug_rashum",
+      "makor": "אישור שנתי בט\"ל — יעקב",
+      "sug": "hachnasa_pturah"
+    },
+    {
+      "shalav": 3,
+      "prit": "משכורת — 2 מעסיקים (רות)",
+      "sechum": 101000,
+      "kod": "172",
+      "kod_meumat": false,
+      "amuda": "ben_zug",
+      "makor": "טופסי 106 — 78,400 + 22,600",
+      "sug": "hachnasa_chayevet"
+    },
+    {
+      "shalav": 3,
+      "prit": "קצבה חייבת — הראל (רות)",
+      "sechum": 42000,
+      "kod": null,
+      "kod_meumat": false,
+      "amuda": "ben_zug",
+      "makor": "טופס 106 הראל — רות",
+      "sug": "hachnasa_chayevet"
+    },
+    {
+      "shalav": 3,
+      "prit": "קצבת זקנה בט\"ל — פטורה (רות)",
+      "sechum": 24000,
+      "kod": null,
+      "kod_meumat": false,
+      "amuda": "ben_zug",
+      "makor": "אישור שנתי בט\"ל — רות",
+      "sug": "hachnasa_pturah"
+    },
+    {
+      "shalav": 3,
+      "prit": "מס שנוכה ממשכורת ומקצבאות",
+      "sechum": 17860,
+      "kod": "042",
+      "kod_meumat": false,
+      "amuda": "ben_zug_rashum",
+      "makor": "טופסי 106 × 4 — 10,460 + 5,600 + 1,800",
+      "sug": "mas_shulam"
+    },
+    {
+      "shalav": 5,
+      "prit": "תרומות למוסד ציבורי (סעיף 46)",
+      "sechum": 3000,
+      "kod": "237",
+      "kod_meumat": false,
+      "amuda": "ben_zug_rashum",
+      "makor": "קבלות מקוריות — אישור 46 בתוקף לאמת",
+      "sug": "zikuy"
+    },
+    {
+      "shalav": 4,
+      "prit": "ביטוח לאומי — מוכר בניכוי 52%",
+      "sechum": 697,
+      "kod": "030",
+      "kod_meumat": false,
+      "amuda": "ben_zug_rashum",
+      "makor": "אישור שנתי בט\"ל — מרכיב נפגעי עבודה 1,340",
+      "sug": "nikuy"
+    },
+    {
+      "shalav": 4,
+      "prit": "ביטוח חיים — זיכוי 45א",
+      "sechum": 3600,
+      "kod": "036",
+      "kod_meumat": false,
+      "amuda": "ben_zug",
+      "makor": "אישור שנתי מחברת הביטוח",
+      "sug": "zikuy"
+    },
+    {
+      "shalav": 6,
+      "prit": "מקדמות מס הכנסה ששולמו",
+      "sechum": 0,
+      "kod": null,
+      "kod_meumat": false,
+      "amuda": "ben_zug_rashum",
+      "makor": "הצהרת המשתמש — לא שולמו מקדמות ב-2025",
+      "sug": "mas_shulam"
+    },
+    {
+      "shalav": 6,
+      "prit": "ניכוי במקור מלקוחות",
+      "sechum": 0,
+      "kod": "040",
+      "kod_meumat": false,
+      "amuda": "ben_zug_rashum",
+      "makor": "הצהרתך — אף לקוח לא ניכה מס במקור",
+      "sug": "mas_shulam"
+    }
+  ],
+  "chaserim": [
+    {
+      "mismach": "טופס 106 — מעסיק א' (רות)",
+      "mekor": "מחלקת שכר",
+      "shalav": 3
+    },
+    {
+      "mismach": "טופס 106 — מעסיק ב' (רות)",
+      "mekor": "מחלקת שכר",
+      "shalav": 3
+    },
+    {
+      "mismach": "אישור שנתי ביטוח לאומי — קצבת זקנה רות",
+      "mekor": "אזור אישי ביטוח לאומי",
+      "shalav": 3
+    },
+    {
+      "mismach": "אישור שנתי ביטוח לאומי — קצבת זקנה יעקב",
+      "mekor": "אזור אישי ביטוח לאומי",
+      "shalav": 3
+    },
+    {
+      "mismach": "טופס 106 מהראל — קצבה",
+      "mekor": "אזור אישי הראל",
+      "shalav": 3
+    }
+  ],
+  "dgalim": [
+    {
+      "shalav": 3,
+      "noseh": "טופס 161ד לא הוגש — הפטור לפי סעיף 9א על הקצבה מהראל אינו ממומש. מס עודף שנתי, לא רק ב-2025. לטיפול מול פקיד השומה/רו״ח.",
+      "status": "patuach",
+      "hamlatza": "לבדוק זכאות לקיבוע זכויות ולהגיש 161ד"
+    },
+    {
+      "shalav": 0,
+      "noseh": "'עוסק זעיר' אינו סיווג קיים — לאמת אם מדובר בעוסק פטור",
+      "status": "patuach"
+    },
+    {
+      "shalav": 3,
+      "noseh": "קוד השדה של קצבה חייבת לא אומת — להקריא מהמסך",
+      "status": "patuach"
+    },
+    {
+      "shalav": 2,
+      "noseh": "לא הוזן פחת — לוודא אם יש ציוד/מחשב בעסק (טופס 1343)",
+      "status": "patuach"
+    },
+    {
+      "shalav": 2,
+      "noseh": "אחוזי פיצול פרטי/עסקי (רכב 55%, טלפון 30%) הם הנחות — לאמת מול השימוש בפועל",
+      "status": "patuach"
+    },
+    {
+      "shalav": 3,
+      "noseh": "תיקון לאחר אישור: קצבת זקנה נפרדת לכל אחד, ופנסיה נפרדת מהראל לכל אחד (כ-30 שנות הפקדה). אישור שלב 3 בוטל; שלב 2 לא נפגע.",
+      "status": "nisgar"
+    },
+    {
+      "shalav": 3,
+      "noseh": "שתי קצבאות מזכות ללא 161ד — הפטור לפי 9א אינו ממומש אצל אף אחד מבני הזוג. שתי בקשות קיבוע זכויות נפרדות.",
+      "status": "patuach",
+      "hamlatza": "לבדוק זכאות ולהגיש 161ד לכל אחד בנפרד"
+    },
+    {
+      "shalav": 7,
+      "noseh": "ספי מדרגות המס ששימשו באומדן (84,120 / 120,720) לא אומתו לשנת 2025",
+      "status": "patuach"
+    }
+  ],
+  "nesibot": {
+    "chalat_avtala_leda": false,
+    "ben_zug_muasak_baesek": false,
+    "hachnasot_nosafot": false
+  },
+  "omdan": {
+    "yaakov_chov": 5919,
+    "rut_hechzer": 3514,
+    "neto_chov": 2405,
+    "hearot": "מדרגות המס ששימשו לחישוב לא אומתו לשנת 2025 — אומדן בלבד"
+  }
 }
