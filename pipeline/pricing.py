@@ -44,7 +44,7 @@ def charger(chemin):
 def construire(run, destinations, publies):
     # Les destinations hors Booking ont quand meme un vol a chiffrer.
     index = {d["cle_site"]: d
-             for liste in ("groupe_a", "hors_booking")
+             for liste in ("groupe_a", "groupe_b", "hors_booking")
              for d in destinations.get(liste, [])}
     lignes = []
     for entree in run["destinations"]:

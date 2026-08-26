@@ -1,5 +1,5 @@
 {
-  "_comment": "Source unique des O&D CouponKasher pour l'automatisation des tarifs. cle_site = la cle hebraique utilisee par openFicheByCity() dans index.html ET par site/prices.json. booking_name/booking_city = ce qu'on envoie a Booking.com (hotel_names + destination). kiwi_flyTo = ce qu'on envoie a Kiwi en flyTo : le code IATA par defaut, mais le nom de ville quand l'aeroport principal n'a pas de direct.",
+  "_comment": "Source unique des O&D CouponKasher pour l'automatisation des tarifs. cle_site = la cle hebraique utilisee par openFicheByCity() dans index.html ET par site/prices.json. booking_name/booking_city = ce qu'on envoie a Booking.com (hotel_names + destination). kiwi_flyTo = ce qu'on envoie a Kiwi en flyTo : le code IATA par defaut, mais le nom de ville quand l'aeroport principal n'a pas de direct. groupe_b = destinations non vendables tant que leur cacherout n'est pas tranchee. Elles sont relevees pour information, jamais publiees.",
   "groupe_a": [
     {
       "cle_site": "פראג",
@@ -143,5 +143,67 @@
     "פריז": "Aida Opera — pas Mehadrin, supervision eclatee. ATTENTION : la destination est pourtant affichee et tarifee sur le site (3 715 ILS). A trancher.",
     "Cracovie": "aucune certification ecrite",
     "Milan": "aucun hotel casher certifie"
-  }
+  },
+  "groupe_b": [
+    {
+      "cle_site": "נאפולי",
+      "ville": "Naples",
+      "iata": "NAP",
+      "kiwi_flyTo": "NAP",
+      "booking_name": "Hotel Cristina",
+      "booking_city": "Naples, Italy",
+      "alternative": "Best Western JFK Hotel",
+      "mention_cacherout": "ליד מסעדה כשרה גלאט מהדרין (Cusamè)",
+      "certification": "EN ATTENTE — l'hotel lui-meme n'est pas casher, seul un restaurant glatt mehadrin est a proximite. Statut non resolu depuis juillet.",
+      "note_vol": "Wizz Air direct, la ligne la moins chere du Groupe B"
+    },
+    {
+      "cle_site": "ברלין",
+      "ville": "Berlin",
+      "iata": "BER",
+      "kiwi_flyTo": "BER",
+      "hotel": "King David Garden",
+      "mention_cacherout": "לא מהדרין, טרם אושר",
+      "certification": "DOUTE — non mehadrin, jamais approuve. Ne pas vendre.",
+      "note_hotel": "introuvable sur Booking.com : tarif a fournir par Jacques",
+      "note_vol": "Israir et Blue Bird en direct — la ligne existe bien"
+    },
+    {
+      "cle_site": "ים גארדה",
+      "ville": "Lac de Garde",
+      "iata": "BGY",
+      "kiwi_flyTo": "BGY",
+      "hotel": "Olympic Kosher Sirmione / Villa Maria (KosherGarda)",
+      "certification": "SAISONNIER — ete et fetes uniquement, pas d'usage permanent.",
+      "note_hotel": "introuvable sur Booking.com : tarif a fournir par Jacques",
+      "note_vol": "la porte d'entree est Bergame (BGY), Blue Bird en direct. Sirmione est a ~80 km. A ne pas confondre avec la mise en pause de Milan, qui porte sur l'hotel et non sur l'acces aerien"
+    },
+    {
+      "cle_site": "ורונה",
+      "ville": "Vérone",
+      "iata": "VRN",
+      "kiwi_flyTo": "Verona",
+      "certification": "AUCUN HOTEL IDENTIFIE.",
+      "note_vol": "aucun vol direct sur la fenetre S1-S8, ni sur le code VRN ni en interrogeant la ville. Contrairement a Londres et au Montenegro, la reference disait vrai"
+    },
+    {
+      "cle_site": "מרבייה",
+      "ville": "Marbella",
+      "iata": "AGP",
+      "kiwi_flyTo": "Malaga",
+      "hotel": "The Marvella Kosher Club",
+      "certification": "EN ATTENTE certif.",
+      "note_hotel": "hors Booking.com",
+      "note_vol": "aucun vol direct sur la fenetre, ni sur AGP ni en interrogeant Malaga. Le 'pas de vol direct structurel' de la reference est confirme"
+    },
+    {
+      "cle_site": "לובלין",
+      "ville": "Lublin",
+      "iata": "WAW/LUZ",
+      "kiwi_flyTo": "Lublin",
+      "hotel": "Hotel Ilan (reference promo) / Hotel Olive (site) — DIVERGENCE a trancher",
+      "certification": "cuisine casher sur commande prealable, 14 jours pour les individuels.",
+      "note_vol": "aucun vol direct TLV-Lublin. Un acheminement via Varsovie serait un vol a escale ou un transfert terrestre de ~170 km : hors formule actuelle"
+    }
+  ]
 }
