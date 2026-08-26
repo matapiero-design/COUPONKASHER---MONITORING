@@ -6,7 +6,7 @@ Ne pas éditer à la main — le prochain run écrase ce fichier.
 - **Run** : 2026-08-25 (premier run package vol+hotel — validation de bout en bout du branchement Kiwi.com + Booking.com)
 - **Schéma** : 3 nuits / 4 jours, depart dimanche -> retour mercredi (repli lundi -> jeudi si pas de direct le dimanche). Fenetre S1-S8 : S1 30/08, S2 06/09, S3 13/09, S4 20/09, S5 27/09, S6 04/10, S7 11/10, S8 18/10.
 - **Taux appliqué** : 1 USD = 3.05 ILS · marge 15 % · formule `(vol + hôtel/pers) ÷ 0.85 × 3.05`
-- **Généré le** : 2026-08-26 03:32 UTC
+- **Généré le** : 2026-08-26 04:11 UTC
 
 > **Calendrier** — Roch Hachana 5787 : vendredi 11/09 au soir -> dimanche 13/09 au soir. Le depart dominical de S3 (13/09) tombe en plein Yom Tov : repli lundi 14/09. Yom Kippour : dimanche 20/09 au soir -> lundi 21/09 au soir. Le depart de S4 tombe a l'entree de Kippour et le lundi est Kippour lui-meme : S4 est inexploitable, ni dimanche ni lundi. Souccot : 25/09 au soir -> 02/10 au soir, Sim'hat Torah en Israel jusqu'au 03/10 au soir. S5 (27/09) est en 'hol hamoed : vendable mais en pic de demande israelienne. S6 a S8 (04/10, 11/10, 18/10) sont le creux post-fetes — c'est la que les prix s'effondrent.
 
@@ -15,6 +15,7 @@ Ne pas éditer à la main — le prochain run écrase ce fichier.
 | Destination | Meilleur ₪ | Semaine | Publié ₪ | Écart | Décision |
 |---|---|---|---|---|---|
 | Budapest (BUD) | 1390 | S8 | 1390 | +0 % | publiable |
+| Naples (NAP) | 1450 | S7 | — | — | ⛔ cacherout à trancher — ne pas publier |
 | Paphos (PFO) | 1590 | S8 | 1590 | +0 % | publiable |
 | Chalkida (ATH) | 1800 | S8 | 1800 | +0 % | publiable |
 | Amsterdam (AMS) | 1900 | S1 | 1900 | +0 % | publiable |
@@ -24,7 +25,7 @@ Ne pas éditer à la main — le prochain run écrase ce fichier.
 | Budva (TIV) | 2580 | S8 | 2580 | +0 % | publiable |
 | Londres (LON) | 2660 | S6 | 2660 | +0 % | publiable |
 | Prague (PRG) | 3260 | S2 | 3260 | +0 % | publiable |
-| Venise (VCE) | 3990 | S1 | 3675 | +9 % | ⛔ cacherout à trancher — ne pas publier |
+| Venise (VCE) | 3990 | S1 | — | — | ⛔ cacherout à trancher — ne pas publier |
 
 ## Détail S1
 
@@ -43,6 +44,16 @@ Ne pas éditer à la main — le prochain run écrase ce fichier.
 | Paphos (PFO) | WellClub Resort - Suites & Wellness | 2026-08-30 · dimanche | 166 | — | — | gap hotel · Booking: WellClub Resort complet sur ces dates (hotel_names_no_availability). Vol OK a 166 $ — c'est l'hotel qui bloque |
 | Paphos (PFO) | Greek Village Hotel | 2026-08-30 · dimanche | 166 | — | — | gap hotel · Booking: aucune disponibilite sur ces dates (hotel_names_no_availability) |
 | Rome (FCO) | NEMAN Maison | 2026-08-30 · dimanche | 359 | — | — | gap hotel · Wizz Air A/R 0 escale. NEMAN Maison est hors Booking.com : prix hotel a fournir par Jacques |
+| Berlin (BER) | King David Garden | 2026-08-30 · dimanche | 326 | — | — | non vendable — cacherout douteuse · Israir/Blue Bird en direct a 326 $. King David Garden est hors Booking et n'a jamais ete approuve |
+| Lac de Garde (BGY) | Olympic Kosher Sirmione / Villa Maria (KosherGarda) | 2026-08-30 · dimanche | 316 | — | — | non vendable — saisonnier · Blue Bird direct TLV-Bergame a 316 $, Sirmione a ~80 km. Hotels hors Booking |
+
+## Détail S1-S8
+
+| Destination | Hôtel | Départ | Vol A/R $ | Hôtel 3 nuits /pers $ | Package ₪ | Statut |
+|---|---|---|---|---|---|---|
+| Vérone (VRN) | — | — | — | — | — | aucun vol direct · zero resultat sur VRN et zero en interrogeant la ville, sur les huit semaines. Aucun hotel identifie par ailleurs |
+| Marbella (AGP) | Marvella Hotel | — | — | — | — | aucun vol direct · zero resultat sur AGP et sur Malaga, sur les huit semaines. Le 'pas de direct structurel' de la reference est confirme |
+| Lublin (WAW/LUZ) | Hotel Ilan (reference promo) / Hotel Olive (site) — DIVERGENCE a trancher | — | — | — | — | aucun vol direct · aucun direct TLV-Lublin. Divergence a trancher entre Hotel Ilan (reference promo) et Hotel Olive (site) |
 
 ## Détail S2
 
@@ -86,6 +97,7 @@ Ne pas éditer à la main — le prochain run écrase ce fichier.
 
 | Destination | Hôtel | Départ | Vol A/R $ | Hôtel 3 nuits /pers $ | Package ₪ | Statut |
 |---|---|---|---|---|---|---|
+| Naples (NAP) | Hotel Cristina | 2026-10-12 · lundi | 148 | 256.73 | 1450 | non vendable — certif en attente · chiffrable de bout en bout, et parmi les moins chers du portfolio. Mais l'hotel n'est pas casher : seul un restaurant glatt mehadrin est a proximite. Best Western JFK au meme endroit a 519 $ |
 | Budapest (BUD) | Silver Crown Hotel & Residence, Palace Quarter | 2026-10-11 · dimanche | 142 | 310.73 | 1620 | ok · vol au plus bas mais hotel a 621 $ : moins bon que S8 |
 | Paphos (PFO) | WellClub Resort - Suites & Wellness | 2026-10-11 · dimanche | 151 | 329.25 | 1720 | ok · vol El Al 151 $ et hotel 658 $ : meilleur package de toute la fenetre |
 | Chalkida (ATH) | Brown Beach Chalkida Resort, a member of Brown Hotels | 2026-10-11 · dimanche | 155 | 379.69 | 1910 | ok · moins bon que S8 |

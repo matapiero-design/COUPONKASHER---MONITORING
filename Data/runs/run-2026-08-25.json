@@ -546,6 +546,73 @@
       "statut": "gap vol",
       "note": "hotel au plus bas (268 $) mais aucun vol direct sous 600 $ : S1 reste le meilleur",
       "hotel_trouve": "ibis budget Amsterdam City South"
+    },
+    {
+      "cle_site": "נאפולי",
+      "semaine": "S7",
+      "depart": "2026-10-12",
+      "retour": "2026-10-15",
+      "jour_depart": "lundi",
+      "vol_usd": 148,
+      "hotel_total_usd": 513.46,
+      "hotel_trouve": "Hotel Cristina",
+      "statut": "non vendable — certif en attente",
+      "note": "chiffrable de bout en bout, et parmi les moins chers du portfolio. Mais l'hotel n'est pas casher : seul un restaurant glatt mehadrin est a proximite. Best Western JFK au meme endroit a 519 $"
+    },
+    {
+      "cle_site": "ברלין",
+      "semaine": "S1",
+      "depart": "2026-08-30",
+      "retour": "2026-09-02",
+      "jour_depart": "dimanche",
+      "vol_usd": 326,
+      "hotel_total_usd": null,
+      "statut": "non vendable — cacherout douteuse",
+      "note": "Israir/Blue Bird en direct a 326 $. King David Garden est hors Booking et n'a jamais ete approuve"
+    },
+    {
+      "cle_site": "ים גארדה",
+      "semaine": "S1",
+      "depart": "2026-08-30",
+      "retour": "2026-09-02",
+      "jour_depart": "dimanche",
+      "vol_usd": 316,
+      "hotel_total_usd": null,
+      "statut": "non vendable — saisonnier",
+      "note": "Blue Bird direct TLV-Bergame a 316 $, Sirmione a ~80 km. Hotels hors Booking"
+    },
+    {
+      "cle_site": "ורונה",
+      "semaine": "S1-S8",
+      "depart": null,
+      "retour": null,
+      "jour_depart": null,
+      "vol_usd": null,
+      "hotel_total_usd": null,
+      "statut": "aucun vol direct",
+      "note": "zero resultat sur VRN et zero en interrogeant la ville, sur les huit semaines. Aucun hotel identifie par ailleurs"
+    },
+    {
+      "cle_site": "מרבייה",
+      "semaine": "S1-S8",
+      "depart": null,
+      "retour": null,
+      "jour_depart": null,
+      "vol_usd": null,
+      "hotel_total_usd": null,
+      "statut": "aucun vol direct",
+      "note": "zero resultat sur AGP et sur Malaga, sur les huit semaines. Le 'pas de direct structurel' de la reference est confirme"
+    },
+    {
+      "cle_site": "לובלין",
+      "semaine": "S1-S8",
+      "depart": null,
+      "retour": null,
+      "jour_depart": null,
+      "vol_usd": null,
+      "hotel_total_usd": null,
+      "statut": "aucun vol direct",
+      "note": "aucun direct TLV-Lublin. Divergence a trancher entre Hotel Ilan (reference promo) et Hotel Olive (site)"
     }
   ],
   "alerte_calendrier": "Roch Hachana 5787 : vendredi 11/09 au soir -> dimanche 13/09 au soir. Le depart dominical de S3 (13/09) tombe en plein Yom Tov : repli lundi 14/09. Yom Kippour : dimanche 20/09 au soir -> lundi 21/09 au soir. Le depart de S4 tombe a l'entree de Kippour et le lundi est Kippour lui-meme : S4 est inexploitable, ni dimanche ni lundi. Souccot : 25/09 au soir -> 02/10 au soir, Sim'hat Torah en Israel jusqu'au 03/10 au soir. S5 (27/09) est en 'hol hamoed : vendable mais en pic de demande israelienne. S6 a S8 (04/10, 11/10, 18/10) sont le creux post-fetes — c'est la que les prix s'effondrent."
