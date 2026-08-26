@@ -1,0 +1,15 @@
+{
+  "shnat_mas": 2025,
+  "tik_mas_hachnasa": "123456789",
+  "ben_zug_rashum": { "shem": "יעקב", "tz": "012345678", "maamad": "atzmai", "sug_osek": "murshe" },
+  "ben_zug": { "shem": "רות", "tz": "087654321", "maamad": "sachir" },
+  "shlavim": { "0": {"ishur": true}, "1": {"ishur": true}, "2": {"ishur": true}, "3": {"ishur": false, "hearot": "ממתין ל-106 ממעסיק שני"} },
+  "sechumim": [
+    {"shalav": 2, "prit": "הכנסה חייבת מעסק", "sechum": 184300, "kod": "150", "kod_meumat": true, "amuda": "ben_zug_rashum", "makor": "נספח א' 1320"},
+    {"shalav": 3, "prit": "משכורת — מעסיק א'", "sechum": 96420, "kod": "172", "kod_meumat": false, "amuda": "ben_zug", "makor": "טופס 106 חברת X"},
+    {"shalav": 4, "prit": "ביטוח לאומי — 52%", "sechum": 7150, "kod": null, "kod_meumat": false, "amuda": "ben_zug_rashum", "makor": "אישור ביטוח לאומי 2025"},
+    {"shalav": 6, "prit": "מקדמות ששולמו", "sechum": 21000, "kod": null, "kod_meumat": false, "amuda": "ben_zug_rashum", "makor": ""}
+  ],
+  "chaserim": [{"mismach": "טופס 106 ממעסיק שני", "mekor": "מחלקת שכר", "shalav": 3}],
+  "dgalim": [{"shalav": 2, "noseh": "פער 6,800 ₪ מול דוחות מע\"מ", "status": "patuach"}]
+}
