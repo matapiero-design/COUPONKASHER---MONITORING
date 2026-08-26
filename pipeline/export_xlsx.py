@@ -133,7 +133,9 @@ wr.row_dimensions[3].height = 24
 
 r = REL_FIRST
 for c in ordre:
-    for s in SEM:
+    # Certaines lignes portent une semaine non standard (« S1-S8 » pour un constat
+    # valable sur toute la fenetre) : on parcourt les cles reellement presentes.
+    for s in sorted(cell[c], key=lambda x: (SEM.index(x) if x in SEM else 99, x)):
         d = cell[c].get(s)
         if not d: continue
         wr.cell(row=r, column=1, value=libelle(c).rsplit(" (", 1)[0])
