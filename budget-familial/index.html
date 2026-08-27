@@ -1559,10 +1559,16 @@ function toggleSec(id) {
   const wasOpen = !!S.open[id];
   S.open[id] = !S.open[id];
   render();
-  /* si on vient d'ouvrir la section, sauter dessus automatiquement */
+  /* si on vient d'ouvrir la section, sauter dessus sans défilement manuel */
   if (!wasOpen && S.open[id]) {
-    const el = document.getElementById('sec-' + id);
-    if (el) setTimeout(() => el.scrollIntoView({behavior:'smooth', block:'start'}), 40);
+    setTimeout(() => {
+      const el = document.getElementById('sec-' + id);
+      if (!el) return;
+      const hdr = document.querySelector('.hdr');
+      const hdrH = hdr ? hdr.getBoundingClientRect().height + 8 : 0;
+      const top = el.getBoundingClientRect().top + window.pageYOffset - hdrH;
+      window.scrollTo({top: Math.max(0, top), behavior: 'smooth'});
+    }, 40);
   }
 }
 
