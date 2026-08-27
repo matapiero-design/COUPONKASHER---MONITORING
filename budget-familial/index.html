@@ -552,7 +552,7 @@ input,select{font-family:inherit;direction:rtl}
   <!-- HEADER — 4 lignes centrées -->
   <header class="hdr">
     <!-- Bouton thème — absolu coin haut-gauche -->
-    <button id="theme-btn" onclick="toggleTheme()" title="שינוי ערכת נושא">🌙</button>
+    <button id="theme-btn" onclick="toggleTheme()" title="שינוי ערכת נושא">🔆</button>
 
     <!-- L1 : Logo centré -->
     <div class="logo">
@@ -1629,15 +1629,15 @@ function toggleTheme() {
   if (!S.theme || S.theme==='system') {
     S.theme = 'dark';
     root.setAttribute('data-theme','dark');
-    document.getElementById('theme-btn').textContent = '☀️';
+    document.getElementById('theme-btn').textContent = '🔆';
   } else if (S.theme==='dark') {
     S.theme = 'light';
     root.setAttribute('data-theme','light');
-    document.getElementById('theme-btn').textContent = '🌙';
+    document.getElementById('theme-btn').textContent = '🔆';
   } else {
     S.theme = 'system';
     root.removeAttribute('data-theme');
-    document.getElementById('theme-btn').textContent = '🌙';
+    document.getElementById('theme-btn').textContent = '🔆';
   }
   try { localStorage.setItem(STORAGE_KEY+'theme', S.theme); } catch(e){}
 }
@@ -1664,7 +1664,7 @@ function showToast(msg) {
     if (saved && saved !== 'system') {
       S.theme = saved;
       document.documentElement.setAttribute('data-theme', saved);
-      document.getElementById('theme-btn').textContent = saved==='dark' ? '☀️' : '🌙';
+      document.getElementById('theme-btn').textContent = '🔆';
     }
   } catch(e){}
 
