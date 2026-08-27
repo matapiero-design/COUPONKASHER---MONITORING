@@ -569,11 +569,11 @@ input,select{font-family:inherit;direction:rtl}
       <button class="ptbtn" id="bp-cumul"  onclick="setPeriod('cumulative')">📊 מצטבר</button>
     </div>
 
-    <!-- L3 : Navigation mensuelle centrée -->
-    <div class="mnav" id="month-nav">
-      <button class="mbtn" onclick="navMonth(1)">›</button>
-      <span  class="mlabel" id="month-label">—</span>
+    <!-- L3 : Navigation mensuelle — LTR explicite : ‹ gauche, › droite -->
+    <div class="mnav" id="month-nav" dir="ltr">
       <button class="mbtn" onclick="navMonth(-1)">‹</button>
+      <span  class="mlabel" id="month-label">—</span>
+      <button class="mbtn" onclick="navMonth(1)">›</button>
     </div>
 
     <!-- L4 : Onglets filtres centrés -->
