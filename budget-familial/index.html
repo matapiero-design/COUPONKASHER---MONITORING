@@ -1556,8 +1556,14 @@ function enterApp() {
 }
 
 function toggleSec(id) {
+  const wasOpen = !!S.open[id];
   S.open[id] = !S.open[id];
   render();
+  /* si on vient d'ouvrir la section, sauter dessus automatiquement */
+  if (!wasOpen && S.open[id]) {
+    const el = document.getElementById('sec-' + id);
+    if (el) setTimeout(() => el.scrollIntoView({behavior:'smooth', block:'start'}), 40);
+  }
 }
 
 function setPeriod(mode) {
