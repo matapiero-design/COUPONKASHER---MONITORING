@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Budget Pro — לוח תקציב</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;900&family=Frank+Ruhl+Libre:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ─────────────────────────────────────────── */
+:root {
+  --navy:        #1B3A5C;
+  --navy-mid:    #2A5480;
+  --navy-lt:     #4A7BA0;
+  --gold:        #C9941F;
+  --gold-lt:     #E8BB55;
+  --income:      #18B893;
+  --expense:     #E5384A;
+  --unpaid:      #E0862A;
+  --bg:          #ECF3FA;
+  --bg2:         #F5F9FD;
+  --surf:        #FFFFFF;
+  --surf2:       #EEF5FB;
+  --surf3:       #E2EFF8;
+  --border:      rgba(27,58,92,.11);
+  --border2:     rgba(27,58,92,.18);
+  --t1:          #0D1E2F;
+  --t2:          #3A607C;
+  --t3:          #7094AB;
+  --t-inv:       #FFFFFF;
+  --shd:         0 2px 14px rgba(27,58,92,.08);
+  --shd-hov:     0 8px 32px rgba(27,58,92,.15);
+  --r:           18px;
+  --r-sm:        10px;
+  --r-xs:        6px;
+  --tr:          all .22s cubic-bezier(.4,0,.2,1);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#091825; --bg2:#0D1E2F; --surf:#152433; --surf2:#1C3045; --surf3:#243C56;
+    --border:rgba(255,255,255,.08); --border2:rgba(255,255,255,.14);
+    --t1:#DFF0FF; --t2:#7AAFC9; --t3:#3A6880;
+    --shd:0 2px 14px rgba(0,0,0,.35); --shd-hov:0 8px 32px rgba(0,0,0,.45);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#091825; --bg2:#0D1E2F; --surf:#152433; --surf2:#1C3045; --surf3:#243C56;
+  --border:rgba(255,255,255,.08); --border2:rgba(255,255,255,.14);
+  --t1:#DFF0FF; --t2:#7AAFC9; --t3:#3A6880;
+  --shd:0 2px 14px rgba(0,0,0,.35); --shd-hov:0 8px 32px rgba(0,0,0,.45);
+}
+
+/* ── RESET ───────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased}
+body{font-family:'Heebo',system-ui,sans-serif;background:var(--bg);color:var(--t1);direction:rtl;min-height:100vh}
+button{font-family:inherit;cursor:pointer}
+input,select{font-family:inherit;direction:rtl}
+
+/* ── UTILS ───────────────────────────────────────────── */
+.hidden{display:none!important}
+.tabular{font-variant-numeric:tabular-nums}
+
+/* ── SPLASH ──────────────────────────────────────────── */
+#splash{
+  position:fixed;inset:0;z-index:9999;
+  background:linear-gradient(145deg,#091825 0%,#1B3A5C 55%,#0A2840 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;
+  transition:opacity .5s,transform .5s;
+}
+#splash.out{opacity:0;transform:scale(1.04);pointer-events:none}
+.sp-icon{
+  width:80px;height:80px;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-lt) 100%);
+  border-radius:22px;display:flex;align-items:center;justify-content:center;
+  font-size:38px;box-shadow:0 10px 40px rgba(201,148,31,.45);
+}
+.sp-title{
+  font-family:'Frank Ruhl Libre',serif;font-size:clamp(32px,6vw,54px);
+  font-weight:900;color:#fff;letter-spacing:-1px;text-align:center;line-height:1.1;
+}
+.sp-sub{font-size:17px;color:rgba(255,255,255,.55);letter-spacing:.5px;text-align:center}
+.sp-btn{
+  margin-top:8px;padding:14px 52px;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-lt) 100%);
+  color:#0D1E2F;font-size:18px;font-weight:800;border:none;border-radius:50px;
+  transition:var(--tr);box-shadow:0 6px 24px rgba(201,148,31,.4);
+}
+.sp-btn:hover{transform:translateY(-3px);box-shadow:0 10px 36px rgba(201,148,31,.55)}
+
+/* ── APP SHELL ───────────────────────────────────────── */
+#app{max-width:920px;margin:0 auto;padding:0 14px 90px}
+
+/* ── HEADER ──────────────────────────────────────────── */
+.hdr{
+  background:linear-gradient(155deg,var(--navy) 0%,var(--navy-mid) 100%);
+  margin:0 -14px;padding:20px 14px 16px;
+  position:sticky;top:0;z-index:200;
+  box-shadow:0 4px 24px rgba(27,58,92,.35);
+}
+.hdr-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.logo{display:flex;align-items:center;gap:11px}
+.logo-icon{
+  width:40px;height:40px;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-lt) 100%);
+  border-radius:11px;display:flex;align-items:center;justify-content:center;
+  font-size:20px;box-shadow:0 4px 14px rgba(201,148,31,.35);
+}
+.logo-text{font-family:'Frank Ruhl Libre',serif;font-size:21px;font-weight:900;color:#fff;letter-spacing:-.3px}
+.hdr-btns{display:flex;gap:6px;align-items:center}
+.hbtn{
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.17);
+  color:rgba(255,255,255,.88);padding:6px 13px;border-radius:8px;font-size:13px;
+  transition:var(--tr);
+}
+.hbtn:hover{background:rgba(255,255,255,.2)}
+.hbtn.on{background:var(--gold);border-color:var(--gold);color:#0D1E2F;font-weight:700}
+
+.mnav{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:12px}
+.mbtn{
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.17);
+  color:rgba(255,255,255,.9);width:32px;height:32px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-size:17px;
+  transition:var(--tr);
+}
+.mbtn:hover{background:rgba(255,255,255,.25)}
+.mlabel{
+  font-family:'Frank Ruhl Libre',serif;font-size:19px;font-weight:700;
+  color:#fff;min-width:155px;text-align:center;
+}
+
+.tabs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:5px}
+.tbtn{
+  background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);
+  color:rgba(255,255,255,.72);padding:4px 13px;border-radius:20px;font-size:12.5px;
+  transition:var(--tr);
+}
+.tbtn:hover{background:rgba(255,255,255,.18);color:#fff}
+.tbtn.on{background:rgba(255,255,255,.24);border-color:rgba(255,255,255,.38);color:#fff;font-weight:600}
+
+/* ── KPI STRIP ───────────────────────────────────────── */
+.kpis{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:11px;margin:18px 0;
+}
+@media(min-width:560px){.kpis{grid-template-columns:repeat(4,1fr)}}
+
+.kpi{
+  background:var(--surf);border:1px solid var(--border);border-radius:var(--r);
+  padding:18px 14px;text-align:center;
+  box-shadow:var(--shd);transition:var(--tr);user-select:none;cursor:pointer;
+}
+.kpi:hover{box-shadow:var(--shd-hov);transform:translateY(-2px)}
+.kpi.bal{
+  grid-column:span 2;
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);
+  border-color:transparent;
+}
+@media(min-width:560px){.kpi.bal{grid-column:span 1}}
+.kpi-lbl{font-size:10.5px;font-weight:700;letter-spacing:.9px;text-transform:uppercase;color:var(--t3);margin-bottom:7px}
+.kpi.bal .kpi-lbl{color:rgba(255,255,255,.55)}
+.kpi-val{
+  font-family:'Frank Ruhl Libre',serif;font-size:clamp(20px,2.8vw,28px);
+  font-weight:900;font-variant-numeric:tabular-nums;line-height:1;margin-bottom:5px;
+}
+.kpi.bal .kpi-val{color:#fff;font-size:clamp(26px,3.8vw,36px)}
+.kpi.inc .kpi-val{color:var(--income)}
+.kpi.exp .kpi-val{color:var(--expense)}
+.kpi.upd .kpi-val{color:var(--unpaid)}
+.kpi-sub{font-size:11px;color:var(--t3)}
+.kpi.bal .kpi-sub{color:rgba(255,255,255,.48)}
+
+/* ── CHARTS ──────────────────────────────────────────── */
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:11px}
+@media(max-width:480px){.charts{grid-template-columns:1fr}}
+.chart-card{
+  background:var(--surf);border:1px solid var(--border);border-radius:var(--r);
+  padding:18px;box-shadow:var(--shd);
+}
+.chart-ttl{
+  font-size:11px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;
+  color:var(--t3);margin-bottom:14px;
+}
+.donut-wrap{display:flex;align-items:center;gap:14px}
+.donut-svg{width:90px;height:90px;flex-shrink:0}
+.leg{flex:1;min-width:0}
+.leg-row{display:flex;align-items:center;gap:7px;margin-bottom:5px;font-size:12px}
+.leg-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.leg-name{flex:1;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.leg-pct{font-weight:700;color:var(--t1);font-variant-numeric:tabular-nums}
+
+/* ── SECTION ─────────────────────────────────────────── */
+.sec{
+  background:var(--surf);border:1px solid var(--border);border-radius:var(--r);
+  margin-bottom:10px;overflow:hidden;box-shadow:var(--shd);
+}
+.sec-hdr{
+  display:flex;align-items:center;gap:9px;padding:14px 18px;
+  cursor:pointer;transition:background .18s;user-select:none;
+}
+.sec-hdr:hover{background:var(--surf2)}
+.sec-ico{
+  width:34px;height:34px;background:var(--surf3);border-radius:9px;
+  display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;
+}
+.sec-ttl{font-weight:700;font-size:14.5px;flex:1}
+.badge{
+  background:var(--surf3);color:var(--t2);font-size:11.5px;
+  font-weight:700;padding:2px 10px;border-radius:20px;
+}
+.badge.red{background:rgba(229,56,74,.12);color:var(--expense)}
+.badge.amber{background:rgba(224,134,42,.12);color:var(--unpaid)}
+.badge.green{background:rgba(24,184,147,.12);color:var(--income)}
+.chev{font-size:13px;color:var(--t3);transition:transform .25s}
+.chev.open{transform:rotate(180deg)}
+.sec-body{padding:0 18px 18px;border-top:1px solid var(--border)}
+.sec-body.hidden{display:none}
+.sec-inner{padding-top:14px}
+
+/* ── ALERTS ──────────────────────────────────────────── */
+.alert-row{
+  display:flex;align-items:flex-start;gap:10px;padding:10px 0;
+  border-bottom:1px solid var(--border);
+}
+.alert-row:last-child{border-bottom:none}
+.alert-emoji{font-size:18px;flex-shrink:0;padding-top:1px}
+.alert-txt{flex:1;font-size:13.5px;color:var(--t2);line-height:1.5}
+.alert-chip{
+  font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:20px;flex-shrink:0;
+}
+.alert-chip.over{background:rgba(229,56,74,.12);color:var(--expense)}
+.alert-chip.spike{background:rgba(224,134,42,.12);color:var(--unpaid)}
+
+/* ── CATEGORY BREAKDOWN ──────────────────────────────── */
+.cat-row{padding:9px 0;border-bottom:1px solid var(--border)}
+.cat-row:last-child{border-bottom:none}
+.cat-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
+.cat-name{font-size:13.5px;font-weight:500}
+.cat-right{display:flex;align-items:center;gap:8px}
+.cat-scope{
+  font-size:10px;font-weight:600;background:var(--surf3);color:var(--t3);
+  padding:2px 7px;border-radius:20px;
+}
+.cat-amt{font-size:13px;font-variant-numeric:tabular-nums;font-weight:600;color:var(--t2)}
+.cat-cap-txt{font-size:11px;color:var(--t3)}
+.pbar{height:5px;background:var(--surf3);border-radius:3px;overflow:hidden;margin-top:2px}
+.pfill{height:100%;border-radius:3px;transition:width .6s}
+.pfill.ok{background:var(--income)}
+.pfill.warn{background:var(--unpaid)}
+.pfill.over{background:var(--expense)}
+
+/* ── ADD FORM ────────────────────────────────────────── */
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:14px}
+@media(max-width:400px){.fgrid{grid-template-columns:1fr}}
+.ff{display:flex;flex-direction:column;gap:4px}
+.ff.full{grid-column:span 2}
+@media(max-width:400px){.ff.full{grid-column:span 1}}
+.flbl{font-size:11px;font-weight:700;letter-spacing:.4px;color:var(--t3);text-transform:uppercase}
+.finp,.fsel{
+  padding:9px 11px;background:var(--surf2);border:1px solid var(--border2);
+  border-radius:var(--r-sm);color:var(--t1);font-size:14px;
+  transition:border-color .2s,box-shadow .2s;width:100%;direction:rtl;
+}
+.finp:focus,.fsel:focus{
+  outline:none;border-color:var(--navy-mid);
+  box-shadow:0 0 0 3px rgba(27,58,92,.12);
+}
+.fsub{
+  padding:11px 26px;
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);
+  color:#fff;border:none;border-radius:var(--r-sm);font-size:15px;font-weight:700;
+  transition:var(--tr);box-shadow:0 4px 12px rgba(27,58,92,.28);
+}
+.fsub:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(27,58,92,.38)}
+
+/* ── TX LIST ─────────────────────────────────────────── */
+.tx{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
+.tx:last-child{border-bottom:none}
+.tx-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.tx-dot.i{background:var(--income)}
+.tx-dot.e{background:var(--expense)}
+.tx-dot.u{background:var(--unpaid)}
+.tx-info{flex:1;min-width:0}
+.tx-cat{font-size:14px;font-weight:500}
+.tx-meta{font-size:11.5px;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tx-amt{font-size:14.5px;font-weight:700;font-variant-numeric:tabular-nums;flex-shrink:0}
+.tx-amt.i{color:var(--income)}
+.tx-amt.e{color:var(--expense)}
+.tx-amt.u{color:var(--unpaid)}
+.tx-acts{display:flex;gap:4px;flex-shrink:0}
+.xbtn{
+  padding:3px 8px;border-radius:6px;border:1px solid var(--border);
+  background:var(--surf2);color:var(--t3);font-size:12px;transition:var(--tr);
+}
+.xbtn:hover{background:var(--surf3);color:var(--t2)}
+.xbtn.del:hover{background:rgba(229,56,74,.1);color:var(--expense);border-color:var(--expense)}
+.xbtn.upd:hover{background:rgba(224,134,42,.1);color:var(--unpaid);border-color:var(--unpaid)}
+
+/* ── UNPAID OBLIGATIONS ──────────────────────────────── */
+.upd-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
+.upd-row:last-child{border-bottom:none}
+.upd-info{flex:1;min-width:0}
+.upd-cat{font-size:14px;font-weight:500}
+.upd-meta{font-size:11.5px;color:var(--t3)}
+.upd-amt{font-size:14.5px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--unpaid);flex-shrink:0}
+.paid-btn{
+  padding:5px 12px;border-radius:20px;border:1.5px solid var(--income);
+  background:transparent;color:var(--income);font-size:12px;font-weight:700;
+  transition:var(--tr);flex-shrink:0;white-space:nowrap;
+}
+.paid-btn:hover{background:var(--income);color:#fff}
+
+/* ── TREND ───────────────────────────────────────────── */
+.trend-wrap{overflow-x:auto;margin-top:12px}
+.ttbl{width:100%;border-collapse:collapse;font-size:13px}
+.ttbl th{
+  font-size:10.5px;font-weight:700;letter-spacing:.5px;color:var(--t3);
+  padding:7px 5px;border-bottom:2px solid var(--border);text-align:right;
+  text-transform:uppercase;
+}
+.ttbl td{padding:9px 5px;border-bottom:1px solid var(--border);font-variant-numeric:tabular-nums;text-align:right}
+.ttbl tr:last-child td{border-bottom:none}
+.ttbl tr:hover td{background:var(--surf2)}
+.ti{color:var(--income);font-weight:600}
+.te{color:var(--expense);font-weight:600}
+.tb{font-weight:800;color:var(--t1)}
+
+/* ── JOURNAL ─────────────────────────────────────────── */
+.jrn{padding:10px 0;border-bottom:1px solid var(--border)}
+.jrn:last-child{border-bottom:none}
+.jrn-dt{font-size:10.5px;color:var(--t3);margin-bottom:4px}
+.jrn-txt{font-size:13.5px;color:var(--t2);line-height:1.55}
+.jrn-chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+.chip{font-size:10px;background:var(--surf3);color:var(--t3);padding:2px 7px;border-radius:20px}
+
+/* ── CUMULATIVE GRID ─────────────────────────────────── */
+.totals{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px}
+.tot{
+  background:var(--surf);border:1px solid var(--border);border-radius:var(--r);
+  padding:14px;text-align:center;box-shadow:var(--shd);
+}
+.tot-lbl{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--t3);margin-bottom:7px}
+.tot-val{font-family:'Frank Ruhl Libre',serif;font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+
+/* ── ERROR BANNER ────────────────────────────────────── */
+.err{
+  background:rgba(229,56,74,.09);border:1px solid rgba(229,56,74,.22);
+  border-radius:var(--r-sm);padding:11px 14px;font-size:13px;
+  color:var(--expense);margin-bottom:10px;line-height:1.5;
+}
+
+/* ── TOAST ───────────────────────────────────────────── */
+#toast{
+  position:fixed;bottom:22px;left:50%;
+  transform:translateX(-50%) translateY(90px);
+  background:var(--navy);color:#fff;
+  padding:11px 24px;border-radius:50px;font-size:14px;font-weight:600;
+  box-shadow:0 8px 32px rgba(0,0,0,.28);transition:transform .32s cubic-bezier(.4,0,.2,1);
+  z-index:9000;white-space:nowrap;pointer-events:none;
+}
+#toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ── THEME TOGGLE ────────────────────────────────────── */
+#theme-btn{
+  width:32px;height:32px;background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.17);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;transition:var(--tr);
+}
+#theme-btn:hover{background:rgba(255,255,255,.22)}
+</style>
+</head>
+<body>
+
+<!-- ── SPLASH ──────────────────────────────────────── -->
+<div id="splash">
+  <div class="sp-icon">💰</div>
+  <div>
+    <div class="sp-title">Budget Pro</div>
+    <div class="sp-sub" style="margin-top:10px">ניהול תקציב פרטי ועסקי לעצמאים</div>
+  </div>
+  <div style="font-size:14px;color:rgba(255,255,255,.38);font-style:italic;text-align:center">
+    פשוט · קצר · בכמה קליקים
+  </div>
+  <button class="sp-btn" onclick="enterApp()">כניסה ←</button>
+</div>
+
+<!-- ── APP ────────────────────────────────────────── -->
+<div id="app" class="hidden">
+  <!-- HEADER -->
+  <header class="hdr">
+    <div class="hdr-top">
+      <div class="logo">
+        <div class="logo-icon">💰</div>
+        <span class="logo-text">Budget Pro</span>
+      </div>
+      <div class="hdr-btns">
+        <button id="theme-btn" onclick="toggleTheme()" title="שינוי ערכת נושא">🌙</button>
+        <button class="hbtn" id="bp-month"  onclick="setPeriod('month')">חודשי</button>
+        <button class="hbtn" id="bp-cumul"  onclick="setPeriod('cumulative')">מצטבר</button>
+      </div>
+    </div>
+    <div class="mnav" id="month-nav">
+      <button class="mbtn" onclick="navMonth(1)">›</button>
+      <span  class="mlabel" id="month-label">—</span>
+      <button class="mbtn" onclick="navMonth(-1)">‹</button>
+    </div>
+    <div class="tabs" style="margin-bottom:5px">
+      <button class="tbtn" id="sc-all"      onclick="setScope('all')">הכל</button>
+      <button class="tbtn" id="sc-private"  onclick="setScope('private')">פרטי</button>
+      <button class="tbtn" id="sc-business" onclick="setScope('business')">עסקי</button>
+    </div>
+    <div class="tabs">
+      <button class="tbtn" id="tp-all"      onclick="setType('all')">הכל</button>
+      <button class="tbtn" id="tp-income"   onclick="setType('income')">הכנסות</button>
+      <button class="tbtn" id="tp-expense"  onclick="setType('expense')">הוצאות</button>
+    </div>
+  </header>
+
+  <!-- ERROR -->
+  <div id="err-wrap"></div>
+
+  <!-- KPI CARDS -->
+  <div class="kpis">
+    <div class="kpi bal">
+      <div class="kpi-lbl">יתרה נוכחית</div>
+      <div class="kpi-val tabular" id="kv-balance">—</div>
+      <div class="kpi-sub" id="ks-balance">&nbsp;</div>
+    </div>
+    <div class="kpi inc" onclick="toggleSec('income-list')">
+      <div class="kpi-lbl">הכנסות</div>
+      <div class="kpi-val tabular" id="kv-income">—</div>
+      <div class="kpi-sub" id="ks-income">&nbsp;</div>
+    </div>
+    <div class="kpi exp" onclick="toggleSec('expense-list')">
+      <div class="kpi-lbl">הוצאות</div>
+      <div class="kpi-val tabular" id="kv-expense">—</div>
+      <div class="kpi-sub" id="ks-expense">&nbsp;</div>
+    </div>
+    <div class="kpi upd" onclick="toggleSec('unpaid-list')">
+      <div class="kpi-lbl">התחייבויות</div>
+      <div class="kpi-val tabular" id="kv-unpaid">—</div>
+      <div class="kpi-sub" id="ks-unpaid">&nbsp;</div>
+    </div>
+  </div>
+
+  <!-- CHARTS -->
+  <div class="charts">
+    <div class="chart-card">
+      <div class="chart-ttl">פירוט הוצאות</div>
+      <div id="donut-wrap"></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-ttl">מגמה 6 חודשים</div>
+      <div id="bar-wrap"></div>
+    </div>
+  </div>
+
+  <!-- ALERTS -->
+  <div class="sec" id="sec-alerts">
+    <div class="sec-hdr" onclick="toggleSec('alerts')">
+      <div class="sec-ico">⚠️</div>
+      <span class="sec-ttl">התראות תקציב</span>
+      <span class="badge red" id="bdg-alerts">0</span>
+      <span class="chev" id="chev-alerts">▾</span>
+    </div>
+    <div class="sec-body hidden" id="body-alerts">
+      <div class="sec-inner" id="lst-alerts"></div>
+    </div>
+  </div>
+
+  <!-- CATEGORY BREAKDOWN -->
+  <div class="sec" id="sec-categories">
+    <div class="sec-hdr" onclick="toggleSec('categories')">
+      <div class="sec-ico">📊</div>
+      <span class="sec-ttl">לפי קטגוריה</span>
+      <span class="badge" id="bdg-cats">—</span>
+      <span class="chev" id="chev-categories">▾</span>
+    </div>
+    <div class="sec-body hidden" id="body-categories">
+      <div class="sec-inner" id="lst-cats"></div>
+    </div>
+  </div>
+
+  <!-- INCOME LIST -->
+  <div class="sec" id="sec-income-list">
+    <div class="sec-hdr" onclick="toggleSec('income-list')">
+      <div class="sec-ico">📈</div>
+      <span class="sec-ttl">הכנסות — פירוט</span>
+      <span class="badge green" id="bdg-income-list">—</span>
+      <span class="chev" id="chev-income-list">▾</span>
+    </div>
+    <div class="sec-body hidden" id="body-income-list">
+      <div class="sec-inner" id="lst-income"></div>
+    </div>
+  </div>
+
+  <!-- EXPENSE LIST -->
+  <div class="sec" id="sec-expense-list">
+    <div class="sec-hdr" onclick="toggleSec('expense-list')">
+      <div class="sec-ico">📉</div>
+      <span class="sec-ttl">הוצאות — פירוט</span>
+      <span class="badge red" id="bdg-expense-list">—</span>
+      <span class="chev" id="chev-expense-list">▾</span>
+    </div>
+    <div class="sec-body hidden" id="body-expense-list">
+      <div class="sec-inner" id="lst-expenses"></div>
+    </div>
+  </div>
+
+  <!-- ADD TRANSACTION -->
+  <div class="sec" id="sec-add-tx">
+    <div class="sec-hdr" onclick="toggleSec('add-tx')">
+      <div class="sec-ico">➕</div>
+      <span class="sec-ttl">הוספת תנועה</span>
+      <span class="chev" id="chev-add-tx">▾</span>
+    </div>
+    <div class="sec-body hidden" id="body-add-tx">
+      <div class="sec-inner">
+        <div class="fgrid">
+          <div class="ff"><label class="flbl">תאריך</label><input class="finp" type="date" id="f-date"></div>
+          <div class="ff"><label class="flbl">סכום ₪</label><input class="finp" type="number" id="f-amount" placeholder="0" min="0"></div>
+          <div class="ff">
+            <label class="flbl">סוג</label>
+            <select class="fsel" id="f-type" onchange="renderCatOpts()">
+              <option value="expense">הוצאה</option>
+              <option value="income">הכנסה</option>
+            </select>
+          </div>
+          <div class="ff">
+            <label class="flbl">תחום</label>
+            <select class="fsel" id="f-scope" onchange="renderCatOpts()">
+              <option value="private">פרטי</option>
+              <option value="business">עסקי</option>
+            </select>
+          </div>
+          <div class="ff">
+            <label class="flbl">קטגוריה</label>
+            <select class="fsel" id="f-category"></select>
+          </div>
+          <div class="ff">
+            <label class="flbl">הערה</label>
+            <input class="finp" type="text" id="f-note" placeholder="רשות">
+          </div>
+          <div class="ff full" style="display:flex;gap:8px;align-items:center">
+            <button class="fsub" onclick="addTx()">הוסף תנועה</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TX LIST -->
+  <div class="sec" id="sec-tx-list">
+    <div class="sec-hdr" onclick="toggleSec('tx-list')">
+      <div class="sec-ico">📋</div>
+      <span class="sec-ttl">כל התנועות</span>
+      <span class="badge" id="bdg-tx-list">—</span>
+      <span class="chev" id="chev-tx-list">▾</span>
+    </div>
+    <div class="sec-body hidden" id="body-tx-list">
+      <div class="sec-inner" id="lst-tx"></div>
+    </div>
+  </div>
+
+  <!-- UNPAID LIST -->
+  <div class="sec" id="sec-unpaid-list">
+    <div class="sec-hdr" onclick="toggleSec('unpaid-list')">
+      <div class="sec-ico">🔴</div>
+      <span class="sec-ttl">התחייבויות לתשלום</span>
+      <span class="badge amber" id="bdg-unpaid-list">—</span>
+      <span class="chev" id="chev-unpaid-list">▾</span>
+    </div>
+    <div class="sec-body hidden" id="body-unpaid-list">
+      <div class="sec-inner" id="lst-unpaid"></div>
+    </div>
+  </div>
+
+  <!-- TREND -->
+  <div class="sec" id="sec-trend">
+    <div class="sec-hdr" onclick="toggleSec('trend')">
+      <div class="sec-ico">📈</div>
+      <span class="sec-ttl">מגמה 6 חודשים</span>
+      <span class="chev" id="chev-trend">▾</span>
+    </div>
+    <div class="sec-body hidden" id="body-trend">
+      <div class="sec-inner" id="lst-trend"></div>
+    </div>
+  </div>
+
+  <!-- JOURNAL -->
+  <div class="sec" id="sec-journal">
+    <div class="sec-hdr" onclick="toggleSec('journal')">
+      <div class="sec-ico">📝</div>
+      <span class="sec-ttl">יומן הודעות</span>
+      <span class="badge" id="bdg-journal">—</span>
+      <span class="chev" id="chev-journal">▾</span>
+    </div>
+    <div class="sec-body hidden" id="body-journal">
+      <div class="sec-inner" id="lst-journal"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<script>
+/* ══════════════════════════════════════════════════════
+   DATA — ported from v65
+   ════════════════════════════════════════════════════ */
+const PENDING_TRANSACTIONS = [
+  {id:'2026-07-29-w1',date:'2026-07-29',scope:'business',type:'income',category:'סדנאות',amount:4000,note:'סדנת יום הולדת',source:'text'},
+  {id:'2026-07-29-s1',date:'2026-07-29',scope:'private',type:'expense',category:'מכולת',amount:300,note:'סופר',source:'text'},
+  {id:'2026-07-29-m1',date:'2026-07-29',scope:'private',type:'expense',category:'אחר',amount:200,note:'החזר חוב לאמא',source:'text'},
+  {id:'2026-07-30-t1',date:'2026-07-30',scope:'private',type:'expense',category:'תחבורה',amount:600,note:'הסעות חודש יולי',source:'text'},
+  {id:'2026-07-30-c1',date:'2026-07-30',scope:'business',type:'income',category:'קייטנות',amount:1350,note:'קייטנה של שבוע - תשלום מהורה',source:'text'},
+  {id:'2026-07-30-b1',date:'2026-07-30',scope:'private',type:'income',category:'הכנסות',amount:260,note:'ביט',source:'text'},
+  {id:'2026-07-30-b2',date:'2026-07-30',scope:'private',type:'income',category:'הכנסות',amount:600,note:'ביט',source:'text'},
+  {id:'2026-07-30-b3',date:'2026-07-30',scope:'business',type:'income',category:'הכנסות עסק',amount:1200,note:'ביט',source:'text'},
+  {id:'2026-07-30-b4',date:'2026-07-30',scope:'business',type:'income',category:'הכנסות עסק',amount:320,note:'ביט',source:'text'},
+  {id:'2026-07-31-b6',date:'2026-07-31',scope:'business',type:'income',category:'הכנסות עסק',amount:599,note:'ביט',source:'text'},
+  {id:'2026-07-31-bt1',date:'2026-07-31',scope:'business',type:'income',category:'הכנסות עסק',amount:1080,note:'העברה בנקאית',source:'text'},
+  {id:'2026-07-31-cash1',date:'2026-07-31',scope:'business',type:'income',category:'הכנסות עסק',amount:320,note:'מזומן',source:'text'},
+  {id:'2026-07-31-cash2',date:'2026-07-31',scope:'business',type:'income',category:'הכנסות עסק',amount:250,note:'מזומן',source:'text'},
+  {id:'2026-08-01-f1',date:'2026-08-01',scope:'private',type:'expense',category:'מכולת',amount:250,note:'דגים',source:'text'},
+  {id:'2026-08-01-f2',date:'2026-08-01',scope:'private',type:'expense',category:'מכולת',amount:60,note:'איצו',source:'text'},
+  {id:'2026-08-01-f3',date:'2026-08-01',scope:'private',type:'expense',category:'מכולת',amount:80,note:'חזי ירק',source:'text'},
+  {id:'2026-08-01-b5',date:'2026-08-01',scope:'business',type:'income',category:'הכנסות עסק',amount:330,note:'ביט',source:'text'},
+  {id:'2026-08-01-l1',date:'2026-08-01',scope:'private',type:'expense',category:'אחר',amount:66,note:'לוטו',source:'text'},
+  {id:'2026-08-03-p1',date:'2026-08-03',scope:'private',type:'expense',category:'תחבורה',amount:30,note:'חניה',source:'text'},
+  {id:'2026-08-03-a1',date:'2026-08-03',scope:'private',type:'expense',category:'בילויים',amount:60,note:'אטרקציה',source:'text'},
+  {id:'2026-08-03-k1',date:'2026-08-03',scope:'private',type:'expense',category:'מכולת',amount:200,note:'אוכל שתייה ילדים',source:'text'},
+  {id:'2026-08-03-r1',date:'2026-08-03',scope:'private',type:'income',category:'שכר דירה',amount:1000,note:'שכר דירה',source:'text'},
+  {id:'2026-08-03-cash3',date:'2026-08-03',scope:'private',type:'income',category:'הכנסות',amount:200,note:'מזומן',source:'text'},
+  {id:'2026-08-03-food1',date:'2026-08-03',scope:'private',type:'expense',category:'מכולת',amount:200,note:'אוכל',source:'text'},
+  {id:'2026-08-16-e1',date:'2026-08-16',scope:'business',type:'expense',category:'חומרי גלם',amount:50,note:'',source:'text'},
+  {id:'2026-08-16-e2',date:'2026-08-16',scope:'business',type:'expense',category:'חומרי גלם',amount:230,note:'',source:'text'},
+  {id:'2026-08-16-b1',date:'2026-08-16',scope:'business',type:'income',category:'הכנסות עסק',amount:600,note:'ביט',source:'text'},
+  {id:'2026-08-16-bt1',date:'2026-08-16',scope:'private',type:'income',category:'הכנסות',amount:630,note:'העברה בנקאית',source:'text'},
+  {id:'2026-08-16-a1',date:'2026-08-16',scope:'private',type:'expense',category:'בילויים',amount:75,note:'',source:'text'},
+  {id:'2026-08-16-n1',date:'2026-08-16',scope:'private',type:'expense',category:'ציפורניים',amount:300,note:'',source:'text'},
+  {id:'2026-08-16-bb1',date:'2026-08-16',scope:'private',type:'expense',category:'בייביסיטר',amount:200,note:'',source:'text'},
+  {id:'2026-08-16-pool1',date:'2026-08-16',scope:'private',type:'expense',category:'בריכה',amount:2400,note:'מנוי בריכה יולי-נובמבר 2026',source:'text'},
+  {id:'2026-08-16-b2',date:'2026-08-16',scope:'business',type:'income',category:'הכנסות עסק',amount:400,note:'ביט',source:'text'},
+  {id:'2026-08-16-b3',date:'2026-08-16',scope:'business',type:'income',category:'הכנסות עסק',amount:600,note:'ביט',source:'text'},
+  {id:'2026-08-16-c1',date:'2026-08-16',scope:'private',type:'income',category:'הכנסות',amount:400,note:'מזומן',source:'text'},
+  {id:'2026-08-16-c2',date:'2026-08-16',scope:'private',type:'income',category:'הכנסות',amount:320,note:'מזומן',source:'text'},
+  {id:'2026-08-16-c3',date:'2026-08-16',scope:'private',type:'income',category:'הכנסות',amount:150,note:'מזומן',source:'text'},
+  {id:'2026-08-16-c4',date:'2026-08-16',scope:'private',type:'income',category:'הכנסות',amount:2500,note:'מזומן',source:'text'},
+  {id:'2026-08-16-h1',date:'2026-08-16',scope:'private',type:'expense',category:'החלקה',amount:800,note:'',source:'text'},
+  {id:'2026-08-16-g1',date:'2026-08-16',scope:'private',type:'expense',category:'משחקים',amount:100,note:'לנועם',source:'text'},
+  {id:'2026-08-16-f1',date:'2026-08-16',scope:'private',type:'expense',category:'מכולת',amount:40,note:'אוכל',source:'text'},
+  {id:'2026-08-16-b4',date:'2026-08-16',scope:'business',type:'income',category:'הכנסות עסק',amount:400,note:'ביט',source:'text'},
+  {id:'2026-08-16-b5',date:'2026-08-16',scope:'business',type:'income',category:'הכנסות עסק',amount:240,note:'ביט',source:'text'},
+  {id:'2026-08-16-b6',date:'2026-08-16',scope:'business',type:'income',category:'הכנסות עסק',amount:170,note:'ביט',source:'text'},
+  {id:'2026-08-16-c5',date:'2026-08-16',scope:'private',type:'income',category:'הכנסות',amount:400,note:'מזומן',source:'text'},
+  {id:'2026-08-16-b7',date:'2026-08-16',scope:'business',type:'income',category:'הכנסות עסק',amount:300,note:'ביט',source:'text'},
+  {id:'2026-08-16-b8',date:'2026-08-16',scope:'business',type:'income',category:'הכנסות עסק',amount:300,note:'ביט',source:'text'},
+  {id:'2026-08-16-b9',date:'2026-08-16',scope:'business',type:'income',category:'הכנסות עסק',amount:240,note:'ביט',source:'text'},
+  {id:'2026-08-16-eb1',date:'2026-08-16',scope:'private',type:'expense',category:'גבות',amount:90,note:'',source:'text'},
+  {id:'2026-08-16-e3',date:'2026-08-16',scope:'business',type:'expense',category:'חומרי גלם',amount:435,note:'סופר',source:'text'},
+  {id:'2026-08-16-camp1',date:'2026-08-16',scope:'private',type:'expense',category:'קייטנה',amount:850,note:'רני',source:'text'},
+  {id:'2026-08-16-w1',date:'2026-08-16',scope:'private',type:'expense',category:'העשרה',amount:200,note:'סדנה לקינוחי פירות',source:'text'},
+  {id:'2026-08-16-gan1',date:'2026-08-16',scope:'private',type:'expense',category:'גן',amount:2000,note:'רני',source:'text'},
+  {id:'2026-08-16-f2',date:'2026-08-16',scope:'private',type:'expense',category:'מכולת',amount:200,note:'אוכל',source:'text'},
+  {id:'2026-08-17-f1',date:'2026-08-17',scope:'private',type:'expense',category:'מכולת',amount:200,note:'אוכל',source:'text'},
+  {id:'2026-08-17-gas1',date:'2026-08-17',scope:'business',type:'expense',category:'דלק',amount:150,note:'',source:'text'},
+  {id:'2026-08-17-b1',date:'2026-08-17',scope:'business',type:'income',category:'הכנסות עסק',amount:220,note:'ביט',source:'text'},
+  {id:'2026-08-17-e1',date:'2026-08-17',scope:'business',type:'expense',category:'חומרי גלם',amount:120,note:'פירות',source:'text'},
+  {id:'2026-08-17-c1',date:'2026-08-17',scope:'business',type:'income',category:'הכנסות עסק',amount:220,note:'מזומן',source:'text'},
+  {id:'2026-08-17-bak1',date:'2026-08-17',scope:'private',type:'expense',category:'מאפייה',amount:64,note:'',source:'text'},
+  {id:'2026-08-17-b2',date:'2026-08-17',scope:'business',type:'income',category:'הכנסות עסק',amount:900,note:'ביט',source:'text'},
+  {id:'2026-08-18-e1',date:'2026-08-18',scope:'business',type:'expense',category:'חומרי גלם',amount:200,note:'סופר',source:'text'},
+  {id:'2026-08-19-e1',date:'2026-08-19',scope:'business',type:'expense',category:'חומרי גלם',amount:200,note:'סופר',source:'text'},
+  {id:'2026-08-19-p1',date:'2026-08-19',scope:'private',type:'expense',category:'תחבורה',amount:60,note:'חניה',source:'text'},
+  {id:'2026-08-19-c1',date:'2026-08-19',scope:'business',type:'income',category:'הכנסות עסק',amount:2600,note:'מזומן',source:'text'},
+  {id:'2026-08-19-bb1',date:'2026-08-19',scope:'private',type:'expense',category:'בייביסיטר',amount:250,note:'',source:'text'},
+  {id:'2026-08-20-r114832',date:'2026-07-29',scope:'business',type:'expense',category:'חומרי גלם',amount:440,note:'קבלה 1-114832',source:'photo-receipt'},
+  {id:'2026-08-20-r81934',date:'2026-07-25',scope:'business',type:'expense',category:'חומרי גלם',amount:850,note:'קבלה 2-81934',source:'photo-receipt'},
+  {id:'2026-08-20-r115191',date:'2026-08-01',scope:'business',type:'expense',category:'חומרי גלם',amount:600,note:'קבלה 1-115191',source:'photo-receipt'},
+  {id:'2026-08-20-r82215',date:'2026-07-15',scope:'business',type:'expense',category:'חומרי גלם',amount:1900,note:'קבלה 2-82215 (הלושקייק)',source:'photo-receipt'},
+  {id:'2026-08-20-mov1',date:'2026-08-20',scope:'private',type:'expense',category:'סרט',amount:165,note:'',source:'text'},
+  {id:'2026-08-20-f3',date:'2026-08-20',scope:'private',type:'expense',category:'מכולת',amount:150,note:'אוכל',source:'text'},
+  {id:'2026-08-20-cloth1',date:'2026-08-20',scope:'private',type:'expense',category:'ביגוד',amount:260,note:'בגדים לילדים',source:'text'},
+  {id:'2026-08-21-r111895',date:'2026-08-01',scope:'business',type:'expense',category:'חומרי גלם',amount:550,note:'קבלה 1-111895 (לושקייק)',source:'photo-receipt'},
+  {id:'2026-08-21-gas1',date:'2026-08-21',scope:'private',type:'expense',category:'דלק',amount:110,note:'',source:'text'},
+  {id:'2026-08-21-b1',date:'2026-08-21',scope:'business',type:'income',category:'הכנסות עסק',amount:211,note:'ביט',source:'text'},
+  {id:'2026-08-21-cash1',date:'2026-08-21',scope:'business',type:'income',category:'הכנסות עסק',amount:160,note:'מזומן',source:'text'},
+  {id:'2026-08-22-maxstock1',date:'2026-08-22',scope:'private',type:'expense',category:'אחר',amount:400,note:'מקס סטוק',source:'text'},
+  {id:'2026-08-24-super1',date:'2026-08-24',scope:'private',type:'expense',category:'מכולת',amount:42,note:'סופר',source:'text'},
+  {id:'2026-08-23-food1',date:'2026-08-23',scope:'private',type:'expense',category:'מכולת',amount:95,note:'אוכל',source:'text'},
+  {id:'2026-08-24-wedding1',date:'2026-08-24',scope:'private',type:'expense',category:'אחר',amount:400,note:'חתונה',source:'text'},
+  {id:'2026-08-24-superpharm1',date:'2026-08-24',scope:'private',type:'expense',category:'אחר',amount:150,note:'סופר פארם',source:'text'},
+  {id:'2026-08-24-b2',date:'2026-08-24',scope:'business',type:'income',category:'הכנסות עסק',amount:209,note:'ביט',source:'text'},
+  {id:'retro-property-tax-2026-07',date:'2026-07-01',scope:'private',type:'expense',category:'ארנונה',amount:632,note:'ארנונה (מילוי רטרואקטיבי יולי)',source:'text'},
+  {id:'retro-electricity-2026-07',date:'2026-07-01',scope:'private',type:'expense',category:'חשמל',amount:300,note:'חשמל (מילוי רטרואקטיבי יולי)',source:'text'},
+  {id:'retro-water-2026-07',date:'2026-07-01',scope:'private',type:'expense',category:'מים',amount:100,note:'מים (מילוי רטרואקטיבי יולי)',source:'text'},
+  {id:'retro-school-drachei-noam-2026-07',date:'2026-07-01',scope:'private',type:'expense',category:'בית ספר דרכי נעם',amount:1200,note:'בית ספר דרכי נעם (יולי)',source:'text'},
+  {id:'2026-08-24-camp1',date:'2026-08-24',scope:'private',type:'income',category:'קייטנה',amount:2000,note:'העברה בנקאית - קייטנה',source:'text'},
+  {id:'2026-08-25-fuel1',date:'2026-08-25',scope:'private',type:'expense',category:'דלק',amount:700,source:'text'},
+  {id:'2026-08-25-b1',date:'2026-08-25',scope:'business',type:'income',category:'הכנסות עסק',amount:160,note:'ביט',source:'text'},
+  {id:'debt-rani-2026-08',date:'2026-08-25',scope:'private',type:'expense',category:'חובות',amount:12000,note:'חוב לרני (גן) - 12,000₪, ייפרע בתשלומים חודשיים',source:'text'},
+  {id:'2026-08-15-mortgage-extra',date:'2026-08-15',scope:'private',type:'expense',category:'משכנתא',amount:3000,note:'הוצאה חד-פעמית משכנתא אוגוסט',source:'text'},
+];
+
+const PENDING_CATEGORIES = [
+  {name:'סדנאות',scope:'business',monthlyCap:null},
+  {name:'קייטנות',scope:'business',monthlyCap:null},
+  {name:'הכנסות',scope:'private',monthlyCap:null},
+  {name:'חומרי גלם',scope:'business',monthlyCap:null},
+  {name:'שכר דירה',scope:'private',monthlyCap:null},
+  {name:'ציפורניים',scope:'private',monthlyCap:null},
+  {name:'בייביסיטר',scope:'private',monthlyCap:null},
+  {name:'בריכה',scope:'private',monthlyCap:null},
+  {name:'החלקה',scope:'private',monthlyCap:null},
+  {name:'משחקים',scope:'private',monthlyCap:null},
+  {name:'גבות',scope:'private',monthlyCap:null},
+  {name:'קייטנה',scope:'private',monthlyCap:null},
+  {name:'העשרה',scope:'private',monthlyCap:null},
+  {name:'גן',scope:'private',monthlyCap:null},
+  {name:'רואה חשבון',scope:'business',monthlyCap:500},
+  {name:'דלק',scope:'business',monthlyCap:null},
+  {name:'דלק',scope:'private',monthlyCap:null},
+  {name:'סרט',scope:'private',monthlyCap:null},
+  {name:'מאפייה',scope:'private',monthlyCap:null},
+  {name:'חובות',scope:'private',monthlyCap:null},
+];
+
+const PENDING_UPDATES = [
+  {updateId:'upd-2026-07-30-a',txId:'2026-07-29-m1',patch:{scope:'business',category:'חומרי גלם',note:'חומר גלם לעוגה - הוחזר לאמא'}},
+  {updateId:'upd-2026-07-30-b',txId:'2026-07-30-b1',patch:{scope:'business',category:'הכנסות עסק'}},
+  {updateId:'upd-2026-07-30-c',txId:'2026-07-30-b2',patch:{scope:'business',category:'הכנסות עסק'}},
+  {updateId:'upd-2026-08-16-a',txId:'2026-08-16-bt1',patch:{scope:'business',category:'הכנסות עסק',note:'העברה בנקאית'}},
+  {updateId:'upd-2026-08-16-b',txId:'2026-08-16-pool1',patch:{date:'2026-07-01'}},
+  {updateId:'upd-2026-08-17-b',txId:'2026-08-03-cash3',patch:{scope:'business',category:'הכנסות עסק',note:'מזומן'}},
+  {updateId:'upd-2026-08-17-c',txId:'2026-08-16-c1',patch:{scope:'business',category:'הכנסות עסק',note:'מזומן'}},
+  {updateId:'upd-2026-08-17-d',txId:'2026-08-16-c2',patch:{scope:'business',category:'הכנסות עסק',note:'מזומן'}},
+  {updateId:'upd-2026-08-17-e',txId:'2026-08-16-c3',patch:{scope:'business',category:'הכנסות עסק',note:'מזומן'}},
+  {updateId:'upd-2026-08-17-f',txId:'2026-08-16-c4',patch:{scope:'business',category:'הכנסות עסק',note:'מזומן'}},
+  {updateId:'upd-2026-08-17-g',txId:'2026-08-16-c5',patch:{scope:'business',category:'הכנסות עסק',note:'מזומן'}},
+  {updateId:'upd-2026-08-25-a',txId:'recurring-property-tax-2026-08',patch:{amount:632,note:'ארנונה (עודכן מ-500₪ ל-632₪)'}},
+  {updateId:'upd-2026-08-25-b',txId:'recurring-partner-2026-08',patch:{scope:'business',note:'פרטנר (עסקי)'}},
+  {updateId:'upd-2026-08-25-c',txId:'recurring-national-insurance-2026-08',patch:{scope:'business',note:'ביטוח לאומי (עסקי)'}},
+  {updateId:'upd-2026-08-25-d',txId:'2026-08-21-gas1',patch:{scope:'business'}},
+  {updateId:'upd-2026-08-25-e',txId:'2026-08-25-fuel1',patch:{scope:'business'}},
+];
+
+const PENDING_DELETIONS = [
+  {deletionId:'del-2026-08-03-a',txId:'2026-08-03-r1'},
+  {deletionId:'del-2026-08-25-a',txId:'retro-education-2026-07'},
+  {deletionId:'del-2026-08-25-b',txId:'recurring-education-2026-08'},
+  {deletionId:'del-2026-08-25-c',txId:'retro-mortgage-2026-07'},
+  {deletionId:'del-2026-08-25-d',txId:'recurring-mortgage-2026-08'},
+];
+
+const PENDING_UNPAID_MARKS = [
+  {txId:'recurring-electricity-2026-08',reason:'נזילות'},
+  {txId:'recurring-water-2026-08',reason:'נזילות'},
+  {txId:'retro-electricity-2026-07',reason:'נזילות - מילוי רטרואקטיבי'},
+  {txId:'retro-water-2026-07',reason:'נזילות - מילוי רטרואקטיבי'},
+  {txId:'debt-rani-2026-08',reason:'חוב לרני - יתרת חוב'},
+];
+
+const PENDING_PAID_MARKS = [
+  {txId:'retro-property-tax-2026-07',reason:'ארנונה - הוראת קבע'},
+  {txId:'recurring-property-tax-2026-08',reason:'ארנונה - הוראת קבע'},
+];
+
+const RECURRING_ITEMS = [
+  {key:'rent-income',scope:'private',type:'income',category:'שכירות דירה',amount:6500,dayOfMonth:5,note:'שכירות דירה (קבוע)'},
+  {key:'mortgage',scope:'private',type:'expense',category:'משכנתא',amount:5500,dayOfMonth:1,startMonth:'2026-09',note:'משכנתא (5500₪ - מספטמבר 2026)'},
+  {key:'electricity',scope:'private',type:'expense',category:'חשמל',amount:300,dayOfMonth:1,note:'חשמל (קבוע)',defaultUnpaid:true},
+  {key:'water',scope:'private',type:'expense',category:'מים',amount:100,dayOfMonth:1,note:'מים (קבוע)',defaultUnpaid:true},
+  {key:'property-tax',scope:'private',type:'expense',category:'ארנונה',amount:632,dayOfMonth:1,note:'ארנונה (הוראת קבע)'},
+  {key:'apartment-rent',scope:'private',type:'expense',category:'שכירות',amount:4500,dayOfMonth:1,note:'שכירות דירת מגורים (קבוע)'},
+  {key:'partner',scope:'business',type:'expense',category:'פרטנר',amount:60,dayOfMonth:1,note:'פרטנר סלולר (עסקי)'},
+  {key:'maccabi',scope:'private',type:'expense',category:'מכבי',amount:238,dayOfMonth:1,note:'מכבי ביטוח בריאות'},
+  {key:'yes',scope:'private',type:'expense',category:'יס',amount:108,dayOfMonth:1,note:'יס טלוויזיה'},
+  {key:'phoenix-insurance',scope:'private',type:'expense',category:'הפניקס ביטוחים',amount:198,dayOfMonth:1,note:'הפניקס ביטוחים'},
+  {key:'bezeq',scope:'private',type:'expense',category:'בזק',amount:158,dayOfMonth:1,note:'בזק טלפון/אינטרנט'},
+  {key:'national-insurance',scope:'business',type:'expense',category:'ביטוח לאומי',amount:1550,dayOfMonth:1,note:'ביטוח לאומי (עסקי)'},
+  {key:'loan-gabi',scope:'private',type:'expense',category:'הלוואה',amount:650,dayOfMonth:1,note:'הלוואה - גבי'},
+  {key:'school-drachei-noam',scope:'private',type:'expense',category:'בית ספר דרכי נעם',amount:1200,dayOfMonth:1,note:'בית ספר דרכי נעם'},
+  {key:'rani-third-child',scope:'private',type:'expense',category:'רני (ילד שלישי)',amount:1900,dayOfMonth:1,startMonth:'2026-09',note:'רני ילד שלישי (מספטמבר 2026)'},
+  {key:'accountant',scope:'business',type:'expense',category:'רואה חשבון',amount:500,dayOfMonth:1,note:'רואה חשבון'},
+];
+
+const DEFAULT_CATEGORIES = [
+  {name:'מכולת',scope:'private',monthlyCap:1800},
+  {name:'תחבורה',scope:'private',monthlyCap:500},
+  {name:'בילויים',scope:'private',monthlyCap:400},
+  {name:'ביגוד',scope:'private',monthlyCap:300},
+  {name:'אחר',scope:'private',monthlyCap:300},
+  {name:'שכירות דירה',scope:'private',monthlyCap:null},
+  {name:'משכנתא',scope:'private',monthlyCap:6200},
+  {name:'חינוך ילדים',scope:'private',monthlyCap:6000},
+  {name:'חשמל',scope:'private',monthlyCap:300},
+  {name:'מים',scope:'private',monthlyCap:100},
+  {name:'ארנונה',scope:'private',monthlyCap:632},
+  {name:'שכירות',scope:'private',monthlyCap:4500},
+  {name:'פרטנר',scope:'business',monthlyCap:60},
+  {name:'מכבי',scope:'private',monthlyCap:238},
+  {name:'יס',scope:'private',monthlyCap:108},
+  {name:'הפניקס ביטוחים',scope:'private',monthlyCap:198},
+  {name:'בזק',scope:'private',monthlyCap:158},
+  {name:'ביטוח לאומי',scope:'business',monthlyCap:1550},
+  {name:'הלוואה',scope:'private',monthlyCap:650},
+  {name:'בית ספר דרכי נעם',scope:'private',monthlyCap:1200},
+  {name:'רני (ילד שלישי)',scope:'private',monthlyCap:1900},
+  {name:'הכנסות עסק',scope:'business',monthlyCap:null},
+  {name:'הוצאות תפעול',scope:'business',monthlyCap:1000},
+  {name:'אחר עסקי',scope:'business',monthlyCap:300},
+  {name:'רואה חשבון',scope:'business',monthlyCap:500},
+];
+
+const PENDING_JOURNAL = [
+  {id:'j-2026-07-30-01',messageDate:'2026-07-30 11:10',rawText:'קיבלתי אתמול בסדנת יום הולדת 4000 ש"ח',txIds:['2026-07-29-w1']},
+  {id:'j-2026-07-30-02',messageDate:'2026-07-30 11:10',rawText:'הוצאתי אתמול בסופר 300 / עוד 200 שהייתי חייבת לאמא / ועכשיו 600 שקל להסעות חודש יולי',txIds:['2026-07-29-s1','2026-07-29-m1','2026-07-30-t1']},
+  {id:'j-2026-07-30-03',messageDate:'2026-07-30 11:10',rawText:'קיבלתי מאחת הילדות עכשיו 1350 על קייטנה של שבוע',txIds:['2026-07-30-c1']},
+  {id:'j-2026-08-16-01',messageDate:'2026-08-16',rawText:'50 שקל הוצאה עסקי / 230 שקל הוצאה עסקי / 600 שקל הכנסה ביט / 630 שקל הכנסה העברה בנקאית / 75 שקל פרטי בילויים',txIds:['2026-08-16-e1','2026-08-16-e2','2026-08-16-b1','2026-08-16-bt1','2026-08-16-a1']},
+  {id:'j-2026-08-16-02',messageDate:'2026-08-16 20:28',rawText:'300 שקל פרטי ציפורניים',txIds:['2026-08-16-n1']},
+  {id:'j-2026-08-16-04',messageDate:'2026-08-16',rawText:'מנוי לבריכה יולי-נובמבר 2400 פרטי',txIds:['2026-08-16-pool1']},
+  {id:'j-2026-08-16-11',messageDate:'2026-08-16 21:03',rawText:'800 שקל הוצאה החלקה פרטי',txIds:['2026-08-16-h1']},
+  {id:'j-2026-08-16-23',messageDate:'2026-08-16 21:13',rawText:'850 שקל קייטנה רני פרטי',txIds:['2026-08-16-camp1']},
+  {id:'j-2026-08-16-24',messageDate:'2026-08-16 21:15',rawText:'200 שקל הוצאה פרטי סדנה לקינוחי פירות להעשיר את הידע',txIds:['2026-08-16-w1']},
+  {id:'j-2026-08-16-25',messageDate:'2026-08-16 22:22',rawText:'גן רני 2000 ש"ח הוצאה פרטי',txIds:['2026-08-16-gan1']},
+  {id:'j-2026-08-17-01',messageDate:'2026-08-17 13:37',rawText:'200 אוכל הוצאה פרטי',txIds:['2026-08-17-f1']},
+  {id:'j-2026-08-17-02',messageDate:'2026-08-17 17:09',rawText:'150 שקל דלק הוצאה עסקי',txIds:['2026-08-17-gas1']},
+  {id:'j-2026-08-19-03',messageDate:'2026-08-19 18:10',rawText:'2600 הכנסה מזומן',txIds:['2026-08-19-c1']},
+  {id:'j-2026-08-20-06',messageDate:'2026-08-20 21:17',rawText:'הוצאה 165 פרטי סרט',txIds:['2026-08-20-mov1']},
+  {id:'j-2026-08-21-02',messageDate:'2026-08-21 16:58',rawText:'הוצאה 110 דלק פרטי',txIds:['2026-08-21-gas1']},
+  {id:'j-2026-08-22-01',messageDate:'2026-08-22',rawText:'פרטי הוצאה 400 מקס סטוק',txIds:['2026-08-22-maxstock1']},
+  {id:'j-2026-08-24-03',messageDate:'2026-08-24 10:24',rawText:'פרטי הוצאה 400 חתונה',txIds:['2026-08-24-wedding1']},
+  {id:'j-2026-08-25-01',messageDate:'2026-08-25 08:50',rawText:'פרטנר 60 / מכבי 238 / יס 108 / הפניקס 198 / בזק 158 / ביטוח לאומי 1550 / ארנונה 632 / הלוואה לגבי 650',txIds:['recurring-partner-2026-08','recurring-maccabi-2026-08','recurring-yes-2026-08','recurring-phoenix-insurance-2026-08','recurring-bezeq-2026-08','recurring-national-insurance-2026-08','recurring-property-tax-2026-08','recurring-loan-gabi-2026-08']},
+  {id:'j-2026-08-25-10',messageDate:'2026-08-25',rawText:'חוב 12,000 ש"ח לרני (גן) - נוסף כהתחייבות אחת, ייפרע בתשלומים חודשיים משתנים',txIds:['debt-rani-2026-08']},
+  {id:'j-2026-08-25-12',messageDate:'2026-08-25',rawText:'להוריד את משכנתא מההתחייבויות ליולי ואוגוסט + הוצאה חד-פעמית 15.08 3000₪ משכנתא',txIds:['2026-08-15-mortgage-extra']},
+];
+
+/* ══════════════════════════════════════════════════════
+   STATE
+   ════════════════════════════════════════════════════ */
+const SPIKE_THRESHOLD = 1.3;
+const STORAGE_KEY = 'budget-pro:';
+
+let S = {
+  transactions: [],
+  categories: [],
+  journal: [],
+  unpaidIds: [],
+  loading: true,
+  month: '',
+  periodMode: 'month',
+  scopeTab: 'all',
+  typeTab: 'all',
+  open: {},
+  theme: null,
+};
+
+/* ══════════════════════════════════════════════════════
+   HELPERS
+   ════════════════════════════════════════════════════ */
+function mKey(d) { return d.slice(0,7); }
+function nowMonth() { return mKey(new Date().toISOString()); }
+function shiftM(k, d) {
+  const [y,m] = k.split('-').map(Number);
+  const dt = new Date(y, m-1+d, 1);
+  return `${dt.getFullYear()}-${String(dt.getMonth()+1).padStart(2,'0')}`;
+}
+function fmtMonth(k) {
+  const [y,m] = k.split('-').map(Number);
+  const names=['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'];
+  return `${names[m-1]} ${y}`;
+}
+function fmtShortMonth(k) {
+  const [y,m] = k.split('-').map(Number);
+  const names=['ינו','פבר','מרץ','אפר','מאי','יונ','יול','אוג','ספט','אוק','נוב','דצמ'];
+  return `${names[m-1]} ${String(y).slice(2)}`;
+}
+function fmt(n) {
+  return '₪' + Math.round(Math.abs(n)).toLocaleString('he-IL');
+}
+function fmtSigned(n) {
+  return (n>=0?'+':'-')+'₪'+Math.round(Math.abs(n)).toLocaleString('he-IL');
+}
+
+/* ══════════════════════════════════════════════════════
+   STORAGE
+   ════════════════════════════════════════════════════ */
+function sg(key, fb) {
+  try { const v=localStorage.getItem(STORAGE_KEY+key); return v?JSON.parse(v):fb; }
+  catch(e){ return fb; }
+}
+function ss(key, val) {
+  try { localStorage.setItem(STORAGE_KEY+key, JSON.stringify(val)); return true; }
+  catch(e){ return false; }
+}
+
+/* ══════════════════════════════════════════════════════
+   INIT — merge PENDING into localStorage
+   ════════════════════════════════════════════════════ */
+function initData() {
+  const storedTx   = sg('transactions', []);
+  const storedCats = sg('categories', DEFAULT_CATEGORIES);
+  const appliedIds = new Set(sg('applied-ids', []));
+  const appliedUpd = new Set(sg('applied-upd-ids', []));
+  const storedJrn  = sg('journal', []);
+  const appliedJrn = new Set(sg('applied-jrn-ids', []));
+  const storedUnpd = sg('unpaid-ids', []);
+  const appliedUnm = new Set(sg('applied-unm-ids', []));
+  const appliedPdm = new Set(sg('applied-pdm-ids', []));
+
+  // Generate recurring for current month
+  const nm = nowMonth();
+  const recurring = RECURRING_ITEMS
+    .filter(i => !i.startMonth || nm >= i.startMonth)
+    .map(i => ({
+      id: `recurring-${i.key}-${nm}`,
+      date: `${nm}-${String(i.dayOfMonth||1).padStart(2,'0')}`,
+      scope:i.scope, type:i.type, category:i.category,
+      amount:i.amount, note:i.note, source:'recurring',
+      defaultUnpaid: i.defaultUnpaid||false,
+    }));
+
+  const allPending = [...PENDING_TRANSACTIONS, ...recurring];
+  const newOnes = allPending.filter(t => !appliedIds.has(t.id));
+  const autoUnpaid = newOnes.filter(t => t.defaultUnpaid).map(t => t.id);
+  let merged = [...storedTx, ...newOnes].sort((a,b)=>a.date.localeCompare(b.date));
+
+  // Apply updates
+  const newUpds = PENDING_UPDATES.filter(u => !appliedUpd.has(u.updateId));
+  if (newUpds.length) {
+    merged = merged.map(t => {
+      const ms = newUpds.filter(u => u.txId === t.id);
+      return ms.reduce((acc,u) => ({...acc,...u.patch}), t);
+    });
+  }
+
+  // Apply deletions (always filter)
+  const delSet = new Set(PENDING_DELETIONS.map(d => d.txId));
+  merged = merged.filter(t => !delSet.has(t.id));
+
+  // Merge categories
+  const catMap = new Map(storedCats.map(c => [`${c.scope}::${c.name}`, c]));
+  for (const c of DEFAULT_CATEGORIES) {
+    if (!catMap.has(`${c.scope}::${c.name}`)) catMap.set(`${c.scope}::${c.name}`, c);
+  }
+  for (const c of PENDING_CATEGORIES) catMap.set(`${c.scope}::${c.name}`, c);
+  const mergedCats = Array.from(catMap.values());
+
+  // Merge journal
+  const newJrn = PENDING_JOURNAL.filter(j => !appliedJrn.has(j.id));
+  const mergedJrn = [...storedJrn, ...newJrn];
+
+  // Merge unpaid marks
+  const newUnm = PENDING_UNPAID_MARKS.filter(m => !appliedUnm.has(m.txId));
+  const newPdm = PENDING_PAID_MARKS.filter(m => !appliedPdm.has(m.txId));
+  const pdmSet = new Set(newPdm.map(m => m.txId));
+  const mergedUnpd = Array.from(new Set([...storedUnpd, ...newUnm.map(m=>m.txId), ...autoUnpaid]))
+    .filter(id => !pdmSet.has(id));
+
+  // Persist
+  if (newOnes.length || newUpds.length) ss('transactions', merged);
+  if (newOnes.length) ss('applied-ids', [...appliedIds, ...newOnes.map(t=>t.id)]);
+  if (newUpds.length) ss('applied-upd-ids', [...appliedUpd, ...newUpds.map(u=>u.updateId)]);
+  ss('categories', mergedCats);
+  if (newJrn.length) {
+    ss('journal', mergedJrn);
+    ss('applied-jrn-ids', [...appliedJrn, ...newJrn.map(j=>j.id)]);
+  }
+  if (newUnm.length || autoUnpaid.length || newPdm.length) {
+    ss('unpaid-ids', mergedUnpd);
+    ss('applied-unm-ids', [...appliedUnm, ...newUnm.map(m=>m.txId)]);
+    ss('applied-pdm-ids', [...appliedPdm, ...newPdm.map(m=>m.txId)]);
+  }
+
+  S.transactions = merged;
+  S.categories   = mergedCats;
+  S.journal      = mergedJrn;
+  S.unpaidIds    = mergedUnpd;
+  S.loading      = false;
+  S.month        = nowMonth();
+}
+
+/* ══════════════════════════════════════════════════════
+   COMPUTED
+   ════════════════════════════════════════════════════ */
+function getFilteredTx() {
+  const { transactions, unpaidIds, month, periodMode, scopeTab, typeTab } = S;
+  let txs = transactions;
+  if (scopeTab !== 'all') txs = txs.filter(t => t.scope === scopeTab);
+  if (typeTab  !== 'all') txs = txs.filter(t => t.type  === typeTab);
+  if (periodMode === 'month') txs = txs.filter(t => mKey(t.date) === month);
+  return txs;
+}
+
+function computeKPIs() {
+  const { transactions, unpaidIds, month, periodMode, scopeTab } = S;
+  let base = transactions;
+  if (scopeTab !== 'all') base = base.filter(t => t.scope === scopeTab);
+  if (periodMode === 'month') base = base.filter(t => mKey(t.date) === month);
+
+  const paid  = base.filter(t => !unpaidIds.includes(t.id));
+  const unpaid = base.filter(t => unpaidIds.includes(t.id) && t.type === 'expense');
+  const income  = paid.filter(t => t.type === 'income').reduce((s,t) => s+t.amount, 0);
+  const expense = paid.filter(t => t.type === 'expense').reduce((s,t) => s+t.amount, 0);
+  const unpaidAmt = unpaid.reduce((s,t) => s+t.amount, 0);
+  return { income, expense, balance: income - expense, unpaidAmt };
+}
+
+function computeCumulative() {
+  const { transactions, unpaidIds } = S;
+  const mkCalc = (scope) => {
+    const sc = scope === 'all' ? transactions : transactions.filter(t => t.scope === scope);
+    const paid = sc.filter(t => !unpaidIds.includes(t.id));
+    const inc = paid.filter(t => t.type==='income').reduce((s,t)=>s+t.amount,0);
+    const exp = paid.filter(t => t.type==='expense').reduce((s,t)=>s+t.amount,0);
+    return { inc, exp, bal: inc-exp };
+  };
+  return {
+    private: mkCalc('private'),
+    business: mkCalc('business'),
+    total: mkCalc('all'),
+  };
+}
+
+function computeCategories() {
+  const { transactions, unpaidIds, categories, month, periodMode, scopeTab } = S;
+  let base = transactions;
+  if (scopeTab !== 'all') base = base.filter(t => t.scope === scopeTab);
+  if (periodMode === 'month') base = base.filter(t => mKey(t.date) === month);
+  base = base.filter(t => t.type === 'expense'); // cap applies to expenses only
+
+  const map = {};
+  for (const t of base) {
+    const key = `${t.scope}::${t.category}`;
+    if (!map[key]) map[key] = { name: t.category, scope: t.scope, paid: 0, unpaid: 0 };
+    if (unpaidIds.includes(t.id)) map[key].unpaid += t.amount;
+    else map[key].paid += t.amount;
+  }
+  return Object.values(map).map(c => {
+    const catDef = categories.find(cd => cd.scope===c.scope && cd.name===c.name);
+    return { ...c, cap: catDef ? catDef.monthlyCap : null, total: c.paid + c.unpaid };
+  }).sort((a,b) => b.total - a.total);
+}
+
+function computeAlerts() {
+  const { transactions, unpaidIds, categories, month } = S;
+  const alerts = [];
+  // Budget overruns (paid only, current month)
+  const monthTx = transactions.filter(t => mKey(t.date) === month && !unpaidIds.includes(t.id) && t.type==='expense');
+  for (const cat of categories) {
+    if (!cat.monthlyCap) continue;
+    const spent = monthTx.filter(t=>t.scope===cat.scope&&t.category===cat.name).reduce((s,t)=>s+t.amount,0);
+    if (spent > cat.monthlyCap) {
+      const pct = Math.round((spent/cat.monthlyCap-1)*100);
+      alerts.push({type:'over',text:`${cat.name} (${cat.scope==='private'?'פרטי':'עסקי'}): ${fmt(spent)} מתוך תקרה ${fmt(cat.monthlyCap)}`,pct:`+${pct}%`});
+    }
+  }
+  // Spending spikes (30% above 3-month avg)
+  const catGroups = {};
+  for (const t of transactions) {
+    if (t.type!=='expense' || unpaidIds.includes(t.id)) continue;
+    const k = `${t.scope}::${t.category}`;
+    if (!catGroups[k]) catGroups[k] = {};
+    const mk = mKey(t.date);
+    catGroups[k][mk] = (catGroups[k][mk]||0) + t.amount;
+  }
+  const prev3 = [shiftM(month,-1), shiftM(month,-2), shiftM(month,-3)];
+  for (const [key, monthMap] of Object.entries(catGroups)) {
+    const cur = monthMap[month] || 0;
+    if (!cur) continue;
+    const avgArr = prev3.map(m => monthMap[m]||0);
+    const avg = avgArr.reduce((s,v)=>s+v,0)/3;
+    if (avg > 0 && cur >= avg * SPIKE_THRESHOLD) {
+      const [sc, cat] = key.split('::');
+      const pct = Math.round((cur/avg-1)*100);
+      alerts.push({type:'spike',text:`${cat} (${sc==='private'?'פרטי':'עסקי'}): ${fmt(cur)} — עלייה של ${pct}% מול הממוצע 3 חודשים (${fmt(avg)})`,pct:`+${pct}%`});
+    }
+  }
+  return alerts;
+}
+
+function computeTrend() {
+  const { transactions, unpaidIds } = S;
+  const months = Array.from({length:6}, (_,i) => shiftM(nowMonth(), -(5-i)));
+  return months.map(mk => {
+    const mTx = transactions.filter(t => mKey(t.date)===mk && !unpaidIds.includes(t.id));
+    const privInc  = mTx.filter(t=>t.scope==='private'&&t.type==='income').reduce((s,t)=>s+t.amount,0);
+    const privExp  = mTx.filter(t=>t.scope==='private'&&t.type==='expense').reduce((s,t)=>s+t.amount,0);
+    const bizInc   = mTx.filter(t=>t.scope==='business'&&t.type==='income').reduce((s,t)=>s+t.amount,0);
+    const bizExp   = mTx.filter(t=>t.scope==='business'&&t.type==='expense').reduce((s,t)=>s+t.amount,0);
+    const totInc   = privInc + bizInc;
+    const totExp   = privExp + bizExp;
+    return { mk, privInc, privExp, bizInc, bizExp, totInc, totExp, bal: totInc-totExp };
+  });
+}
+
+/* ══════════════════════════════════════════════════════
+   RENDER
+   ════════════════════════════════════════════════════ */
+function render() {
+  renderHeader();
+  renderKPI();
+  renderCharts();
+  renderAlerts();
+  renderCategories();
+  renderIncomeTx();
+  renderExpenseTx();
+  renderAllTx();
+  renderUnpaid();
+  renderTrend();
+  renderJournal();
+}
+
+function renderHeader() {
+  const { periodMode, month, scopeTab, typeTab } = S;
+  // Period buttons
+  document.getElementById('bp-month').classList.toggle('on', periodMode==='month');
+  document.getElementById('bp-cumul').classList.toggle('on', periodMode==='cumulative');
+  // Month nav (hide in cumulative)
+  document.getElementById('month-nav').style.display = periodMode==='cumulative' ? 'none' : '';
+  document.getElementById('month-label').textContent = fmtMonth(month);
+  // Scope tabs
+  ['all','private','business'].forEach(s => {
+    document.getElementById(`sc-${s}`).classList.toggle('on', scopeTab===s);
+  });
+  // Type tabs
+  ['all','income','expense'].forEach(t => {
+    document.getElementById(`tp-${t}`).classList.toggle('on', typeTab===t);
+  });
+}
+
+function renderKPI() {
+  const { periodMode, month } = S;
+  const { income, expense, balance, unpaidAmt } = computeKPIs();
+
+  document.getElementById('kv-balance').textContent = fmt(balance);
+  document.getElementById('ks-balance').textContent = periodMode==='month' ? fmtMonth(month) : 'כל הזמנים';
+  document.getElementById('kv-income').textContent  = fmt(income);
+  document.getElementById('ks-income').textContent  = 'בפועל';
+  document.getElementById('kv-expense').textContent = fmt(expense);
+  document.getElementById('ks-expense').textContent = 'בפועל (שולמו)';
+  document.getElementById('kv-unpaid').textContent  = unpaidAmt > 0 ? fmt(unpaidAmt) : '₪0';
+  document.getElementById('ks-unpaid').textContent  = 'ממתינות לתשלום';
+
+  // Color the balance card
+  const balCard = document.querySelector('.kpi.bal');
+  if (balance < 0) {
+    balCard.style.background = 'linear-gradient(135deg,#6B1527 0%,#A02030 100%)';
+  } else {
+    balCard.style.background = 'linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%)';
+  }
+}
+
+function renderCharts() {
+  renderDonut();
+  renderBarChart();
+}
+
+const DONUT_COLORS = ['#18B893','#E5384A','#E0862A','#2A6CB5','#9C4DC4','#D4A030','#4A9D8F','#D46B30'];
+
+function renderDonut() {
+  const cats = computeCategories().slice(0,6);
+  const total = cats.reduce((s,c) => s+c.paid, 0);
+  const el = document.getElementById('donut-wrap');
+  if (!total) { el.innerHTML = '<div style="text-align:center;color:var(--t3);font-size:13px;padding:20px 0">אין נתונים</div>'; return; }
+
+  const R=38, CX=50, CY=50, circ=2*Math.PI*R;
+  let paths='', offset=0;
+  const catData = cats.map((c,i) => {
+    const pct = c.paid/total;
+    const dash = pct * circ;
+    const gap  = circ - dash;
+    const col  = DONUT_COLORS[i % DONUT_COLORS.length];
+    paths += `<circle r="${R}" cx="${CX}" cy="${CY}" fill="none" stroke="${col}" stroke-width="22" stroke-dasharray="${dash.toFixed(2)} ${gap.toFixed(2)}" stroke-dashoffset="${(-offset).toFixed(2)}" style="transition:all .4s"/>`;
+    offset += dash;
+    return { name: c.name, pct: Math.round(pct*100), col, amt: c.paid };
+  });
+
+  const svg = `<svg class="donut-svg" viewBox="0 0 100 100" style="transform:rotate(-90deg);overflow:visible"><circle r="${R}" cx="${CX}" cy="${CY}" fill="none" stroke="var(--surf3)" stroke-width="22"/>${paths}</svg>`;
+  const leg = catData.map(d =>
+    `<div class="leg-row"><div class="leg-dot" style="background:${d.col}"></div><span class="leg-name" title="${d.name}">${d.name}</span><span class="leg-pct">${d.pct}%</span></div>`
+  ).join('');
+
+  el.innerHTML = `<div class="donut-wrap">${svg}<div class="leg">${leg}</div></div>`;
+}
+
+function renderBarChart() {
+  const trend = computeTrend();
+  const el = document.getElementById('bar-wrap');
+  const maxVal = Math.max(...trend.map(m => m.totInc + m.totExp), 1);
+  const W=260, H=80, BPAD=22, BAR_W=18, GAP=6, SLOT=BAR_W*2+GAP+8;
+  let bars='', labels='';
+  trend.forEach((m, i) => {
+    const x = i * SLOT + 4;
+    const h1 = (m.totInc/maxVal)*(H-BPAD);
+    const h2 = (m.totExp/maxVal)*(H-BPAD);
+    bars += `<rect x="${x}" y="${H-BPAD-h1}" width="${BAR_W}" height="${Math.max(h1,1)}" fill="var(--income)" rx="3" opacity="0.85"/>`;
+    bars += `<rect x="${x+BAR_W+GAP}" y="${H-BPAD-h2}" width="${BAR_W}" height="${Math.max(h2,1)}" fill="var(--expense)" rx="3" opacity="0.85"/>`;
+    labels += `<text x="${x+BAR_W}" y="${H-2}" text-anchor="middle" fill="var(--t3)" font-size="7">${fmtShortMonth(m.mk)}</text>`;
+  });
+  const legend = `<text x="${W-2}" y="8" text-anchor="end" fill="var(--income)" font-size="8">● הכנסות</text><text x="${W-2}" y="18" text-anchor="end" fill="var(--expense)" font-size="8">● הוצאות</text>`;
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:90px"><g>${bars}${labels}${legend}</g></svg>`;
+}
+
+function renderAlerts() {
+  const alerts = computeAlerts();
+  document.getElementById('bdg-alerts').textContent = alerts.length;
+  document.getElementById('body-alerts').classList.toggle('hidden', !S.open['alerts']);
+  document.getElementById('chev-alerts').classList.toggle('open', !!S.open['alerts']);
+  if (!alerts.length) {
+    document.getElementById('lst-alerts').innerHTML = '<div style="color:var(--t3);font-size:13px;text-align:center;padding:8px 0">✅ אין התראות לתקופה זו</div>';
+    return;
+  }
+  document.getElementById('lst-alerts').innerHTML = alerts.map(a =>
+    `<div class="alert-row"><span class="alert-emoji">${a.type==='over'?'🔴':'🟡'}</span><span class="alert-txt">${a.text}</span><span class="alert-chip ${a.type==='over'?'over':'spike'}">${a.pct}</span></div>`
+  ).join('');
+}
+
+function renderCategories() {
+  const cats = computeCategories();
+  document.getElementById('bdg-cats').textContent = cats.length;
+  document.getElementById('body-categories').classList.toggle('hidden', !S.open['categories']);
+  document.getElementById('chev-categories').classList.toggle('open', !!S.open['categories']);
+  document.getElementById('lst-cats').innerHTML = cats.map(c => {
+    const pct = c.cap ? Math.min((c.total/c.cap)*100, 100) : 0;
+    const cls = !c.cap ? '' : c.total > c.cap ? 'over' : c.total > c.cap*0.8 ? 'warn' : 'ok';
+    const bar = c.cap ? `<div class="pbar"><div class="pfill ${cls}" style="width:${pct}%"></div></div>` : '';
+    const capTxt = c.cap ? `<span class="cat-cap-txt">תקרה: ${fmt(c.cap)}</span>` : '';
+    return `<div class="cat-row">
+      <div class="cat-top">
+        <span class="cat-name">${c.name}</span>
+        <div class="cat-right">
+          <span class="cat-scope">${c.scope==='private'?'פרטי':'עסקי'}</span>
+          <span class="cat-amt">${fmt(c.paid)}${c.unpaid>0?' +'+fmt(c.unpaid)+' (ממתין)':''}</span>
+          ${capTxt}
+        </div>
+      </div>${bar}
+    </div>`;
+  }).join('');
+}
+
+function renderTxList(elId, txs) {
+  return txs.map(t => {
+    const isPaid = S.unpaidIds.includes(t.id);
+    const cls = isPaid ? 'u' : t.type==='income' ? 'i' : 'e';
+    const markBtn = !isPaid && t.type==='expense'
+      ? `<button class="xbtn upd" onclick="markUnpaid('${t.id}')">⏸ ממתין</button>`
+      : isPaid ? `<button class="xbtn upd" onclick="markPaid('${t.id}')">✓ שולם</button>` : '';
+    const delBtn = `<button class="xbtn del" onclick="delTx('${t.id}')">✕</button>`;
+    const srcIcon = t.source==='recurring'?'🔄':t.source==='photo-receipt'?'🧾':t.source==='photo-bit'?'💸':'';
+    return `<div class="tx">
+      <div class="tx-dot ${cls}"></div>
+      <div class="tx-info">
+        <div class="tx-cat">${t.category}${srcIcon?' <span style="font-size:11px">('+srcIcon+')</span>':''}</div>
+        <div class="tx-meta">${t.date} · ${t.scope==='private'?'פרטי':'עסקי'}${t.note?' · '+t.note:''}</div>
+      </div>
+      <span class="tx-amt ${cls}">${t.type==='income'?'+':'-'}${fmt(t.amount)}</span>
+      <div class="tx-acts">${markBtn}${delBtn}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderIncomeTx() {
+  const { transactions, unpaidIds, month, periodMode, scopeTab } = S;
+  let txs = transactions.filter(t => t.type==='income');
+  if (scopeTab !== 'all') txs = txs.filter(t => t.scope===scopeTab);
+  if (periodMode==='month') txs = txs.filter(t => mKey(t.date)===month);
+  txs = [...txs].sort((a,b)=>b.date.localeCompare(a.date));
+  document.getElementById('bdg-income-list').textContent = `${txs.length} · ${fmt(txs.reduce((s,t)=>s+t.amount,0))}`;
+  document.getElementById('body-income-list').classList.toggle('hidden', !S.open['income-list']);
+  document.getElementById('chev-income-list').classList.toggle('open', !!S.open['income-list']);
+  document.getElementById('lst-income').innerHTML = txs.length
+    ? renderTxList('lst-income', txs)
+    : '<div style="color:var(--t3);font-size:13px;text-align:center;padding:8px 0">אין הכנסות</div>';
+}
+
+function renderExpenseTx() {
+  const { transactions, unpaidIds, month, periodMode, scopeTab } = S;
+  let txs = transactions.filter(t => t.type==='expense');
+  if (scopeTab !== 'all') txs = txs.filter(t => t.scope===scopeTab);
+  if (periodMode==='month') txs = txs.filter(t => mKey(t.date)===month);
+  txs = [...txs].sort((a,b)=>b.date.localeCompare(a.date));
+  document.getElementById('bdg-expense-list').textContent = `${txs.length} · ${fmt(txs.reduce((s,t)=>s+t.amount,0))}`;
+  document.getElementById('body-expense-list').classList.toggle('hidden', !S.open['expense-list']);
+  document.getElementById('chev-expense-list').classList.toggle('open', !!S.open['expense-list']);
+  document.getElementById('lst-expenses').innerHTML = txs.length
+    ? renderTxList('lst-expenses', txs)
+    : '<div style="color:var(--t3);font-size:13px;text-align:center;padding:8px 0">אין הוצאות</div>';
+}
+
+function renderAllTx() {
+  const filtered = getFilteredTx().slice().sort((a,b)=>b.date.localeCompare(a.date));
+  document.getElementById('bdg-tx-list').textContent = filtered.length;
+  document.getElementById('body-tx-list').classList.toggle('hidden', !S.open['tx-list']);
+  document.getElementById('chev-tx-list').classList.toggle('open', !!S.open['tx-list']);
+  document.getElementById('lst-tx').innerHTML = filtered.length
+    ? renderTxList('lst-tx', filtered)
+    : '<div style="color:var(--t3);font-size:13px;text-align:center;padding:8px 0">אין תנועות</div>';
+}
+
+function renderUnpaid() {
+  const { transactions, unpaidIds } = S;
+  const unpaidTx = transactions.filter(t => unpaidIds.includes(t.id) && t.type==='expense')
+    .sort((a,b)=>b.date.localeCompare(a.date));
+  const total = unpaidTx.reduce((s,t)=>s+t.amount,0);
+  document.getElementById('bdg-unpaid-list').textContent = `${unpaidTx.length} · ${fmt(total)}`;
+  document.getElementById('body-unpaid-list').classList.toggle('hidden', !S.open['unpaid-list']);
+  document.getElementById('chev-unpaid-list').classList.toggle('open', !!S.open['unpaid-list']);
+  document.getElementById('lst-unpaid').innerHTML = unpaidTx.length
+    ? unpaidTx.map(t =>
+        `<div class="upd-row">
+          <div class="upd-info">
+            <div class="upd-cat">${t.category}</div>
+            <div class="upd-meta">${t.date} · ${t.scope==='private'?'פרטי':'עסקי'}${t.note?' · '+t.note:''}</div>
+          </div>
+          <span class="upd-amt">-${fmt(t.amount)}</span>
+          <button class="paid-btn" onclick="markPaid('${t.id}')">✓ שולם</button>
+        </div>`
+      ).join('')
+    : '<div style="color:var(--t3);font-size:13px;text-align:center;padding:8px 0">אין התחייבויות פתוחות 🎉</div>';
+}
+
+function renderTrend() {
+  const trend = computeTrend();
+  document.getElementById('body-trend').classList.toggle('hidden', !S.open['trend']);
+  document.getElementById('chev-trend').classList.toggle('open', !!S.open['trend']);
+  const rows = trend.map(m =>
+    `<tr>
+      <td style="font-weight:600;white-space:nowrap">${fmtShortMonth(m.mk)}</td>
+      <td class="ti">${m.privInc?fmt(m.privInc):'—'}</td>
+      <td class="te">${m.privExp?fmt(m.privExp):'—'}</td>
+      <td class="ti">${m.bizInc?fmt(m.bizInc):'—'}</td>
+      <td class="te">${m.bizExp?fmt(m.bizExp):'—'}</td>
+      <td class="tb" style="color:${m.bal>=0?'var(--income)':'var(--expense)'}">${fmtSigned(m.bal)}</td>
+    </tr>`
+  ).join('');
+  document.getElementById('lst-trend').innerHTML =
+    `<div class="trend-wrap"><table class="ttbl">
+      <thead><tr><th>חודש</th><th>הכ׳ פרטי</th><th>הוצ׳ פרטי</th><th>הכ׳ עסקי</th><th>הוצ׳ עסקי</th><th>יתרה</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table></div>`;
+}
+
+function renderJournal() {
+  const { journal } = S;
+  const sorted = [...journal].sort((a,b)=>b.messageDate.localeCompare(a.messageDate));
+  document.getElementById('bdg-journal').textContent = sorted.length;
+  document.getElementById('body-journal').classList.toggle('hidden', !S.open['journal']);
+  document.getElementById('chev-journal').classList.toggle('open', !!S.open['journal']);
+  document.getElementById('lst-journal').innerHTML = sorted.slice(0,50).map(j =>
+    `<div class="jrn">
+      <div class="jrn-dt">${j.messageDate}</div>
+      <div class="jrn-txt">${j.rawText}</div>
+      ${j.txIds.length ? `<div class="jrn-chips">${j.txIds.map(id=>`<span class="chip">${id}</span>`).join('')}</div>` : ''}
+    </div>`
+  ).join('');
+}
+
+function renderCatOpts() {
+  const type  = document.getElementById('f-type').value;
+  const scope = document.getElementById('f-scope').value;
+  const sel   = document.getElementById('f-category');
+  const cats  = S.categories.filter(c => c.scope===scope);
+  sel.innerHTML = cats.map(c => `<option value="${c.name}">${c.name}</option>`).join('');
+}
+
+/* ══════════════════════════════════════════════════════
+   ACTIONS
+   ════════════════════════════════════════════════════ */
+function enterApp() {
+  document.getElementById('splash').classList.add('out');
+  setTimeout(() => {
+    document.getElementById('splash').style.display = 'none';
+    document.getElementById('app').classList.remove('hidden');
+  }, 500);
+  renderCatOpts();
+  const today = new Date().toISOString().slice(0,10);
+  document.getElementById('f-date').value = today;
+}
+
+function toggleSec(id) {
+  S.open[id] = !S.open[id];
+  render();
+}
+
+function setPeriod(mode) {
+  S.periodMode = mode;
+  render();
+}
+
+function navMonth(delta) {
+  S.month = shiftM(S.month, delta);
+  render();
+}
+
+function setScope(s) {
+  S.scopeTab = s;
+  render();
+}
+
+function setType(t) {
+  S.typeTab = t;
+  render();
+}
+
+function addTx() {
+  const date  = document.getElementById('f-date').value;
+  const amt   = parseFloat(document.getElementById('f-amount').value);
+  const type  = document.getElementById('f-type').value;
+  const scope = document.getElementById('f-scope').value;
+  const cat   = document.getElementById('f-category').value;
+  const note  = document.getElementById('f-note').value.trim();
+
+  if (!date || !amt || !cat) { showToast('נא למלא תאריך, סכום וקטגוריה'); return; }
+  const newTx = {
+    id: `${date}-${Math.random().toString(36).slice(2,8)}`,
+    date, scope, type, category:cat, amount:amt, note, source:'text'
+  };
+  const updated = [...S.transactions, newTx].sort((a,b)=>a.date.localeCompare(b.date));
+  S.transactions = updated;
+  ss('transactions', updated);
+  document.getElementById('f-amount').value = '';
+  document.getElementById('f-note').value = '';
+  showToast('התנועה נוספה');
+  render();
+}
+
+function delTx(id) {
+  if (!confirm('למחוק תנועה זו?')) return;
+  S.transactions = S.transactions.filter(t => t.id !== id);
+  S.unpaidIds    = S.unpaidIds.filter(i => i !== id);
+  ss('transactions', S.transactions);
+  ss('unpaid-ids', S.unpaidIds);
+  showToast('התנועה נמחקה');
+  render();
+}
+
+function markUnpaid(id) {
+  if (S.unpaidIds.includes(id)) return;
+  S.unpaidIds = [...S.unpaidIds, id];
+  ss('unpaid-ids', S.unpaidIds);
+  showToast('סומן כ"טרם שולם"');
+  render();
+}
+
+function markPaid(id) {
+  S.unpaidIds = S.unpaidIds.filter(i => i !== id);
+  ss('unpaid-ids', S.unpaidIds);
+  showToast('סומן כ"שולם" ✓');
+  render();
+}
+
+function toggleTheme() {
+  const root = document.documentElement;
+  if (!S.theme || S.theme==='system') {
+    S.theme = 'dark';
+    root.setAttribute('data-theme','dark');
+    document.getElementById('theme-btn').textContent = '☀️';
+  } else if (S.theme==='dark') {
+    S.theme = 'light';
+    root.setAttribute('data-theme','light');
+    document.getElementById('theme-btn').textContent = '🌙';
+  } else {
+    S.theme = 'system';
+    root.removeAttribute('data-theme');
+    document.getElementById('theme-btn').textContent = '🌙';
+  }
+  try { localStorage.setItem(STORAGE_KEY+'theme', S.theme); } catch(e){}
+}
+
+/* ══════════════════════════════════════════════════════
+   TOAST
+   ════════════════════════════════════════════════════ */
+let toastTimer = null;
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2500);
+}
+
+/* ══════════════════════════════════════════════════════
+   BOOT
+   ════════════════════════════════════════════════════ */
+(function boot() {
+  // Restore theme
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY+'theme');
+    if (saved && saved !== 'system') {
+      S.theme = saved;
+      document.documentElement.setAttribute('data-theme', saved);
+      document.getElementById('theme-btn').textContent = saved==='dark' ? '☀️' : '🌙';
+    }
+  } catch(e){}
+
+  initData();
+})();
+</script>
+</body>
+</html>
