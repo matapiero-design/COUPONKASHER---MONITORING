@@ -1557,6 +1557,10 @@ function enterApp() {
 function toggleSec(id) {
   S.open[id] = !S.open[id];
   render();
+  if (S.open[id]) {
+    const el = document.getElementById('sec-' + id);
+    if (el) setTimeout(() => el.scrollIntoView({behavior:'smooth', block:'start'}), 60);
+  }
 }
 
 function setPeriod(mode) {
