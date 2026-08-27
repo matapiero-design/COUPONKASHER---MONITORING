@@ -617,6 +617,45 @@ input,select{font-family:inherit;direction:rtl}
     </div>
   </div>
 
+  <!-- INCOME LIST -->
+  <div class="sec" id="sec-income-list">
+    <div class="sec-hdr" onclick="toggleSec('income-list')">
+      <div class="sec-ico">📈</div>
+      <span class="sec-ttl">הכנסות — פירוט</span>
+      <span class="badge green" id="bdg-income-list">—</span>
+      <span class="chev" id="chev-income-list">▾</span>
+    </div>
+    <div class="sec-body hidden" id="body-income-list">
+      <div class="sec-inner" id="lst-income"></div>
+    </div>
+  </div>
+
+  <!-- EXPENSE LIST -->
+  <div class="sec" id="sec-expense-list">
+    <div class="sec-hdr" onclick="toggleSec('expense-list')">
+      <div class="sec-ico">📉</div>
+      <span class="sec-ttl">הוצאות — פירוט</span>
+      <span class="badge red" id="bdg-expense-list">—</span>
+      <span class="chev" id="chev-expense-list">▾</span>
+    </div>
+    <div class="sec-body hidden" id="body-expense-list">
+      <div class="sec-inner" id="lst-expenses"></div>
+    </div>
+  </div>
+
+  <!-- UNPAID LIST -->
+  <div class="sec" id="sec-unpaid-list">
+    <div class="sec-hdr" onclick="toggleSec('unpaid-list')">
+      <div class="sec-ico">🔴</div>
+      <span class="sec-ttl">התחייבויות לתשלום</span>
+      <span class="badge amber" id="bdg-unpaid-list">—</span>
+      <span class="chev" id="chev-unpaid-list">▾</span>
+    </div>
+    <div class="sec-body hidden" id="body-unpaid-list">
+      <div class="sec-inner" id="lst-unpaid"></div>
+    </div>
+  </div>
+
   <!-- CHARTS -->
   <div class="charts">
     <div class="chart-card">
@@ -652,32 +691,6 @@ input,select{font-family:inherit;direction:rtl}
     </div>
     <div class="sec-body hidden" id="body-categories">
       <div class="sec-inner" id="lst-cats"></div>
-    </div>
-  </div>
-
-  <!-- INCOME LIST -->
-  <div class="sec" id="sec-income-list">
-    <div class="sec-hdr" onclick="toggleSec('income-list')">
-      <div class="sec-ico">📈</div>
-      <span class="sec-ttl">הכנסות — פירוט</span>
-      <span class="badge green" id="bdg-income-list">—</span>
-      <span class="chev" id="chev-income-list">▾</span>
-    </div>
-    <div class="sec-body hidden" id="body-income-list">
-      <div class="sec-inner" id="lst-income"></div>
-    </div>
-  </div>
-
-  <!-- EXPENSE LIST -->
-  <div class="sec" id="sec-expense-list">
-    <div class="sec-hdr" onclick="toggleSec('expense-list')">
-      <div class="sec-ico">📉</div>
-      <span class="sec-ttl">הוצאות — פירוט</span>
-      <span class="badge red" id="bdg-expense-list">—</span>
-      <span class="chev" id="chev-expense-list">▾</span>
-    </div>
-    <div class="sec-body hidden" id="body-expense-list">
-      <div class="sec-inner" id="lst-expenses"></div>
     </div>
   </div>
 
@@ -733,19 +746,6 @@ input,select{font-family:inherit;direction:rtl}
     </div>
     <div class="sec-body hidden" id="body-tx-list">
       <div class="sec-inner" id="lst-tx"></div>
-    </div>
-  </div>
-
-  <!-- UNPAID LIST -->
-  <div class="sec" id="sec-unpaid-list">
-    <div class="sec-hdr" onclick="toggleSec('unpaid-list')">
-      <div class="sec-ico">🔴</div>
-      <span class="sec-ttl">התחייבויות לתשלום</span>
-      <span class="badge amber" id="bdg-unpaid-list">—</span>
-      <span class="chev" id="chev-unpaid-list">▾</span>
-    </div>
-    <div class="sec-body hidden" id="body-unpaid-list">
-      <div class="sec-inner" id="lst-unpaid"></div>
     </div>
   </div>
 
@@ -1558,10 +1558,6 @@ function enterApp() {
 function toggleSec(id) {
   S.open[id] = !S.open[id];
   render();
-  if (S.open[id]) {
-    const el = document.getElementById('sec-' + id);
-    if (el) setTimeout(() => el.scrollIntoView({behavior:'smooth', block:'start'}), 60);
-  }
 }
 
 function setPeriod(mode) {
