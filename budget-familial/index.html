@@ -162,7 +162,25 @@ input,select{font-family:inherit;direction:rtl}
   transition:var(--tr);
 }
 .tbtn:hover{background:rgba(255,255,255,.18);color:#fff}
-.tbtn.on{background:rgba(255,255,255,.24);border-color:rgba(255,255,255,.38);color:#fff;font-weight:700}
+.tbtn.on{
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-lt) 100%);
+  border-color:var(--gold-lt);
+  color:#0D1E2F;
+  font-weight:800;
+  box-shadow:0 2px 14px rgba(201,148,31,.5);
+  animation:none!important;
+}
+/* Couleurs sémantiques pour les onglets type quand sélectionnés */
+#tp-income.on{
+  background:linear-gradient(135deg,var(--income) 0%,#2EEABC 100%);
+  border-color:var(--income);
+  box-shadow:0 2px 14px rgba(24,184,147,.45);
+}
+#tp-expense.on{
+  background:linear-gradient(135deg,var(--expense) 0%,#F5AC60 100%);
+  border-color:var(--expense);
+  box-shadow:0 2px 14px rgba(224,122,40,.45);
+}
 
 /* ── KPI STRIP ───────────────────────────────────────── */
 /*
