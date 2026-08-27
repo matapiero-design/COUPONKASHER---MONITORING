@@ -418,35 +418,55 @@ input,select{font-family:inherit;direction:rtl}
   }
 }
 
-/* Period tabs: soft white flash */
-@keyframes blink-period{
-  0%,42%,58%,100%{
+/* Period buttons: strong gold flash — always blink, both buttons */
+@keyframes blink-period-off{
+  0%,40%,60%,100%{
     background:rgba(255,255,255,.1);
     border-color:rgba(255,255,255,.18);
-    color:rgba(255,255,255,.82);
+    color:rgba(255,255,255,.8);
     box-shadow:none;
   }
   50%{
-    background:rgba(255,255,255,.32);
-    border-color:rgba(255,255,255,.65);
+    background:rgba(201,148,31,.55);
+    border-color:#E8BB55;
     color:#fff;
-    box-shadow:0 0 10px rgba(255,255,255,.3), 0 0 22px rgba(255,255,255,.12);
+    box-shadow:0 0 0 3px rgba(201,148,31,.3), 0 0 18px rgba(201,148,31,.55);
+  }
+}
+@keyframes blink-period-on{
+  0%,40%,60%,100%{
+    background:var(--gold);
+    border-color:var(--gold);
+    color:#0D1E2F;
+    box-shadow:0 2px 8px rgba(201,148,31,.35);
+  }
+  50%{
+    background:#FDD87A;
+    border-color:#FDD87A;
+    color:#0D1E2F;
+    box-shadow:0 0 0 4px rgba(201,148,31,.35), 0 4px 20px rgba(201,148,31,.7);
   }
 }
 
 /* Apply to inactive navigation tabs */
-#tp-income:not(.on)  { animation: blink-income  1.7s ease-in-out infinite; }
-#tp-expense:not(.on) { animation: blink-expense 1.9s ease-in-out infinite 0.3s; }
-#sc-private:not(.on) { animation: blink-scope   2.1s ease-in-out infinite 0.15s; }
-#sc-business:not(.on){ animation: blink-scope   2.1s ease-in-out infinite 0.55s; }
-#bp-month:not(.on)   { animation: blink-period  2.3s ease-in-out infinite 0.2s; }
-#bp-cumul:not(.on)   { animation: blink-period  2.3s ease-in-out infinite 0.7s; }
+#sc-all:not(.on)     { animation: blink-scope       1.5s ease-in-out infinite; }
+#tp-all:not(.on)     { animation: blink-scope       1.5s ease-in-out infinite 0.4s; }
+#tp-income:not(.on)  { animation: blink-income      1.7s ease-in-out infinite; }
+#tp-expense:not(.on) { animation: blink-expense     1.9s ease-in-out infinite 0.3s; }
+#sc-private:not(.on) { animation: blink-scope       2.1s ease-in-out infinite 0.15s; }
+#sc-business:not(.on){ animation: blink-scope       2.1s ease-in-out infinite 0.55s; }
 
-/* Stop animation once active */
-.tbtn.on, .hbtn.on { animation: none !important; }
+/* Period buttons: ALWAYS blink — both active and inactive */
+#bp-month            { animation: blink-period-off  1.6s ease-in-out infinite; }
+#bp-month.on         { animation: blink-period-on   1.6s ease-in-out infinite; }
+#bp-cumul            { animation: blink-period-off  1.6s ease-in-out infinite 0.5s; }
+#bp-cumul.on         { animation: blink-period-on   1.6s ease-in-out infinite 0.5s; }
+
+/* Stop other tabs on active */
+.tbtn.on { animation: none !important; }
 
 /* Hover always stops blink */
-.tbtn:hover, .hbtn:hover { animation: none; }
+.tbtn:hover, .hbtn:hover { animation: none !important; }
 
 /* ── KPI CARD PULSE ──────────────────────────────────── */
 @keyframes pulse-inc{
