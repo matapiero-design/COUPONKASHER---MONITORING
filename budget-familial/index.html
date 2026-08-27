@@ -369,97 +369,84 @@ input,select{font-family:inherit;direction:rtl}
 #theme-btn:hover{background:rgba(255,255,255,.22)}
 
 /* ── BLINK ANIMATIONS ────────────────────────────────── */
-@keyframes blink-gold{
-  0%,100%{
-    box-shadow:0 6px 24px rgba(201,148,31,.45);
-    background:linear-gradient(135deg,#C9941F 0%,#E8BB55 100%);
-    opacity:1;
-  }
-  45%{
-    box-shadow:0 0 0 8px rgba(201,148,31,.0), 0 6px 40px rgba(201,148,31,.8);
-    background:linear-gradient(135deg,#E8BB55 0%,#FDD87A 100%);
-    opacity:.82;
+
+/* Income tab: green flash */
+@keyframes blink-income{
+  0%,42%,58%,100%{
+    background:rgba(24,184,147,.18);
+    border-color:rgba(24,184,147,.55);
+    color:#fff;
+    box-shadow:none;
   }
   50%{
-    box-shadow:0 0 0 14px rgba(201,148,31,.0), 0 6px 52px rgba(201,148,31,.95);
-    background:linear-gradient(135deg,#FDD87A 0%,#E8BB55 100%);
-    opacity:.65;
-  }
-  55%{
-    box-shadow:0 0 0 8px rgba(201,148,31,.0), 0 6px 40px rgba(201,148,31,.8);
-    background:linear-gradient(135deg,#E8BB55 0%,#C9941F 100%);
-    opacity:.82;
-  }
-}
-@keyframes blink-navy{
-  0%,100%{
-    box-shadow:0 4px 12px rgba(27,58,92,.30);
-    background:linear-gradient(135deg,#1B3A5C 0%,#2A5480 100%);
-    opacity:1;
-  }
-  45%{
-    box-shadow:0 0 0 7px rgba(27,58,92,.0), 0 6px 36px rgba(27,58,92,.75);
-    background:linear-gradient(135deg,#2A5480 0%,#4A7BA0 100%);
-    opacity:.8;
-  }
-  50%{
-    box-shadow:0 0 0 13px rgba(27,58,92,.0), 0 6px 48px rgba(27,58,92,.9);
-    background:linear-gradient(135deg,#4A7BA0 0%,#2A5480 100%);
-    opacity:.6;
-  }
-  55%{
-    box-shadow:0 0 0 7px rgba(27,58,92,.0), 0 6px 36px rgba(27,58,92,.75);
-    background:linear-gradient(135deg,#2A5480 0%,#1B3A5C 100%);
-    opacity:.8;
-  }
-}
-@keyframes blink-green{
-  0%,100%{
-    box-shadow:none;border-color:var(--income);color:var(--income);
-    opacity:1;
-  }
-  45%{
-    box-shadow:0 0 0 5px rgba(24,184,147,.0), 0 4px 22px rgba(24,184,147,.6);
-    border-color:#22DDB6;color:#22DDB6;
-    opacity:.75;
-  }
-  50%{
-    box-shadow:0 0 0 10px rgba(24,184,147,.0), 0 4px 30px rgba(24,184,147,.85);
-    border-color:#60F0D4;color:#60F0D4;
-    opacity:.55;
-  }
-  55%{
-    box-shadow:0 0 0 5px rgba(24,184,147,.0), 0 4px 22px rgba(24,184,147,.6);
-    border-color:#22DDB6;color:#22DDB6;
-    opacity:.75;
+    background:rgba(24,184,147,.55);
+    border-color:#18B893;
+    color:#fff;
+    box-shadow:0 0 12px rgba(24,184,147,.7), 0 0 28px rgba(24,184,147,.35);
   }
 }
 
-/* Apply blink to key action buttons */
-.sp-btn{
-  animation: blink-gold 2s ease-in-out infinite;
+/* Expense tab: red flash */
+@keyframes blink-expense{
+  0%,42%,58%,100%{
+    background:rgba(229,56,74,.15);
+    border-color:rgba(229,56,74,.45);
+    color:#fff;
+    box-shadow:none;
+  }
+  50%{
+    background:rgba(229,56,74,.5);
+    border-color:#E5384A;
+    color:#fff;
+    box-shadow:0 0 12px rgba(229,56,74,.65), 0 0 28px rgba(229,56,74,.3);
+  }
 }
-.sp-btn:hover{
-  animation: none;
-  transform:translateY(-3px);
-  box-shadow:0 10px 36px rgba(201,148,31,.65);
+
+/* Scope tabs: gold flash */
+@keyframes blink-scope{
+  0%,42%,58%,100%{
+    background:rgba(201,148,31,.12);
+    border-color:rgba(201,148,31,.4);
+    color:rgba(255,255,255,.82);
+    box-shadow:none;
+  }
+  50%{
+    background:rgba(201,148,31,.42);
+    border-color:#C9941F;
+    color:#fff;
+    box-shadow:0 0 10px rgba(201,148,31,.6), 0 0 24px rgba(201,148,31,.28);
+  }
 }
-.fsub{
-  animation: blink-navy 2.4s ease-in-out infinite;
+
+/* Period tabs: soft white flash */
+@keyframes blink-period{
+  0%,42%,58%,100%{
+    background:rgba(255,255,255,.1);
+    border-color:rgba(255,255,255,.18);
+    color:rgba(255,255,255,.82);
+    box-shadow:none;
+  }
+  50%{
+    background:rgba(255,255,255,.32);
+    border-color:rgba(255,255,255,.65);
+    color:#fff;
+    box-shadow:0 0 10px rgba(255,255,255,.3), 0 0 22px rgba(255,255,255,.12);
+  }
 }
-.fsub:hover{
-  animation: none;
-  transform:translateY(-2px);
-  box-shadow:0 8px 28px rgba(27,58,92,.48);
-}
-.paid-btn{
-  animation: blink-green 1.8s ease-in-out infinite;
-}
-.paid-btn:hover{
-  animation: none;
-  background:var(--income);
-  color:#fff;
-}
+
+/* Apply to inactive navigation tabs */
+#tp-income:not(.on)  { animation: blink-income  1.7s ease-in-out infinite; }
+#tp-expense:not(.on) { animation: blink-expense 1.9s ease-in-out infinite 0.3s; }
+#sc-private:not(.on) { animation: blink-scope   2.1s ease-in-out infinite 0.15s; }
+#sc-business:not(.on){ animation: blink-scope   2.1s ease-in-out infinite 0.55s; }
+#bp-month:not(.on)   { animation: blink-period  2.3s ease-in-out infinite 0.2s; }
+#bp-cumul:not(.on)   { animation: blink-period  2.3s ease-in-out infinite 0.7s; }
+
+/* Stop animation once active */
+.tbtn.on, .hbtn.on { animation: none !important; }
+
+/* Hover always stops blink */
+.tbtn:hover, .hbtn:hover { animation: none; }
 
 /* ── TEXT VISIBILITY BOOST ───────────────────────────── */
 .sec-ttl{font-size:15.5px;font-weight:800;color:var(--t1)}
