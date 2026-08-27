@@ -779,6 +779,40 @@ input,select{font-family:inherit;direction:rtl}
     </div>
   </div>
 
+  <!-- IMPORT FROM NATALIE -->
+  <div class="sec" id="sec-import-natalie">
+    <div class="sec-hdr" onclick="toggleSec('import-natalie')">
+      <div class="sec-ico">📥</div>
+      <span class="sec-ttl">ייבוא מנטלי</span>
+      <span class="chev" id="chev-import-natalie">▾</span>
+    </div>
+    <div class="sec-body hidden" id="body-import-natalie">
+      <div class="sec-inner">
+        <p style="font-size:13px;color:var(--t2);margin-bottom:12px">
+          הדבק כאן את ה-JSON שנטלי שלחה (כפתור "ייצוא JSON" מהיומן שלה), או לחץ "סנכרן" לקבלה אוטומטית מגוגל שיטס.
+        </p>
+        <textarea id="import-natalie-ta"
+          style="width:100%;min-height:100px;border:1.5px solid var(--border);border-radius:var(--r-sm);padding:10px;font-size:13px;background:var(--surf2);color:var(--t1);font-family:inherit;direction:ltr;margin-bottom:10px"
+          placeholder='[{"id":"...","date":"...","type":"expense",...}]'></textarea>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button onclick="importFromNatalie()" style="flex:1;padding:11px;border-radius:50px;border:none;background:linear-gradient(135deg,var(--navy),var(--navy-mid));color:#fff;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer">
+            📥 ייבא JSON
+          </button>
+          <button onclick="syncFromSheets()" style="flex:1;padding:11px;border-radius:50px;border:1.5px solid var(--border);background:var(--surf2);color:var(--t2);font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">
+            🔄 סנכרן גוגל שיטס
+          </button>
+        </div>
+        <div style="margin-top:12px;display:flex;align-items:center;gap:8px">
+          <span style="font-size:12px;color:var(--t3)">כתובת Apps Script:</span>
+          <input id="budget-sync-url-input" type="url" placeholder="https://script.google.com/..." value=""
+            style="flex:1;padding:7px 10px;border:1.5px solid var(--border);border-radius:var(--r-sm);background:var(--surf2);color:var(--t1);font-size:12px;font-family:inherit">
+          <button onclick="saveSyncUrl()" style="padding:7px 12px;border-radius:var(--r-sm);border:none;background:var(--gold);color:#0D1E2F;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit">שמור</button>
+        </div>
+        <div id="import-status" style="font-size:12px;color:var(--income);margin-top:8px;display:none"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- JOURNAL -->
   <div class="sec" id="sec-journal">
     <div class="sec-hdr" onclick="toggleSec('journal')">
@@ -1655,6 +1689,82 @@ function markPaid(id) {
   ss('unpaid-ids', S.unpaidIds);
   showToast('סומן כ"שולם" ✓');
   render();
+}
+
+/* ── IMPORT FROM NATALIE ─────────────────────────────────── */
+const BUDGET_SYNC_KEY = 'budget-sync-url';
+function getBudgetSyncUrl() { try { return localStorage.getItem(BUDGET_SYNC_KEY)||''; } catch(e){ return ''; } }
+
+// Pre-fill sync URL input on page load
+window.addEventListener('DOMContentLoaded', () => {
+  const inp = document.getElementById('budget-sync-url-input');
+  if (inp) inp.value = getBudgetSyncUrl();
+});
+
+function saveSyncUrl() {
+  const url = document.getElementById('budget-sync-url-input').value.trim();
+  try { localStorage.setItem(BUDGET_SYNC_KEY, url); } catch(e){}
+  showImportStatus(url ? '✓ כתובת נשמרה' : 'כתובת נמחקה');
+}
+
+function showImportStatus(msg, isErr) {
+  const el = document.getElementById('import-status');
+  if (!el) return;
+  el.style.display = 'block';
+  el.style.color = isErr ? 'var(--expense)' : 'var(--income)';
+  el.textContent = msg;
+  setTimeout(() => { el.style.display = 'none'; }, 4000);
+}
+
+function importFromNatalie() {
+  const raw = document.getElementById('import-natalie-ta').value.trim();
+  if (!raw) { showImportStatus('הדבק JSON קודם', true); return; }
+  let data;
+  try { data = JSON.parse(raw); } catch(e) { showImportStatus('JSON לא תקין — בדוק את הטקסט', true); return; }
+  if (!Array.isArray(data)) { showImportStatus('JSON לא תקין — חייב להיות מערך', true); return; }
+  const existingIds = new Set(transactions.map(t => t.id));
+  let added = 0;
+  data.forEach(e => {
+    if (!existingIds.has(e.id) && e.id && e.date && e.amount) {
+      transactions.push({
+        id: e.id, date: e.date, scope: e.scope||'private',
+        type: e.type||'expense', category: e.category||'אחר',
+        amount: parseFloat(e.amount)||0, note: e.note||'',
+        paid: false,
+      });
+      added++;
+    }
+  });
+  saveData(); render();
+  document.getElementById('import-natalie-ta').value = '';
+  showImportStatus('✓ ' + added + ' תנועות יובאו בהצלחה' + (added===0 ? ' (אין חדשות)' : ''));
+}
+
+function syncFromSheets() {
+  const url = getBudgetSyncUrl();
+  if (!url) { showImportStatus('הגדר כתובת Apps Script בשדה למטה', true); return; }
+  showImportStatus('מסנכרן...');
+  fetch(url + '?action=get')
+    .then(r => r.json())
+    .then(data => {
+      if (!Array.isArray(data)) throw new Error('bad response');
+      const existingIds = new Set(transactions.map(t => t.id));
+      let added = 0;
+      data.forEach(e => {
+        if (!existingIds.has(e.id) && e.id && e.date && e.amount) {
+          transactions.push({
+            id: e.id, date: e.date, scope: e.scope||'private',
+            type: e.type||'expense', category: e.category||'אחר',
+            amount: parseFloat(e.amount)||0, note: e.note||'',
+            paid: false,
+          });
+          added++;
+        }
+      });
+      saveData(); render();
+      showImportStatus('✓ סנכרון הצליח — ' + added + ' תנועות חדשות');
+    })
+    .catch(() => showImportStatus('שגיאת סנכרון — בדוק חיבור ו-URL', true));
 }
 
 function toggleTheme() {

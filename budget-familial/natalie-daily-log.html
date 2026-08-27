@@ -338,12 +338,50 @@ input,textarea,select { font-family:inherit; direction:rtl; }
   font-size:12px; color:var(--t3); line-height:1.6;
   text-align:center; padding:4px 0 20px;
 }
+
+/* ── EXPORT / SYNC ───────────────────────────────── */
+.btn-export {
+  background:var(--surf2); color:var(--navy); border:1.5px solid var(--border);
+  margin-top:8px;
+}
+.btn-export:hover { background:var(--surf3); }
+.sync-row {
+  display:flex; align-items:center; gap:8px;
+  margin-top:8px; font-size:12px; color:var(--t3);
+}
+.sync-dot {
+  width:8px; height:8px; border-radius:50%; flex-shrink:0;
+  background:var(--t3);
+}
+.sync-dot.ok  { background:var(--income); }
+.sync-dot.err { background:var(--danger); }
+
+/* ── SETTINGS MODAL ──────────────────────────────── */
+.settings-btn {
+  position:absolute; left:16px; top:50%; transform:translateY(-50%);
+  width:36px; height:36px;
+  background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.2);
+  border-radius:10px; color:#fff; font-size:18px;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; transition:var(--tr);
+}
+.settings-btn:hover { background:rgba(255,255,255,.22); }
+.settings-input {
+  width:100%; padding:11px 14px;
+  border:1.5px solid var(--border); border-radius:var(--r-sm);
+  background:var(--surf2); color:var(--t1);
+  font-size:13px; font-family:'Heebo',sans-serif;
+  margin:8px 0 14px;
+}
+.settings-input:focus { outline:none; border-color:var(--navy-lt); }
+.settings-label { font-size:13px; color:var(--t2); font-weight:600; }
+.settings-hint { font-size:11px; color:var(--t3); margin-top:4px; line-height:1.5; }
 </style>
 </head>
 <body>
 
 <!-- HEADER -->
-<header class="hdr">
+<header class="hdr" style="position:sticky;top:0;z-index:200;position:relative;">
   <div class="hdr-icon">💰</div>
   <div class="hdr-text">
     <div class="hdr-title">יומן יומי — נטלי</div>
@@ -353,6 +391,7 @@ input,textarea,select { font-family:inherit; direction:rtl; }
     <span id="datePillLabel">—</span>
     <input type="date" id="dateInput">
   </div>
+  <button class="settings-btn" id="settingsBtn" title="הגדרות סנכרון">⚙️</button>
 </header>
 
 <div class="wrap">
@@ -403,6 +442,11 @@ input,textarea,select { font-family:inherit; direction:rtl; }
     <textarea class="summary-ta" id="summaryText" readonly></textarea>
     <button class="btn btn-gold" id="copyBtn">📊 סכם ושמור</button>
     <button class="btn btn-wa" id="shareBtn">📤 שלחי ליעקב בוואטסאפ</button>
+    <button class="btn btn-export" id="exportJsonBtn">📦 ייצוא JSON ליעקב</button>
+    <div class="sync-row" id="syncStatus" style="display:none">
+      <div class="sync-dot" id="syncDot"></div>
+      <span id="syncMsg">—</span>
+    </div>
   </div>
 
   <!-- SCREENSHOT TABLE -->
@@ -416,6 +460,24 @@ input,textarea,select { font-family:inherit; direction:rtl; }
   </p>
 
 </div><!-- /wrap -->
+
+<!-- SETTINGS MODAL -->
+<div class="modal-overlay" id="settingsModal">
+  <div class="modal-box">
+    <div class="modal-pill"></div>
+    <div class="modal-cat" style="font-size:18px;margin-bottom:16px">⚙️ הגדרות סנכרון</div>
+    <div class="settings-label">כתובת Google Apps Script</div>
+    <input class="settings-input" type="url" id="syncUrlInput" placeholder="https://script.google.com/macros/s/...">
+    <div class="settings-hint">
+      הכניסי כאן את ה-URL של ה-Apps Script שיעקב הפעיל.<br>
+      ברגע שמוגדר, כל תנועה תישלח אוטומטית ל-Google Sheets שלו.
+    </div>
+    <div class="modal-btns" style="margin-top:4px">
+      <button class="modal-cancel" id="settingsCancelBtn">סגור</button>
+      <button class="modal-confirm" id="settingsSaveBtn">💾 שמור</button>
+    </div>
+  </div>
+</div>
 
 <!-- CONFIRM MODAL -->
 <div class="modal-overlay" id="confirmModal">
@@ -648,6 +710,7 @@ function addEntry(catName) {
   };
   entries.push(entry);
   save();
+  syncEntry(entry); /* → Google Sheets si URL configurée */
   amountInput.value = '';
   noteInput.value = '';
   renderCats();
@@ -750,10 +813,64 @@ function render() {
   }
 }
 
+/* ── GOOGLE SHEETS SYNC ──────────────────────────── */
+const SYNC_URL_KEY = 'natalie-sync-url';
+function getSyncUrl() { try { return localStorage.getItem(SYNC_URL_KEY)||''; } catch(e){ return ''; } }
+function setSyncUrl(u) { try { localStorage.setItem(SYNC_URL_KEY, u); } catch(e){} }
+
+function showSyncStatus(ok, msg) {
+  const row = document.getElementById('syncStatus');
+  const dot  = document.getElementById('syncDot');
+  const txt  = document.getElementById('syncMsg');
+  row.style.display = 'flex';
+  dot.className = 'sync-dot ' + (ok ? 'ok' : 'err');
+  txt.textContent = msg;
+}
+
+function syncEntry(entry) {
+  const url = getSyncUrl();
+  if (!url) return;
+  fetch(url, {
+    method:'POST',
+    mode:'no-cors',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(entry)
+  })
+  .then(() => showSyncStatus(true, 'נשלח לגוגל שיטס ✓'))
+  .catch(() => showSyncStatus(false, 'שגיאה בשליחה — בדקי חיבור'));
+}
+
+/* ── JSON EXPORT ─────────────────────────────────── */
+document.getElementById('exportJsonBtn').addEventListener('click', () => {
+  if (!entries.length) { alert('אין תנועות לייצוא'); return; }
+  const json = JSON.stringify(entries);
+  try { navigator.clipboard.writeText(json); } catch(e) {}
+  const btn = document.getElementById('exportJsonBtn');
+  const orig = btn.textContent;
+  btn.textContent = '✅ JSON הועתק!';
+  setTimeout(() => { btn.textContent = orig; }, 2500);
+});
+
+/* ── SETTINGS MODAL ──────────────────────────────── */
+const settingsModal = document.getElementById('settingsModal');
+document.getElementById('settingsBtn').addEventListener('click', () => {
+  document.getElementById('syncUrlInput').value = getSyncUrl();
+  settingsModal.classList.add('open');
+});
+document.getElementById('settingsCancelBtn').addEventListener('click', () => settingsModal.classList.remove('open'));
+settingsModal.addEventListener('click', e => { if(e.target===settingsModal) settingsModal.classList.remove('open'); });
+document.getElementById('settingsSaveBtn').addEventListener('click', () => {
+  const url = document.getElementById('syncUrlInput').value.trim();
+  setSyncUrl(url);
+  settingsModal.classList.remove('open');
+  if (url) showSyncStatus(true, 'כתובת הסנכרון נשמרה ✓');
+});
+
 /* ── INIT ────────────────────────────────────────── */
 updateToggles();
 renderCats();
 render();
+if (getSyncUrl()) showSyncStatus(true, 'סנכרון אוטומטי פעיל ✓');
 // pulse amount on load
 setTimeout(() => {
   amountInput.classList.add('pulse');
