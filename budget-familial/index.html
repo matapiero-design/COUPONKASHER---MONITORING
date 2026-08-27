@@ -1309,7 +1309,7 @@ function renderKPI() {
   const { periodMode, month } = S;
   const { income, expense, balance, unpaidAmt } = computeKPIs();
 
-  document.getElementById('kv-balance').textContent = fmt(balance);
+  document.getElementById('kv-balance').textContent = fmtSigned(balance);
   document.getElementById('ks-balance').textContent = periodMode==='month' ? fmtMonth(month) : 'כל הזמנים';
   document.getElementById('kv-income').textContent  = fmt(income);
   document.getElementById('ks-income').textContent  = 'בפועל';
