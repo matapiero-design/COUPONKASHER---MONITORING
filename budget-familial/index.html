@@ -107,14 +107,36 @@ input,select{font-family:inherit;direction:rtl}
   font-size:20px;box-shadow:0 4px 14px rgba(201,148,31,.35);
 }
 .logo-text{font-family:'Frank Ruhl Libre',serif;font-size:21px;font-weight:900;color:#fff;letter-spacing:-.3px}
-.hdr-btns{display:flex;gap:6px;align-items:center}
-.hbtn{
-  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.17);
-  color:rgba(255,255,255,.88);padding:6px 13px;border-radius:8px;font-size:13px;
-  transition:var(--tr);
+.hdr-btns{display:flex;gap:10px;align-items:center}
+
+/* ── PERIOD TOGGLE (segmented control) ── */
+.period-toggle{
+  display:flex;
+  background:rgba(0,0,0,.28);
+  border-radius:12px;
+  padding:4px;
+  gap:3px;
 }
-.hbtn:hover{background:rgba(255,255,255,.2)}
-.hbtn.on{background:var(--gold);border-color:var(--gold);color:#0D1E2F;font-weight:700}
+.ptbtn{
+  border:none;cursor:pointer;border-radius:9px;
+  font-family:'Heebo',sans-serif;font-size:15px;font-weight:700;
+  padding:9px 16px;
+  color:rgba(255,255,255,.55);
+  background:transparent;
+  transition:all .28s cubic-bezier(.4,0,.2,1);
+  white-space:nowrap;
+  letter-spacing:.2px;
+}
+.ptbtn:hover:not(.on){
+  color:rgba(255,255,255,.85);
+  background:rgba(255,255,255,.1);
+}
+.ptbtn.on{
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-lt) 100%);
+  color:#0D1E2F;
+  font-weight:800;
+  box-shadow:0 3px 14px rgba(201,148,31,.5);
+}
 
 .mnav{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:12px}
 .mbtn{
@@ -432,35 +454,7 @@ input,select{font-family:inherit;direction:rtl}
   }
 }
 
-/* Period buttons: gold flash */
-@keyframes blink-period-off{
-  0%,35%,65%,100%{
-    background:rgba(255,255,255,.1);
-    border-color:rgba(255,255,255,.18);
-    color:rgba(255,255,255,.8);
-    box-shadow:none;
-  }
-  50%{
-    background:rgba(201,148,31,.45);
-    border-color:#E8BB55;
-    color:#fff;
-    box-shadow:0 0 0 3px rgba(201,148,31,.25), 0 0 16px rgba(201,148,31,.45);
-  }
-}
-@keyframes blink-period-on{
-  0%,35%,65%,100%{
-    background:var(--gold);
-    border-color:var(--gold);
-    color:#0D1E2F;
-    box-shadow:0 2px 8px rgba(201,148,31,.3);
-  }
-  50%{
-    background:#FDD87A;
-    border-color:#FDD87A;
-    color:#0D1E2F;
-    box-shadow:0 0 0 4px rgba(201,148,31,.3), 0 4px 18px rgba(201,148,31,.6);
-  }
-}
+/* Period toggle — no blink needed, always visible */
 
 /* Apply to inactive navigation tabs — slower cadence */
 #sc-all:not(.on)     { animation: blink-scope       3.2s ease-in-out infinite; }
@@ -470,17 +464,11 @@ input,select{font-family:inherit;direction:rtl}
 #sc-private:not(.on) { animation: blink-scope       3.8s ease-in-out infinite 0.3s; }
 #sc-business:not(.on){ animation: blink-scope       3.8s ease-in-out infinite 1.1s; }
 
-/* Period buttons: ALWAYS blink */
-#bp-month            { animation: blink-period-off  3.4s ease-in-out infinite; }
-#bp-month.on         { animation: blink-period-on   3.4s ease-in-out infinite; }
-#bp-cumul            { animation: blink-period-off  3.4s ease-in-out infinite 1s; }
-#bp-cumul.on         { animation: blink-period-on   3.4s ease-in-out infinite 1s; }
-
-/* Stop other tabs on active */
+/* Stop tab animations on active */
 .tbtn.on { animation: none !important; }
 
 /* Hover always stops blink */
-.tbtn:hover, .hbtn:hover { animation: none !important; }
+.tbtn:hover { animation: none !important; }
 
 /* ── KPI CARD PULSE ──────────────────────────────────── */
 @keyframes pulse-inc{
@@ -570,8 +558,10 @@ input,select{font-family:inherit;direction:rtl}
       </div>
       <div class="hdr-btns">
         <button id="theme-btn" onclick="toggleTheme()" title="שינוי ערכת נושא">🌙</button>
-        <button class="hbtn" id="bp-month"  onclick="setPeriod('month')">חודשי</button>
-        <button class="hbtn" id="bp-cumul"  onclick="setPeriod('cumulative')">מצטבר</button>
+        <div class="period-toggle">
+          <button class="ptbtn" id="bp-month"  onclick="setPeriod('month')">📅 חודשי</button>
+          <button class="ptbtn" id="bp-cumul"  onclick="setPeriod('cumulative')">📊 מצטבר</button>
+        </div>
       </div>
     </div>
     <div class="mnav" id="month-nav">
