@@ -153,14 +153,16 @@ input,select{font-family:inherit;direction:rtl}
   color:#fff;min-width:155px;text-align:center;
 }
 
-.tabs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:5px;justify-content:center}
+.tabs{display:flex;width:100%;gap:5px;margin-bottom:5px}
 .tbtn{
+  flex:1;text-align:center;
   background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);
-  color:rgba(255,255,255,.72);padding:4px 13px;border-radius:20px;font-size:12.5px;
+  color:rgba(255,255,255,.75);padding:9px 6px;border-radius:20px;
+  font-size:15px;font-weight:600;
   transition:var(--tr);
 }
 .tbtn:hover{background:rgba(255,255,255,.18);color:#fff}
-.tbtn.on{background:rgba(255,255,255,.24);border-color:rgba(255,255,255,.38);color:#fff;font-weight:600}
+.tbtn.on{background:rgba(255,255,255,.24);border-color:rgba(255,255,255,.38);color:#fff;font-weight:700}
 
 /* ── KPI STRIP ───────────────────────────────────────── */
 /*
@@ -194,18 +196,18 @@ input,select{font-family:inherit;direction:rtl}
 .kpi.upd{
   grid-column:1 / -1;
 }
-.kpi-lbl{font-size:13px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--t3);margin-bottom:8px}
-.kpi.bal .kpi-lbl{color:rgba(255,255,255,.7)}
+.kpi-lbl{font-size:15px;font-weight:800;letter-spacing:.3px;text-transform:uppercase;color:var(--t3);margin-bottom:8px}
+.kpi.bal .kpi-lbl{color:rgba(255,255,255,.75)}
 .kpi-val{
-  font-family:'Frank Ruhl Libre',serif;font-size:clamp(26px,4vw,36px);
+  font-family:'Frank Ruhl Libre',serif;font-size:clamp(30px,4.5vw,42px);
   font-weight:900;font-variant-numeric:tabular-nums;line-height:1;margin-bottom:6px;
 }
-.kpi.bal .kpi-val{color:#fff;font-size:clamp(32px,5vw,44px)}
+.kpi.bal .kpi-val{color:#fff;font-size:clamp(36px,5.5vw,50px)}
 .kpi.inc .kpi-val{color:var(--income)}
 .kpi.exp .kpi-val{color:var(--expense)}
 .kpi.upd .kpi-val{color:var(--unpaid)}
-.kpi-sub{font-size:13px;color:var(--t3)}
-.kpi.bal .kpi-sub{color:rgba(255,255,255,.6)}
+.kpi-sub{font-size:14.5px;color:var(--t3)}
+.kpi.bal .kpi-sub{color:rgba(255,255,255,.65)}
 
 /* ── CHARTS ──────────────────────────────────────────── */
 .charts{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:11px}
@@ -506,12 +508,12 @@ input,select{font-family:inherit;direction:rtl}
   border-color: var(--border2);
 }
 
-/* ── TEXT VISIBILITY BOOST ───────────────────────────── */
+/* ── TEXT VISIBILITY BOOST — uniformité dashboard ↔ résultats ── */
 .sec-ttl{font-size:15.5px;font-weight:800;color:var(--t1)}
-.kpi-lbl{font-size:13px;font-weight:800;letter-spacing:.5px;color:var(--t2)}
+.kpi-lbl{font-size:15px;font-weight:800;letter-spacing:.3px;color:var(--t2)}
 .kpi.bal .kpi-lbl{color:rgba(255,255,255,.75)}
-.kpi-val{font-size:clamp(26px,4vw,36px)}
-.kpi-sub{font-size:13px;color:var(--t2);font-weight:500}
+.kpi-val{font-size:clamp(30px,4.5vw,42px)}
+.kpi-sub{font-size:14.5px;color:var(--t2);font-weight:500}
 .kpi.bal .kpi-sub{color:rgba(255,255,255,.65)}
 .chart-ttl{font-size:12px;font-weight:800;letter-spacing:.8px;color:var(--t2)}
 .leg-name{color:var(--t1);font-size:12.5px;font-weight:500}
