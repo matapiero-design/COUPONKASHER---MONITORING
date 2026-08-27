@@ -163,6 +163,7 @@ input,select{font-family:inherit;direction:rtl}
   grid-column:1 / -1;
   background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);
   border-color:transparent;
+  transition:background .5s ease, box-shadow .5s ease;
 }
 
 /* Engagements — pleine largeur en bas */
@@ -1317,12 +1318,14 @@ function renderKPI() {
   document.getElementById('kv-unpaid').textContent  = unpaidAmt > 0 ? fmt(unpaidAmt) : '₪0';
   document.getElementById('ks-unpaid').textContent  = 'ממתינות לתשלום';
 
-  // Color the balance card
+  // Color the balance card: green = positive, red = negative
   const balCard = document.querySelector('.kpi.bal');
   if (balance < 0) {
-    balCard.style.background = 'linear-gradient(135deg,#6B1527 0%,#A02030 100%)';
+    balCard.style.background = 'linear-gradient(135deg,#8B1A2A 0%,#C0253A 100%)';
+    balCard.style.boxShadow  = '0 4px 24px rgba(192,37,58,.35)';
   } else {
-    balCard.style.background = 'linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%)';
+    balCard.style.background = 'linear-gradient(135deg,#0D7A5F 0%,#18B893 100%)';
+    balCard.style.boxShadow  = '0 4px 24px rgba(24,184,147,.30)';
   }
 }
 
