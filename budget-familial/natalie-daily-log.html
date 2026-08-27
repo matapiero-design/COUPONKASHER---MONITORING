@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>יומן יומי — נטלי</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;900&family=Frank+Ruhl+Libre:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ─────────────────────────────────────── */
+:root {
+  --navy:     #1B3A5C;
+  --navy-mid: #2A5480;
+  --navy-lt:  #4A7BA0;
+  --gold:     #C9941F;
+  --gold-lt:  #E8BB55;
+  --income:   #18B893;
+  --income-lt:#2EEABC;
+  --expense:  #E07A28;
+  --expense-lt:#F5AC60;
+  --danger:   #E5384A;
+  --bg:       #ECF3FA;
+  --surf:     #FFFFFF;
+  --surf2:    #EEF5FB;
+  --surf3:    #E2EFF8;
+  --border:   rgba(27,58,92,.11);
+  --t1:       #0D1E2F;
+  --t2:       #3A607C;
+  --t3:       #7094AB;
+  --shd:      0 2px 14px rgba(27,58,92,.08);
+  --shd-lg:   0 8px 32px rgba(27,58,92,.15);
+  --r:        16px;
+  --r-sm:     10px;
+  --tr:       all .2s cubic-bezier(.4,0,.2,1);
+}
+@media (prefers-color-scheme:dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#091825; --surf:#152433; --surf2:#1C3045; --surf3:#243C56;
+    --border:rgba(255,255,255,.08);
+    --t1:#DFF0FF; --t2:#7AAFC9; --t3:#3A6880;
+    --shd:0 2px 14px rgba(0,0,0,.35); --shd-lg:0 8px 32px rgba(0,0,0,.45);
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#091825; --surf:#152433; --surf2:#1C3045; --surf3:#243C56;
+  --border:rgba(255,255,255,.08);
+  --t1:#DFF0FF; --t2:#7AAFC9; --t3:#3A6880;
+  --shd:0 2px 14px rgba(0,0,0,.35); --shd-lg:0 8px 32px rgba(0,0,0,.45);
+}
+
+/* ── RESET ───────────────────────────────────────── */
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { -webkit-font-smoothing:antialiased; }
+body {
+  font-family:'Heebo',system-ui,sans-serif;
+  background:var(--bg); color:var(--t1);
+  direction:rtl; min-height:100vh;
+  padding-bottom:40px;
+}
+button { font-family:inherit; cursor:pointer; }
+input,textarea,select { font-family:inherit; direction:rtl; }
+
+/* ── HEADER ──────────────────────────────────────── */
+.hdr {
+  background:linear-gradient(155deg,var(--navy) 0%,var(--navy-mid) 100%);
+  padding:20px 18px 18px;
+  position:sticky; top:0; z-index:200;
+  box-shadow:0 4px 24px rgba(27,58,92,.35);
+  display:flex; align-items:center; gap:14px;
+}
+.hdr-icon {
+  width:44px; height:44px; flex-shrink:0;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-lt) 100%);
+  border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:22px;
+  box-shadow:0 4px 14px rgba(201,148,31,.4);
+}
+.hdr-text { flex:1; min-width:0; }
+.hdr-title {
+  font-family:'Frank Ruhl Libre',serif;
+  font-size:20px; font-weight:900;
+  color:#fff; line-height:1.1;
+  letter-spacing:-.3px;
+}
+.hdr-sub { font-size:13px; color:rgba(255,255,255,.6); margin-top:2px; }
+.hdr-date-pill {
+  background:rgba(255,255,255,.13);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:20px; padding:7px 14px;
+  color:#fff; font-size:14px; font-weight:600;
+  white-space:nowrap; cursor:pointer;
+  position:relative;
+}
+.hdr-date-pill input[type=date] {
+  position:absolute; inset:0; opacity:0; cursor:pointer;
+  width:100%; height:100%; border:none; background:none;
+}
+
+/* ── WRAP ────────────────────────────────────────── */
+.wrap { max-width:520px; margin:0 auto; padding:16px 14px 0; display:flex; flex-direction:column; gap:12px; }
+
+/* ── CARDS ───────────────────────────────────────── */
+.card {
+  background:var(--surf); border:1px solid var(--border);
+  border-radius:var(--r); padding:18px;
+  box-shadow:var(--shd);
+}
+.card-title {
+  font-size:13px; font-weight:700; letter-spacing:.4px;
+  text-transform:uppercase; color:var(--t3);
+  margin-bottom:13px;
+}
+
+/* ── TOGGLE PILLS ────────────────────────────────── */
+.toggle-group {
+  display:flex; gap:7px; flex-wrap:wrap;
+}
+.tpill {
+  flex:1; min-width:80px; text-align:center;
+  padding:11px 10px; border-radius:50px;
+  border:1.5px solid var(--border);
+  background:var(--surf2); color:var(--t2);
+  font-size:15px; font-weight:600;
+  transition:var(--tr);
+}
+.tpill:hover { border-color:var(--navy-lt); color:var(--t1); }
+.tpill.on-scope {
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);
+  border-color:var(--navy); color:#fff; font-weight:700;
+  box-shadow:0 2px 12px rgba(27,58,92,.3);
+}
+.tpill.on-expense {
+  background:linear-gradient(135deg,var(--expense) 0%,var(--expense-lt) 100%);
+  border-color:var(--expense); color:#fff; font-weight:700;
+  box-shadow:0 2px 12px rgba(224,122,40,.35);
+}
+.tpill.on-income {
+  background:linear-gradient(135deg,var(--income) 0%,var(--income-lt) 100%);
+  border-color:var(--income); color:#fff; font-weight:700;
+  box-shadow:0 2px 12px rgba(24,184,147,.35);
+}
+
+/* ── AMOUNT INPUT ────────────────────────────────── */
+.amt-wrap {
+  position:relative; margin-top:4px;
+}
+.amt-symbol {
+  position:absolute; right:16px; top:50%;
+  transform:translateY(-50%);
+  font-family:'Frank Ruhl Libre',serif;
+  font-size:22px; font-weight:700;
+  color:var(--t3); pointer-events:none;
+}
+.amt-input {
+  width:100%; padding:16px 46px 16px 16px;
+  font-family:'Frank Ruhl Libre',serif;
+  font-size:clamp(28px,7vw,40px); font-weight:900;
+  color:var(--t1); text-align:center;
+  border:2px solid var(--border); border-radius:var(--r-sm);
+  background:var(--surf2);
+  transition:var(--tr);
+  -moz-appearance:textfield;
+}
+.amt-input::-webkit-inner-spin-button,
+.amt-input::-webkit-outer-spin-button { -webkit-appearance:none; }
+.amt-input:focus { outline:none; border-color:var(--gold); background:var(--surf); box-shadow:0 0 0 3px rgba(201,148,31,.15); }
+.amt-input.pulse {
+  animation:pulseGold 0.85s ease-in-out infinite;
+  border-color:var(--gold);
+}
+@keyframes pulseGold {
+  0%,100% { box-shadow:0 0 0 0 rgba(201,148,31,.5); border-color:var(--gold); }
+  50%      { box-shadow:0 0 0 10px rgba(201,148,31,0); border-color:var(--gold-lt); }
+}
+.note-input {
+  width:100%; padding:11px 14px;
+  border:1.5px solid var(--border); border-radius:var(--r-sm);
+  background:var(--surf2); color:var(--t1);
+  font-size:15px; transition:var(--tr);
+  margin-top:10px;
+}
+.note-input:focus { outline:none; border-color:var(--navy-lt); background:var(--surf); }
+.note-input::placeholder { color:var(--t3); }
+
+/* ── HINT ────────────────────────────────────────── */
+.hint-row {
+  display:none; text-align:center;
+  color:var(--gold); font-weight:700; font-size:14px;
+  margin-bottom:8px;
+  animation:bounce .7s ease-in-out infinite;
+}
+.hint-row.show { display:block; }
+@keyframes bounce {
+  0%,100% { transform:translateY(0); }
+  50%      { transform:translateY(4px); }
+}
+
+/* ── CATEGORIES ──────────────────────────────────── */
+.cat-grid {
+  display:flex; flex-wrap:wrap; gap:7px; margin-top:4px;
+}
+.cat-btn {
+  padding:9px 14px; border-radius:50px;
+  border:1.5px solid var(--border);
+  background:var(--surf2); color:var(--t2);
+  font-size:14px; font-weight:600;
+  transition:var(--tr); cursor:pointer;
+}
+.cat-btn:hover:not(.disabled) { border-color:var(--gold); color:var(--t1); background:var(--surf); }
+.cat-btn.disabled { opacity:.35; pointer-events:none; }
+.cat-btn.other-btn {
+  border-style:dashed; color:var(--t3);
+}
+.cat-label {
+  font-size:13px; color:var(--t3);
+  margin-bottom:8px; font-weight:500;
+}
+
+/* ── ENTRY LIST ──────────────────────────────────── */
+.entry-row {
+  display:flex; align-items:center; gap:10px;
+  padding:10px 0; border-bottom:1px solid var(--border);
+  font-size:14px;
+}
+.entry-row:last-child { border-bottom:none; }
+.entry-txt { flex:1; min-width:0; color:var(--t2); }
+.entry-txt strong { color:var(--t1); }
+.entry-amt { font-family:'Frank Ruhl Libre',serif; font-weight:700; font-size:16px; white-space:nowrap; }
+.entry-amt.income { color:var(--income); }
+.entry-amt.expense { color:var(--expense); }
+.del-btn { border:none; background:none; color:var(--t3); font-size:18px; cursor:pointer; flex-shrink:0; transition:var(--tr); }
+.del-btn:hover { color:var(--danger); }
+.empty-msg { color:var(--t3); font-size:14px; padding:10px 0; text-align:center; }
+.list-header {
+  display:flex; justify-content:space-between; align-items:center;
+  margin-bottom:10px;
+}
+.list-header .card-title { margin-bottom:0; }
+.reset-btn {
+  background:none; border:none; color:var(--danger);
+  font-size:12px; cursor:pointer; font-family:inherit;
+  text-decoration:underline; opacity:.7;
+  transition:var(--tr);
+}
+.reset-btn:hover { opacity:1; }
+
+/* ── SUMMARY ─────────────────────────────────────── */
+.summary-ta {
+  width:100%; min-height:130px;
+  border:1.5px solid var(--border); border-radius:var(--r-sm);
+  padding:12px; font-size:13px; font-family:'Heebo',sans-serif;
+  background:var(--surf2); color:var(--t1);
+  resize:vertical; margin-bottom:10px;
+  direction:rtl;
+}
+.summary-ta:focus { outline:none; border-color:var(--navy-lt); }
+
+/* ── BUTTONS ─────────────────────────────────────── */
+.btn {
+  width:100%; padding:14px; border:none; border-radius:50px;
+  font-family:'Heebo',sans-serif; font-size:16px; font-weight:800;
+  cursor:pointer; transition:var(--tr);
+}
+.btn-gold {
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-lt) 100%);
+  color:#0D1E2F;
+  box-shadow:0 4px 16px rgba(201,148,31,.35);
+}
+.btn-gold:hover { transform:translateY(-2px); box-shadow:0 7px 22px rgba(201,148,31,.5); }
+.btn-wa {
+  background:linear-gradient(135deg,#25C95A 0%,#128C3E 100%);
+  color:#fff;
+  box-shadow:0 4px 16px rgba(37,201,90,.3);
+  display:none; margin-top:10px;
+}
+.btn-wa:hover { transform:translateY(-2px); box-shadow:0 7px 22px rgba(37,201,90,.45); }
+.btn-wa.show { display:block; }
+@keyframes shareGlow {
+  0%,100% { box-shadow:0 0 0 0 rgba(37,201,90,.6); }
+  50%      { box-shadow:0 0 0 10px rgba(37,201,90,0); }
+}
+.btn-wa.pulse { animation:shareGlow .9s ease-in-out infinite; }
+
+/* ── MODAL ───────────────────────────────────────── */
+.modal-overlay {
+  display:none; position:fixed; inset:0;
+  background:rgba(9,24,37,.6);
+  z-index:500; align-items:flex-end; justify-content:center;
+  padding:16px;
+}
+.modal-overlay.open { display:flex; }
+.modal-box {
+  background:var(--surf); border-radius:24px 24px 20px 20px;
+  padding:28px 24px 24px; width:100%; max-width:420px;
+  box-shadow:0 -4px 40px rgba(27,58,92,.2);
+  animation:slideUp .25s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes slideUp {
+  from { transform:translateY(60px); opacity:0; }
+  to   { transform:translateY(0);    opacity:1; }
+}
+.modal-pill {
+  width:40px; height:4px; border-radius:2px;
+  background:var(--border); margin:0 auto 22px;
+}
+.modal-cat { font-size:16px; font-weight:700; color:var(--t2); text-align:center; margin-bottom:6px; }
+.modal-amt {
+  font-family:'Frank Ruhl Libre',serif;
+  font-size:42px; font-weight:900; text-align:center;
+  line-height:1; margin-bottom:6px;
+}
+.modal-amt.income { color:var(--income); }
+.modal-amt.expense { color:var(--expense); }
+.modal-meta { font-size:13px; color:var(--t3); text-align:center; margin-bottom:22px; }
+.modal-btns { display:flex; gap:10px; }
+.modal-btns button { flex:1; padding:13px; border-radius:50px; border:none; font-family:inherit; font-size:15px; font-weight:700; cursor:pointer; transition:var(--tr); }
+.modal-confirm { background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%); color:#fff; }
+.modal-cancel  { background:var(--surf2); color:var(--t2); }
+
+/* ── SUCCESS VIEW ────────────────────────────────── */
+.success-icon { font-size:52px; text-align:center; margin-bottom:10px; }
+.success-title {
+  font-family:'Frank Ruhl Libre',serif;
+  font-size:24px; font-weight:900; text-align:center;
+  color:var(--t1); margin-bottom:4px;
+}
+.success-sub { font-size:14px; color:var(--t3); text-align:center; margin-bottom:20px; }
+
+/* ── SCREENSHOT TABLE ────────────────────────────── */
+.shot-table { width:100%; border-collapse:collapse; font-size:13px; }
+.shot-table th, .shot-table td { border:1px solid var(--border); padding:7px 9px; text-align:center; }
+.shot-table th { background:var(--surf2); color:var(--t2); font-weight:700; }
+.shot-table td { color:var(--t1); }
+
+/* ── NOTE FOOTER ─────────────────────────────────── */
+.footer-note {
+  font-size:12px; color:var(--t3); line-height:1.6;
+  text-align:center; padding:4px 0 20px;
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="hdr-icon">💰</div>
+  <div class="hdr-text">
+    <div class="hdr-title">יומן יומי — נטלי</div>
+    <div class="hdr-sub">כל תנועה בזמן אמת</div>
+  </div>
+  <div class="hdr-date-pill" id="datePill">
+    <span id="datePillLabel">—</span>
+    <input type="date" id="dateInput">
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- SCOPE + TYPE -->
+  <div class="card">
+    <div class="card-title">סוג התנועה</div>
+
+    <div class="toggle-group" id="scopeToggle" style="margin-bottom:10px">
+      <button class="tpill" data-scope="private">🏠 פרטי</button>
+      <button class="tpill" data-scope="business">💼 עסקי</button>
+    </div>
+
+    <div class="toggle-group" id="typeToggle">
+      <button class="tpill" data-type="expense">📤 הוצאה</button>
+      <button class="tpill" data-type="income">📥 הכנסה</button>
+    </div>
+  </div>
+
+  <!-- AMOUNT + NOTE + CATEGORIES -->
+  <div class="card">
+    <div class="card-title">כמה?</div>
+    <div class="amt-wrap">
+      <span class="amt-symbol">₪</span>
+      <input class="amt-input" type="number" id="amountInput" inputmode="decimal" placeholder="0">
+    </div>
+    <input class="note-input" type="text" id="noteInput" placeholder="הערה (לא חובה)">
+
+    <div style="margin-top:16px">
+      <div class="cat-label" id="catLabel">בחרי קטגוריה</div>
+      <div class="hint-row" id="nextHint">👆 מלאי סכום קודם</div>
+      <div class="cat-grid" id="catGrid"></div>
+    </div>
+  </div>
+
+  <!-- ENTRIES LIST -->
+  <div class="card">
+    <div class="list-header">
+      <div class="card-title">תנועות היום</div>
+      <button class="reset-btn" id="resetBtn">נקה הכל</button>
+    </div>
+    <div id="entriesList"><div class="empty-msg">עדיין לא הוזנו תנועות 🙂</div></div>
+  </div>
+
+  <!-- SUMMARY + SHARE -->
+  <div class="card">
+    <div class="card-title">שליחה ליעקב</div>
+    <textarea class="summary-ta" id="summaryText" readonly></textarea>
+    <button class="btn btn-gold" id="copyBtn">📊 סכם ושמור</button>
+    <button class="btn btn-wa" id="shareBtn">📤 שלחי ליעקב בוואטסאפ</button>
+  </div>
+
+  <!-- SCREENSHOT TABLE -->
+  <div class="card">
+    <div class="card-title">טבלה לצילום מסך</div>
+    <div id="screenshotTable"><div class="empty-msg">אין תנועות להצגה</div></div>
+  </div>
+
+  <p class="footer-note">
+    המידע נשמר בדפדפן הזה בלבד — שלחי את הסיכום ליעקב בסוף כל יום.
+  </p>
+
+</div><!-- /wrap -->
+
+<!-- CONFIRM MODAL -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal-box">
+    <div class="modal-pill"></div>
+
+    <!-- CONFIRM VIEW -->
+    <div id="modalConfirmView">
+      <div class="modal-cat" id="modalCatName"></div>
+      <div class="modal-amt" id="modalAmount"></div>
+      <div class="modal-meta" id="modalMeta"></div>
+      <div class="modal-btns">
+        <button class="modal-cancel"  id="modalCancelBtn">ביטול</button>
+        <button class="modal-confirm" id="modalConfirmBtn">✓ הוסיפי</button>
+      </div>
+    </div>
+
+    <!-- SUCCESS VIEW -->
+    <div id="modalSuccessView" style="display:none">
+      <div class="success-icon">🎉</div>
+      <div class="success-title">נוסף בהצלחה!</div>
+      <div class="success-sub" id="successSub"></div>
+      <div class="modal-btns">
+        <button class="modal-cancel"  id="modalAddMoreBtn">➕ הוסיפי עוד</button>
+        <button class="modal-confirm" id="modalDoneBtn">📊 לסיכום</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* ── DATA ────────────────────────────────────────── */
+const CATEGORIES = [
+  { name:'מכולת',          scope:'private',  type:'expense' },
+  { name:'פיצה ואוכל חוץ ילדים', scope:'private', type:'expense' },
+  { name:'דלק',            scope:'private',  type:'expense' },
+  { name:'בתי ספר',        scope:'private',  type:'expense' },
+  { name:'תחבורה',         scope:'private',  type:'expense' },
+  { name:'חשמל',           scope:'private',  type:'expense' },
+  { name:'ארנונה',         scope:'private',  type:'expense' },
+  { name:'מים',            scope:'private',  type:'expense' },
+  { name:'משכנתא',         scope:'private',  type:'expense' },
+  { name:'שכר דירה',       scope:'private',  type:'expense' },
+  { name:'בילויים',        scope:'private',  type:'expense' },
+  { name:'בייביסיטר',      scope:'private',  type:'expense' },
+  { name:'שכירות דירה',    scope:'private',  type:'income'  },
+  { name:'טיפול רכב',      scope:'private',  type:'expense' },
+  { name:'תקשורת',         scope:'private',  type:'expense' },
+  { name:'ביגוד',          scope:'private',  type:'expense' },
+  { name:'ביטוח',          scope:'private',  type:'expense' },
+  { name:'בריאות',         scope:'private',  type:'expense' },
+  { name:'מנויים',         scope:'private',  type:'expense' },
+  { name:'מתנות',          scope:'private',  type:'expense' },
+  { name:'חיות מחמד',      scope:'private',  type:'expense' },
+  { name:'תחזוקת בית',     scope:'private',  type:'expense' },
+  { name:'חיסכון',         scope:'private',  type:'expense' },
+  { name:'תרומות',         scope:'private',  type:'expense' },
+  { name:'חופשות ונסיעות', scope:'private',  type:'expense' },
+  { name:'ריהוט וציוד לבית',scope:'private', type:'expense' },
+  { name:'הכנסות',         scope:'private',  type:'income'  },
+  { name:'אחר',            scope:'private',  type:'expense' },
+  { name:'הכנסות עסק',     scope:'business', type:'income'  },
+  { name:'סדנאות',         scope:'business', type:'income'  },
+  { name:'קייטנות',        scope:'business', type:'income'  },
+  { name:'הוצאות תפעול',   scope:'business', type:'expense' },
+  { name:'חומרי גלם',      scope:'business', type:'expense' },
+  { name:'החזר לאמא',      scope:'business', type:'expense' },
+  { name:'ביטוח עסקי',     scope:'business', type:'expense' },
+  { name:'שיווק ופרסום',   scope:'business', type:'expense' },
+  { name:'ציוד ומתקנים',   scope:'business', type:'expense' },
+  { name:'הנהלת חשבונות / רו"ח', scope:'business', type:'expense' },
+  { name:'מיסים ואגרות',   scope:'business', type:'expense' },
+  { name:'עמלות בנק וסליקה',scope:'business',type:'expense' },
+  { name:'אחר עסקי',       scope:'business', type:'expense' },
+];
+const DEFAULT_CAT = {
+  'private::expense':'אחר',
+  'private::income': 'הכנסות',
+  'business::expense':'אחר עסקי',
+  'business::income': 'הכנסות עסק',
+};
+const SCOPE_LABEL = { private:'פרטי', business:'עסקי' };
+const STORAGE_KEY = 'natalie-daily-log-v2';
+
+/* ── STATE ───────────────────────────────────────── */
+let S = { scope:'private', type:'expense' };
+let entries = [];
+try { const s = localStorage.getItem(STORAGE_KEY); if (s) entries = JSON.parse(s); } catch(e){}
+
+function save() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(entries)); } catch(e){} }
+
+/* ── DATE ────────────────────────────────────────── */
+function todayStr() {
+  const d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+function fmtDate(s) {
+  if (!s) return '';
+  const [y,m,d] = s.split('-');
+  return d + '/' + m + '/' + y;
+}
+const dateInput = document.getElementById('dateInput');
+const datePillLabel = document.getElementById('datePillLabel');
+dateInput.value = todayStr();
+datePillLabel.textContent = fmtDate(todayStr());
+dateInput.addEventListener('change', () => {
+  datePillLabel.textContent = fmtDate(dateInput.value);
+});
+
+/* ── TOGGLES ─────────────────────────────────────── */
+function updateToggles() {
+  document.querySelectorAll('#scopeToggle .tpill').forEach(b => {
+    b.className = 'tpill' + (b.dataset.scope === S.scope ? ' on-scope' : '');
+  });
+  document.querySelectorAll('#typeToggle .tpill').forEach(b => {
+    if (b.dataset.type === S.type)
+      b.className = 'tpill on-' + S.type;
+    else
+      b.className = 'tpill';
+  });
+}
+document.querySelectorAll('#scopeToggle .tpill').forEach(b => {
+  b.addEventListener('click', () => { S.scope = b.dataset.scope; updateToggles(); renderCats(); });
+});
+document.querySelectorAll('#typeToggle .tpill').forEach(b => {
+  b.addEventListener('click', () => { S.type = b.dataset.type; updateToggles(); renderCats(); });
+});
+
+/* ── CATEGORIES ──────────────────────────────────── */
+const amountInput = document.getElementById('amountInput');
+const noteInput   = document.getElementById('noteInput');
+const catGrid     = document.getElementById('catGrid');
+const nextHint    = document.getElementById('nextHint');
+
+function renderCats() {
+  catGrid.innerHTML = '';
+  const has = !!amountInput.value;
+  nextHint.classList.toggle('show', !has);
+  const matching = CATEGORIES.filter(c => c.scope===S.scope && c.type===S.type);
+  matching.forEach(c => {
+    const btn = document.createElement('button');
+    btn.className = 'cat-btn' + (has ? '' : ' disabled');
+    btn.textContent = c.name;
+    btn.addEventListener('click', () => openModal(c.name));
+    catGrid.appendChild(btn);
+  });
+  // "other" button
+  const defName = DEFAULT_CAT[S.scope+'::'+S.type];
+  const other = document.createElement('button');
+  other.className = 'cat-btn other-btn' + (has ? '' : ' disabled');
+  other.textContent = 'אחר / לא ברשימה';
+  other.addEventListener('click', () => openModal(defName));
+  catGrid.appendChild(other);
+}
+
+amountInput.addEventListener('input', () => {
+  renderCats();
+  amountInput.classList.remove('pulse');
+  nextHint.classList.remove('show');
+});
+
+/* ── MODAL ───────────────────────────────────────── */
+const modal           = document.getElementById('confirmModal');
+const confirmView     = document.getElementById('modalConfirmView');
+const successView     = document.getElementById('modalSuccessView');
+const modalCatName    = document.getElementById('modalCatName');
+const modalAmountEl   = document.getElementById('modalAmount');
+const modalMetaEl     = document.getElementById('modalMeta');
+const successSubEl    = document.getElementById('successSub');
+
+let pendingCat = null;
+
+function openModal(catName) {
+  if (!amountInput.value) return;
+  pendingCat = catName;
+  modalCatName.textContent = catName;
+  modalAmountEl.textContent = (S.type==='income' ? '+' : '−') + Number(amountInput.value).toLocaleString('he-IL') + ' ₪';
+  modalAmountEl.className = 'modal-amt ' + S.type;
+  modalMetaEl.textContent = SCOPE_LABEL[S.scope] + (noteInput.value ? ' · ' + noteInput.value : '');
+  confirmView.style.display = 'block';
+  successView.style.display = 'none';
+  modal.classList.add('open');
+}
+
+function closeModal() { modal.classList.remove('open'); pendingCat = null; }
+
+document.getElementById('modalCancelBtn').addEventListener('click', closeModal);
+modal.addEventListener('click', e => { if (e.target===modal) closeModal(); });
+
+document.getElementById('modalConfirmBtn').addEventListener('click', () => {
+  if (!pendingCat) return;
+  const cat  = pendingCat;
+  const amt  = amountInput.value;
+  const type = S.type;
+  addEntry(cat);
+  successSubEl.textContent = (type==='income' ? '+' : '−') + Number(amt).toLocaleString('he-IL') + ' ₪ · ' + cat;
+  confirmView.style.display = 'none';
+  successView.style.display = 'block';
+});
+
+document.getElementById('modalAddMoreBtn').addEventListener('click', () => {
+  closeModal();
+  amountInput.value = '';
+  amountInput.classList.remove('pulse');
+  void amountInput.offsetWidth;
+  amountInput.classList.add('pulse');
+  amountInput.focus();
+});
+
+document.getElementById('modalDoneBtn').addEventListener('click', () => {
+  closeModal();
+  const ta = document.getElementById('summaryText');
+  try { navigator.clipboard.writeText(ta.value); } catch(e) {}
+  document.getElementById('copyBtn').closest('.card').scrollIntoView({behavior:'smooth'});
+  flashCopyBtn();
+});
+
+/* ── ADD ENTRY ───────────────────────────────────── */
+function addEntry(catName) {
+  const entry = {
+    id: Date.now() + '-' + Math.random().toString(36).slice(2,6),
+    date: dateInput.value || todayStr(),
+    scope: S.scope,
+    type: S.type,
+    category: catName,
+    amount: parseFloat(amountInput.value),
+    note: noteInput.value || '',
+    time: new Date().toTimeString().slice(0,5),
+  };
+  entries.push(entry);
+  save();
+  amountInput.value = '';
+  noteInput.value = '';
+  renderCats();
+  render();
+}
+
+/* ── RESET ───────────────────────────────────────── */
+document.getElementById('resetBtn').addEventListener('click', () => {
+  if (confirm('לנקות את כל התנועות? (רק אחרי ששלחת ליעקב!)')) {
+    entries = []; save();
+    document.getElementById('shareBtn').className = 'btn btn-wa';
+    render();
+  }
+});
+
+/* ── COPY / SHARE ────────────────────────────────── */
+function flashCopyBtn() {
+  const btn = document.getElementById('copyBtn');
+  const orig = btn.textContent;
+  btn.textContent = '✅ הועתק!';
+  setTimeout(() => { btn.textContent = orig; }, 2000);
+}
+
+document.getElementById('copyBtn').addEventListener('click', () => {
+  const ta = document.getElementById('summaryText');
+  try { navigator.clipboard.writeText(ta.value); } catch(e) { ta.select(); document.execCommand('copy'); }
+  flashCopyBtn();
+  const shareBtn = document.getElementById('shareBtn');
+  shareBtn.className = 'btn btn-wa show pulse';
+});
+
+document.getElementById('shareBtn').addEventListener('click', async () => {
+  const text = document.getElementById('summaryText').value;
+  const shareBtn = document.getElementById('shareBtn');
+  shareBtn.classList.remove('pulse');
+  if (navigator.share) {
+    try { await navigator.share({ text }); return; } catch(e) {}
+  }
+  window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+});
+
+/* ── SUMMARY TEXT ────────────────────────────────── */
+function buildSummary() {
+  if (!entries.length) return 'אין תנועות עדיין.';
+  const byDate = {};
+  entries.forEach(e => { (byDate[e.date] = byDate[e.date]||[]).push(e); });
+  let out = '';
+  Object.keys(byDate).sort().forEach(date => {
+    out += '📅 ' + fmtDate(date) + '\n';
+    let inc=0, exp=0;
+    byDate[date].forEach(e => {
+      const sign = e.type==='income' ? '+' : '-';
+      out += sign + e.amount + ' ₪ - ' + e.category + ' (' + SCOPE_LABEL[e.scope] + ')' + (e.note ? ' - ' + e.note : '') + '\n';
+      e.type==='income' ? inc+=e.amount : exp+=e.amount;
+    });
+    out += 'סה"כ הכנסות: ' + inc + ' ₪ | הוצאות: ' + exp + ' ₪\n\n';
+  });
+  return out.trim();
+}
+
+/* ── RENDER ──────────────────────────────────────── */
+function render() {
+  // entries list
+  const list = document.getElementById('entriesList');
+  if (!entries.length) {
+    list.innerHTML = '<div class="empty-msg">עדיין לא הוזנו תנועות 🙂</div>';
+  } else {
+    list.innerHTML = '';
+    entries.slice().reverse().forEach(e => {
+      const row = document.createElement('div');
+      row.className = 'entry-row';
+      const txt = document.createElement('div');
+      txt.className = 'entry-txt';
+      txt.innerHTML = '<strong>' + e.category + '</strong> · ' + SCOPE_LABEL[e.scope] + (e.note ? ' · ' + e.note : '') + '<br><span style="font-size:12px;color:var(--t3)">' + e.time + '</span>';
+      const amt = document.createElement('div');
+      amt.className = 'entry-amt ' + e.type;
+      amt.textContent = (e.type==='income' ? '+' : '−') + Number(e.amount).toLocaleString('he-IL') + ' ₪';
+      const del = document.createElement('button');
+      del.className = 'del-btn'; del.textContent = '✕';
+      del.addEventListener('click', () => { entries = entries.filter(x=>x.id!==e.id); save(); render(); });
+      row.appendChild(txt); row.appendChild(amt); row.appendChild(del);
+      list.appendChild(row);
+    });
+  }
+
+  // summary
+  document.getElementById('summaryText').value = buildSummary();
+
+  // screenshot table
+  const shot = document.getElementById('screenshotTable');
+  if (!entries.length) {
+    shot.innerHTML = '<div class="empty-msg">אין תנועות להצגה</div>';
+  } else {
+    let html = '<table class="shot-table"><thead><tr><th>שעה</th><th>סוג</th><th>קטגוריה</th><th>סכום</th><th>הערה</th></tr></thead><tbody>';
+    entries.slice().reverse().forEach(e => {
+      html += '<tr><td>' + e.time + '</td><td>' + SCOPE_LABEL[e.scope] + ' · ' + (e.type==='income'?'הכנסה':'הוצאה') + '</td><td>' + e.category + '</td><td>' + (e.type==='income'?'+':'−') + e.amount + ' ₪</td><td>' + (e.note||'') + '</td></tr>';
+    });
+    html += '</tbody></table>';
+    shot.innerHTML = html;
+  }
+}
+
+/* ── INIT ────────────────────────────────────────── */
+updateToggles();
+renderCats();
+render();
+// pulse amount on load
+setTimeout(() => {
+  amountInput.classList.add('pulse');
+  amountInput.addEventListener('focus', () => amountInput.classList.remove('pulse'), { once:true });
+}, 600);
+</script>
+</body>
+</html>
