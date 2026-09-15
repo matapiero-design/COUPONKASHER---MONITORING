@@ -148,6 +148,24 @@
       "kiwi_flyTo": "PFO",
       "hotel": "Greek Village Hotel",
       "note": "Booking mis-resout ce nom vers 'Filerimos Village Hotel' a Rhodes (Grece), meme avec destination='Paphos, Cyprus'. Reproductible. Prix hotel a fournir par Jacques — ne jamais accepter le resultat renvoye par le connecteur sur ce nom."
+    },
+    {
+      "cle_site": "רומא - Carmel",
+      "ville": "Rome",
+      "iata": "FCO",
+      "hotel": "Carmel Hotel Rome",
+      "note": "nouvelle option kashroute Rome — tarif hôtel à confirmer par Jacques (appel direct)",
+      "kiwi_flyTo": "FCO",
+      "mention_cacherout": "כשר — à confirmer"
+    },
+    {
+      "cle_site": "רומא - HT6",
+      "ville": "Rome",
+      "iata": "FCO",
+      "hotel": "HT6 Rome Hotel",
+      "note": "nouvelle option kashroute Rome — tarif hôtel à confirmer par Jacques (appel direct)",
+      "kiwi_flyTo": "FCO",
+      "mention_cacherout": "כשר — à confirmer"
     }
   ],
   "exclues": {

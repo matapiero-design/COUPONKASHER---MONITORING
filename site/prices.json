@@ -90,6 +90,16 @@
       "dernier_prix_affiche_ils": 3290,
       "note": "prix gelé au taux 3.65, non republié — la carte affiche « לפי בקשה »"
     },
+    "רומא - Carmel": {
+      "statut": "en-attente",
+      "label": "לפי בקשה",
+      "motif": "Carmel Hotel Rome — tarif hôtel à confirmer par Jacques (appel direct), certificat kasher à fournir"
+    },
+    "רומא - HT6": {
+      "statut": "en-attente",
+      "label": "לפי בקשה",
+      "motif": "HT6 Rome Hotel — tarif hôtel à confirmer par Jacques (appel direct), certificat kasher à fournir"
+    },
     "ונציה": {
       "statut": "en-attente",
       "label": "לפי בקשה",
