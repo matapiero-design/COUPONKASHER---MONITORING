@@ -6,7 +6,7 @@
     "vol": "Kiwi.com MCP — flyFrom=TLV, aller/retour, 1 adulte, USD, max_sector_stopovers=0, fly_days=0 (dimanche), plage departureDate=20/09/2026 departureDateTo=08/11/2026, nights_in_dst 3-3",
     "hotel": "Booking.com MCP — hotel_names (nom exact) + destination, 2 adultes, 1 chambre, 3 nuits, USD. Reference unique S5 18/10-21/10 pour toutes destinations sauf Brown Hills (S5 indisponible, reference S6 25/10-28/10)"
   },
-  "alerte_calendrier": "Haggim 5787 (Israel) : RH 22-23/09 (aeroport ferme), YK 1/10 (aeroport ferme), Sukkot j1 6/10 (aeroport ferme), Shimini Atzeret+Sim'hat Torah 13/10 (aeroport ferme). CORRECTION calendrier Israel vs diaspora : en Israel le 2e jour de Sukkot (07/10) est Hol HaMoed, aeroport BEN GURION OUVERT — S3 (depart 04/10, retour 07/10) est VALIDE. S4 (depart 11/10, retour 14/10) : retour post-Shimini Atzeret, VALIDE. S2/Erev YK (30/09) : vols disponibles mais tres serre — a valider par Jacques. TBS : aucun vol direct TLV-TBS le dimanche avant S5 (18/10). MNE : directs TLV-TIV uniquement S3 et S5 sur la fenetre.",
+  "alerte_calendrier": "Haggim 5787 (Israel) : RH 22-23/09 (aeroport ferme), YK 1/10 (aeroport ferme), Sukkot j1 6/10 (aeroport ferme), Shimini Atzeret+Sim'hat Torah 13/10 (aeroport ferme). CORRECTION calendrier Israel vs diaspora : en Israel le 2e jour de Sukkot (07/10) est Hol HaMoed, aeroport BEN GURION OUVERT — S3 (depart 04/10, retour 07/10) est VALIDE. S4 (depart 11/10, retour 14/10) : retour post-Shimini Atzeret, VALIDE. DECISION JACQUES (15/09/2026) : flexibilite exceptionnelle accordee pour S2/Erev YK (retour 30/09) et S3/Hol HaMoed (retour 07/10) — ces semaines sont desormais vendables. TBS : aucun vol direct TLV-TBS le dimanche avant S5 (18/10). MNE : directs TLV-TIV uniquement S3 et S5 sur la fenetre.",
   "destinations": [
     {
       "cle_site": "פראג",
@@ -101,8 +101,8 @@
       "vol_usd": 567,
       "hotel_total_usd": 478.46,
       "hotel_trouve": "Vayalen Boutique Hotel",
-      "statut": "erev yom kippour — a valider par Jacques",
-      "note": "retour 30/09 = Erev YK, vols operationnels mais tres serre pour clientele pratiquante. Blue Bird BZ612"
+      "statut": "ok",
+      "note": "retour 30/09 = Erev YK — flexibilite exceptionnelle validee par Jacques (15/09/2026). Vols operationnels, clientele informee. Blue Bird BZ612"
     },
     {
       "cle_site": "וינה",
@@ -173,8 +173,8 @@
       "vol_usd": 805,
       "hotel_total_usd": 317.86,
       "hotel_trouve": "ibis budget Amsterdam City South",
-      "statut": "erev yom kippour — a valider par Jacques",
-      "note": "retour 30/09 = Erev YK. Blue Bird BZ612"
+      "statut": "ok",
+      "note": "retour 30/09 = Erev YK — flexibilite exceptionnelle validee par Jacques (15/09/2026). Blue Bird BZ612"
     },
     {
       "cle_site": "אמסטרדם",
@@ -472,8 +472,8 @@
       "vol_usd": 1144,
       "hotel_total_usd": 606.40,
       "hotel_trouve": "Croft Court Hotel (Golders Green NW11)",
-      "statut": "erev yom kippour — a valider par Jacques",
-      "note": "retour 30/09 = Erev YK. Vol direct TLV-STN/LGW/LTN (flyTo=London)"
+      "statut": "ok",
+      "note": "retour 30/09 = Erev YK — flexibilite exceptionnelle validee par Jacques (15/09/2026). Vol direct TLV-STN/LGW/LTN (flyTo=London)"
     },
     {
       "cle_site": "לונדון",

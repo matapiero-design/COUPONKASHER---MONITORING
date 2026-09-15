@@ -6,9 +6,9 @@ Ne pas éditer à la main — le prochain run écrase ce fichier.
 - **Run** : 2026-09-15 (run quotidien package vol+hotel Groupe A S1-S8 — run manuel (trigger trig_01AC9Z8TrgTpLToieNmSJ6G4 sans connecteurs, blocage API connu). Dernier run : 2026-08-25.)
 - **Schéma** : 3 nuits / 4 jours, depart dimanche -> retour mercredi (repli lundi si pas de direct dimanche). Fenetre S1-S8 : S1 20/09, S2 27/09, S3 04/10, S4 11/10, S5 18/10, S6 25/10, S7 01/11, S8 08/11.
 - **Taux appliqué** : 1 USD = 3.05 ILS · marge 15 % · formule `(vol + hôtel/pers) ÷ 0.85 × 3.05`
-- **Généré le** : 2026-09-15 03:32 UTC
+- **Généré le** : 2026-09-15 03:38 UTC
 
-> **Calendrier** — Haggim 5787 (Israel) : RH 22-23/09 (aeroport ferme), YK 1/10 (aeroport ferme), Sukkot j1 6/10 (aeroport ferme), Shimini Atzeret+Sim'hat Torah 13/10 (aeroport ferme). CORRECTION calendrier Israel vs diaspora : en Israel le 2e jour de Sukkot (07/10) est Hol HaMoed, aeroport BEN GURION OUVERT — S3 (depart 04/10, retour 07/10) est VALIDE. S4 (depart 11/10, retour 14/10) : retour post-Shimini Atzeret, VALIDE. S2/Erev YK (30/09) : vols disponibles mais tres serre — a valider par Jacques. TBS : aucun vol direct TLV-TBS le dimanche avant S5 (18/10). MNE : directs TLV-TIV uniquement S3 et S5 sur la fenetre.
+> **Calendrier** — Haggim 5787 (Israel) : RH 22-23/09 (aeroport ferme), YK 1/10 (aeroport ferme), Sukkot j1 6/10 (aeroport ferme), Shimini Atzeret+Sim'hat Torah 13/10 (aeroport ferme). CORRECTION calendrier Israel vs diaspora : en Israel le 2e jour de Sukkot (07/10) est Hol HaMoed, aeroport BEN GURION OUVERT — S3 (depart 04/10, retour 07/10) est VALIDE. S4 (depart 11/10, retour 14/10) : retour post-Shimini Atzeret, VALIDE. DECISION JACQUES (15/09/2026) : flexibilite exceptionnelle accordee pour S2/Erev YK (retour 30/09) et S3/Hol HaMoed (retour 07/10) — ces semaines sont desormais vendables. TBS : aucun vol direct TLV-TBS le dimanche avant S5 (18/10). MNE : directs TLV-TIV uniquement S3 et S5 sur la fenetre.
 
 ## À publier — meilleur prix par destination
 
@@ -40,9 +40,9 @@ Ne pas éditer à la main — le prochain run écrase ce fichier.
 
 | Destination | Hôtel | Départ | Vol A/R $ | Hôtel 3 nuits /pers $ | Package ₪ | Statut |
 |---|---|---|---|---|---|---|
-| Vienne (VIE) | Vayalen Boutique Hotel | 2026-09-27 · dimanche | 567 | 239.23 | 2890 | erev yom kippour — a valider par Jacques · retour 30/09 = Erev YK, vols operationnels mais tres serre pour clientele pratiquante. Blue Bird BZ612 |
-| Amsterdam (AMS) | ibis budget Amsterdam City South | 2026-09-27 · dimanche | 805 | 158.93 | 3450 | erev yom kippour — a valider par Jacques · retour 30/09 = Erev YK. Blue Bird BZ612 |
-| Londres (LON) | Croft Court Hotel (Golders Green NW11) | 2026-09-27 · dimanche | 1144 | 303.2 | 5190 | erev yom kippour — a valider par Jacques · retour 30/09 = Erev YK. Vol direct TLV-STN/LGW/LTN (flyTo=London) |
+| Vienne (VIE) | Vayalen Boutique Hotel | 2026-09-27 · dimanche | 567 | 239.23 | 2890 | ok · retour 30/09 = Erev YK — flexibilite exceptionnelle validee par Jacques (15/09/2026). Vols operationnels, clientele informee. Blue Bird BZ612 |
+| Amsterdam (AMS) | ibis budget Amsterdam City South | 2026-09-27 · dimanche | 805 | 158.93 | 3450 | ok · retour 30/09 = Erev YK — flexibilite exceptionnelle validee par Jacques (15/09/2026). Blue Bird BZ612 |
+| Londres (LON) | Croft Court Hotel (Golders Green NW11) | 2026-09-27 · dimanche | 1144 | 303.2 | 5190 | ok · retour 30/09 = Erev YK — flexibilite exceptionnelle validee par Jacques (15/09/2026). Vol direct TLV-STN/LGW/LTN (flyTo=London) |
 
 ## Détail S3
 
