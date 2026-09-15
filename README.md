@@ -59,9 +59,19 @@ attribut `data-price-city` et la page lit `prices.json` au chargement. Les valeu
 HTML restent en repli — si `prices.json` est absent ou illisible, la page affiche les anciens prix
 au lieu de casser.
 
-Publier un nouveau tarif = modifier `site/prices.json`, puis déposer `index.html` + `prices.json`
-sur Netlify (projet `spiffy-swan-239d90`) par drag-and-drop. Le déploiement reste manuel : aucun
-connecteur Netlify n'est configuré à ce jour.
+Publier un nouveau tarif = modifier `site/prices.json`, puis **pousser sur `main`**. Netlify suit la
+branche `main` du dépôt (projet `spiffy-swan-239d90`) et redéploie tout seul : il n'y a plus de
+drag-and-drop, et un push qui touche `site/` met le site en ligne à jour dans la foulée.
+
+Réglages de build côté Netlify : `base directory` et `build command` vides, **`publish directory` =
+`site`**. Ce dernier réglage n'est pas un détail de confort. La racine du dépôt contient `Data/`
+(prix d'achat vols et hôtels) et `pipeline/pricing.py` (la formule de marge et le taux) : publier la
+racine les rendrait téléchargeables par n'importe qui. Après toute modification des réglages de
+build, vérifier que `couponkasher.co.il/Data/runs/run-2026-09-15.json` renvoie bien une **404**.
+
+Conséquence à garder en tête : l'écart entre « commité » et « en ligne » a disparu. Avant, publier
+était un geste manuel distinct qui rattrapait une erreur de commit. Désormais la règle « le run ne
+touche jamais à `site/` » est le seul garde-fou entre un calcul et un prix affiché aux clients.
 
 ## État de la grille au 25/08/2026
 
@@ -135,3 +145,17 @@ cadence S1-S3 / S4-S8, certification casher Tier 1) sont définies dans le skill
   Paris passent en `לפי בקשה`. Aucune n'avait de prix vérifiable au taux 3.05 : laisser leur ancien
   tarif en ligne revenait à vendre à un prix faux. Paris est le cas le plus net — la destination
   était vendable alors que son hôtel figure en liste d'exclusion cacherout.
+- **15/09/2026 — Netlify branché sur GitHub.** Décidé par Jacques. Le déploiement manuel par
+  drag-and-drop est supprimé : Netlify suit `main` et redéploie à chaque push, avec
+  `publish directory` = `site`. Ce réglage est ce qui garde `Data/` et `pipeline/` hors du web.
+  Contrepartie assumée : un push sur `main` touchant `site/` publie immédiatement, sans étape
+  manuelle pour rattraper une erreur.
+- **15/09/2026 — trois options d'hôtel à Rome.** Carmel Hotel Rome, HT6 Rome Hotel et The Home Rome
+  rejoignent NEMAN, sur le modèle déjà en place pour `לונדון - Pillar` : une carte par hôtel, le
+  titre reste la ville. Les quatre sont en `לפי בקשה`, leurs tarifs et certificats de cacherout
+  restant à fournir. Elles avaient d'abord été créées comme slides du carrousel d'en-tête, ce qui
+  donnait 4 Rome consécutives sur 9 slides **et cassait le carrousel** : le balisage ne compte que
+  6 pastilles, et `goTo()` lève une `TypeError` dès l'index 6, interrompant l'auto-rotation après
+  ~36 s. Les trois cartes ont été déplacées dans la grille, ce qui rétablit la parité
+  slides/pastilles. Leçon : vérifier où une carte atterrit dans la page, pas seulement que ses
+  données sont cohérentes.
