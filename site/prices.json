@@ -1,72 +1,80 @@
 {
   "_comment": "Prix PUBLIES sur couponkasher.co.il. index.html lit ce fichier au chargement et remplace les prix ecrits en dur. REGLE DE PUBLICATION (decidee par Jacques le 26/08/2026) : on affiche le prix le plus bas de la fenetre glissante de 8 semaines, coherent avec le 'החל ב-' du site. Le seuil de 15 % du pipeline ne bloque plus la publication, il sert d'alerte a regarder. statut=run-<date> : prix issu d'un run verifie au taux 3.05. statut=legacy-3.65 : prix herite de l'ancien taux. statut=hors-connecteur : hotel non atteignable via Booking, tarif a fournir par Jacques. statut=en-attente : la carte affiche 'לפי בקשה' au lieu d'un prix, le temps qu'une decision soit prise (voir motif). Toute modification ici reste une decision de publication de Jacques, jamais un effet de bord du run.",
-  "updated_at": "2026-08-25",
+  "updated_at": "2026-09-15",
   "currency": "ILS",
   "basis": "prix par personne, 4 ימים / 3 לילות",
   "prices": {
-    "בודפשט": {
-      "price_ils": 1390,
-      "statut": "run-2026-08-25",
-      "taux": 3.05,
-      "base": "prix le plus bas de la fenêtre 8 semaines — S8, départ 18/10/2026 (vol 142 $, hôtel 494 $)"
-    },
     "פפוס - WellClub": {
-      "price_ils": 1590,
-      "statut": "run-2026-08-25",
+      "price_ils": 1270,
+      "statut": "run-2026-09-15",
       "taux": 3.05,
-      "base": "prix le plus bas de la fenêtre 8 semaines — S8, départ 18/10/2026 (vol 151 $, hôtel 589 $)"
+      "base": "prix le plus bas de la fenêtre 8 semaines — S5, départ 18/10/2026 (vol 128 $ El Al, hôtel 457 $) — vol confirmé Jacques (vs 151 $ run Kiwi)",
+      "alerte": "-20 % vs run-2026-08-25 (1590₪) — approuvé publication"
+    },
+    "בודפשט": {
+      "price_ils": 1380,
+      "statut": "run-2026-09-15",
+      "taux": 3.05,
+      "base": "prix le plus bas de la fenêtre 8 semaines — S8, départ 08/11/2026 (vol 142 $, hôtel 486 $)"
     },
     "חלקידה": {
-      "price_ils": 1800,
-      "statut": "run-2026-08-25",
+      "price_ils": 1570,
+      "statut": "run-2026-09-15",
       "taux": 3.05,
-      "base": "prix le plus bas de la fenêtre 8 semaines — S8, départ 18/10/2026 (vol 148 $, hôtel 710 $)"
-    },
-    "אמסטרדם": {
-      "price_ils": 1900,
-      "statut": "run-2026-08-25",
-      "taux": 3.05,
-      "base": "meilleur prix de la fenêtre — S1, départ 30/08/2026. La baisse de 15 % est un pur effet de taux : à 3.65 les mêmes coûts donnaient 2 274 ₪, soit le prix qui était affiché"
-    },
-    "טביליסי": {
-      "price_ils": 2000,
-      "statut": "run-2026-08-25",
-      "taux": 3.05,
-      "base": "prix le plus bas de la fenêtre 8 semaines — S8, départ 18/10/2026 (vol 291 $, hôtel 534 $)"
+      "base": "prix le plus bas de la fenêtre 8 semaines — S8, départ 08/11/2026 (vol 135 $ SKY Express, hôtel 610 $) — vol confirmé Jacques (vs 140 $ run Kiwi)"
     },
     "פפוס - Brown Hills": {
-      "price_ils": 2240,
-      "statut": "run-2026-08-25",
+      "price_ils": 1850,
+      "statut": "run-2026-09-15",
       "taux": 3.05,
-      "base": "prix le plus bas de la fenêtre 8 semaines — S6, départ 04/10/2026 (vol 170 $, hôtel 910 $) — l'hôtel est complet en S8"
+      "base": "départ mardi 27/10/2026, retour vendredi 30/10 (pas de direct TLV-PFO dimanche 25/10) — vol 135 $ El Al, hôtel 761 $ Brown Hills (référence 25-28/10)",
+      "alerte": "-17 % vs run-2026-08-25 (2240₪) — approuvé publication"
     },
     "וינה": {
-      "price_ils": 2520,
-      "statut": "run-2026-08-25",
-      "taux": 3.05
-    },
-    "מונטנגרו": {
-      "price_ils": 2580,
-      "statut": "run-2026-08-25",
+      "price_ils": 1930,
+      "statut": "run-2026-09-15",
       "taux": 3.05,
-      "base": "prix le plus bas de la fenêtre 8 semaines — S8, départ 18/10/2026 (vol 345 $, hôtel 749 $)"
+      "base": "prix le plus bas de la fenêtre 8 semaines — S4, départ 11/10/2026 (vol 301 $, hôtel 478 $)",
+      "alerte": "-23 % vs run-2026-08-25 (2520₪) — approuvé publication"
+    },
+    "טביליסי": {
+      "price_ils": 2090,
+      "statut": "run-2026-09-15",
+      "taux": 3.05,
+      "base": "prix le plus bas de la fenêtre 8 semaines — S6, départ 25/10/2026 (vol 210 $, hôtel 750 $)"
     },
     "לונדון": {
-      "price_ils": 2660,
-      "statut": "run-2026-08-25",
+      "price_ils": 2110,
+      "statut": "run-2026-09-15",
       "taux": 3.05,
-      "base": "prix le plus bas de la fenêtre 8 semaines — S6, départ 04/10/2026 (vol 437 $, hôtel 614 $) — aller Gatwick, retour Luton"
+      "base": "prix le plus bas de la fenêtre 8 semaines — S8, départ 08/11/2026 (vol 285 $ Wizz Air UK, hôtel 606 $) — vol confirmé Jacques (vs 401 $ run Kiwi)",
+      "alerte": "-21 % vs run-2026-08-25 (2660₪) — approuvé publication"
     },
-    "לונדון - Pillar": {
-      "statut": "en-attente",
-      "label": "לפי בקשה",
-      "motif": "tarif hôtel Pillar Hotel à confirmer — certificat kasher reçu le 15/09/2026, vol vérifié à 285 $ (Wizz Air UK dim 08/11)"
+    "מונטנגרו": {
+      "price_ils": 2430,
+      "statut": "run-2026-09-15",
+      "taux": 3.05,
+      "base": "prix le plus bas de la fenêtre 8 semaines — S3, départ 04/10/2026 (vol 346 $ Israir, hôtel 666 $) — seules 2 semaines disponibles avec direct TLV-TIV sur la fenêtre"
+    },
+    "אמסטרדם": {
+      "price_ils": 2610,
+      "statut": "run-2026-09-15",
+      "taux": 3.05,
+      "base": "prix le plus bas de la fenêtre 8 semaines — S5, départ 18/10/2026 (vol 571 $ Blue Bird, hôtel 318 $) — AMS n'a pas de direct dimanche sur S3, S4, S6, S7",
+      "alerte": "+37 % vs run-2026-08-25 (1900₪) — hausse de vol confirmée, approuvée publication par Jacques"
     },
     "פראג": {
-      "price_ils": 3260,
-      "statut": "run-2026-08-25",
+      "price_ils": 2690,
+      "statut": "run-2026-09-15",
       "taux": 3.05,
-      "base": "meilleur prix de la fenêtre — S2, départ 06/09/2026"
+      "base": "prix le plus bas de la fenêtre 8 semaines — S8, départ 08/11/2026 (vol 309 $, hôtel 886 $)",
+      "alerte": "-17 % vs run-2026-08-25 (3260₪) — approuvé publication"
+    },
+    "לונדון - Pillar": {
+      "price_ils": 2770,
+      "statut": "run-2026-09-15",
+      "taux": 3.05,
+      "base": "vol 285 $ Wizz Air UK dim 08/11/2026 + hôtel Pillar Hotel 750 £ (≈ 975 $, taux GBP/USD 1.30) pour 3 nuits — tarif confirmé par Jacques (référence 19/10-22/10), certificat kasher KLBD reçu 15/09/2026"
     },
     "פפוס - Greek Village": {
       "statut": "en-attente",
