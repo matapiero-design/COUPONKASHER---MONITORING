@@ -166,6 +166,15 @@
       "note": "nouvelle option kashroute Rome — tarif hôtel à confirmer par Jacques (appel direct)",
       "kiwi_flyTo": "FCO",
       "mention_cacherout": "כשר — à confirmer"
+    },
+    {
+      "cle_site": "רומא - The Home",
+      "ville": "Rome",
+      "iata": "FCO",
+      "hotel": "The Home Rome",
+      "note": "appel direct requis — tarif hôtel et certificat kasher à confirmer",
+      "kiwi_flyTo": "FCO",
+      "mention_cacherout": "כשר — à confirmer"
     }
   ],
   "exclues": {
