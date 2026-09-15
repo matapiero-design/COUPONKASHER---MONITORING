@@ -75,6 +75,17 @@
       "note_vol": "Kiwi ne renvoie aucun direct sur LHR : interroger la ville (flyTo='London'). Les directs TLV-Londres sont sur STN, LTN et LGW."
     },
     {
+      "cle_site": "לונדון - Pillar",
+      "ville": "Londres",
+      "iata": "LON",
+      "booking_name": "Pillar Hotel",
+      "booking_city": "London, United Kingdom",
+      "mention_cacherout": "כשר — KLBD certified",
+      "kiwi_flyTo": "London",
+      "note_vol": "Kiwi ne renvoie aucun direct sur LHR : interroger la ville (flyTo='London'). Les directs TLV-Londres sont sur STN, LTN et LGW.",
+      "note_hotel": "Certificat kasher valide reçu le 15/09/2026. Prix hôtel à confirmer avant publication."
+    },
+    {
       "cle_site": "מונטנגרו",
       "ville": "Budva",
       "iata": "TIV",

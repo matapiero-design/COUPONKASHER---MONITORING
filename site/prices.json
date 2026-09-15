@@ -57,6 +57,11 @@
       "taux": 3.05,
       "base": "prix le plus bas de la fenêtre 8 semaines — S6, départ 04/10/2026 (vol 437 $, hôtel 614 $) — aller Gatwick, retour Luton"
     },
+    "לונדון - Pillar": {
+      "statut": "en-attente",
+      "label": "לפי בקשה",
+      "motif": "tarif hôtel Pillar Hotel à confirmer — certificat kasher reçu le 15/09/2026, vol vérifié à 285 $ (Wizz Air UK dim 08/11)"
+    },
     "פראג": {
       "price_ils": 3260,
       "statut": "run-2026-08-25",
