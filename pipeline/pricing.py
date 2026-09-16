@@ -55,9 +55,25 @@ def charger(chemin):
 
 def construire(run, destinations, publies):
     # Les destinations hors Booking ont quand meme un vol a chiffrer.
-    index = {d["cle_site"]: d
-             for liste in ("groupe_a", "groupe_b", "groupe_israel", "hors_booking")
-             for d in destinations.get(liste, [])}
+    # Une meme cle_site peut exister dans plusieurs groupes (ex: a la fois hors
+    # Booking et cacherout non tranchee). On fusionne au lieu d'ecraser : le
+    # premier groupe rencontre gagne sur les champs qu'il renseigne, les groupes
+    # suivants ne font que completer les champs manquants. Sans ca, une
+    # certification qui bloque la vente peut disparaitre en silence si un
+    # doublon plus pauvre est liste plus loin dans l'ordre des groupes - c'est
+    # exactement ce qui s'est produit pour Berlin et Marbella (trouve et
+    # corrige dans destinations.json le 16/09/2026).
+    index = {}
+    for liste in ("groupe_a", "groupe_b", "groupe_israel", "hors_booking"):
+        for d in destinations.get(liste, []):
+            cle = d["cle_site"]
+            if cle not in index:
+                index[cle] = dict(d)
+            else:
+                print(f"ATTENTION doublon dans destinations.json : '{cle}' apparait "
+                      "dans plusieurs groupes - fusion sans perte de certification.")
+                for k, v in d.items():
+                    index[cle].setdefault(k, v)
     lignes = []
     for entree in run["destinations"]:
         cle = entree["cle_site"]

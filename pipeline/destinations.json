@@ -129,22 +129,6 @@
       "note_hotel": "Nom exact releve sur Booking.com par Jacques le 16/09/2026 : 'NEMAN Maison Experience | Pantheon' (la barre verticale est un separateur d'affichage Booking ; elle est retiree du site car en contexte RTL elle coupe le texte latin et deplace les etoiles au milieu du nom), 4 etoiles, 9,1/10 sur 189 avis, quartier du Pantheon, 0,5 km du centre. La graphie est NEMAN, pas Neeman. Le connecteur resout ce nom mais renvoie 'aucune disponibilite' sur toutes les dates testees (18-21/10, 08-11/11, 16-17/09) : tarif a obtenir manuellement pour l'instant."
     },
     {
-      "cle_site": "מרבייה",
-      "ville": "Marbella",
-      "iata": "AGP",
-      "hotel": "Marvella Hotel",
-      "note": "hors Booking + pas de vol direct structurel",
-      "kiwi_flyTo": "AGP"
-    },
-    {
-      "cle_site": "ברלין",
-      "ville": "Berlin",
-      "iata": "BER",
-      "hotel": "King David Garden",
-      "note": "hors Booking + certification non confirmee — ne pas vendre",
-      "kiwi_flyTo": "BER"
-    },
-    {
       "cle_site": "פפוס - Greek Village",
       "ville": "Paphos",
       "iata": "PFO",
@@ -202,7 +186,7 @@
     }
   ],
   "exclues": {
-    "פריז": "Aida Opera — pas Mehadrin, supervision eclatee. ATTENTION : la destination est pourtant affichee et tarifee sur le site (3 715 ILS). A trancher.",
+    "פריז": "Aida Opera — pas Mehadrin, supervision eclatee. Corrige le 16/09/2026 : le site n'affirme plus rien sur la cacherout (badges/equipements neutralises), et prices.json est en statut en-attente (prix gele, carte a לפי בקשה). A trancher : garder Aida Opera ou changer d'hotel.",
     "Cracovie": "aucune certification ecrite",
     "Milan": "aucun hotel casher certifie"
   },
@@ -348,7 +332,8 @@
       "badges_site": [
         "כשר",
         "וילות פרטיות"
-      ]
+      ],
+      "certification": "NON DOCUMENTEE — la carte du site porte un badge כשר generique, mais aucun fichier de reference ne confirme la cacherout de cet hotel. A verifier avant d'afficher un prix sous la marque CouponKasher."
     },
     {
       "cle_site": "ירושלים - Jacob Harmony",
@@ -375,7 +360,8 @@
       "badges_site": [
         "כשר",
         "ספא"
-      ]
+      ],
+      "certification": "NON DOCUMENTEE — la carte du site porte un badge כשר generique, mais aucun fichier de reference ne confirme la cacherout de cet hotel. A verifier avant d'afficher un prix sous la marque CouponKasher."
     },
     {
       "cle_site": "מצפה רמון - Jacob",
