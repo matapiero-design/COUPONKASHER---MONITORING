@@ -156,7 +156,8 @@
       "hotel": "Carmel Hotel Rome",
       "note": "nouvelle option kashroute Rome — tarif hôtel à confirmer par Jacques (appel direct)",
       "kiwi_flyTo": "FCO",
-      "mention_cacherout": "כשר — à confirmer"
+      "mention_cacherout": "כשר — à confirmer",
+      "certification": "EN ATTENTE — certificat de cacherout non recu. Ne pas publier de prix tant que l'hotel n'a pas fourni son attestation."
     },
     {
       "cle_site": "רומא - HT6",
@@ -165,7 +166,8 @@
       "hotel": "HT6 Rome Hotel",
       "note": "nouvelle option kashroute Rome — tarif hôtel à confirmer par Jacques (appel direct)",
       "kiwi_flyTo": "FCO",
-      "mention_cacherout": "כשר — à confirmer"
+      "mention_cacherout": "כשר — à confirmer",
+      "certification": "EN ATTENTE — certificat de cacherout non recu. Ne pas publier de prix tant que l'hotel n'a pas fourni son attestation."
     },
     {
       "cle_site": "רומא - The Home",
@@ -174,7 +176,8 @@
       "hotel": "The Home Rome",
       "note": "appel direct requis — tarif hôtel et certificat kasher à confirmer",
       "kiwi_flyTo": "FCO",
-      "mention_cacherout": "כשר — à confirmer"
+      "mention_cacherout": "כשר — à confirmer",
+      "certification": "EN ATTENTE — certificat de cacherout non recu. Ne pas publier de prix tant que l'hotel n'a pas fourni son attestation."
     }
   ],
   "exclues": {
