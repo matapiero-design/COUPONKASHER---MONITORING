@@ -1,0 +1,7 @@
+# Cache Python, genere des qu'un module de pipeline/ est importe
+__pycache__/
+*.py[cod]
+
+# Fichiers temporaires d'edition et de systeme
+*~
+.DS_Store
