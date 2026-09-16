@@ -105,6 +105,11 @@
       "label": "לפי בקשה",
       "motif": "The Home Rome — tarif hôtel à confirmer par Jacques (appel direct), certificat kasher à fournir"
     },
+    "רומא - Lea": {
+      "statut": "en-attente",
+      "label": "לפי בקשה",
+      "motif": "Lea Luxury Rooms — nom confirmé sur Booking, mais le connecteur ne renvoie aucune disponibilité : tarif, étoiles et certificat kasher à obtenir auprès de l'hôtel"
+    },
     "ונציה": {
       "statut": "en-attente",
       "label": "לפי בקשה",

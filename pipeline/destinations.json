@@ -187,6 +187,18 @@
       "kiwi_flyTo": "FCO",
       "mention_cacherout": "כשר — à confirmer",
       "certification": "EN ATTENTE — certificat de cacherout non recu. Ne pas publier de prix tant que l'hotel n'a pas fourni son attestation."
+    },
+    {
+      "cle_site": "רומא - Lea",
+      "ville": "Rome",
+      "iata": "FCO",
+      "hotel": "Lea Luxury Rooms",
+      "booking_name": "Lea Luxury Rooms",
+      "booking_city": "Rome, Italy",
+      "kiwi_flyTo": "FCO",
+      "mention_cacherout": "כשר — à confirmer",
+      "certification": "EN ATTENTE — certificat de cacherout non recu. Ne pas publier de prix tant que l'hotel n'a pas fourni son attestation.",
+      "note_hotel": "Nom reconnu par le connecteur Booking le 16/09/2026 : la recherche repond 'aucune disponibilite' et non un etablissement d'un autre pays, ce qui confirme que le nom resout. Aucune disponibilite renvoyee sur 18-21/10 ni 06-09/12 : etoiles, adresse et tarif restent a obtenir aupres de l'hotel. Meme comportement que NEMAN Maison Experience Pantheon."
     }
   ],
   "exclues": {
