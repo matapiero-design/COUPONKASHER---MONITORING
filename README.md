@@ -45,19 +45,28 @@ jour, et jamais modifié sans demande explicite de Jacques. Arrondi à la dizain
 inférieure.
 
 Le taux ne vit qu'à **un seul endroit** : la constante `TAUX_USD_ILS` de `pipeline/pricing.py`.
-Personne ne recalcule un prix à la main — ni la Routine, ni une session de devis. Le `3.65` qui
-figure encore dans le skill `dashboard-suivi-prix-sejours-casher` est périmé et doit y être
-corrigé : il datait d'un dollar bien plus fort, et c'est lui qui explique que les prix publiés
-aujourd'hui sur le site soient trop hauts d'environ 16 %.
+Personne ne recalcule un prix à la main — ni la Routine, ni une session de devis.
+
+Le skill `dashboard-suivi-prix-sejours-casher` a indiqué `3.65` jusqu'au 16/09/2026, où il a été
+corrigé. Un prix calculé avec l'ancien taux est **20 % trop cher** et reste plausible, donc
+l'erreur ne se voit pas. En cas de doute, lire le code, jamais la documentation.
+
+Pour les séjours en Israël, l'hôtel est déjà libellé en shekels : **aucune conversion**, la formule
+se réduit à `prix ÷ 0.85`. Appliquer le taux à un montant en shekels le multiplierait par trois.
 
 Le prix Booking.com est le total du séjour pour 2 adultes : le prix par personne est ce total ÷ 2.
 
 ## Le site
 
-`site/index.html` ne contient plus de tarif décidé dans le HTML : chaque bloc prix porte un
-attribut `data-price-city` et la page lit `prices.json` au chargement. Les valeurs écrites dans le
-HTML restent en repli — si `prices.json` est absent ou illisible, la page affiche les anciens prix
-au lieu de casser.
+`site/index.html` ne contient **aucun prix**. Chaque bloc prix porte un attribut
+`data-price-city`, repose au chargement sur `לפי בקשה`, et seul `prices.json` peut y écrire un
+chiffre.
+
+Si le fichier est absent, illisible, ou ne contient pas la destination, la carte **reste sur
+`לפי בקשה`**. Un échec dit « appelez-nous », jamais un prix que personne n'a validé. Les valeurs de
+repli qui existaient auparavant ont été supprimées le 16/09/2026 : elles dataient du taux 3.65 et
+quatre d'entre elles remettaient en vente des destinations retirées pour cacherout, dont Paris.
+**Ne jamais les réintroduire.**
 
 Publier un nouveau tarif = modifier `site/prices.json`, puis **pousser sur `main`**. Netlify suit la
 branche `main` du dépôt (projet `spiffy-swan-239d90`) et redéploie tout seul : il n'y a plus de
@@ -86,7 +95,7 @@ affiche `לפי בקשה` au lieu d'un prix, plutôt que de laisser en ligne un 
 | Destination | Blocage | Ce qu'il faut |
 |---|---|---|
 | Venise | cacherout contradictoire — Tier 3 au master portfolio, mehadrin à la référence promo | trancher le statut de Rimon Place |
-| Rome | NEMAN Maison absent de Booking.com (vol vérifié à 132 $) | le tarif 3 nuits, de la main de Jacques |
+| Rome | Neeman Maison absent de Booking.com (vol vérifié à 132 $) | le tarif 3 nuits, de la main de Jacques |
 | Paphos Greek Village | Booking répond un hôtel de Rhodes sur ce nom | le tarif 3 nuits, de la main de Jacques |
 | Paris | Aida Opera est en liste d'exclusion (pas mehadrin) | retirer la carte ou changer d'hôtel |
 
@@ -151,7 +160,7 @@ cadence S1-S3 / S4-S8, certification casher Tier 1) sont définies dans le skill
   Contrepartie assumée : un push sur `main` touchant `site/` publie immédiatement, sans étape
   manuelle pour rattraper une erreur.
 - **15/09/2026 — trois options d'hôtel à Rome.** Carmel Hotel Rome, HT6 Rome Hotel et The Home Rome
-  rejoignent NEMAN, sur le modèle déjà en place pour `לונדון - Pillar` : une carte par hôtel, le
+  rejoignent Neeman, sur le modèle déjà en place pour `לונדון - Pillar` : une carte par hôtel, le
   titre reste la ville. Les quatre sont en `לפי בקשה`, leurs tarifs et certificats de cacherout
   restant à fournir. Elles avaient d'abord été créées comme slides du carrousel d'en-tête, ce qui
   donnait 4 Rome consécutives sur 9 slides **et cassait le carrousel** : le balisage ne compte que
