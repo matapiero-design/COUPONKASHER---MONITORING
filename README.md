@@ -95,7 +95,7 @@ affiche `לפי בקשה` au lieu d'un prix, plutôt que de laisser en ligne un 
 | Destination | Blocage | Ce qu'il faut |
 |---|---|---|
 | Venise | cacherout contradictoire — Tier 3 au master portfolio, mehadrin à la référence promo | trancher le statut de Rimon Place |
-| Rome | Neeman Maison absent de Booking.com (vol vérifié à 132 $) | le tarif 3 nuits, de la main de Jacques |
+| Rome | NEMAN Maison Experience est bien sur Booking, mais le connecteur ne renvoie aucune disponibilité | le tarif 3 nuits, de la main de Jacques |
 | Paphos Greek Village | Booking répond un hôtel de Rhodes sur ce nom | le tarif 3 nuits, de la main de Jacques |
 | Paris | Aida Opera est en liste d'exclusion (pas mehadrin) | retirer la carte ou changer d'hôtel |
 
@@ -160,7 +160,7 @@ cadence S1-S3 / S4-S8, certification casher Tier 1) sont définies dans le skill
   Contrepartie assumée : un push sur `main` touchant `site/` publie immédiatement, sans étape
   manuelle pour rattraper une erreur.
 - **15/09/2026 — trois options d'hôtel à Rome.** Carmel Hotel Rome, HT6 Rome Hotel et The Home Rome
-  rejoignent Neeman, sur le modèle déjà en place pour `לונדון - Pillar` : une carte par hôtel, le
+  rejoignent NEMAN, sur le modèle déjà en place pour `לונדון - Pillar` : une carte par hôtel, le
   titre reste la ville. Les quatre sont en `לפי בקשה`, leurs tarifs et certificats de cacherout
   restant à fournir. Elles avaient d'abord été créées comme slides du carrousel d'en-tête, ce qui
   donnait 4 Rome consécutives sur 9 slides **et cassait le carrousel** : le balisage ne compte que

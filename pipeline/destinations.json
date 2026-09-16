@@ -121,9 +121,12 @@
       "cle_site": "רומא",
       "ville": "Rome",
       "iata": "FCO",
-      "hotel": "Neeman Maison",
+      "hotel": "NEMAN Maison Experience | Pantheon",
       "note": "introuvable via le connecteur Booking.com — prix hotel a saisir manuellement",
-      "kiwi_flyTo": "FCO"
+      "kiwi_flyTo": "FCO",
+      "booking_name": "NEMAN Maison Experience Pantheon",
+      "booking_city": "Rome, Italy",
+      "note_hotel": "Nom exact releve sur Booking.com par Jacques le 16/09/2026 : 'NEMAN Maison Experience | Pantheon', 4 etoiles, 9,1/10 sur 189 avis, quartier du Pantheon, 0,5 km du centre. La graphie est NEMAN, pas Neeman. Le connecteur resout ce nom mais renvoie 'aucune disponibilite' sur toutes les dates testees (18-21/10, 08-11/11, 16-17/09) : tarif a obtenir manuellement pour l'instant."
     },
     {
       "cle_site": "מרבייה",
