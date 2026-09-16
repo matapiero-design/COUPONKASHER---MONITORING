@@ -157,7 +157,10 @@
       "note": "nouvelle option kashroute Rome — tarif hôtel à confirmer par Jacques (appel direct)",
       "kiwi_flyTo": "FCO",
       "mention_cacherout": "כשר — à confirmer",
-      "certification": "EN ATTENTE — certificat de cacherout non recu. Ne pas publier de prix tant que l'hotel n'a pas fourni son attestation."
+      "certification": "EN ATTENTE — certificat de cacherout non recu. Ne pas publier de prix tant que l'hotel n'a pas fourni son attestation.",
+      "booking_name": "Hotel Carmel",
+      "booking_city": "Rome, Italy",
+      "note_hotel": "Nom exact verifie sur Booking.com le 16/09/2026. Via Goffredo Mameli 11, 00153 Rome — Trastevere · 2★ officiel · 7,4/10 (674 avis)"
     },
     {
       "cle_site": "רומא - HT6",
@@ -167,7 +170,10 @@
       "note": "nouvelle option kashroute Rome — tarif hôtel à confirmer par Jacques (appel direct)",
       "kiwi_flyTo": "FCO",
       "mention_cacherout": "כשר — à confirmer",
-      "certification": "EN ATTENTE — certificat de cacherout non recu. Ne pas publier de prix tant que l'hotel n'a pas fourni son attestation."
+      "certification": "EN ATTENTE — certificat de cacherout non recu. Ne pas publier de prix tant que l'hotel n'a pas fourni son attestation.",
+      "booking_name": "HT6 Hotel Roma",
+      "booking_city": "Rome, Italy",
+      "note_hotel": "Nom exact verifie sur Booking.com le 16/09/2026. Via del Tempio 6, 00186 Rome — quartier du Panthéon/Ghetto · 4★ officiel · 9,2/10 (1424 avis)"
     },
     {
       "cle_site": "רומא - The Home",
