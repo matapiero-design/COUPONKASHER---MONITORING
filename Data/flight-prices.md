@@ -3,10 +3,52 @@
 Fichier complété automatiquement par la routine quotidienne (voir `ROUTINE_PROMPT.md`).
 Ne pas éditer manuellement — toute édition manuelle sera écrasée au prochain run.
 
-- **Dernière mise à jour** : 2026-09-15 03:32 UTC
-- **Portée du dernier run** : 10 destinations Groupe A (PRG, VIE, AMS, PFO×2, ATH, BUD, TBS, LON, MNE), package vol+hôtel, S1-S8 complet — run manuel (trigger API sans connecteurs)
+- **Dernière mise à jour** : 2026-09-15 03:32 UTC (package vol+hôtel S1-S8) — voir aussi le contrôle quotidien vol seul du 2026-09-19 ci-dessous
+- **Portée du dernier run package** : 10 destinations Groupe A (PRG, VIE, AMS, PFO×2, ATH, BUD, TBS, LON, MNE), package vol+hôtel, S1-S8 complet — run manuel (trigger API sans connecteurs)
 - **Statut connecteur Kiwi.com** : OK — connecté, résultats reçus pour toutes destinations
 - **Statut connecteur Booking.com** : OK — hôtels interrogés sur S5 (18-21/10) comme référence
+
+## Contrôle quotidien vol seul — run 2026-09-19 03:33 UTC
+
+Portée : PRG, VIE, FCO, PFO, ATH, BUD, TBS — TLV, vol direct uniquement (0 escale),
+aller-retour 3 nuits, dimanche → mercredi. **Connecteur Booking.com non interrogé** (hors
+périmètre de ce run, vol seul). Fenêtre testée : départ dimanche 20/09/2026 → retour
+mercredi 23/09/2026 (dimanche par défaut, aucune semaine ultérieure disponible sans direct
+n'a été substituée).
+
+⚠️ Rappel déjà documenté plus bas dans ce fichier (run S1 du 15/09) : le retour du 23/09
+tombe sur Roch Hachana jour 2, Ben Gourion étant annoncé fermé ce jour — ces tarifs sont
+donc relevés **pour information uniquement, non vendables en l'état**, indépendamment de
+leur niveau de prix. Kiwi continue pourtant de vendre des vols sur cette date (voir anomalie
+ATH ci-dessous) : à faire confirmer par Jacques si l'aéroport est réellement fermé ou si
+seul le trafic commercial est réduit.
+
+| Destination | Aéroport | Meilleur prix A/R ($) | Compagnies (aller/retour) | Options directes | Statut |
+|---|---|---|---|---|---|
+| Prague | PRG | 603 | Smartwings / TUS Airways | 5 | ⛔ retour RH j2 (info seulement) |
+| Vienne | VIE | 619 | Austrian / Blue Bird | 4 | ⛔ retour RH j2 (info seulement) |
+| Rome | FCO | 545 | ITA Airways / Wizz Air Malta | 15 | ⛔ retour RH j2 (info seulement) |
+| Paphos (WellClub) | PFO | 203 | Israir / TUS Airways | 15 | ⛔ retour RH j2 (info seulement) |
+| Chalkida | ATH | 344 | Blue Bird / Arkia | 15 | ⚠️ voir anomalie — direct dimanche trouvé alors que le run du 15/09 déclarait "pas de direct dimanche S1" |
+| Budapest | BUD | 723 | Wizz Air (A/R) | 9 | ⚠️ voir anomalie prix — quasi doublement vs run du 15/09 |
+| Tbilissi | TBS | — | — | 0 | gap vol confirmé (aucun direct dimanche 20/09, cohérent avec le run du 15/09 : aucun direct S1-S4) |
+
+### Anomalies signalées
+
+1. **Budapest +73 %** : 723$ aujourd'hui contre 418$ relevé le 15/09 pour ce même vol
+   (départ 20/09, retour 23/09). Écart largement au-dessus du seuil d'alerte de 15 %. Toutes
+   les options du run d'aujourd'hui sont sur Wizz Air (5h00-23h15 selon le créneau) ; aucune
+   option sous 700$ n'a été retrouvée. À confirmer avant tout usage de ce prix — possible
+   hausse tarifaire réelle liée à la proximité de Roch Hachana/Souccot, ou changement de
+   classe tarifaire Wizz Air.
+2. **Chalkida (ATH) — contradiction avec le run précédent** : le run du 15/09 indiquait
+   "pas de direct dimanche S1" pour Chalkida sur cette même date (20/09). Le run d'aujourd'hui
+   trouve 15 options directes dont un vol Blue Bird BZ704 à 07h00. Soit la ligne a été
+   ajoutée/réactivée depuis le 15/09, soit le run précédent avait une erreur de requête — à
+   noter pour fiabiliser les prochains runs (toujours réinterroger avant de déclarer un gap,
+   règle déjà en place mais visiblement pas appliquée uniformément au run du 15/09).
+3. **Fenêtre Roch Hachana** : voir rappel ci-dessus — tous les prix de ce run portent sur une
+   semaine non vendable en l'état ; à ne pas publier tel quel.
 
 ## Prix vols directs — Groupe A (S1-S8, run 2026-09-15)
 
@@ -127,6 +169,7 @@ Ne pas éditer manuellement — toute édition manuelle sera écrasée au procha
 
 | Date/heure (UTC) | Destinations traitées | Gaps / anomalies | Statut connecteur |
 |---|---|---|---|
+| 2026-09-19 03:33 | PRG, VIE, FCO, PFO, ATH, BUD, TBS (7/7) — vol seul, dimanche 20/09 → mercredi 23/09, 3 nuits, run quotidien simple (Booking.com non interrogé) | **Budapest +73 %** (723$ vs 418$ au 15/09) — écart > 15 %, à confirmer. **Chalkida (ATH)** : direct dimanche trouvé (344$, 15 options) alors que le run du 15/09 déclarait aucun direct dimanche pour cette date — contradiction à clarifier. **Tbilissi** : toujours aucun direct sur cette date, cohérent avec le run du 15/09. **Rappel** : le retour 23/09 reste Roch Hachana j2 (Ben Gourion annoncé fermé) — l'ensemble de ce run est relevé pour information uniquement, non vendable. | OK (Kiwi.com seul) |
 | 2026-09-15 03:32 | PRG, VIE, AMS, PFO (WellClub + Brown Hills), ATH, BUD, TBS, LON, MNE (10 dest. Groupe A — Venise bloquée cacherout contestée). S1-S8 complet (run manuel, 3 semaines sans run) | **Haggim 5787** : S1 (retour 23/09 = RH j2) et S3/S4 partiellement bloquées — CORRECTION calendrier Israël : S3 (retour 07/10 = Hol HaMoed) et S4 (retour 14/10 = post-Shimini Atzeret) VALIDES pour clientèle israélienne. S2 (retour 30/09 = Erev YK) : à valider par Jacques. **Gaps vol** : TBS aucun direct S1-S4 (premier direct S5 18/10) ; AMS pas de direct dimanche S3, S4, S6, S7 ; MNE uniquement S3 + S5. **Gap hôtel** : Brown Hills Paphos pas de dispo S5, disponible S6 (761,48$ total). **Écarts > 15 %** : Prague (meilleur 2690₪ vs publié 3260₪, -17%), Vienne (meilleur 1930₪ vs publié 2520₪, -23%), Amsterdam (meilleur 2610₪ vs publié 1900₪, +37%) — les 3 nécessitent arbitrage Jacques avant publication. **Trigger** : trig_01AC9Z8TrgTpLToieNmSJ6G4 sans connecteurs (blocage API connu) — run manuel via session interactive avec Kiwi.com + Booking.com. Action requise : recréer la routine depuis claude.ai/routines avec les 2 connecteurs. | OK (manuel) |
 | 2026-08-25 03:33 | PRG, VIE, FCO, PFO, ATH, BUD, TBS (7/7) | Baisse de prix marquée et généralisée sur les 7 destinations vs le run du 2026-08-20 (de -27% pour TBS à -75% pour PRG). Explication la plus probable : date de départ testée plus éloignée (30/08 contre 23/08 lors du run précédent, soit 5 jours d'avance au lieu de 3) → sortie des tarifs de dernière minute les plus chers et ouverture de classes tarifaires moins chères, avec beaucoup plus d'options directes disponibles (PRG : 15 options directes ce run contre 1 seule le run précédent ; VIE : 15 contre 8). Ceci résout les deux anomalies notées le run précédent (PRG à 1723$ sur une seule option, VIE à 1284$) — elles semblent avoir été un effet de dernière minute plutôt qu'un problème de données. TBS reste l'exception avec seulement 4 options directes trouvées (contre 15 pour les autres destinations) et le prix le plus élevé du groupe (587$) — cohérent avec une offre directe TLV-TBS structurellement plus restreinte (Israir + El Al uniquement), pas une anomalie de données. À confirmer sur les prochains runs quotidiens pour distinguer volatilité de dernière minute vs tendance de fond. | OK |
 | 2026-08-20 03:33 | PRG, VIE, FCO, PFO, ATH, BUD, TBS (7/7, run initial) | PRG : une seule option directe (Smartwings aller / El Al retour) à 1723$, ~3x le prix des autres destinations du groupe (cluster ATH/FCO/BUD/PFO entre 364$ et 566$) — à surveiller les prochains jours pour confirmer si c'est structurel (peu de compagnies low-cost sur TLV-PRG direct) ou une anomalie ponctuelle. VIE également élevé (1284$, 8 options) mais cohérent avec l'absence de low-cost direct sur cette route — pas d'anomalie de données identifiée. Pas d'historique antérieur disponible pour comparaison (premier run avec données réelles). | OK |
