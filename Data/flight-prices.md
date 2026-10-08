@@ -3,10 +3,10 @@
 Fichier complété automatiquement par la routine quotidienne (voir `ROUTINE_PROMPT.md`).
 Ne pas éditer manuellement — toute édition manuelle sera écrasée au prochain run.
 
-- **Dernière mise à jour** : 2026-09-15 03:32 UTC
-- **Portée du dernier run** : 10 destinations Groupe A (PRG, VIE, AMS, PFO×2, ATH, BUD, TBS, LON, MNE), package vol+hôtel, S1-S8 complet — run manuel (trigger API sans connecteurs)
+- **Dernière mise à jour** : 2026-10-08 03:35 UTC
+- **Portée du dernier run** : vols seuls, 7 destinations (PRG, VIE, FCO, PFO, ATH, BUD, TBS), prochain dimanche 11/10 → 14/10 (S4), 0 escale, USD — pas de hôtel, pas de package, `Data/package-prices.*` non touchés
 - **Statut connecteur Kiwi.com** : OK — connecté, résultats reçus pour toutes destinations
-- **Statut connecteur Booking.com** : OK — hôtels interrogés sur S5 (18-21/10) comme référence
+- **Statut connecteur Booking.com** : non utilisé lors du run du 2026-10-08 (vols uniquement)
 
 ## Prix vols directs — Groupe A (S1-S8, run 2026-09-15)
 
@@ -123,10 +123,25 @@ Ne pas éditer manuellement — toute édition manuelle sera écrasée au procha
 | Amsterdam | AMS | 690 | ✅ El Al LY337 |
 | Londres | LON | 401 | ✅ meilleur vol Londres fenêtre — 1ère fois sous 500$ |
 
+## Relevé du 2026-10-08 — S4, départ 11/10/2026 (dimanche) → retour 14/10 (mercredi)
+
+Vols directs aller-retour, 1 adulte, USD, meilleur prix par destination (Kiwi.com). Comparaison avec le relevé S4 du 2026-09-15.
+
+| Destination | Aéroport | Meilleur prix ($) | vs 15/09 | Détail du meilleur tarif | Statut |
+|---|---|---|---|---|---|
+| Paphos | PFO | 166 | 170 (-2 %) | Israir 17:00 → retour Israir 19:00 | ✅ |
+| Chalkida/Athènes | ATH | 180 | 146 (+23 %) | Blue Bird 13:30 → retour Blue Bird 11:40 | ⚠️ écart > 15 % |
+| Budapest | BUD | 181 | 149 (+21 %) | Wizz 20:55 (arr. 23:25) → retour Wizz 05:00 | ⚠️ écart > 15 % ; retour très tôt (2e : 227 $, retour 13:40) |
+| Rome | FCO | 211 | non relevé | Wizz 21:55 (arr. 00:45 le 12/10) → retour Wizz 05:30 | ✅ horaires pénibles ; 1er tarif en horaires de jour : 308 $ (TUS 14:00 → Wizz 05:30), 312 $ (Wizz 11:00) |
+| Vienne | VIE | 341 | 301 (+13 %) | Blue Bird 14:00 → retour El Al 10:35 | ✅ |
+| Prague | PRG | 496 | 317 (+56 %) | El Al 17:55 → retour El Al 11:00 | ⚠️ écart > 15 % |
+| Tbilissi | TBS | 613 | pas de direct au 15/09 (S5 : 305, S6 : 210) | Israir 21:30 (arr. 01:05 le 12/10) → retour El Al 01:30 | ⚠️ prix ~2x les semaines suivantes |
+
 ## Journal des runs
 
 | Date/heure (UTC) | Destinations traitées | Gaps / anomalies | Statut connecteur |
 |---|---|---|---|
+| 2026-10-08 03:35 | PRG, VIE, FCO, PFO, ATH, BUD, TBS (7/7, vols seuls, S4 11→14/10, 0 escale) | **Hausses vs relevé S4 du 15/09** : PRG 496$ (+56 %, 317$ avant), ATH 180$ (+23 %), BUD 181$ (+21 %), VIE 341$ (+13 %, sous le seuil). PFO stable (166$). **TBS 613$** : ~2x les tarifs S5-S8 (210-305$), premier direct S4 mais 21:30 → arrivée 01:05, à ne pas retenir pour S4. **FCO** : 211$ mais arrivée 00:45 et retour 05:30, la moins chère en horaires de jour est à 308$. Hausses cohérentes avec la proximité du départ (3 jours) — à confirmer sur S5+. Écarts 15 % = alertes à signaler, pas blocage. Aucun écrit dans `site/`. | OK |
 | 2026-09-15 03:32 | PRG, VIE, AMS, PFO (WellClub + Brown Hills), ATH, BUD, TBS, LON, MNE (10 dest. Groupe A — Venise bloquée cacherout contestée). S1-S8 complet (run manuel, 3 semaines sans run) | **Haggim 5787** : S1 (retour 23/09 = RH j2) et S3/S4 partiellement bloquées — CORRECTION calendrier Israël : S3 (retour 07/10 = Hol HaMoed) et S4 (retour 14/10 = post-Shimini Atzeret) VALIDES pour clientèle israélienne. S2 (retour 30/09 = Erev YK) : à valider par Jacques. **Gaps vol** : TBS aucun direct S1-S4 (premier direct S5 18/10) ; AMS pas de direct dimanche S3, S4, S6, S7 ; MNE uniquement S3 + S5. **Gap hôtel** : Brown Hills Paphos pas de dispo S5, disponible S6 (761,48$ total). **Écarts > 15 %** : Prague (meilleur 2690₪ vs publié 3260₪, -17%), Vienne (meilleur 1930₪ vs publié 2520₪, -23%), Amsterdam (meilleur 2610₪ vs publié 1900₪, +37%) — les 3 nécessitent arbitrage Jacques avant publication. **Trigger** : trig_01AC9Z8TrgTpLToieNmSJ6G4 sans connecteurs (blocage API connu) — run manuel via session interactive avec Kiwi.com + Booking.com. Action requise : recréer la routine depuis claude.ai/routines avec les 2 connecteurs. | OK (manuel) |
 | 2026-08-25 03:33 | PRG, VIE, FCO, PFO, ATH, BUD, TBS (7/7) | Baisse de prix marquée et généralisée sur les 7 destinations vs le run du 2026-08-20 (de -27% pour TBS à -75% pour PRG). Explication la plus probable : date de départ testée plus éloignée (30/08 contre 23/08 lors du run précédent, soit 5 jours d'avance au lieu de 3) → sortie des tarifs de dernière minute les plus chers et ouverture de classes tarifaires moins chères, avec beaucoup plus d'options directes disponibles (PRG : 15 options directes ce run contre 1 seule le run précédent ; VIE : 15 contre 8). Ceci résout les deux anomalies notées le run précédent (PRG à 1723$ sur une seule option, VIE à 1284$) — elles semblent avoir été un effet de dernière minute plutôt qu'un problème de données. TBS reste l'exception avec seulement 4 options directes trouvées (contre 15 pour les autres destinations) et le prix le plus élevé du groupe (587$) — cohérent avec une offre directe TLV-TBS structurellement plus restreinte (Israir + El Al uniquement), pas une anomalie de données. À confirmer sur les prochains runs quotidiens pour distinguer volatilité de dernière minute vs tendance de fond. | OK |
 | 2026-08-20 03:33 | PRG, VIE, FCO, PFO, ATH, BUD, TBS (7/7, run initial) | PRG : une seule option directe (Smartwings aller / El Al retour) à 1723$, ~3x le prix des autres destinations du groupe (cluster ATH/FCO/BUD/PFO entre 364$ et 566$) — à surveiller les prochains jours pour confirmer si c'est structurel (peu de compagnies low-cost sur TLV-PRG direct) ou une anomalie ponctuelle. VIE également élevé (1284$, 8 options) mais cohérent avec l'absence de low-cost direct sur cette route — pas d'anomalie de données identifiée. Pas d'historique antérieur disponible pour comparaison (premier run avec données réelles). | OK |
