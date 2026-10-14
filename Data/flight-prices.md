@@ -3,10 +3,26 @@
 Fichier complété automatiquement par la routine quotidienne (voir `ROUTINE_PROMPT.md`).
 Ne pas éditer manuellement — toute édition manuelle sera écrasée au prochain run.
 
-- **Dernière mise à jour** : 2026-09-15 03:32 UTC
-- **Portée du dernier run** : 10 destinations Groupe A (PRG, VIE, AMS, PFO×2, ATH, BUD, TBS, LON, MNE), package vol+hôtel, S1-S8 complet — run manuel (trigger API sans connecteurs)
-- **Statut connecteur Kiwi.com** : OK — connecté, résultats reçus pour toutes destinations
-- **Statut connecteur Booking.com** : OK — hôtels interrogés sur S5 (18-21/10) comme référence
+- **Dernière mise à jour** : 2026-10-14 (run planifié, vols seuls)
+- **Portée du dernier run** : 7 destinations (PRG, VIE, FCO, PFO, ATH, BUD, TBS), vols directs A/R 3 nuits, dimanche 18/10 → mercredi 21/10, USD, 1 adulte — vols uniquement (pas de calcul package, pas de Booking.com)
+- **Statut connecteur Kiwi.com** : OK — résultats reçus pour les 7 destinations
+- **Statut connecteur Booking.com** : non utilisé dans ce run (vols seuls)
+
+## Run 2026-10-14 — vols directs TLV, dimanche 18/10 → mercredi 21/10 (USD, A/R, 1 adulte)
+
+Prix = meilleur A/R direct (0 escale aller ET retour) retourné par Kiwi.com. Bagage : article personnel seulement sauf mention. Comparaison avec la ligne S5 du run 2026-09-15.
+
+| Destination | Aéroport | Meilleur prix ($) | Itinéraire (aller / retour) | vs run 09-15 | Statut |
+|---|---|---|---|---|---|
+| Paphos | PFO | 126 | LY5137 19:40 / LY5140 21/10 09:40 | -17 % (151) | ✅ |
+| Chalkida / Athènes | ATH | 140 | GQ721 07:10 / 6H562 retour 21/10 00:05 | -4 % (146) | ✅ ⚠️ retour à 00:05 (nuit du mar. au mer.) |
+| Rome | FCO | 166 | W46050 19:40→00:45 (+1) / W46041 21/10 05:30 | nouveau | ⚠️ destination retirée du site — information seulement ; vol aller arrive à 00:45, retour à 05:30 (séjour réel de ~2 nuits) |
+| Budapest | BUD | 202 | W62528 20:55 / W62505 21/10 05:00 | -19 % (250) | ✅ ⚠️ retour à 05:00 |
+| Vienne | VIE | 299 | BZ316 14:00 / BZ317 18:45 | -1 % (301) | ✅ |
+| Prague | PRG | 300 | 6H765 15:45 / U8461 18:55 | -7 % (321) | ✅ |
+| Tbilissi | TBS | 369 | 6H895 21:30→01:05 (+1) / LY5108 21/10 10:10 | **+21 %** (305) | ⚠️ hausse |
+
+Vérifications : aucun départ ni retour un samedi ; 0 escale sur tous les résultats retenus ; vendredi non concerné.
 
 ## Prix vols directs — Groupe A (S1-S8, run 2026-09-15)
 
@@ -127,6 +143,7 @@ Ne pas éditer manuellement — toute édition manuelle sera écrasée au procha
 
 | Date/heure (UTC) | Destinations traitées | Gaps / anomalies | Statut connecteur |
 |---|---|---|---|
+| 2026-10-14 | PRG, VIE, FCO, PFO, ATH, BUD, TBS (7/7) — vols directs seuls, dim. 18/10 → mer. 21/10 | **Anomalies** : TBS 369$ (+21 % vs 305$ le 09-15) ; BUD 202$ (-19 % vs 250$) et PFO 126$ (-17 % vs 151$) — écarts > 15 %, signalés pour information (alerte, pas blocage). Horaires à noter : retours très tôt/très tard (ATH retour 00:05 ; BUD retour 05:00 ; FCO aller arrive 00:45, retour 05:30). FCO (Rome) est une destination retirée du site : relevé à titre informatif uniquement. Aucun gap vol : 7/7 ont des directs le dimanche. Pas de run package ni Booking.com ce jour. | OK (Kiwi.com) |
 | 2026-09-15 03:32 | PRG, VIE, AMS, PFO (WellClub + Brown Hills), ATH, BUD, TBS, LON, MNE (10 dest. Groupe A — Venise bloquée cacherout contestée). S1-S8 complet (run manuel, 3 semaines sans run) | **Haggim 5787** : S1 (retour 23/09 = RH j2) et S3/S4 partiellement bloquées — CORRECTION calendrier Israël : S3 (retour 07/10 = Hol HaMoed) et S4 (retour 14/10 = post-Shimini Atzeret) VALIDES pour clientèle israélienne. S2 (retour 30/09 = Erev YK) : à valider par Jacques. **Gaps vol** : TBS aucun direct S1-S4 (premier direct S5 18/10) ; AMS pas de direct dimanche S3, S4, S6, S7 ; MNE uniquement S3 + S5. **Gap hôtel** : Brown Hills Paphos pas de dispo S5, disponible S6 (761,48$ total). **Écarts > 15 %** : Prague (meilleur 2690₪ vs publié 3260₪, -17%), Vienne (meilleur 1930₪ vs publié 2520₪, -23%), Amsterdam (meilleur 2610₪ vs publié 1900₪, +37%) — les 3 nécessitent arbitrage Jacques avant publication. **Trigger** : trig_01AC9Z8TrgTpLToieNmSJ6G4 sans connecteurs (blocage API connu) — run manuel via session interactive avec Kiwi.com + Booking.com. Action requise : recréer la routine depuis claude.ai/routines avec les 2 connecteurs. | OK (manuel) |
 | 2026-08-25 03:33 | PRG, VIE, FCO, PFO, ATH, BUD, TBS (7/7) | Baisse de prix marquée et généralisée sur les 7 destinations vs le run du 2026-08-20 (de -27% pour TBS à -75% pour PRG). Explication la plus probable : date de départ testée plus éloignée (30/08 contre 23/08 lors du run précédent, soit 5 jours d'avance au lieu de 3) → sortie des tarifs de dernière minute les plus chers et ouverture de classes tarifaires moins chères, avec beaucoup plus d'options directes disponibles (PRG : 15 options directes ce run contre 1 seule le run précédent ; VIE : 15 contre 8). Ceci résout les deux anomalies notées le run précédent (PRG à 1723$ sur une seule option, VIE à 1284$) — elles semblent avoir été un effet de dernière minute plutôt qu'un problème de données. TBS reste l'exception avec seulement 4 options directes trouvées (contre 15 pour les autres destinations) et le prix le plus élevé du groupe (587$) — cohérent avec une offre directe TLV-TBS structurellement plus restreinte (Israir + El Al uniquement), pas une anomalie de données. À confirmer sur les prochains runs quotidiens pour distinguer volatilité de dernière minute vs tendance de fond. | OK |
 | 2026-08-20 03:33 | PRG, VIE, FCO, PFO, ATH, BUD, TBS (7/7, run initial) | PRG : une seule option directe (Smartwings aller / El Al retour) à 1723$, ~3x le prix des autres destinations du groupe (cluster ATH/FCO/BUD/PFO entre 364$ et 566$) — à surveiller les prochains jours pour confirmer si c'est structurel (peu de compagnies low-cost sur TLV-PRG direct) ou une anomalie ponctuelle. VIE également élevé (1284$, 8 options) mais cohérent avec l'absence de low-cost direct sur cette route — pas d'anomalie de données identifiée. Pas d'historique antérieur disponible pour comparaison (premier run avec données réelles). | OK |
