@@ -3,10 +3,28 @@
 Fichier complété automatiquement par la routine quotidienne (voir `ROUTINE_PROMPT.md`).
 Ne pas éditer manuellement — toute édition manuelle sera écrasée au prochain run.
 
-- **Dernière mise à jour** : 2026-09-15 03:32 UTC
-- **Portée du dernier run** : 10 destinations Groupe A (PRG, VIE, AMS, PFO×2, ATH, BUD, TBS, LON, MNE), package vol+hôtel, S1-S8 complet — run manuel (trigger API sans connecteurs)
-- **Statut connecteur Kiwi.com** : OK — connecté, résultats reçus pour toutes destinations
-- **Statut connecteur Booking.com** : OK — hôtels interrogés sur S5 (18-21/10) comme référence
+- **Dernière mise à jour** : 2026-10-19 03:35 UTC
+- **Portée du dernier run** : 7 destinations (PRG, VIE, FCO, PFO, ATH, BUD, TBS), vols directs A/R seuls, une seule fenêtre : départ dimanche 25/10 → retour mercredi 28/10 (3 nuits) — routine planifiée
+- **Statut connecteur Kiwi.com** : OK — résultats reçus pour 6/7 destinations (PFO : 0 résultat)
+- **Statut connecteur Booking.com** : non interrogé dans ce run (vols uniquement)
+
+## Run 2026-10-19 — fenêtre 25/10 → 28/10 (vols directs A/R, 1 adulte, USD, prix le moins cher)
+
+Filtre : 0 escale par sens, sans self-transfer. Prix Kiwi = bagage cabine/soute généralement NON inclus (1 article personnel seulement sur la plupart des offres). Comparaison avec la dernière valeur S6 du run 2026-09-15.
+
+| Destination | Aéroport | Prix vol A/R ($) | Compagnies (aller / retour) | Réf. 15/09 ($) | Écart | Statut |
+|---|---|---|---|---|---|---|
+| Rome | FCO | 129 | Wizz W4 / Wizz W4 (retour 28/10 05:45) | — | — | ✅ premier relevé FCO depuis 25/08 ; Rome = destination retirée du site (voir CLAUDE.md §3) |
+| Chalkida (Athènes) | ATH | 122 | Israir 6H / Wizz W4 | 175 | -30 % | ⚠️ écart > 15 % |
+| Budapest | BUD | 143 | Wizz W6 / Wizz W6 | 220 | -35 % | ⚠️ écart > 15 % |
+| Vienne | VIE | 277 | Blue Bird BZ / Blue Bird BZ | 311 | -11 % | ✅ |
+| Prague | PRG | 280 | TUS Airways U8 / Israir 6H | 339 | -17 % | ⚠️ écart > 15 % ; transporteur U8 inhabituel |
+| Tbilissi | TBS | 250 | Arkia IZ / Israir 6H (retour 28/10 03:50) | 210 | +19 % | ⚠️ écart > 15 % (hausse) ; retour à 03:50 |
+| Paphos | PFO | — | — | — | — | ⛔ gap vol : 0 résultat direct A/R dimanche 25/10 (déjà noté au run du 15/09) |
+
+Contraintes métier : aller dimanche, retour mercredi — aucun samedi, aucun vendredi. Vols tous directs.
+Rappel : ces prix sont des relevés vol seul, en USD ; rien n'a été écrit dans `site/` (calculer ≠ publier).
+
 
 ## Prix vols directs — Groupe A (S1-S8, run 2026-09-15)
 
@@ -127,6 +145,7 @@ Ne pas éditer manuellement — toute édition manuelle sera écrasée au procha
 
 | Date/heure (UTC) | Destinations traitées | Gaps / anomalies | Statut connecteur |
 |---|---|---|---|
+| 2026-10-19 03:35 | PRG, VIE, FCO, PFO, ATH, BUD, TBS (7 dest., fenêtre 25/10→28/10 seule) | **Écarts > 15 % vs relevé S6 du 15/09** : ATH 122$ (-30 %), BUD 143$ (-35 %), PRG 280$ (-17 %), TBS 250$ (+19 %) ; VIE 277$ (-11 %) sous le seuil. Baisses probables = effet « 6 jours d'avance » (tarifs plus bas qu'à 5 semaines ?) à confirmer ; TBS en hausse, retour 03:50. **Gap vol** : PFO 0 résultat direct. FCO 129$ : relevé informatif, destination retirée du site. Seuil 15 % = alerte à signaler, pas un blocage. Aucune écriture dans `site/`. | OK (Kiwi seul) |
 | 2026-09-15 03:32 | PRG, VIE, AMS, PFO (WellClub + Brown Hills), ATH, BUD, TBS, LON, MNE (10 dest. Groupe A — Venise bloquée cacherout contestée). S1-S8 complet (run manuel, 3 semaines sans run) | **Haggim 5787** : S1 (retour 23/09 = RH j2) et S3/S4 partiellement bloquées — CORRECTION calendrier Israël : S3 (retour 07/10 = Hol HaMoed) et S4 (retour 14/10 = post-Shimini Atzeret) VALIDES pour clientèle israélienne. S2 (retour 30/09 = Erev YK) : à valider par Jacques. **Gaps vol** : TBS aucun direct S1-S4 (premier direct S5 18/10) ; AMS pas de direct dimanche S3, S4, S6, S7 ; MNE uniquement S3 + S5. **Gap hôtel** : Brown Hills Paphos pas de dispo S5, disponible S6 (761,48$ total). **Écarts > 15 %** : Prague (meilleur 2690₪ vs publié 3260₪, -17%), Vienne (meilleur 1930₪ vs publié 2520₪, -23%), Amsterdam (meilleur 2610₪ vs publié 1900₪, +37%) — les 3 nécessitent arbitrage Jacques avant publication. **Trigger** : trig_01AC9Z8TrgTpLToieNmSJ6G4 sans connecteurs (blocage API connu) — run manuel via session interactive avec Kiwi.com + Booking.com. Action requise : recréer la routine depuis claude.ai/routines avec les 2 connecteurs. | OK (manuel) |
 | 2026-08-25 03:33 | PRG, VIE, FCO, PFO, ATH, BUD, TBS (7/7) | Baisse de prix marquée et généralisée sur les 7 destinations vs le run du 2026-08-20 (de -27% pour TBS à -75% pour PRG). Explication la plus probable : date de départ testée plus éloignée (30/08 contre 23/08 lors du run précédent, soit 5 jours d'avance au lieu de 3) → sortie des tarifs de dernière minute les plus chers et ouverture de classes tarifaires moins chères, avec beaucoup plus d'options directes disponibles (PRG : 15 options directes ce run contre 1 seule le run précédent ; VIE : 15 contre 8). Ceci résout les deux anomalies notées le run précédent (PRG à 1723$ sur une seule option, VIE à 1284$) — elles semblent avoir été un effet de dernière minute plutôt qu'un problème de données. TBS reste l'exception avec seulement 4 options directes trouvées (contre 15 pour les autres destinations) et le prix le plus élevé du groupe (587$) — cohérent avec une offre directe TLV-TBS structurellement plus restreinte (Israir + El Al uniquement), pas une anomalie de données. À confirmer sur les prochains runs quotidiens pour distinguer volatilité de dernière minute vs tendance de fond. | OK |
 | 2026-08-20 03:33 | PRG, VIE, FCO, PFO, ATH, BUD, TBS (7/7, run initial) | PRG : une seule option directe (Smartwings aller / El Al retour) à 1723$, ~3x le prix des autres destinations du groupe (cluster ATH/FCO/BUD/PFO entre 364$ et 566$) — à surveiller les prochains jours pour confirmer si c'est structurel (peu de compagnies low-cost sur TLV-PRG direct) ou une anomalie ponctuelle. VIE également élevé (1284$, 8 options) mais cohérent avec l'absence de low-cost direct sur cette route — pas d'anomalie de données identifiée. Pas d'historique antérieur disponible pour comparaison (premier run avec données réelles). | OK |
