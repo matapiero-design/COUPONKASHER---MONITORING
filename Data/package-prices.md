@@ -3,113 +3,73 @@
 Généré par `pipeline/pricing.py` à partir du run vol (Kiwi.com) + hôtel (Booking.com).
 Ne pas éditer à la main — le prochain run écrase ce fichier.
 
-- **Run** : 2026-09-15 (run quotidien package vol+hotel Groupe A S1-S8 — run manuel (trigger trig_01AC9Z8TrgTpLToieNmSJ6G4 sans connecteurs, blocage API connu). Dernier run : 2026-08-25.)
-- **Schéma** : 3 nuits / 4 jours, depart dimanche -> retour mercredi (repli lundi si pas de direct dimanche). Fenetre S1-S8 : S1 20/09, S2 27/09, S3 04/10, S4 11/10, S5 18/10, S6 25/10, S7 01/11, S8 08/11.
+- **Run** : 2026-11-13 (run quotidien package vol+hotel Groupe A S1-S8 — declenche par Jacques le 13/11/2026. Dernier run : 2026-09-15.)
+- **Schéma** : 3 nuits / 4 jours, depart dimanche ou lundi -> retour mercredi ou jeudi, jamais vendredi ni samedi. Fenetre S1-S8 : S1 15/11, S2 22/11, S3 29/11, S4 06/12, S5 13/12, S6 20/12, S7 27/12, S8 03/01/2027.
 - **Taux appliqué** : 1 USD = 3.05 ILS · marge 15 % · formule `(vol + hôtel/pers) ÷ 0.85 × 3.05`
-- **Généré le** : 2026-09-15 03:38 UTC
+- **Généré le** : 2026-11-13 05:10 UTC
 
-> **Calendrier** — Haggim 5787 (Israel) : RH 22-23/09 (aeroport ferme), YK 1/10 (aeroport ferme), Sukkot j1 6/10 (aeroport ferme), Shimini Atzeret+Sim'hat Torah 13/10 (aeroport ferme). CORRECTION calendrier Israel vs diaspora : en Israel le 2e jour de Sukkot (07/10) est Hol HaMoed, aeroport BEN GURION OUVERT — S3 (depart 04/10, retour 07/10) est VALIDE. S4 (depart 11/10, retour 14/10) : retour post-Shimini Atzeret, VALIDE. DECISION JACQUES (15/09/2026) : flexibilite exceptionnelle accordee pour S2/Erev YK (retour 30/09) et S3/Hol HaMoed (retour 07/10) — ces semaines sont desormais vendables. TBS : aucun vol direct TLV-TBS le dimanche avant S5 (18/10). MNE : directs TLV-TIV uniquement S3 et S5 sur la fenetre.
+> **Calendrier** — Hanoucca 5787 : 4-12 decembre 2026 (S4-S5), vacances scolaires en Israel, demande interieure forte. Nouvel an civil : S7-S8 — les tarifs hoteliers de Venise, Budapest et Paphos portent la prime du 31/12, les vols au contraire y sont au plus bas. Aucune fermeture d'aeroport dans la fenetre. Israel est a l'heure d'hiver sur toute la periode : la limite d'atterrissage du vendredi est 11h00, pas 14h00.
 
 ## À publier — meilleur prix par destination
 
 | Destination | Meilleur ₪ | Semaine | Publié ₪ | Écart | Décision |
 |---|---|---|---|---|---|
-| Paphos (PFO) | 1360 | S5 | 1590 | -14 % | publiable |
-| Budapest (BUD) | 1380 | S8 | 1390 | -1 % | publiable |
-| Chalkida (ATH) | 1590 | S8 | 1800 | -12 % | publiable |
-| Vienne (VIE) | 1930 | S4 | 2520 | -23 % | ⚠️ hors seuil — arbitrage Jacques |
-| Tbilissi (TBS) | 2090 | S6 | 2000 | +4 % | publiable |
-| Budva (TIV) | 2430 | S3 | 2580 | -6 % | publiable |
-| Londres (LON) | 2520 | S8 | 2660 | -5 % | publiable |
-| Amsterdam (AMS) | 2610 | S5 | 1900 | +37 % | ⚠️ hors seuil — arbitrage Jacques |
-| Prague (PRG) | 2690 | S8 | 3260 | -17 % | ⚠️ hors seuil — arbitrage Jacques |
+| Paphos — WellClub (PFO) | 1290 | S7 | 1270 | +2 % | publiable |
+| Paphos — Brown Hills (PFO) | 1300 | S7 | 1850 | -30 % | ⚠️ hors seuil — arbitrage Jacques |
+| Tbilissi (TBS) | 1630 | S2 | 2090 | -22 % | ⚠️ hors seuil — arbitrage Jacques |
+| Budapest (BUD) | 1660 | S8 | 1380 | +20 % | ⚠️ hors seuil — arbitrage Jacques |
+| Amsterdam (AMS) | 1850 | S3 | 2610 | -29 % | ⚠️ hors seuil — arbitrage Jacques |
+| Londres (LON) | 2240 | S6 | 2110 | +6 % | publiable |
+| Vienne (VIE) | 2300 | S8 | 1930 | +19 % | ⚠️ hors seuil — arbitrage Jacques |
+| Venise (VCE) | 3550 | S7 | — | — | ⛔ cacherout à trancher — ne pas publier |
+| Prague (PRG) | 3930 | S1 | 2690 | +46 % | ⚠️ hors seuil — arbitrage Jacques |
 
 ## Détail S1
 
 | Destination | Hôtel | Départ | Vol A/R $ | Hôtel 3 nuits /pers $ | Package ₪ | Statut |
 |---|---|---|---|---|---|---|
-| Paphos (PFO) | WellClub Resort - Suites & Wellness | 2026-09-20 · dimanche | 186 | 228.44 | 1480 | bloque roch hachana · retour 23/09 = RH j2. Vol 0 escale disponible |
-| Budapest (BUD) | Silver Crown Hotel & Residence, Palace Quarter | 2026-09-20 · dimanche | 418 | 242.81 | 2370 | bloque roch hachana · retour 23/09 = RH j2. Wizz Air 0 escale |
-| Vienne (VIE) | Vayalen Boutique Hotel | 2026-09-20 · dimanche | 486 | 239.23 | 2600 | bloque roch hachana · retour 23/09 = RH j2, aeroport ferme. Blue Bird 0 escale |
-| Amsterdam (AMS) | ibis budget Amsterdam City South | 2026-09-20 · dimanche | 805 | 158.93 | 3450 | bloque roch hachana · retour 23/09 = RH j2. Blue Bird BZ612. AMS n'a pas de direct TLV-AMS les dimanches de S3, S4, S6, S7 — gaps confirmes |
-| Prague (PRG) | מלון כשר קינג דייויד פראג | 2026-09-20 · dimanche | 579 | 443.04 | 3660 | bloque roch hachana · retour 23/09 = RH j2, aeroport ferme. Vol TUS Airways 0 escale, prix pour reference uniquement |
-| Tbilissi (TBS) | Cron Palace kosher Tbilisi Hotel | — | — | 374.86 | — | gap vol · aucun vol direct TLV-TBS dimanche sur S1-S4. Premier direct : S5 18/10 |
-| Venise (VCE) | Rimon Place | — | — | — | — | cacherout bloquee · certification Rimon Place contestee (destinations.json) — aucun prix calcule tant que Jacques ne tranche pas. Non traite dans ce run |
+| Prague (PRG) | Kosher Hotel King David Prague | 2026-11-16 · lundi | 252 | 844.38 | 3930 | ok · Vol direct 0 escale, retour hors vendredi/samedi. Hotel teste aussi en S2 (22-25/11) a 1979,80 $ : la S1 reste la moins chere. Le King David est structurellement cher cet hiver. |
+
+## Détail S1-S8
+
+| Destination | Hôtel | Départ | Vol A/R $ | Hôtel 3 nuits /pers $ | Package ₪ | Statut |
+|---|---|---|---|---|---|---|
+| Budva (TIV) | Harmonia by Dukley | — | — | — | — | gap vol · Aucun vol direct TLV-Montenegro sur l'integralite de la fenetre 15/11-03/01, recherche sans plafond de prix. Route saisonniere d'ete : ce n'est pas un creux, c'est une absence de ligne en hiver. |
 
 ## Détail S2
 
 | Destination | Hôtel | Départ | Vol A/R $ | Hôtel 3 nuits /pers $ | Package ₪ | Statut |
 |---|---|---|---|---|---|---|
-| Vienne (VIE) | Vayalen Boutique Hotel | 2026-09-27 · dimanche | 567 | 239.23 | 2890 | ok · retour 30/09 = Erev YK — flexibilite exceptionnelle validee par Jacques (15/09/2026). Vols operationnels, clientele informee. Blue Bird BZ612 |
-| Amsterdam (AMS) | ibis budget Amsterdam City South | 2026-09-27 · dimanche | 805 | 158.93 | 3450 | ok · retour 30/09 = Erev YK — flexibilite exceptionnelle validee par Jacques (15/09/2026). Blue Bird BZ612 |
-| Londres (LON) | Croft Court Hotel (Golders Green NW11) | 2026-09-27 · dimanche | 1144 | 303.2 | 5190 | ok · retour 30/09 = Erev YK — flexibilite exceptionnelle validee par Jacques (15/09/2026). Vol direct TLV-STN/LGW/LTN (flyTo=London) |
+| Tbilissi (TBS) | Cron Palace Kosher Tbilisi Hotel | 2026-11-23 · lundi | 208 | 248.75 | 1630 | ok · Vol direct 0 escale, retour hors vendredi/samedi. |
 
 ## Détail S3
 
 | Destination | Hôtel | Départ | Vol A/R $ | Hôtel 3 nuits /pers $ | Package ₪ | Statut |
 |---|---|---|---|---|---|---|
-| Paphos (PFO) | WellClub Resort - Suites & Wellness | 2026-10-04 · dimanche | 169 | 228.44 | 1420 | ok · retour 07/10 = Hol HaMoed Israel — VALIDE |
-| Chalkida (ATH) | Brown Beach Chalkida Resort, a member of Brown Hotels | 2026-10-05 · lundi (repli — pas de direct dimanche 04/10) | 142 | 305.14 | 1600 | ok · retour 08/10 = Hol HaMoed, aeroport ouvert. Israir 0 escale |
-| Budapest (BUD) | Silver Crown Hotel & Residence, Palace Quarter | 2026-10-04 · dimanche | 383 | 242.81 | 2240 | ok · retour 07/10 = Hol HaMoed Israel — VALIDE |
-| Budva (TIV) | Hotel Harmonia by Dukley | 2026-10-04 · dimanche | 346 | 332.97 | 2430 | ok · retour 07/10 = Hol HaMoed Israel — VALIDE. Israir TLV-TIV 0 escale. Pas de direct TLV-TIV en S4, S6, S7, S8 — gaps |
-| Prague (PRG) | מלון כשר קינג דייויד פראג | 2026-10-04 · dimanche | 525 | 443.04 | 3470 | ok · retour 07/10 = Hol HaMoed Sukkot (Israel, aeroport ouvert) — VALIDE pour clientele israelienne. Hotel reference S5 |
-| Londres (LON) | Croft Court Hotel (Golders Green NW11) | 2026-10-04 · dimanche | 1048 | 303.2 | 4840 | ok · retour 07/10 = Hol HaMoed Israel — VALIDE |
-
-## Détail S4
-
-| Destination | Hôtel | Départ | Vol A/R $ | Hôtel 3 nuits /pers $ | Package ₪ | Statut |
-|---|---|---|---|---|---|---|
-| Budapest (BUD) | Silver Crown Hotel & Residence, Palace Quarter | 2026-10-11 · dimanche | 149 | 242.81 | 1400 | ok |
-| Paphos (PFO) | WellClub Resort - Suites & Wellness | 2026-10-11 · dimanche | 170 | 228.44 | 1420 | ok |
-| Chalkida (ATH) | Brown Beach Chalkida Resort, a member of Brown Hotels | 2026-10-11 · dimanche | 146 | 305.14 | 1610 | ok |
-| Vienne (VIE) | Vayalen Boutique Hotel | 2026-10-11 · dimanche | 301 | 239.23 | 1930 | ok |
-| Prague (PRG) | מלון כשר קינג דייויד פראג | 2026-10-11 · dimanche | 317 | 443.04 | 2720 | ok · retour 14/10 = lendemain de Shimini Atzeret (13/10), aeroport ouvert |
-| Londres (LON) | Croft Court Hotel (Golders Green NW11) | 2026-10-11 · dimanche | 1297 | 303.2 | 5740 | ok · vol plus cher que S3 et S5 — verifier si contrainte disponibilite ou tarif dynamique post-fetes |
-
-## Détail S5
-
-| Destination | Hôtel | Départ | Vol A/R $ | Hôtel 3 nuits /pers $ | Package ₪ | Statut |
-|---|---|---|---|---|---|---|
-| Paphos (PFO) | WellClub Resort - Suites & Wellness | 2026-10-18 · dimanche | 151 | 228.44 | 1360 | ok · meilleur vol de la fenetre. Hotel interroge sur ces dates |
-| Chalkida (ATH) | Brown Beach Chalkida Resort, a member of Brown Hotels | 2026-10-18 · dimanche | 146 | 305.14 | 1610 | ok · hotel interroge sur ces dates |
-| Budapest (BUD) | Silver Crown Hotel & Residence, Palace Quarter | 2026-10-18 · dimanche | 250 | 242.81 | 1760 | ok · hotel interroge sur ces dates |
-| Vienne (VIE) | Vayalen Boutique Hotel | 2026-10-18 · dimanche | 301 | 239.23 | 1930 | ok · hotel interroge sur ces dates |
-| Tbilissi (TBS) | Cron Palace kosher Tbilisi Hotel | 2026-10-18 · dimanche | 305 | 374.86 | 2430 | ok · hotel interroge sur ces dates |
-| Amsterdam (AMS) | ibis budget Amsterdam City South | 2026-10-18 · dimanche | 571 | 158.93 | 2610 | ok · vol Blue Bird BZ612 13:10->17:35, retour BZ611 18:35->00:20. Hotel interroge sur ces dates |
-| Prague (PRG) | מלון כשר קינג דייויד פראג | 2026-10-18 · dimanche | 321 | 443.04 | 2740 | ok · hotel interroge sur ces dates (reference du run) |
-| Budva (TIV) | Hotel Harmonia by Dukley | 2026-10-18 · dimanche | 491 | 332.97 | 2950 | ok · hotel interroge sur ces dates. Seules 2 semaines disponibles sur la fenetre S1-S8 pour ce O&D |
-| Londres (LON) | Croft Court Hotel (Golders Green NW11) | 2026-10-18 · dimanche | 853 | 303.2 | 4140 | ok · hotel interroge sur ces dates |
-| Paphos (PFO) | Brown Hills | 2026-10-18 · dimanche | 151 | — | — | gap hotel · Booking: Brown Hills aucune disponibilite sur 18-21/10. Vol PFO disponible a 151 $. Hotel interroge en S6 (25-28/10) = 761.48 $ total pour reference |
+| Amsterdam (AMS) | ibis budget Amsterdam City South | 2026-11-29 · dimanche | 392 | 123.67 | 1850 | ok · Vol direct 0 escale, retour hors vendredi/samedi. Aucun direct sous 310 $ sur toute la fenetre : le vol a double depuis aout, l'hotel compense. |
 
 ## Détail S6
 
 | Destination | Hôtel | Départ | Vol A/R $ | Hôtel 3 nuits /pers $ | Package ₪ | Statut |
 |---|---|---|---|---|---|---|
-| Budapest (BUD) | Silver Crown Hotel & Residence, Palace Quarter | 2026-10-25 · dimanche | 220 | 242.81 | 1660 | ok |
-| Chalkida (ATH) | Brown Beach Chalkida Resort, a member of Brown Hotels | 2026-10-25 · dimanche | 175 | 305.14 | 1720 | ok |
-| Vienne (VIE) | Vayalen Boutique Hotel | 2026-10-25 · dimanche | 311 | 239.23 | 1970 | ok |
-| Tbilissi (TBS) | Cron Palace kosher Tbilisi Hotel | 2026-10-25 · dimanche | 210 | 374.86 | 2090 | ok |
-| Prague (PRG) | מלון כשר קינג דייויד פראג | 2026-10-25 · dimanche | 339 | 443.04 | 2800 | ok · prix hotel extrapole depuis reference S5 |
-| Londres (LON) | Croft Court Hotel (Golders Green NW11) | 2026-10-25 · dimanche | 613 | 303.2 | 3280 | ok |
-| Paphos (PFO) | Paphos Hills Resort & Spa by Brown Hotels | — | — | 380.74 | — | gap vol · hotel 761.48 $ disponible en S6 (25-28/10) mais aucun vol direct TLV-PFO dimanche 25/10 dans Kiwi — gap vol confirme |
+| Londres (LON) | Croft Court Hotel | 2026-12-20 · dimanche | 329 | 297.85 | 2240 | ok · Vol direct 0 escale. ATTENTION : l'option la moins chere de la fenetre (282 $, 23-27/11) atterrit a Tel Aviv le VENDREDI a 15h25, non conforme Shabbat en hiver (limite 11h) — ecartee. 329 $ est le premier prix conforme. Depart dimanche 21h55, arrivee lundi 01h25 : hotel du 21 au 24/12. |
+| Chalkida (ATH) | Brown Beach | 2026-12-21 · lundi | 139 | — | — | gap hotel · Vol direct ATH a 139 $ disponible. Brown Beach sans aucune disponibilite sur deux fenetres testees (15-18/11 et 21-24/12) : fermeture hivernale probable, a confirmer aupres de l'hotel. |
+| Londres — Pillar (LON) | Pillar Hotel | 2026-12-20 · dimanche | 329 | — | — | gap hotel · Vol conforme identique a Croft Court. Pillar Hotel non retourne par Booking sur 21-24/12 : pas de disponibilite a ces dates. |
 
 ## Détail S7
 
 | Destination | Hôtel | Départ | Vol A/R $ | Hôtel 3 nuits /pers $ | Package ₪ | Statut |
 |---|---|---|---|---|---|---|
-| Tbilissi (TBS) | Cron Palace kosher Tbilisi Hotel | 2026-11-01 · dimanche | 212 | 374.86 | 2100 | ok |
+| Paphos — WellClub (PFO) | WellClub Resort - Suites & Wellness | 2026-12-28 · lundi | 130 | 230.07 | 1290 | ok · Vol direct 0 escale, retour hors vendredi/samedi. Hotel moins cher en S1 (404,37 $) mais aucun direct sous 200 $ cette semaine-la : le package S7 reste le meilleur. |
+| Paphos — Brown Hills (PFO) | Paphos Hills Resort & Spa by Brown Hotels | 2026-12-28 · lundi | 130 | 233.72 | 1300 | ok · Vol direct 0 escale, retour hors vendredi/samedi. Meme tarif hotel en S1 et en S7 : c'est le vol a 130 $ qui fait le minimum. |
+| Venise (VCE) | Rimon Place Kosher | 2026-12-28 · lundi | 218 | 771.45 | 3550 | ok · Vol direct 0 escale, retour hors vendredi/samedi. Kiwi n'a pas echoue sur VCE cette fois. Tarif hotel du Nouvel An. Publication bloquee : cacherout contestee. |
 
 ## Détail S8
 
 | Destination | Hôtel | Départ | Vol A/R $ | Hôtel 3 nuits /pers $ | Package ₪ | Statut |
 |---|---|---|---|---|---|---|
-| Budapest (BUD) | Silver Crown Hotel & Residence, Palace Quarter | 2026-11-08 · dimanche | 142 | 242.81 | 1380 | ok · meilleur vol de la fenetre |
-| Chalkida (ATH) | Brown Beach Chalkida Resort, a member of Brown Hotels | 2026-11-08 · dimanche | 140 | 305.14 | 1590 | ok · meilleur vol de la fenetre pour Chalkida |
-| Vienne (VIE) | Vayalen Boutique Hotel | 2026-11-08 · dimanche | 316 | 239.23 | 1990 | ok |
-| Tbilissi (TBS) | Cron Palace kosher Tbilisi Hotel | 2026-11-08 · dimanche | 210 | 374.86 | 2090 | ok |
-| Londres (LON) | Croft Court Hotel (Golders Green NW11) | 2026-11-08 · dimanche | 401 | 303.2 | 2520 | ok · meilleur vol de la fenetre pour Londres — premiere fois sous 500 $ |
-| Prague (PRG) | מלון כשר קינג דייויד פראג | 2026-11-08 · dimanche | 309 | 443.04 | 2690 | ok · meilleur vol de la fenetre pour Prague |
-| Amsterdam (AMS) | ibis budget Amsterdam City South | 2026-11-08 · dimanche | 690 | 158.93 | 3040 | ok · vol El Al LY337 06:00->10:15 |
+| Budapest (BUD) | Silver Crown Hotel & Residence, Palace Quarter | 2027-01-03 · dimanche | 148 | 317.36 | 1660 | ok · Vol direct 0 escale, retour hors vendredi/samedi. S2 testee en contre-epreuve : hotel moins cher (595,66 $) mais vol a 173 $, package a 1680 contre 1660. Le Nouvel An coute sur l'hotel et rapporte sur le vol. |
+| Vienne (VIE) | Vayalen Boutique Hotel | 2027-01-03 · dimanche | 310 | 331.55 | 2300 | ok · Vol direct 0 escale, retour hors vendredi/samedi. Vayalen complet en S2 (22-25/11), ou le vol etait a 300 $ : S8 est la seule semaine ou vol et hotel coincident. |
 
 ## Lecture
 

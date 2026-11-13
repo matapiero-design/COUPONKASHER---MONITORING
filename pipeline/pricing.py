@@ -115,6 +115,17 @@ def construire(run, destinations, publies):
         ligne["prix_publie_ils"] = (publies.get("prices") or {}).get(cle, {}).get("price_ils")
         lignes.append(ligne)
 
+    # Deux destinations peuvent partager une meme ville et ne differer que par l'hotel
+    # (Paphos WellClub / Brown Hills, Londres Croft Court / Pillar). Les afficher toutes
+    # deux sous "Paphos" rend la table de publication indechiffrable : on qualifie alors
+    # la ville par le suffixe de la cle du site, qui est precisement ce discriminant.
+    compte = {}
+    for l in lignes:
+        compte[l["ville"]] = compte.get(l["ville"], set()) | {l["cle_site"]}
+    for l in lignes:
+        if len(compte[l["ville"]]) > 1 and " - " in l["cle_site"]:
+            l["ville"] = f'{l["ville"]} — {l["cle_site"].split(" - ", 1)[1]}'
+
     # Le site affiche un prix "à partir de" : la référence d'une destination est donc son
     # meilleur prix sur la fenêtre, pas celui d'une semaine en particulier.
     meilleurs = {}

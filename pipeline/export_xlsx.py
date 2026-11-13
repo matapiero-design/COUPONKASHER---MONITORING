@@ -13,14 +13,18 @@ formules sans valeurs en cache s'affiche vide dans beaucoup de visionneuses.
 Les colonnes Vol $ et Hotel $ portent les donnees brutes, la formule est
 documentee dans l'onglet Parametres : tout est recalculable a la main.
 """
-import json, math, collections
+import json, math, collections, sys, glob
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 
 SORTIE = "Data/CouponKasher_grille_S1-S8.xlsx"
 
-run  = json.load(open("Data/runs/run-2026-08-25.json", encoding="utf-8"))
+# Le run etait code en dur : le classeur a continue d'exporter le releve du 25/08
+# pendant que pricing.py travaillait sur des runs plus recents, sans le signaler.
+# Par defaut on prend donc le dernier run du dossier ; un argument force un autre.
+CHEMIN_RUN = sys.argv[1] if len(sys.argv) > 1 else sorted(glob.glob("Data/runs/run-*.json"))[-1]
+run  = json.load(open(CHEMIN_RUN, encoding="utf-8"))
 dest = json.load(open("pipeline/destinations.json", encoding="utf-8"))
 pub  = json.load(open("site/prices.json", encoding="utf-8"))["prices"]
 info = {d["cle_site"]: d for l in ("groupe_a","hors_booking") for d in dest.get(l, [])}
@@ -34,7 +38,14 @@ def libelle(cle):
     return f"{nom} ({iata})" if iata else nom
 
 SEM   = ["S1","S2","S3","S4","S5","S6","S7","S8"]
-DATES = {"S1":"30/08","S2":"06/09","S3":"14/09","S4":"—","S5":"27/09","S6":"04/10","S7":"11/10","S8":"18/10"}
+# Les dates d'en-tete etaient figees sur la fenetre d'aout : elles sont desormais
+# lues dans les releves du run, pour qu'un classeur ne puisse plus afficher les
+# bons prix sous les mauvaises semaines.
+DATES = {s: "—" for s in ["S1","S2","S3","S4","S5","S6","S7","S8"]}
+for _r in run["destinations"]:
+    _s, _d = _r.get("semaine"), _r.get("depart")
+    if _s in DATES and _d and DATES[_s] == "—":
+        DATES[_s] = f"{_d[8:10]}/{_d[5:7]}"
 FETE  = {"S3":"Roch Hachana (repli lundi)","S4":"Kippour — inexploitable","S5":"'Hol hamoed Souccot"}
 
 ARIAL   = "Arial"
@@ -77,7 +88,8 @@ wb = Workbook()
 # =============== 1. Grille =================================================
 ws = wb.active; ws.title = "Grille S1-S8"
 ws["A1"] = "CouponKasher — prix package par personne, 3 nuits / 4 jours"; ws["A1"].font = TITRE
-ws["A2"] = "Relevé du 26/08/2026 · vol direct TLV (Kiwi.com) + hôtel casher partenaire (Booking.com) · base 2 adultes"
+ws["A2"] = (f"Relevé du {run['run_id'][8:10]}/{run['run_id'][5:7]}/{run['run_id'][:4]} · vol direct TLV (Kiwi.com)"
+             " + hôtel casher partenaire (Booking.com) · base 2 adultes")
 ws["A2"].font = GRIS
 ws["A3"] = "Les prix sont calculés par formule à partir des onglets Paramètres et Relevés — changez le taux, tout suit."
 ws["A3"].font = GRIS
@@ -258,14 +270,14 @@ wc["A1"] = "Ce que le calendrier juif retire de la fenêtre"; wc["A1"].font = TI
 for i, h in enumerate(["Semaine","Départ dimanche","Contrainte","Conséquence"], start=1):
     c = wc.cell(row=3, column=i, value=h); c.font = HEAD; c.fill = F_HEAD; c.border = BOX; c.alignment = CENTRE
 cal = [
- ("S1","30/08","—","Pic d'août : les hôtels sont à leur plus haut."),
- ("S2","06/09","—","Dernière semaine normale avant les fêtes."),
- ("S3","13/09","Roch Hachana, du 11/09 au soir au 13/09 au soir","Départ dominical impossible. Repli sur lundi 14/09."),
- ("S4","20/09","Kippour, du 20/09 au soir au 21/09 au soir","Dimanche = entrée de Kippour, lundi = Kippour. Semaine inexploitable."),
- ("S5","27/09","'Hol hamoed Souccot, du 25/09 au 02/10","Vendable, mais Paphos et Tbilissi sont complets. Pic de demande."),
- ("S6","04/10","Après Sim'hat Torah (fin le 03/10 au soir)","Début du creux post-fêtes."),
- ("S7","11/10","—","Creux. Disponibilité hôtelière irrégulière."),
- ("S8","18/10","—","Le plus bas de la fenêtre sur 6 destinations sur 11."),
+ ("S1","15/11","—","Aucune contrainte religieuse. Prague y est au plus bas de la fenêtre."),
+ ("S2","22/11","—","Semaine neutre. Meilleur prix de Tbilissi."),
+ ("S3","29/11","—","Semaine neutre. Meilleur prix d'Amsterdam."),
+ ("S4","06/12","Hanoucca, du 04/12 au soir au 12/12","Vacances scolaires en Israël : demande intérieure forte, hôtels tendus."),
+ ("S5","13/12","Fin de Hanoucca le 12/12","Retour à la normale en cours de semaine."),
+ ("S6","20/12","—","Meilleur prix de Londres et de Chalkida côté vol."),
+ ("S7","27/12","Nouvel An civil le 31/12","Vols au plus bas, hôtels au plus haut : Venise paie la prime du réveillon."),
+ ("S8","03/01","—","Vienne et Budapest y trouvent leur minimum."),
 ]
 for i, row in enumerate(cal, start=4):
     for j, v in enumerate(row, start=1):

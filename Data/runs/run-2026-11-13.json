@@ -1,0 +1,156 @@
+{
+  "run_id": "2026-11-13",
+  "motif": "run quotidien package vol+hotel Groupe A S1-S8 — declenche par Jacques le 13/11/2026. Dernier run : 2026-09-15.",
+  "schema": "3 nuits / 4 jours, depart dimanche ou lundi -> retour mercredi ou jeudi, jamais vendredi ni samedi. Fenetre S1-S8 : S1 15/11, S2 22/11, S3 29/11, S4 06/12, S5 13/12, S6 20/12, S7 27/12, S8 03/01/2027.",
+  "sources": {
+    "vol": "Kiwi.com MCP — flyFrom=TLV, aller/retour, 1 adulte, USD, max_sector_stopovers=0, fly_days=0,1 (dimanche/lundi), plage departureDate=15/11/2026 departureDateTo=03/01/2027, nights_in_dst 3-3. ret_fly_days=3,4 applique des qu'un retour vendredi apparaissait.",
+    "hotel": "Booking.com MCP — hotel_names (nom exact) + destination, 2 adultes, 1 chambre, 3 nuits, USD. Releve a la date du meilleur vol, avec contre-epreuve sur une seconde semaine pour Prague, Budapest et Paphos."
+  },
+  "alerte_calendrier": "Hanoucca 5787 : 4-12 decembre 2026 (S4-S5), vacances scolaires en Israel, demande interieure forte. Nouvel an civil : S7-S8 — les tarifs hoteliers de Venise, Budapest et Paphos portent la prime du 31/12, les vols au contraire y sont au plus bas. Aucune fermeture d'aeroport dans la fenetre. Israel est a l'heure d'hiver sur toute la periode : la limite d'atterrissage du vendredi est 11h00, pas 14h00.",
+  "destinations": [
+    {
+      "cle_site": "פראג",
+      "semaine": "S1",
+      "depart": "2026-11-16",
+      "retour": "2026-11-19",
+      "jour_depart": "lundi",
+      "vol_usd": 252,
+      "hotel_total_usd": 1688.75,
+      "hotel_trouve": "Kosher Hotel King David Prague",
+      "statut": "ok",
+      "note": "Vol direct 0 escale, retour hors vendredi/samedi. Hotel teste aussi en S2 (22-25/11) a 1979,80 $ : la S1 reste la moins chere. Le King David est structurellement cher cet hiver."
+    },
+    {
+      "cle_site": "וינה",
+      "semaine": "S8",
+      "depart": "2027-01-03",
+      "retour": "2027-01-06",
+      "jour_depart": "dimanche",
+      "vol_usd": 310,
+      "hotel_total_usd": 663.1,
+      "hotel_trouve": "Vayalen Boutique Hotel",
+      "statut": "ok",
+      "note": "Vol direct 0 escale, retour hors vendredi/samedi. Vayalen complet en S2 (22-25/11), ou le vol etait a 300 $ : S8 est la seule semaine ou vol et hotel coincident."
+    },
+    {
+      "cle_site": "אמסטרדם",
+      "semaine": "S3",
+      "depart": "2026-11-29",
+      "retour": "2026-12-02",
+      "jour_depart": "dimanche",
+      "vol_usd": 392,
+      "hotel_total_usd": 247.34,
+      "hotel_trouve": "ibis budget Amsterdam City South",
+      "statut": "ok",
+      "note": "Vol direct 0 escale, retour hors vendredi/samedi. Aucun direct sous 310 $ sur toute la fenetre : le vol a double depuis aout, l'hotel compense."
+    },
+    {
+      "cle_site": "פפוס - WellClub",
+      "semaine": "S7",
+      "depart": "2026-12-28",
+      "retour": "2026-12-31",
+      "jour_depart": "lundi",
+      "vol_usd": 130,
+      "hotel_total_usd": 460.15,
+      "hotel_trouve": "WellClub Resort - Suites & Wellness",
+      "statut": "ok",
+      "note": "Vol direct 0 escale, retour hors vendredi/samedi. Hotel moins cher en S1 (404,37 $) mais aucun direct sous 200 $ cette semaine-la : le package S7 reste le meilleur."
+    },
+    {
+      "cle_site": "פפוס - Brown Hills",
+      "semaine": "S7",
+      "depart": "2026-12-28",
+      "retour": "2026-12-31",
+      "jour_depart": "lundi",
+      "vol_usd": 130,
+      "hotel_total_usd": 467.45,
+      "hotel_trouve": "Paphos Hills Resort & Spa by Brown Hotels",
+      "statut": "ok",
+      "note": "Vol direct 0 escale, retour hors vendredi/samedi. Meme tarif hotel en S1 et en S7 : c'est le vol a 130 $ qui fait le minimum."
+    },
+    {
+      "cle_site": "חלקידה",
+      "semaine": "S6",
+      "depart": "2026-12-21",
+      "retour": "2026-12-24",
+      "jour_depart": "lundi",
+      "vol_usd": 139,
+      "hotel_total_usd": null,
+      "hotel_trouve": null,
+      "statut": "gap hotel",
+      "note": "Vol direct ATH a 139 $ disponible. Brown Beach sans aucune disponibilite sur deux fenetres testees (15-18/11 et 21-24/12) : fermeture hivernale probable, a confirmer aupres de l'hotel."
+    },
+    {
+      "cle_site": "בודפשט",
+      "semaine": "S8",
+      "depart": "2027-01-03",
+      "retour": "2027-01-06",
+      "jour_depart": "dimanche",
+      "vol_usd": 148,
+      "hotel_total_usd": 634.72,
+      "hotel_trouve": "Silver Crown Hotel & Residence, Palace Quarter",
+      "statut": "ok",
+      "note": "Vol direct 0 escale, retour hors vendredi/samedi. S2 testee en contre-epreuve : hotel moins cher (595,66 $) mais vol a 173 $, package a 1680 contre 1660. Le Nouvel An coute sur l'hotel et rapporte sur le vol."
+    },
+    {
+      "cle_site": "טביליסי",
+      "semaine": "S2",
+      "depart": "2026-11-23",
+      "retour": "2026-11-26",
+      "jour_depart": "lundi",
+      "vol_usd": 208,
+      "hotel_total_usd": 497.49,
+      "hotel_trouve": "Cron Palace Kosher Tbilisi Hotel",
+      "statut": "ok",
+      "note": "Vol direct 0 escale, retour hors vendredi/samedi."
+    },
+    {
+      "cle_site": "לונדון",
+      "semaine": "S6",
+      "depart": "2026-12-20",
+      "retour": "2026-12-24",
+      "jour_depart": "dimanche",
+      "vol_usd": 329,
+      "hotel_total_usd": 595.69,
+      "hotel_trouve": "Croft Court Hotel",
+      "statut": "ok",
+      "note": "Vol direct 0 escale. ATTENTION : l'option la moins chere de la fenetre (282 $, 23-27/11) atterrit a Tel Aviv le VENDREDI a 15h25, non conforme Shabbat en hiver (limite 11h) — ecartee. 329 $ est le premier prix conforme. Depart dimanche 21h55, arrivee lundi 01h25 : hotel du 21 au 24/12."
+    },
+    {
+      "cle_site": "לונדון - Pillar",
+      "semaine": "S6",
+      "depart": "2026-12-20",
+      "retour": "2026-12-24",
+      "jour_depart": "dimanche",
+      "vol_usd": 329,
+      "hotel_total_usd": null,
+      "hotel_trouve": null,
+      "statut": "gap hotel",
+      "note": "Vol conforme identique a Croft Court. Pillar Hotel non retourne par Booking sur 21-24/12 : pas de disponibilite a ces dates."
+    },
+    {
+      "cle_site": "מונטנגרו",
+      "semaine": "S1-S8",
+      "depart": null,
+      "retour": null,
+      "jour_depart": null,
+      "vol_usd": null,
+      "hotel_total_usd": null,
+      "hotel_trouve": null,
+      "statut": "gap vol",
+      "note": "Aucun vol direct TLV-Montenegro sur l'integralite de la fenetre 15/11-03/01, recherche sans plafond de prix. Route saisonniere d'ete : ce n'est pas un creux, c'est une absence de ligne en hiver."
+    },
+    {
+      "cle_site": "ונציה",
+      "semaine": "S7",
+      "depart": "2026-12-28",
+      "retour": "2026-12-31",
+      "jour_depart": "lundi",
+      "vol_usd": 218,
+      "hotel_total_usd": 1542.89,
+      "hotel_trouve": "Rimon Place Kosher",
+      "statut": "ok",
+      "note": "Vol direct 0 escale, retour hors vendredi/samedi. Kiwi n'a pas echoue sur VCE cette fois. Tarif hotel du Nouvel An. Publication bloquee : cacherout contestee."
+    }
+  ]
+}
