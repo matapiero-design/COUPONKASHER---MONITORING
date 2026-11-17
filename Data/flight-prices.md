@@ -3,12 +3,23 @@
 Fichier complété automatiquement par la routine quotidienne (voir `ROUTINE_PROMPT.md`).
 Ne pas éditer manuellement — toute édition manuelle sera écrasée au prochain run.
 
-- **Dernière mise à jour** : 2026-09-15 03:32 UTC
-- **Portée du dernier run** : 10 destinations Groupe A (PRG, VIE, AMS, PFO×2, ATH, BUD, TBS, LON, MNE), package vol+hôtel, S1-S8 complet — run manuel (trigger API sans connecteurs)
-- **Statut connecteur Kiwi.com** : OK — connecté, résultats reçus pour toutes destinations
-- **Statut connecteur Booking.com** : OK — hôtels interrogés sur S5 (18-21/10) comme référence
+- **Dernière mise à jour** : 2026-11-17 (run quotidien automatique)
+- **Portée du dernier run** : 7 destinations (PRG, VIE, FCO, PFO, ATH, BUD, TBS), vol seul, direct uniquement, A/R 3 nuits, départ dimanche 22/11/2026 par défaut — via connecteur Kiwi.com
+- **Statut connecteur Kiwi.com** : OK — connecté, résultats reçus pour 6/7 destinations (PFO : aucun direct dimanche, voir anomalies)
 
-## Prix vols directs — Groupe A (S1-S8, run 2026-09-15)
+## Vérification quotidienne — run 2026-11-17 (départ dim. 22/11/2026, retour mer. 25/11, 3 nuits, direct, A/R, USD)
+
+| Destination | Aéroport | Meilleur prix A/R ($) | Compagnie (aller/retour) | Options directes trouvées | Statut |
+|---|---|---|---|---|---|
+| Rome | FCO | 157 | Wizz Air Malta / Wizz Air Malta | 15 | ✅ — ⚠️ destination retirée du catalogue (cacherout non tranchée, cf. CLAUDE.md §3) |
+| Chalkida/Athènes | ATH | 158 | Wizz Air Malta / Wizz Air Malta | 15 | ✅ cohérent avec historique (140-175$) |
+| Budapest | BUD | 176 | Wizz Air / Wizz Air | 15 | ✅ cohérent avec historique (142-250$) |
+| Tbilissi | TBS | 252 | Israir / Israir | 15 | ✅ dans la fourchette historique (210-305$) |
+| Prague | PRG | 339 | Smartwings / Smartwings | 15 | ✅ identique au meilleur prix S6 (339$) |
+| Vienne | VIE | 397 | Austrian Airlines / Blue Bird Airways | 9 | ⚠️ **+26 à +32 % vs moyenne récente (301-316$ sur S4/S5/S6/S8)** — dépasse le seuil d'alerte 15 % |
+| Paphos (Chypre) | PFO | — | — | 0 (dimanche) | ⛔ **aucun vol direct dimanche 22/11 sur la fenêtre 3 nuits** — meilleure option directe proche : mar. 24/11 → ven. 27/11, El Al, 140$ |
+
+## Prix vols directs — Groupe A (S1-S8, run 2026-09-15, historique)
 
 ### S1 — Départ 20/09/2026 (dimanche) → retour 23/09
 
@@ -127,6 +138,7 @@ Ne pas éditer manuellement — toute édition manuelle sera écrasée au procha
 
 | Date/heure (UTC) | Destinations traitées | Gaps / anomalies | Statut connecteur |
 |---|---|---|---|
+| 2026-11-17 (run quotidien, vol seul) | PRG, VIE, FCO, PFO, ATH, BUD, TBS (7/7 interrogées) — direct uniquement, A/R 3 nuits, départ dimanche 22/11/2026 par défaut, retour mercredi 25/11 | **Anomalie de prix à signaler** : Vienne (VIE) à 397$ (Austrian Airlines aller / Blue Bird Airways retour), soit +26 à +32 % au-dessus de la moyenne récente S4/S5/S6/S8 (301-316$) — dépasse le seuil d'alerte de 15 % (décision du 26/08/2026), à vérifier/arbitrer par Jacques avant toute utilisation commerciale. **Gap vol** : Paphos (PFO) n'a aucun vol direct au départ dimanche 22/11 sur la fenêtre 3 nuits ; la seule option directe proche est un départ mardi 24/11 → retour vendredi 27/11 (El Al, 140$, hors contrainte "dimanche"). Les 5 autres destinations (FCO, ATH, BUD, TBS, PRG) sont cohérentes avec l'historique récent, sans écart notable. **Note** : Rome (FCO) a été vérifiée sur demande du run mais est une destination retirée du catalogue de vente — son hôtel figure en liste d'exclusion cacherout (cf. CLAUDE.md §3) ; le prix vol est documenté ici à titre de suivi uniquement, non vendable. | OK (Kiwi.com, 6/7 destinations avec résultat direct) |
 | 2026-09-15 03:32 | PRG, VIE, AMS, PFO (WellClub + Brown Hills), ATH, BUD, TBS, LON, MNE (10 dest. Groupe A — Venise bloquée cacherout contestée). S1-S8 complet (run manuel, 3 semaines sans run) | **Haggim 5787** : S1 (retour 23/09 = RH j2) et S3/S4 partiellement bloquées — CORRECTION calendrier Israël : S3 (retour 07/10 = Hol HaMoed) et S4 (retour 14/10 = post-Shimini Atzeret) VALIDES pour clientèle israélienne. S2 (retour 30/09 = Erev YK) : à valider par Jacques. **Gaps vol** : TBS aucun direct S1-S4 (premier direct S5 18/10) ; AMS pas de direct dimanche S3, S4, S6, S7 ; MNE uniquement S3 + S5. **Gap hôtel** : Brown Hills Paphos pas de dispo S5, disponible S6 (761,48$ total). **Écarts > 15 %** : Prague (meilleur 2690₪ vs publié 3260₪, -17%), Vienne (meilleur 1930₪ vs publié 2520₪, -23%), Amsterdam (meilleur 2610₪ vs publié 1900₪, +37%) — les 3 nécessitent arbitrage Jacques avant publication. **Trigger** : trig_01AC9Z8TrgTpLToieNmSJ6G4 sans connecteurs (blocage API connu) — run manuel via session interactive avec Kiwi.com + Booking.com. Action requise : recréer la routine depuis claude.ai/routines avec les 2 connecteurs. | OK (manuel) |
 | 2026-08-25 03:33 | PRG, VIE, FCO, PFO, ATH, BUD, TBS (7/7) | Baisse de prix marquée et généralisée sur les 7 destinations vs le run du 2026-08-20 (de -27% pour TBS à -75% pour PRG). Explication la plus probable : date de départ testée plus éloignée (30/08 contre 23/08 lors du run précédent, soit 5 jours d'avance au lieu de 3) → sortie des tarifs de dernière minute les plus chers et ouverture de classes tarifaires moins chères, avec beaucoup plus d'options directes disponibles (PRG : 15 options directes ce run contre 1 seule le run précédent ; VIE : 15 contre 8). Ceci résout les deux anomalies notées le run précédent (PRG à 1723$ sur une seule option, VIE à 1284$) — elles semblent avoir été un effet de dernière minute plutôt qu'un problème de données. TBS reste l'exception avec seulement 4 options directes trouvées (contre 15 pour les autres destinations) et le prix le plus élevé du groupe (587$) — cohérent avec une offre directe TLV-TBS structurellement plus restreinte (Israir + El Al uniquement), pas une anomalie de données. À confirmer sur les prochains runs quotidiens pour distinguer volatilité de dernière minute vs tendance de fond. | OK |
 | 2026-08-20 03:33 | PRG, VIE, FCO, PFO, ATH, BUD, TBS (7/7, run initial) | PRG : une seule option directe (Smartwings aller / El Al retour) à 1723$, ~3x le prix des autres destinations du groupe (cluster ATH/FCO/BUD/PFO entre 364$ et 566$) — à surveiller les prochains jours pour confirmer si c'est structurel (peu de compagnies low-cost sur TLV-PRG direct) ou une anomalie ponctuelle. VIE également élevé (1284$, 8 options) mais cohérent avec l'absence de low-cost direct sur cette route — pas d'anomalie de données identifiée. Pas d'historique antérieur disponible pour comparaison (premier run avec données réelles). | OK |
